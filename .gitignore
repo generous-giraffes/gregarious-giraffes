@@ -1,0 +1,25 @@
+.idea/workspace.xml
+
+node_modules/
+
+client/public
+
+bundle.js
+
+.idea/
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+css/
+
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+.css
