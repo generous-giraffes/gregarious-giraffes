@@ -2,25 +2,28 @@ var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-  entry: ['./server/server.js'],
+  entry: ['./client/App.js'],
   output: {
-    path: __dirname + '/client/dist',
+    path: path.resolve(__dirname, "client"),
     filename: 'bundle.js'
   },
   debug: true,
+
   module: {
     loaders: [{
       test: /\.js$/,
       loader: 'babel-loader',
-      exclude: /(node_modules|bower_components)/,
+      exclude: /node_modules/,
       query: {
-        presets: ['es2015', 'react']
+        presets: ['es2015', 'stage-1', 'react']
       }
     }]
   }
 };
 
 /*
+
+make sure webpack is installed globally to use webpack commands in Terminal
 
 use 'webpack -w' in Terminal to build the bundle.js file...and keep it running in background
 
