@@ -22,7 +22,7 @@ app.use(express.static(__dirname + '/../client'));
 //var routes = require('./config/routes.js');
 
 //set and run the port and server
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8080);
 var port = app.get('port');
 app.listen(port);
 console.log("Server listening on PORT", port);
