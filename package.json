@@ -1,0 +1,19 @@
+{
+  "name": "gregarious-giraffes",
+  "version": "1.0.0",
+  "description": "Thesis Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/generous-giraffes/gregarious-giraffes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/generous-giraffes/gregarious-giraffes/issues"
+  },
+  "homepage": "https://github.com/generous-giraffes/gregarious-giraffes#readme"
+}
