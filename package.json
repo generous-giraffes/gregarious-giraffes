@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "npm test",
-    "start": "node server/server.js"
+    "start": "node server/server.js && webpack -w"
   },
   "repository": {
     "type": "git",
