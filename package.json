@@ -10,10 +10,18 @@
     "type": "git",
     "url": "git+https://github.com/generous-giraffes/gregarious-giraffes.git"
   },
-  "author": "",
+  "authors": "Laurhens Daudier, Sara Sailors, Jake Smith",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/generous-giraffes/gregarious-giraffes/issues"
   },
-  "homepage": "https://github.com/generous-giraffes/gregarious-giraffes#readme"
+  "homepage": "https://github.com/generous-giraffes/gregarious-giraffes#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "morgan": "^1.7.0",
+    "path": "^0.12.7",
+    "request": "^2.76.0"
+  }
 }
