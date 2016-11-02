@@ -4,7 +4,7 @@ var path = require('path');
 module.exports = {
   entry: ['./client/App.js'],
   output: {
-    path: path.resolve(__dirname, "client"),
+    path: path.resolve(__dirname, "client/public"),
     filename: 'bundle.js'
   },
   debug: true,
