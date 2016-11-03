@@ -47,7 +47,7 @@ knex.schema.hasTable('users').then((exists) => {
       table.integer('userid')
       table.string('username', 40)
       table.string('name', 40)
-      table.text('faveoriteFood', 40)
+      table.text('favoriteFood', 40)
 
       console.log('USERS TABLE CREATED');
     })
