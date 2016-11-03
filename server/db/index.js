@@ -26,15 +26,15 @@
 
 //when this file is required, knex sets up a connection with the databse and creates the tables if they do not exist
 
-//put these in another file, do not push to git
 //client and connection options (config object) passed into knex module to create connection to db
+//put these in another file, do not push to git
 var knex = require('knex')({
   client: 'mysql',
   connection: {
     //do not push these to git
     host: 'https://localhost:3000',
     user: 'root',
-    password: 'a',
+    password: '',
     database: 'users'
   },
   acquireConnectionTimeout: 60000
