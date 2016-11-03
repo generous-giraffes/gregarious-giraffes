@@ -32,7 +32,8 @@ var knex = require('knex')({
   client: 'mysql',
   connection: {
     //do not push these to git
-    host: 'https://localhost:3000',
+    host: 'west2-mysql-giraffes.cdt7ljmioe25.us-west-2.rds.amazonaws.com',
+    port: '3306',
     user: 'root',
     password: '',
     database: 'users'
