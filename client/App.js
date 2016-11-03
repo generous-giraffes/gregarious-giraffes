@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import style from './sass/styles.scss';
 
 class World extends React.Component {
   render() {
