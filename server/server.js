@@ -2,6 +2,10 @@ var express = require('express');
 var bodyparser = require('body-parser');
 var logger = require('morgan');
 var path = require('path');
+var webpack = require('webpack');
+var webpackDevMiddleware = require('webpack-dev-middleware');
+var webpackHotMiddleware = require('webpack-hot-middleware');
+var config = require('../webpack.config');
 
 //initiate express
 var app = express();
@@ -16,7 +20,9 @@ app.use(express.static(__dirname + '/../client'));
 //configure our server with routing file in /server/config/api-router
 //require('./config/api-router.js')(app, express);
 
-
+var compiler = webpack(config)
+app.use(webpackDevMiddleware(compiler, {noInfo: true, publicPath: config.output.publicPath}))
+app.use(webpackHotMiddleware(compiler))
 
 // require routes
 //var routes = require('./config/routes.js');

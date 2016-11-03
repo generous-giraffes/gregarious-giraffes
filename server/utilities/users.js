@@ -1,5 +1,5 @@
 var knex = require('../db')
-//functions to interact with the databse related to users
+//functions to interact with the database related to users
 var Utils = {
 
   addUser: (data) => {
