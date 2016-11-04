@@ -20,8 +20,6 @@
   "dependencies": {
     "auth0-lock": "^10.5.1",
     "body-parser": "^1.15.2",
-    "knex": "^0.12.6",
-    "material-ui": "^0.16.1",
     "css-loader": "^0.25.0",
     "express": "^4.14.0",
     "express-session": "^1.14.2",
@@ -30,6 +28,8 @@
     "gulp-livereload": "^3.8.1",
     "gulp-sass": "^2.3.2",
     "gulp-util": "^3.0.7",
+    "knex": "^0.12.6",
+    "material-ui": "^0.16.1",
     "morgan": "^1.7.0",
     "mysql": "^2.11.1",
     "node-sass": "^3.11.1",
@@ -39,6 +39,7 @@
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
     "react-router-redux": "^4.0.7",
+    "react-semantic-form": "^0.1.2",
     "redux": "^3.6.0",
     "redux-auth": "0.0.5-beta5",
     "redux-router": "^1.0.0-beta4",
@@ -60,7 +61,6 @@
     "request": "^2.76.0",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.3",
     "webpack-stream": "^3.2.0"
   }
 }
