@@ -9,13 +9,16 @@ module.exports = {
     path: __dirname + '/client/public',
     filename: 'bundle.js'
   },
-  //Lawrence - please comment in this area
+  //Laurhens - please comment in this area
   debug: true,
   module: {
     loaders: [{
+      //Here we say load on .js files and webpack uses babel to convert them from jsx and es2015 to javascript
       test: /\.js$/,
       loader: 'babel-loader',
+      // here we simply want to ignore the node_modules or bower_components (if any) directory
       exclude: /(node_modules|bower_components)/,
+      // here we are specifically telling babel what transformations we want it to do to our code via presets based on our dependencies - react, ES6
       query: {
         presets: ['es2015', 'stage-1', 'react']
       }
