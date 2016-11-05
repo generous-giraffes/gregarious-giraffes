@@ -4,6 +4,8 @@ import {Router, browserHistory, Route} from 'react-router';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import App from './components/App';
+import Dashboard from './views/dashboard/dashboard';
+
 
 
 //let store = createStore(app)
@@ -15,11 +17,13 @@ import App from './components/App';
 //    document.getElementById('root')
 //);
 
-ReactDOM.render(
+ReactDOM.render((
     <Router history={browserHistory}>
-        <Route path='/' component={App}/>
+      <Route path='/dashboard' component={Dashboard}/>
+      <Route path='/' component={App}/>
+
     </Router>
-    , document.getElementById('app')
+    ), document.getElementById('app')
 );
 
 

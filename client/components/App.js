@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 //Import the main scss file
 import style from '../styles/style.scss';

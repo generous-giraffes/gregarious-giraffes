@@ -27,6 +27,11 @@ app.use(webpackHotMiddleware(compiler))
 // require routes
 //var routes = require('./config/routes.js');
 
+// server serves index.html for all routes
+app.get('*', function(req, res){
+  res.sendFile(path.resolve(__dirname, '../client', 'index.html'))
+});
+
 //set and run the port and server
 app.set('port', process.env.PORT || 8080);
 var port = app.get('port');
