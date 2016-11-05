@@ -26,6 +26,10 @@ app.use(webpackHotMiddleware(compiler))
 
 // require routes
 //var routes = require('./config/routes.js');
+var formRoutes = require('./config/formRoutes');
+//use routes
+app.use('/api', formRoutes);
+
 
 //set and run the port and server
 app.set('port', process.env.PORT || 8080);
