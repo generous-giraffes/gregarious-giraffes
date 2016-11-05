@@ -30,7 +30,6 @@ class SurveyForm extends React.Component {
     var hobbiesForm = $(e.currentTarget)[0][9];
     var speciesForm = $(e.currentTarget)[0][11];
     var quoteForm = $(e.currentTarget)[0][14];
-    // var photoForm = $(e.currentTarget)[0][15];
 
 //get the values from the elements
     var firstName = $(firstNameForm).val();
@@ -42,22 +41,7 @@ class SurveyForm extends React.Component {
     var hobbies = $(hobbiesForm).find('span').text().split(' ');
     var species = $(speciesForm).find('span').text();
     var quote = $(quoteForm).val();
-    // var photo = $(photoForm).val();
 
-    //prevent an incomplete form from being submitted
-    if(
-      firstName === ''
-      || lastName === ''
-      || dob === ''
-      || bloodType === 'warm or cold?'
-      || season === 'favorite season'
-      || trained === 'Are you House Trained?'
-      || hobbies.length < 4
-      || species === 'search or select'
-      || quote === ''
-    ) {
-        alert('Please answer all of the questions. These questions allow us to improve your experience on our site. Thanks!');
-      }
     // console.log(firstName, lastName, dob, bloodType, season, hobbies, trained, species, quote);
     console.log('SUBMITTED FORM');
   }
@@ -162,12 +146,6 @@ class SurveyForm extends React.Component {
           <FormControl componentClass="textarea" placeholder="'Nature teaches beasts to know their friends.'
           -William Shakespeare" required='true' />
         </FormGroup>
-
-        {/* <FieldGroup
-          id="formControlsFile"
-          type="file"
-          label="Photo"
-        /> */}
 
         <Button type="submit">
           Submit
