@@ -1,3 +1,23 @@
+//----------------------------------*\
+// SCSS MIXINS
+//----------------------------------*/
+@import 'mixins/mixins';
+//----------------------------------*\
+// CONFIG MODULES
+//----------------------------------*/
+// Config modules
+@import 'modules/variables';
+@import 'modules/clearfix';
+@import 'modules/defaults';
+@import 'modules/normalize';
+//----------------------------------*\
+// PARTIALS
+//----------------------------------*/
+@import 'partials/nav';
+@import 'partials/login';
+@import 'partials/logout';
+@import 'partials/footer';
+
 body {
   background-color: deeppink;
   .app {
