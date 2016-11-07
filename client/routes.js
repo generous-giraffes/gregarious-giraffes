@@ -14,6 +14,5 @@ export default (
                     <Route path="/signin" component={SignIn}/>
                     <Route path="/forgotPwd" component={ForgotPwd}/>
                     <Route path="/signup" component={SignUp}/>
-                    <Route path="/validateEmail/:token" component={ValidateEmail}/>
             </Route>
 );
