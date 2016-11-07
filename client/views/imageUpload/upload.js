@@ -1,4 +1,6 @@
-var React = require('react');
+import React from 'react';
+import axios from 'axios';
+
 //ImageUpload uses FileReader to asynchronously read the contents of an image that the user uploads
 class ImageUpload extends React.Component {
   constructor(props) {
@@ -9,11 +11,21 @@ class ImageUpload extends React.Component {
       imagePreviewUrl: ''
     };
   }
-
+//posts file to db
   handleSubmit(e) {
     e.preventDefault();
-//ADD axios post to db+++++++++++++++++
     console.log('handle uploading', this.state.file);
+
+    axios.post('/api/image', {
+      file: '',
+      username: ''
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   }
 
   handleImageChange(e) {
@@ -33,7 +45,7 @@ class ImageUpload extends React.Component {
   }
 
   render() {
-    //retrieve url from state, then render an image if there is a url else a div
+//retrieve url from state, then render an image if there is a url else a div
     let { imagePreviewUrl } = this.state;
     let $imagePreview = null;
     if(imagePreviewUrl) {
