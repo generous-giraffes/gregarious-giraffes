@@ -1,17 +1,17 @@
 import React from 'react';
 
-class Home extends React.Component {
+class ForgotPwd extends React.Component {
     constructor(props) {
         super(props);
     }
 
     render() {
         return (
-            <div className="home">
-              <p>Home page</p>
+            <div className="forgot-password">
+              <p>Forgot Password</p>
             </div>
         )
     }
 }
 
-export default Home
+export default ForgotPwd
