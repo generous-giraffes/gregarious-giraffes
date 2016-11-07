@@ -1,19 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router';
 
-class Navbar extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <header className="header">
-                <span className="header-profile">Profile</span>
-                <span className="header-login">Login</span>
-            </header>
-        )
-    }
-}
+const Navbar = () => (
+    <header className="header">
+        <Link to='/dashboard' className="header-profile">Profile</Link>
+        <Link to='/signin' className="header-login">Login</Link>
+    </header>
+)
 
 export default Navbar
-
