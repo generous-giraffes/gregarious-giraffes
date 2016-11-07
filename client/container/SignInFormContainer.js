@@ -1,6 +1,6 @@
-import SignInForm from '../components/SignInForm.js';
 import {signInUser, signInUserSuccess, signInUserFailure, resetUserFields } from '../actions/users';
 import { reduxForm } from 'redux-form';
+import SignInForm from '../components/SignInForm.js';
 
 
 //Client side validation

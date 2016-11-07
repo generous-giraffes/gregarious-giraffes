@@ -25,7 +25,7 @@ app.use(function (req, res, next) {
 
 //middleware
 app.use(bodyparser.urlencoded({extended: true}));
- app.use(bodyparser.json());
+app.use(bodyparser.json());
 app.use(bodyparser());
 app.use(logger('dev'));
 app.use(express.static(__dirname + '/../client'));

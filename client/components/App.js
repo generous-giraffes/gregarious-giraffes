@@ -1,13 +1,12 @@
 import React from 'react';
-import Navbar from './Navbar';
-import Footer from './Footer';
+//import Navbar from './Navbar';
+//import Footer from './Footer';
 import { Component } from 'react';
 
 //Import the main scss file
 import style from '../styles/style.scss';
 
-class App extends React.Component {
-
+export default class App extends Component {
     componentWillMount() {
         this.props.loadUserFromToken();
     }
@@ -15,14 +14,10 @@ class App extends React.Component {
     render() {
         return (
             <div className="app">
-                <Navbar />
-                {/*This refers to the nested route components*/}
                 {this.props.children}
-                <Footer />
             </div>
-        )
+        );
     }
 }
 
-export default App
 

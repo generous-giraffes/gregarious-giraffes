@@ -31,7 +31,7 @@ export const UPDATE_USER_EMAIL = 'UPDATE_USER_EMAIL';
 export const LOGOUT_USER = 'LOGOUT_USER';
 
 
-const ROOT_URL = location.href.indexOf('localhost') > 0 ? 'http://localhost:3000/api' : '/api';
+const ROOT_URL = location.href.indexOf('localhost') > 0 ? 'http://localhost:8080/api' : '/api';
 
 export function validateEmail(validateEmailToken) {
     //check if token from welcome email is valid, if so, update email as verified and login the user from response

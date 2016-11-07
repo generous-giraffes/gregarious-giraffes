@@ -6,7 +6,7 @@ class ValidateEmail extends Component {
     render() {
         return (
             <div>
-                <HeaderContainer type="posts_new"/>
+                <HeaderContainer />
                 <ValidateEmailAlertContainer token={this.props.params.token} autoValidateToken={true}/>
             </div>
         );

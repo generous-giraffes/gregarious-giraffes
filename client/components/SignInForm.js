@@ -7,8 +7,6 @@ class SignInForm extends Component {
     };
 
     componentWillMount() {
-        //Important! If your component is navigating based on some global state(from say componentWillReceiveProps)
-        //always reset that global state back to null when you REMOUNT
         this.props.resetMe();
     }
 
@@ -17,9 +15,6 @@ class SignInForm extends Component {
             this.context.router.push('/');
         }
 
-        //error
-        //Throw error if it was not already thrown (check this.props.user.error to see if alert was already shown)
-        //If u dont check this.props.user.error, u may throw error multiple times due to redux-form's validation errors
         if (nextProps.user.status === 'signin' && !nextProps.user.user && nextProps.user.error && !this.props.user.error) {
             alert(nextProps.user.error.message);
         }

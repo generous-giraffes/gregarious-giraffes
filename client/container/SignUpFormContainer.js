@@ -1,8 +1,7 @@
-import SignUpForm from '../components/SignUpForm.js';
 import {signUpUser, signUpUserSuccess, signUpUserFailure, resetUser } from '../actions/users';
 import { validateUserFields, validateUserFieldsSuccess, validateUserFieldsFailure, resetValidateUserFields } from '../actions/validateUserFields';
-
 import { reduxForm } from 'redux-form';
+import SignUpForm from '../components/SignUpForm.js';
 
 
 //Client side validation
