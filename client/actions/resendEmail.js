@@ -7,7 +7,7 @@ export const RESEND_VALIDATION_EMAIL_FAILURE = 'RESEND_VALIDATION_EMAIL_FAILURE'
 export const RESET_RESEND_EMAIL_STATE = 'RESET_RESEND_EMAIL_STATE';
 
 
-const ROOT_URL = location.href.indexOf('localhost') > 0 ? 'http://localhost:3000/api' : '/api';
+const ROOT_URL = location.href.indexOf('localhost') > 0 ? 'http://localhost:8080/api' : '/api';
 
 export function resendValidationEmail(tokenFromStorage) {
     const request = axios({

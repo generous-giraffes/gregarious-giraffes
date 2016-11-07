@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
-
 class Header extends Component {
     static contextTypes = {
         router: PropTypes.object
@@ -49,7 +48,7 @@ class Header extends Component {
     }
 
     renderLinks() {
-        const { type, authenticatedUser } = this.props;
+        const { authenticatedUser } = this.props;
     };
 
     render() {
@@ -63,4 +62,4 @@ class Header extends Component {
     }
 }
 
-export default Header
+export default Header;
