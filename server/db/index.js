@@ -1,29 +1,3 @@
-// var mysql = require('mysql');
-//
-// var connection = mysql.createConnection({
-//   user: 'root',
-//   password: 'a',
-//   database: 'users'//insert db name here
-// });
-// //calling connection.query creates a conenction inplace of calling connection.connect();
-// connection.query('CREATE DB IF IT DOES NOT EXIST', (err) => {
-//   if(err) throw err;
-//   connection.query('USE users', (err) => {
-//     if(err) throw err;
-//     connection.query('CREATE TABLE IF NOT EXISTS users('
-//       + 'id INT NOT NULL AUTO_INCREMENT,'
-//       + 'userid int NOT NULL,'
-//       + 'userName VARCHAR(50) NOT NULL,'
-//       + 'faveFood varchar(100) NOT NULL,'
-//       + 'PRIMARY KEY(id),'
-//       +  ')', (err) => {
-//         if(err) throw err;
-//     });
-//   });
-// });
-//
-// module.exports = connection;
-
 //when this file is required, knex sets up a connection with the databse and creates the tables if they do not exist
 
 //client and connection options (config object) passed into knex module to create connection to db
@@ -50,12 +24,13 @@ knex.schema.hasTable('users').then((exists) => {
       table.string('firstName', 40)
       table.string('lastName', 40)
       table.string('dob', 20)
-      table.text('bloodType', 20)
-      table.text('season', 30)
-      table.text('trained', 30)
-      table.text('hobbies', 100)
-      table.text('species', 100)
-      table.text('quote', 200)
+      table.string('bloodType', 20)
+      table.string('season', 30)
+      table.string('trained', 30)
+      table.text('hobbies')
+      table.string('species', 100)
+      table.text('quote')
+      table.text('image')
 
       console.log('USERS TABLE CREATED');
     })
