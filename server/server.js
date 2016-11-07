@@ -42,14 +42,13 @@ app.post('/api/image', (req, res) => {
 })
 
 app.get('/api/image', (req, res) => {
-	console.log('++++++++++++post request to /image recieved', req.body.image);
-//move this into utilities and then require it
-//selects image from users table where the user id matches the user that uploaded the photo and updates the image
-  db('users').insert({'username': 'tester', userId: 1, faveFood:'onions'}).then((res)=> console.log('++++++++++user isnerted', res))
-  db.insert({'image': req.body.image}).into('users').where('id', req.userId)
-	.then((res) => { console.log(res, "inserted image"); })
-	.catch((err) => { console.error(err); });
-  res.sendStatus(200);
+	console.log('++++++++++++get request to /image recieved');
+  db('users').where({userId: 1}).select('image').then((img) =>{
+    console.log('+========',img[0].image);
+    res.send(img[0].image)
+  })
+
+  // res.send(img);
 })
 
 //TEST

@@ -16,11 +16,11 @@ class ImageDownload extends React.Component {
   handleGet() {
     console.log('handle download', this.state.imageUrl);
 
-    if(this.state.imagePreviewUrl) {
+    if(!this.state.imagePreviewUrl) {
       axios.get('/api/image')
       .then((response) => {
-        console.log('res body',response.body);
-        //this.setState({imageUrl: response.body.image});
+        console.log('res',response);
+        this.setState({imageUrl: response.data});
       })
       .catch((error) => {
         console.error(error);
