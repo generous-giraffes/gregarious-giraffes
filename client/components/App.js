@@ -1,13 +1,15 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { Component } from 'react';
 
 //Import the main scss file
 import style from '../styles/style.scss';
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
+
+    componentWillMount() {
+        this.props.loadUserFromToken();
     }
 
     render() {
