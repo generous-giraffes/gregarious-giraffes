@@ -1,6 +1,6 @@
 .idea/workspace.xml
 
-node_modules/
+/node_modules/
 
 client/public
 
@@ -14,9 +14,6 @@ bundle.js
 .AppleDouble
 .LSOverride
 
-css/
-
-
 # Thumbnails
 ._*
 
@@ -25,3 +22,24 @@ css/
 .Trashes
 
 .css
+npm-debug.log
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# node-waf configuration
+.lock-wscript
+
+# Dependency directories
+node_modules
+jspm_packages
+
+# Optional npm cache directory
+.npm
