@@ -6,7 +6,7 @@ var webpack = require('webpack');
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
 var config = require('../webpack.config');
-
+var db = require('./db/index');
 //initiate express
 var app = express();
 
@@ -26,9 +26,33 @@ app.use(webpackHotMiddleware(compiler))
 
 // require routes
 //var routes = require('./config/routes.js');
-var formRoutes = require('./config/formRoutes');
-//use routes
-app.use('/api', formRoutes);
+
+
+
+//TEST
+app.post('/api/image', (req, res) => {
+	console.log('++++++++++++post request to /image recieved', req.body.image);
+//move this into utilities and then require it
+//selects image from users table where the user id matches the user that uploaded the photo and updates the image
+  db('users').insert({'username': 'tester', userId: 1, faveFood:'onions'}).then((res)=> console.log('++++++++++user isnerted', res))
+  db.insert({'image': req.body.image}).into('users').where('id', req.userId)
+	.then((res) => { console.log(res, "inserted image"); })
+	.catch((err) => { console.error(err); });
+  res.sendStatus(200);
+})
+
+app.get('/api/image', (req, res) => {
+	console.log('++++++++++++post request to /image recieved', req.body.image);
+//move this into utilities and then require it
+//selects image from users table where the user id matches the user that uploaded the photo and updates the image
+  db('users').insert({'username': 'tester', userId: 1, faveFood:'onions'}).then((res)=> console.log('++++++++++user isnerted', res))
+  db.insert({'image': req.body.image}).into('users').where('id', req.userId)
+	.then((res) => { console.log(res, "inserted image"); })
+	.catch((err) => { console.error(err); });
+  res.sendStatus(200);
+})
+
+//TEST
 
 
 //set and run the port and server
