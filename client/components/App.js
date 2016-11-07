@@ -1,18 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Component } from 'react';
 
 //Import the main scss file
 import style from '../styles/style.scss';
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
+
+    componentWillMount() {
+        this.props.loadUserFromToken();
     }
 
     render() {
         return (
-            <div className="app">
-                <p>Hello World</p>
+            <div>
+                {this.props.children}
             </div>
         )
     }
