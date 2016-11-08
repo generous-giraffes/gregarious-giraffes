@@ -1,18 +1,33 @@
 //when this file is required, knex sets up a connection with the databse and creates the tables if they do not exist
 
 //++++++++FOR LOCAL TESTING++++++++
+//var knex = require('knex')({
+//  client: 'mysql',
+//  connection: {
+//    //do not push these to git
+//    host: 'west2-mysql-giraffes.cdt7ljmioe25.us-west-2.rds.amazonaws.com',
+//    port: '3306',
+//    //host: 'localhost',
+//    user: 'root',
+//    password: '',//your local password for root user
+//    database: 'users'
+//  }
+//});
+
 var knex = require('knex')({
   client: 'mysql',
   connection: {
     //do not push these to git
-    host: 'west2-mysql-giraffes.cdt7ljmioe25.us-west-2.rds.amazonaws.com',
+    host: 'giraffe.cdt7ljmioe25.us-west-2.rds.amazonaws.com',
+    user: 'giraffes',
+    password: 'giraffes',
     port: '3306',
-    //host: 'localhost',
-    user: 'root',
-    password: '',//your local password for root user
-    database: 'users'
-  }
+    database: 'giraffes',
+    debug: true
+  },
+  pool: {min: 0, max: 10}
 });
+
 //create users table
 knex.schema.hasTable('users').then((exists) => {
   console.log(exists)
