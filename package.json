@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/generous-giraffes/gregarious-giraffes#readme",
   "devDependencies": {
+    "async": "^2.1.2",
     "axios": "^0.15.2",
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.7",
