@@ -1,9 +1,9 @@
 'use strict';
 
 const jwt = require('jwt-simple');
-const secret = require('./utilities');
+const secret = require('../utilities');
 const bcrypt = require('bcrypt');
-const user = require('./../database/users');
+const user = require('./../db/users.js');
 const salt = bcrypt.genSaltSync(10);
 
 module.exports = {  //add expires to payload, then check against
@@ -38,7 +38,6 @@ module.exports = {  //add expires to payload, then check against
         else {
             console.error('invalid token')
         }
-        ;
     },
 
     addUser (req, res) {
@@ -60,9 +59,9 @@ module.exports = {  //add expires to payload, then check against
                 }
                 else {
                     reject('Signup Error: this user already exists');
-                });
-        });
-        return newUser;
+                }
+            });
+            return newUser;
+        })
     }
-
-};
+}
