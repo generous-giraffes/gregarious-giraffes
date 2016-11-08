@@ -7,6 +7,7 @@
 --run: select * from users;  to display everything in the table
 -- go to https://dev.mysql.com/doc/refman/5.7/en/select.html for more select options
 
+-- OUT OF DATE, no longer used, table does not match new databse
 CREATE DATABASE users;
 
 USE users;
