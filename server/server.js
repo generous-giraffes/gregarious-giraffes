@@ -7,7 +7,6 @@ var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
 var config = require('../webpack.config');
 var router = express.Router();
-var jwt = require('jsonwebtoken');
 
 
 //initiate express
