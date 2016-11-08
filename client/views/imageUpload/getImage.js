@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
+//ImageDownload dowloads an image from the db
 class ImageDownload extends React.Component {
   constructor(props) {
     super(props);
@@ -9,17 +9,17 @@ class ImageDownload extends React.Component {
       imageUrl: ''
     };
   }
+
   componentWillMount() {
     this.handleGet();
   }
-
+//+++REFACTOR+++ to accept userid or other identifying parameter
   handleGet() {
     console.log('handle download', this.state.imageUrl);
 
     if(!this.state.imagePreviewUrl) {
       axios.get('/api/image')
       .then((response) => {
-        console.log('res',response);
         this.setState({imageUrl: response.data});
       })
       .catch((error) => {

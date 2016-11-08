@@ -17,7 +17,6 @@ class ImageUpload extends React.Component {
     console.log('handle uploading', this.state.file);
     //post request to server goes to imageRoutes and the image gets added to db using userId to find the user
     //only post if there is an image in state
-
     if(this.state.imagePreviewUrl) {
       axios.post('/api/image', {
         image: this.state.imagePreviewUrl,

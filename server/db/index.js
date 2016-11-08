@@ -1,26 +1,13 @@
 //when this file is required, knex sets up a connection with the databse and creates the tables if they do not exist
 
-//client and connection options (config object) passed into knex module to create connection to db
-//put these in another file, do not push to git
-// var knex = require('knex')({
-//   client: 'mysql',
-//   connection: {
-//     //do not push these to git
-//     host: 'west2-mysql-giraffes.cdt7ljmioe25.us-west-2.rds.amazonaws.com',
-//     port: '3306',
-//     user: 'root',
-//     password: '',
-//     database: 'users'
-//   }
-// });
-//++++++++++++++++FOR LOCAL TESTING++++++++
+//++++++++FOR LOCAL TESTING++++++++
 var knex = require('knex')({
   client: 'mysql',
   connection: {
     //do not push these to git
     host: 'localhost',
     user: 'root',
-    password: 'a',
+    password: '',//your local password for root user
     database: 'users'
   }
 });
