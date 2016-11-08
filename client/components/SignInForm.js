@@ -21,7 +21,8 @@ class SignInForm extends Component {
     }
 
     render() {
-        const {asyncValidating, fields: {username, password}, handleSubmit, submitting, user } = this.props;
+        console.log(this.props, "this is this.props after render")
+        //const {asyncValidating, fields: {username, password}, handleSubmit, submitting, user } = this.props;
 
         return (
             <div className="container">
