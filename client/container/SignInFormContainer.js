@@ -1,5 +1,6 @@
 import {signInUser, signInUserSuccess, signInUserFailure, resetUserFields } from '../actions/users';
 import { reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 import SignInForm from '../components/SignInForm.js';
 
 
@@ -74,3 +75,5 @@ export default reduxForm({
     null,
     validate
 }, mapStateToProps, mapDispatchToProps)(SignInForm);
+
+//export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);

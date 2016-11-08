@@ -3,7 +3,6 @@ var router = express.Router();
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var utils = require('../utilities/index');
-var email = require('../utilities/email');
 var expressJwt = require('express-jwt');
 //need to add in the database / mysql info
 
@@ -210,56 +209,6 @@ router.get('/me/from/token', function (req, res, next) {
         });
     });
 });
-
-router.get('/resendValidationEmail', expressJwt({
-    secret: process.env.JWT_SECRET
-}), function (req, res, next) {
-
-    User.findById({
-        '_id': req.user._id
-    }, function (err, user) {
-        if (err) throw err;
-
-        //send welcome email w/ verification token
-        email.sendWelcomeEmail(user, req.headers.host, function (err) {
-            if (err) {
-                res.status(404).json(err);
-            } else {
-                res.send({
-                    message: 'Email was resent'
-                })
-            }
-        });
-    });
-});
-
-
-router.post(
-    '/updateEmail',
-    expressJwt({
-        secret: process.env.JWT_SECRET
-    }),
-    function (req, res, next) {
-
-        var newEmail = req.body.email && req.body.email.trim();
-
-        User.findOneAndUpdate({
-            '_id': req.user._id
-        }, {
-            email: newEmail
-        }, {
-            new: true
-        }, function (err, user) {
-            if (err) throw err;
-
-            console.dir(user.toJSON());
-            //send welcome email w/ verification token
-            email.sendWelcomeEmail(user, req.headers.host);
-
-            res.json({message: 'Email was updated'});
-
-        });
-    });
 
 
 //get current user from email-token(from w/in welcome email)
