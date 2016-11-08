@@ -84,9 +84,11 @@ app.use(function (err, req, res, next) {
  }
 });
 
-var formRoutes = require('./config/formRoutes');
-//use routes
-app.use('/api', formRoutes);
+// require routes
+var imageUpload = require('./config/imageRoutes');
+var form = require('./config/formRoutes');
+app.use('/api', imageUpload);
+app.use('/api', form);
 
 // server serves index.html for all routes
 app.get('*', function(req, res){
