@@ -2,7 +2,7 @@
 
 const jwt = require('jwt-simple');
 const secret = require('../utilities');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const user = require('./../db/users.js');
 const salt = bcrypt.genSaltSync(10);
 
