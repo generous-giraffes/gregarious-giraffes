@@ -1,12 +1,11 @@
 import { combineReducers } from 'redux';
-import UserReducer from './reducer_user';
-import ValidateUserFieldsReducer from './reducer_validateUserFields';
-import { reducer as formReducer } from 'redux-form';
+import { routeReducer } from 'react-router-redux';
+import { authReducer } from './reducer_auth';
+
 
 const rootReducer = combineReducers({
-    user: UserReducer,
-    validateFields: ValidateUserFieldsReducer,
-    form: formReducer // <-- redux-form
+    routing: routeReducer,
+    isAuthorized: authReducer
 });
 
 export default rootReducer;

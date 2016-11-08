@@ -1,79 +1,62 @@
-import {signInUser, signInUserSuccess, signInUserFailure, resetUserFields } from '../actions/users';
-import { reduxForm } from 'redux-form';
+import React, { Component } from 'react';
+import { PageHeader, Input, ButtonInput } from 'react-bootstrap';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import SignInForm from '../components/SignInForm.js';
+import { loginUser } from '../actions/auth';
 
+class LoginForm extends Component {
+    constructor(props) {
+        super(props);
 
-//Client side validation
-function validate(values) {
-    var errors = {};
-    var hasErrors = false;
-    if (!values.username || values.username.trim() === '') {
-        errors.username = 'Enter username';
-        hasErrors = true;
+        this.state = {email: '', password: ''};
+
+        this.onEmailChange = this.onEmailChange.bind(this);
+        this.onPasswordChange = this.onPasswordChange.bind(this);
+        this.onFormSubmit = this.onFormSubmit.bind(this);
     }
-    if (!values.password || values.password.trim() === '') {
-        errors.password = 'Enter password';
-        hasErrors = true;
+
+    onEmailChange(event) {
+        this.setState({email: event.target.value});
     }
-    return hasErrors && errors;
-}
 
+    onPasswordChange(event) {
+        this.setState({password: event.target.value});
+    }
 
-//For any field errors upon submission (i.e. not instant check)
-const validateAndSignInUser = (values, dispatch) => {
+    onFormSubmit(event) {
+        console.log(event);
+        event.preventDefault();
+        this.props.loginUser(this.state.email, this.state.password);
+        this.setState({email: '', password: ''});
+    }
 
-    return new Promise((resolve, reject) => {
+    render() {
 
-        dispatch(signInUser(values))
-            .then((response) => {
-                let data = response.payload.data;
-                //if any one of these exist, then there is a field error
-                if (response.payload.status != 200) {
-                    //let other components know of error by updating the redux` state
-                    dispatch(signInUserFailure(response.payload));
-                    reject(data); //this is for redux-form itself
-                } else {
-                    //store JWT Token to browser session storage
-                    //If you use localStorage instead of sessionStorage, then this w/ persisted across tabs and new windows.
-                    //sessionStorage = persisted only in current tab
-                    sessionStorage.setItem('jwtToken', response.payload.data.token);
-                    //let other components know that we got user and things are fine by updating the redux` state
-                    dispatch(signInUserSuccess(response.payload));
-                    resolve();//this is for redux-form itself
-                }
-            });
-    });
-};
-
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        signInUser: validateAndSignInUser,
-        resetMe: () => {
-            //sign up is not reused, so we dont need to resetUserFields
-            //in our case, it will remove authenticated users
-            // dispatch(resetUserFields());
-        }
+        return (
+            <div>
+                <PageHeader>Log In</PageHeader>
+                <form onSubmit={this.onFormSubmit}>
+                    <Input
+                        type='text'
+                        label='Email Address'
+                        placeholder='Enter your email address'
+                        value={this.state.email}
+                        onChange={this.onEmailChange}/>
+                    <Input
+                        type='password'
+                        label='Password'
+                        placeholder='Enter your password'
+                        value={this.state.password}
+                        onChange={this.onPasswordChange}/>
+                    <ButtonInput type='submit' bsStyle='primary' value="Submit"/>
+                </form>
+            </div>
+        );
     }
 }
 
-
-function mapStateToProps(state, ownProps) {
-    return {
-        user: state.user
-    };
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({loginUser}, dispatch);
 }
 
-
-// connect: first argument is mapStateToProps, 2nd is mapDispatchToProps
-// reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
-export default reduxForm({
-    form: 'SignInForm',
-    fields: ['username', 'password'],
-    null,
-    null,
-    validate
-}, mapStateToProps, mapDispatchToProps)(SignInForm);
-
-//export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);
+export default connect(null, mapDispatchToProps)(LoginForm);
