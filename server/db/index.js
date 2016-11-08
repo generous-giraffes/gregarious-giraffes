@@ -14,6 +14,21 @@
 //  }
 //});
 
+var knex = require('knex')({
+  client: 'mysql',
+  connection: {
+    //do not push these to git
+    host: 'giraffe.cdt7ljmioe25.us-west-2.rds.amazonaws.com',
+    user: 'giraffes',
+    password: 'giraffes',
+    port: '3306',
+    database: 'giraffes',
+    debug: true
+  },
+  pool: {min: 0, max: 10}
+});
+
+
 //create users table
 knex.schema.hasTable('users').then((exists) => {
   console.log(exists)
