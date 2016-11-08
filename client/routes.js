@@ -1,18 +1,16 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import App from './views/auth/App';
-import SignIn from './views/auth/SignIn';
-import SignUp from './views/auth/SignUp';
-import ForgotPwd from './views/auth/ForgotPwd';
-import ValidateEmail from './views/auth/ValidateEmail';
+import App from './components/App';
+import SignIn from './container/SignInFormContainer';
+import SignUp from './container/SignUpFormContainer';
+import Home from './components/home';
 
 export default (
 
             <Route path="/" component={App}>
-                    <IndexRoute component={SignIn}/>
-                    <Route path="/signin" component={SignIn}/>
-                    <Route path="/forgotPwd" component={ForgotPwd}/>
-                    <Route path="/signup" component={SignUp}/>
+                    <IndexRoute component={Home}/>
+                    <Route path="signin" component={SignIn}/>
+                    <Route path="signup" component={SignUp}/>
             </Route>
 );

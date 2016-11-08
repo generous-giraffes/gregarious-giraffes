@@ -14,12 +14,10 @@ var jwt = require('jsonwebtoken');
 var app = express();
 
 //Coors
-app.use(function (req, res, next) {
- res.header("Access-Control-Allow-Origin", "*");
- res.header("Access-Control-Request-Headers", "*");
- res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
- res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
- res.header("Access-Control-Allow-Credentials", "true");
+app.use((req, res, next) => {
+ res.header('Access-Controll-Allow-Origin', '*');
+ res.header('Access-Controll-Allow-Methods', 'GET, POST, PUT, DELETE');
+ res.header('Access-Controll-Expose-Headers', 'token');
  next();
 });
 
@@ -32,57 +30,8 @@ app.use(express.static(__dirname + '/../client'));
 
 //configure our server with routing file in /server/config/api-router
 //require('./config/api-router.js')(app, express);
-var users = require('./config/routes');
+var users = require('./config/auth');
 
-var compiler = webpack(config);
-app.use(webpackDevMiddleware(compiler, {noInfo: true, publicPath: config.output.publicPath}));
-app.use(webpackHotMiddleware(compiler));
-
-//middleware that checks if JWT token exists and verifies it if it does exist.
-//In all the future routes, this helps to know if the request is authenticated or not.
-app.use(function (req, res, next) {
-
- // check header or url parameters or post parameters for token
- var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
- // decode token
- if (token) {
-  jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
-   if (err) {
-    return res.status(401).json({success: false, message: 'Failed to authenticate token.'});
-   } else {
-    req.user = user;
-    next();
-   }
-  });
- } else {
-  next();
- }
-});
-
-var staticPath = 'client';
-
-app.use('/api/', users);
-app.use(express.static(staticPath));
-app.use('/', express.static(staticPath));
-app.use('/validateEmail/*', express.static(staticPath));
-
-
-// error handlers
-// no stacktraces leaked to user
-app.use(function (err, req, res, next) {
- console.dir(err);
- res.status(err.status || 500);
- if (err.status === 500) {
-  console.error(err.stack);
-  res.json({error: 'Internal Server Error'});
- }
- else if (err.status === 404) {
-  res.render('error');    //render error page
- } else {
-  res.json({error: err.message})
- }
-});
 
 // require routes
 var imageUpload = require('./config/imageRoutes');
