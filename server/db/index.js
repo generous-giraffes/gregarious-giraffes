@@ -17,7 +17,6 @@
 var knex = require('knex')({
   client: 'mysql',
   connection: {
-    //do not push these to git
     host: 'giraffe.cdt7ljmioe25.us-west-2.rds.amazonaws.com',
     user: 'giraffes',
     password: 'giraffes',
@@ -34,15 +33,12 @@ knex.schema.hasTable('users').then((exists) => {
   console.log(exists)
   if(!exists) {
     return knex.schema.createTable('users', (table) => {
-      'name', 'email', 'password', 'location'
-      //for auth
       table.string('name', 40).notNullable()
+      table.string('email', 40).notNullable()
       table.text('password').notNullable()
       table.string('location', 255)
       //from form
       table.increments('id').primary()
-      table.string('username', 40).defaultTo('null')
-      table.string('lastName', 40).defaultTo('null')
       table.string('dob', 20).defaultTo('null')
       table.string('bloodType', 20).defaultTo('null')
       table.string('season', 30).defaultTo('null')

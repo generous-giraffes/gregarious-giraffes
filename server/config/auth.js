@@ -53,6 +53,7 @@ module.exports = {  //add expires to payload, then check against
             let token = jwt.encode(payload, secret.salt);
 
             user.add(_email, _password, _user, _location, (data) => {
+                console.log(data, 'data is an object location line 56 auth.js')
                 if (data) {
                     let resolved = {token: token, data: data};
                     resolve(resolved);
@@ -65,3 +66,4 @@ module.exports = {  //add expires to payload, then check against
         })
     }
 }
+
