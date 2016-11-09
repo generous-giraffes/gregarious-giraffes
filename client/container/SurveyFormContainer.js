@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Col, Row, Grid, FormControl, FormGroup, ControlLabel, HelpBlock } from 'react-bootstrap';
+import axios from 'axios';
 
 //FieldGroup returns a bootstrap form
 const FieldGroup = ({ id, label, help, ...props }) => {
@@ -38,12 +39,31 @@ class SurveyForm extends React.Component {
     var bloodType = $(bloodTypeForm).find('span').text();
     var season = $(seasonForm).find('span').text();
     var trained = $(trainedForm).find('span').text();
-    var hobbies = $(hobbiesForm).find('span').text().split(' ');
+    var hobbies = $(hobbiesForm).find('span').text();
     var species = $(speciesForm).find('span').text();
     var quote = $(quoteForm).val();
-
     // console.log(firstName, lastName, dob, bloodType, season, hobbies, trained, species, quote);
-    console.log('SUBMITTED FORM');
+    axios.post('/api/form', {
+       firstName: firstName,
+       lastName: lastName,
+       dob: dob,
+       bloodType: bloodType,
+       season: season,
+       trained: trained,
+       hobbies: hobbies,
+       species: species,
+       quote: quote,
+      //hardcoding userId for testing
+      userId: '1'
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+    console.log('SUBMITTED FORM, SurveyFormContainer line 65');
+
   }
 
   render() {

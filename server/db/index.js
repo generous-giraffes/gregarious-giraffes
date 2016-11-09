@@ -34,19 +34,23 @@ knex.schema.hasTable('users').then((exists) => {
   console.log(exists)
   if(!exists) {
     return knex.schema.createTable('users', (table) => {
+      'name', 'email', 'password', 'location'
+      //for auth
+      table.string('name', 40).notNullable()
+      table.text('password').notNullable()
+      table.string('location', 255)
+      //from form
       table.increments('id').primary()
-      table.integer('userid').defaultTo(1)
-      table.string('username', 40)
-      table.string('firstName', 40).defaultTo('test')
-      table.string('lastName', 40).defaultTo('test')
-      table.string('dob', 20).defaultTo('test')
-      table.string('bloodType', 20).defaultTo('test')
-      table.string('season', 30).defaultTo('test')
-      table.string('trained', 30).defaultTo('test')
-      table.text('hobbies').defaultTo('test')
-      table.string('species', 100).defaultTo('test')
-      table.text('quote').defaultTo('test')
-      table.text('image').defaultTo('test')
+      table.string('username', 40).defaultTo('null')
+      table.string('lastName', 40).defaultTo('null')
+      table.string('dob', 20).defaultTo('null')
+      table.string('bloodType', 20).defaultTo('null')
+      table.string('season', 30).defaultTo('null')
+      table.string('trained', 30).defaultTo('null')
+      table.text('hobbies').defaultTo('null')
+      table.string('species', 100).defaultTo('null')
+      table.text('quote').defaultTo('null')
+      table.text('image').defaultTo('null')
 
       console.log('USERS TABLE CREATED');
     })
