@@ -2,8 +2,8 @@
 
 const jwt = require('jwt-simple');
 const secret = require('../utilities');
-const bcrypt = require('bcryptjs');
 const user = require('./../db/users.js');
+const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 
 module.exports = {  //add expires to payload, then check against

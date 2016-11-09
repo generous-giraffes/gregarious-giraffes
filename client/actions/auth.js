@@ -12,7 +12,7 @@ export function signupUser(name, email, password) {
         }
     }).catch((response) => {
         if (response instanceof Error) {
-            console.error('POST | Error sending reponse', response);
+            console.error('POST | Error sending response', response);
         } else {
             console.log('POST | error from server', response);
         }
@@ -32,7 +32,7 @@ export function loginUser(email, password) {
         }
     }).catch((response) => {
         if (response instanceof Error) {
-            console.error('POST | Error sending reponse', response);
+            console.error('POST | Error sending response', response);
         } else {
             console.log('POST | error from server', response);
         }
