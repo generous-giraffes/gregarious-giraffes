@@ -58,7 +58,7 @@ class LoginForm extends Component {
                         placeholder='Enter your password'
                         value={this.state.password}
                         onChange={this.onPasswordChange}/>
-                    <Button type='submit' bsStyle='primary' value="Submit"/>
+                    <Button bsStyle="primary" type="submit" value="Submit">Submit</Button>
                 </form>
             </div>
         );
