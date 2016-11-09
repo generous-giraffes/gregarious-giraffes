@@ -25,6 +25,7 @@ export function signupUser(name, email, password) {
 }
 
 export function loginUser(email, password) {
+    let data = {}
     const request = axios.post('/api/login', {
         user: {
             email: email,
@@ -38,6 +39,10 @@ export function loginUser(email, password) {
         }
     });
 
+    //let data = request.data;
+    //console.log(request, 'this is the request action/auth.js line 44');
+    //console.log(data, 'this is the data action/auth.js line 44');
+    console.log(request, 'this is the request.data');
     return {
         type: LOGIN_USER,
         payload: request
