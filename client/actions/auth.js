@@ -4,7 +4,7 @@ export const SIGNUP_USER = 'SIGNUP_USER';
 export const LOGIN_USER = 'LOGIN_USER';
 
 export function signupUser(name, email, password) {
-    const request = axios.post('/signup', {
+    const request = axios.post('/api/signup', {
         user: {
             name: name,
             email: email,
@@ -25,7 +25,7 @@ export function signupUser(name, email, password) {
 }
 
 export function loginUser(email, password) {
-    const request = axios.post('/login', {
+    const request = axios.post('/api/login', {
         user: {
             email: email,
             password: password

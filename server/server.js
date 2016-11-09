@@ -29,8 +29,11 @@ app.use(express.static(__dirname + '/../client'));
 
 //configure our server with routing file in /server/config/api-router
 //require('./config/api-router.js')(app, express);
-var users = require('./config/auth');
-
+//var users = require('./config/auth');
+const users = require('./config/user-routes');
+const routes = require('./config/routes');
+app.use('/api', users);
+app.use('/api', routes);
 
 // require routes
 var imageUpload = require('./config/imageRoutes');
