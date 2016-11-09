@@ -19,17 +19,16 @@ router.post('/login', (req, res) => {
 
 router.post('/signup', (req, res) => {
     auth.addUser(req, res)
-    console.log('user addedd! routes.js, line 22');
-        //.then((promise) => {
+        .then((promise) => {
             console.log('promise from /signup in routes: ', promise)
             res.set('token', promise.token);
             res.json(promise.data);
-        //})
-        //.catch((err) => {
-        //    console.log('---| err in route /signup: ', err);
-        //    res.status(400);
-        //    res.send(err);
-        //});
+        })
+        .catch((err) => {
+            console.log('---| err in route /signup: ', err);
+            res.status(400);
+            res.send(err);
+        });
 });
 
 module.exports = router;

@@ -8,14 +8,16 @@ import Home from './components/home';
 import Survey from './container/SurveyFormContainer';
 import ImageUploader from './container/ImageUploadContainer';
 import GetImage from './container/GetImageContainer';
+import {requireAuthentication} from './container/AuthenticatedContainer';
 
 export default (
     <Route path="/" component={App}>
-        <IndexRoute component={Home}/>
+        <IndexRoute component={SignUp}/>
         <Route path="signIn" component={SignIn}/>
         <Route path="signUp" component={SignUp}/>
-        <Route path="survey" component={Survey}/>
-        <Route path="imageUploader" component={ImageUploader}/>
-        <Route path="getImage" component={GetImage}/>
+        <Route path="dashboard" component={requireAuthentication(Home)}/>
+        <Route path="survey" component={Survey} />
+        <Route path="imageUploader" component={ImageUploader} />
+        <Route path="getImage" component={GetImage} />
     </Route>
 );
