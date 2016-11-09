@@ -14,14 +14,7 @@ module.exports = {
     //   if(err) console.error(err);
     //   callback(result);
     // });
-    //++++REFACTOR THE REST OF THESE
-    db('users').where({userId: 1}).select('image')
-      .then((img) =>{
-        res.send(img[0].image);
-      })
-      .catch((err) => {
-        console.error(err);
-      })
+    //REFACTOR THE REST OF THESE
   },
   add(email, password, name, location, callback) {
     let user = new User({
