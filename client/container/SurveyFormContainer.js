@@ -1,5 +1,9 @@
 import React from 'react';
 import { Button, Col, Row, Grid, FormControl, FormGroup, ControlLabel, HelpBlock } from 'react-bootstrap';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { submitForm } from '../actions/form';
+import { browserHistory } from 'react-router';
 import axios from 'axios';
 
 //FieldGroup returns a bootstrap form
@@ -43,26 +47,21 @@ class SurveyForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    axios.post('/api/form', {
-       dob: this.state.dob,
-       bloodType: this.state.bloodType,
-       season: this.state.season,
-       trained: this.state.trained,
-       hobbies: this.state.hobbiesString,
-       species: this.state.species,
-       quote: this.state.quote,
+    //submit action with all form data
+    this.props.submitForm({
+      dob: this.state.dob,
+      bloodType: this.state.bloodType,
+      season: this.state.season,
+      trained: this.state.trained,
+      hobbies: this.state.hobbiesString,
+      species: this.state.species,
+      quote: this.state.quote,
       //hardcoding userId for testing---REFACTOR-------
       userId: '1'
-    })
-    .then((response) => {
-      //REDIRECT TO IMAGE UPLOAD PAGE--------REFACTOR-------
-      console.log(response);
-    })
-    .catch((error) => {
-      console.error(error);
     });
     console.log('SUBMITTED FORM, SurveyFormContainer line 65');
-
+    //redirect to imageUpload view
+    browserHistory.push('/imageUploader');
   }
 
   onDobChange(e) {
@@ -199,4 +198,9 @@ class SurveyForm extends React.Component {
     )
   }
 }
-export default SurveyForm;
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({submitForm}, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(SurveyForm);
