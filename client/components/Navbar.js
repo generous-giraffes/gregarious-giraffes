@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
 import {Navbar, Nav, MenuItem, NavItem, NavDropdown} from 'react-bootstrap';
 
 const Navigation = () => (
@@ -12,8 +13,12 @@ const Navigation = () => (
         </Navbar.Header>
         <Navbar.Collapse>
             <Nav>
-                <NavItem eventKey={1}><Link to='/signin' className="header-login">Log In</Link></NavItem>
-                <NavItem eventKey={1}><Link to='/' className="header-login">Edit Profile</Link></NavItem>
+                <LinkContainer to={{ pathname: '/signin'}} className="header-login">
+                    <NavItem eventKey={1}>Log In</NavItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/'}} className="header-login">
+                    <NavItem eventKey={1}>Edit Profile</NavItem>
+                </LinkContainer>
                 <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
                     <MenuItem eventKey={3.1}>Action</MenuItem>
                     <MenuItem eventKey={3.2}>Another action</MenuItem>
