@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Col, Row, Grid } from 'react-bootstrap';
+import { Button, Col, Row, Grid, FormGroup, FormControl, Navbar } from 'react-bootstrap';
 
 
 class Home extends React.Component {
@@ -17,9 +17,22 @@ class Home extends React.Component {
                             <p>Quotes</p>
                         </Col>
                     </Row>
-                    <Row className="show-grid">
-                        <Col xs={12} md={8}><code>&lt;{'Col xs={12} md={8}'} /&gt;</code></Col>
-                        <Col xs={6} md={4}><code>&lt;{'Col xs={6} md={4}'} /&gt;</code></Col>
+                    <Row className="main-container">
+                        <Col xs={12} md={6}>
+                            THIS IS THE FEED
+                        </Col>
+                        <Col xs={12} md={6}>
+                            <Col xs={12}>
+                                <FormGroup>
+                                    <FormControl type="text" placeholder="Search for a PlayMate"/>
+                                </FormGroup>
+                                {' '}
+                                <Button type="submit">Submit</Button>
+                            </Col>
+                            <Col xs={12}>
+                                Pull in all the info here
+                            </Col>
+                        </Col>
                     </Row>
                 </Grid>
             </div>
