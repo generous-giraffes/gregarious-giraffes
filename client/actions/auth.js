@@ -24,20 +24,23 @@ export function signupUser(name, email, password) {
     };
 }
 
-export function loginUser(email, password) {
-    let data = {}
+export function signinUser(email, password) {
     const request = axios.post('/api/login', {
-        user: {
-            email: email,
-            password: password
-        }
-    }).catch((response) => {
-        if (response instanceof Error) {
-            console.error('POST | Error sending response', response);
-        } else {
-            console.log('POST | error from server', response);
-        }
-    });
+            user: {
+                email: email,
+                password: password
+            }
+        })
+        //.then((response) => {
+        //    console.log(response, "this is JAKES FAVORITE ONE");
+        //})
+        .catch((response) => {
+            if (response instanceof Error) {
+                console.error('POST | Error sending response', response);
+            } else {
+                console.log('POST | error from server', response);
+            }
+        });
 
     //let data = request.data;
     //console.log(request, 'this is the request action/auth.js line 44');

@@ -14,9 +14,9 @@ var app = express();
 
 //Coors
 app.use((req, res, next) => {
- res.header('Access-Controll-Allow-Origin', '*');
- res.header('Access-Controll-Allow-Methods', 'GET, POST, PUT, DELETE');
- res.header('Access-Controll-Expose-Headers', 'token');
+ res.header('Access-Control-Allow-Origin', '*');
+ res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+ res.header('Access-Control-Expose-Headers', 'token');
  next();
 });
 
@@ -28,11 +28,7 @@ app.use(logger('dev'));
 app.use(express.static(__dirname + '/../client'));
 
 //configure our server with routing file in /server/config/api-router
-//require('./config/api-router.js')(app, express);
-//var users = require('./config/auth');
-const users = require('./config/user-routes');
 const routes = require('./config/routes');
-app.use('/api', users);
 app.use('/api', routes);
 
 // require routes

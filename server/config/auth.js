@@ -1,23 +1,24 @@
 'use strict';
 
 const jwt = require('jwt-simple');
-const secret = require('../utilities');
+const secrets = require('../utilities/tools');
 const user = require('./../db/users.js');
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 
-module.exports = {  //add expires to payload, then check against
-    login (req, res) {
-        let existingUser = new Promise((resolve, reject) => {
-            let _email = req.body.user.email;
+module.exports = {
+    loginUser (req, res) {
+        let User = new Promise((resolve, reject) => {
+            let email = req.body.user.email;
+            let password = req.body.user.password;
 
-            user.find(_email, (data) => {
-                console.log('data in user.find in auth: ', data);
+            user.find(password, email, (data) => {
+                console.log('Data in authentication: ', data);
 
-                let payload = {email: _email, scope: secret.scope};
-                let token = jwt.encode(payload, secret.salt);
+                let userInfo = {email: email, password: password};
+                let token = jwt.encode(userInfo, secrets.mySalt);
 
-                if (bcrypt.compareSync(req.body.user.password, data[0].password)) {
+                if (bcrypt.compareSync(password, data[0].password)) {
                     resolve({token: token, data: data});
                 }
                 else {
@@ -25,45 +26,31 @@ module.exports = {  //add expires to payload, then check against
                 }
             });
         });
-        return existingUser;
+        return User;
     },
 
-    checkUser (req, res, next) {
-        let _token = req.headers.token;
-        let _decoded = jwt.decode(_token, secret.salt);
+    addNewUser (req, res) {
+        let addNewUser = new Promise((resolve, reject) => {
+            console.log('Sign up in authentication: ', req.body.user);
 
-        if (_decoded.scope === secret.scope) {
-            next();
-        }
-        else {
-            console.error('invalid token')
-        }
-    },
-
-    addUser (req, res) {
-        let newUser = new Promise((resolve, reject) => {
-            console.log('----| in signup Auth: ', req.body.user);
-
-            let _email = req.body.user.email;
-            let _password = bcrypt.hashSync(req.body.user.password, salt);
+            let email = req.body.user.email;
+            let password = bcrypt.hashSync(req.body.user.password, salt);
             let _user = req.body.user.name;
-            let _location = req.body.user.location;
+            let userInfo = {email: email, password: password, _user: _user};
+            let token = jwt.encode(userInfo, secrets.mySalt);
 
-            let payload = {email: _email, scope: secret.scope};
-            let token = jwt.encode(payload, secret.salt);
-
-            user.add(_email, _password, _user, _location, (data) => {
+            user.add(email, password, _user, (data) => {
                 if (data) {
-                    let resolved = {token: token, data: data};
-                    resolve(resolved);
+                    let resolvedToken = {token: token, data: data};
+                    resolve(resolvedToken);
                 }
                 else {
-                    reject('Signup Error: this user already exists');
+                    reject('Signup Error: Existing account');
                 }
             });
         })
 
-        return newUser;
+        return addNewUser;
     }
 }
 

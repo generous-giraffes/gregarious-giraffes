@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { PageHeader, Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { loginUser } from '../actions/auth';
+import { signinUser } from '../actions/auth';
 
 //FieldGroup returns a bootstrap form
 const FieldGroup = ({ id, label, help, ...props }) => {
@@ -14,12 +14,10 @@ const FieldGroup = ({ id, label, help, ...props }) => {
     );
 }
 
-class LoginForm extends Component {
+class SigninForm extends Component {
     constructor(props) {
         super(props);
-
         this.state = {email: '', password: ''};
-
         this.onEmailChange = this.onEmailChange.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -36,7 +34,7 @@ class LoginForm extends Component {
     onFormSubmit(event) {
         console.log(event);
         event.preventDefault();
-        this.props.loginUser(this.state.email, this.state.password);
+        this.props.signinUser(this.state.email, this.state.password);
         this.setState({email: '', password: ''});
     }
 
@@ -44,18 +42,17 @@ class LoginForm extends Component {
 
         return (
             <div>
-                <PageHeader>This is the login page</PageHeader>
                 <form onSubmit={this.onFormSubmit}>
                     <FieldGroup
                         type='text'
                         label='Email Address'
-                        placeholder='Enter your email address'
+                        placeholder='Email Address'
                         value={this.state.email}
                         onChange={this.onEmailChange}/>
                     <FieldGroup
                         type='password'
                         label='Password'
-                        placeholder='Enter your password'
+                        placeholder='Password'
                         value={this.state.password}
                         onChange={this.onPasswordChange}/>
                     <Button bsStyle="primary" type="submit" value="Submit">Submit</Button>
@@ -66,7 +63,7 @@ class LoginForm extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({loginUser}, dispatch);
+    return bindActionCreators({signinUser}, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default connect(null, mapDispatchToProps)(SigninForm);
