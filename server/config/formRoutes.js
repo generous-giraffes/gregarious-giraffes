@@ -8,11 +8,6 @@ router.post('/form', (req, res) => {
 //insert form info for specified user
 	//++++Refactor to update authenticated user instead of inserting a new one
 	db.insert({
-		//harcoded userid and username for testing
-		username: 'giraffe',
-		//name will alread be in the table from authentication
-		// name: req.body.firstName,
-		lastName: req.body.lastName,
 		dob: req.body.dob,
 		bloodType: req.body.bloodType,
 		season: req.body.season,
@@ -31,7 +26,7 @@ router.get('/form', (req, res) => {
 	console.log('GET request to /form recieved');
 //UserId hardcoded for testing, ++++REFACTOR+++++ to use req.body.userId
 //Abstract the database functions out into utlities directory
-  db('users').where({userId: 1}).select('*')
+  db('users').where({userId: req.body.userId}).select('*')
 	  .then((data) =>{
       res.send(data);
     })
