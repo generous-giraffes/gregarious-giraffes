@@ -17,7 +17,10 @@ const FieldGroup = ({ id, label, help, ...props }) => {
 class SigninForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {email: '', password: ''};
+        this.state = {
+            email: '',
+            password: ''
+        };
         this.onEmailChange = this.onEmailChange.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -35,7 +38,10 @@ class SigninForm extends Component {
         console.log(event);
         event.preventDefault();
         this.props.signinUser(this.state.email, this.state.password);
-        this.setState({email: '', password: ''});
+        this.setState({
+            email: '',
+            password: ''
+        });
     }
 
     render() {
@@ -55,7 +61,7 @@ class SigninForm extends Component {
                         placeholder='Password'
                         value={this.state.password}
                         onChange={this.onPasswordChange}/>
-                    <Button bsStyle="primary" type="submit" value="Submit">Submit</Button>
+                    <Button bsStyle="primary" type="submit" value="Submit">Enter</Button>
                 </form>
             </div>
         );
