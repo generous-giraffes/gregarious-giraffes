@@ -33,11 +33,12 @@ knex.schema.hasTable('users').then((exists) => {
   console.log(exists)
   if(!exists) {
     return knex.schema.createTable('users', (table) => {
+      //from and for authentication
       table.string('name', 40).notNullable()
-      table.string('email', 40).notNullable()
+      table.string('email', 40).notNullable().unique()
       table.text('password').notNullable()
-      //from form
       table.increments('id').primary()
+      //from survey form
       table.string('location', 255)
       table.string('dob', 20).defaultTo('null')
       table.string('bloodType', 20).defaultTo('null')
