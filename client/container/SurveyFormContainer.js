@@ -17,46 +17,45 @@ const FieldGroup = ({ id, label, help, ...props }) => {
 class SurveyForm extends React.Component {
   constructor(props) {
       super(props);
+
+      this.state = {
+        dob: '',
+        bloodType: '',
+        season: '',
+        trained: '',
+        //value supplied to <select> must be an array
+        hobbies: [],
+        //hobbies to submit to db
+        hobbiesString: '',
+        species: '',
+        quote: ''
+      }
+      //pre-bind functions
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.onDobChange = this.onDobChange.bind(this);
+      this.onBloodTypeChange = this.onBloodTypeChange.bind(this);
+      this.onSeasonChange = this.onSeasonChange.bind(this);
+      this.onTrainedChange = this.onTrainedChange.bind(this);
+      this.onHobbiesChange = this.onHobbiesChange.bind(this);
+      this.onSpeciesChange = this.onSpeciesChange.bind(this);
+      this.onQuoteChange = this.onQuoteChange.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-// Save elements from the form as variables to retrieve their values. $(e.currentTarget)[0] is the form with an array of its subcomponents
-    var firstNameForm = $(e.currentTarget)[0][0];
-    var lastNameForm = $(e.currentTarget)[0][1];
-    var dobForm = $(e.currentTarget)[0][2];
-    var bloodTypeForm = $(e.currentTarget)[0][3];
-    var seasonForm = $(e.currentTarget)[0][5];
-    var trainedForm = $(e.currentTarget)[0][7];
-    var hobbiesForm = $(e.currentTarget)[0][9];
-    var speciesForm = $(e.currentTarget)[0][11];
-    var quoteForm = $(e.currentTarget)[0][14];
-
-//get the values from the elements
-    var firstName = $(firstNameForm).val();
-    var lastName = $(lastNameForm).val();
-    var dob = $(dobForm).val();
-    var bloodType = $(bloodTypeForm).find('span').text();
-    var season = $(seasonForm).find('span').text();
-    var trained = $(trainedForm).find('span').text();
-    var hobbies = $(hobbiesForm).find('span').text();
-    var species = $(speciesForm).find('span').text();
-    var quote = $(quoteForm).val();
-    // console.log(firstName, lastName, dob, bloodType, season, hobbies, trained, species, quote);
     axios.post('/api/form', {
-       firstName: firstName,
-       lastName: lastName,
-       dob: dob,
-       bloodType: bloodType,
-       season: season,
-       trained: trained,
-       hobbies: hobbies,
-       species: species,
-       quote: quote,
-      //hardcoding userId for testing
+       dob: this.state.dob,
+       bloodType: this.state.bloodType,
+       season: this.state.season,
+       trained: this.state.trained,
+       hobbies: this.state.hobbiesString,
+       species: this.state.species,
+       quote: this.state.quote,
+      //hardcoding userId for testing---REFACTOR-------
       userId: '1'
     })
     .then((response) => {
+      //REDIRECT TO IMAGE UPLOAD PAGE--------REFACTOR-------
       console.log(response);
     })
     .catch((error) => {
@@ -66,43 +65,68 @@ class SurveyForm extends React.Component {
 
   }
 
+  onDobChange(e) {
+    this.setState({dob:e.currentTarget.value});
+  }
+
+  onBloodTypeChange(e) {
+    this.setState({bloodType:e.currentTarget.value});
+  }
+
+  onSeasonChange(e) {
+    this.setState({season:e.currentTarget.value});
+  }
+
+  onTrainedChange(e) {
+    this.setState({trained:e.currentTarget.value});
+  }
+
+  onHobbiesChange(e) {
+    let options = e.target.options;
+    let values = [];
+    for(let i = 0; i < options.length; i += 1) {
+      if (options[i].selected) {
+        values.push(options[i].value);
+      }
+    }
+    let hobbiesString = values.join(', ');
+    this.setState({hobbies: values, hobbiesString: hobbiesString});
+  }
+
+  onSpeciesChange(e) {
+    this.setState({species: e.currentTarget.value});
+  }
+
+  onQuoteChange(e) {
+    this.setState({quote:e.currentTarget.value});
+  }
+
+
   render() {
     return (
       <form onSubmit={this.handleSubmit} data-toggle='validator'>
-        <FieldGroup
-          id="formControlsText"
-          type="text"
-          label="First Name"
-          placeholder="enter first name"
-          required='true'
-        />
-
-        <FieldGroup
-          id="formControlsEmail"
-          type="text"
-          label="Last Name"
-          placeholder="enter last name"
-          required='true'
-        />
 
         <FieldGroup
           id="formControlsDob"
           type="date"
           label="date of birth"
           required='true'
+          value={this.state.dob}
+          onChange={this.onDobChange}
         />
 
-        <FormGroup controlId="formControlsSelect">
+        <FormGroup
+          controlId="formControlsSelect" >
           <ControlLabel>Select Blood Type</ControlLabel>
-          <select className='selectpicker' title="warm or cold?" data-max-options="1" required='true'>
+          <select value={this.state.bloodType} onChange={this.onBloodTypeChange} className='selectpicker' title="warm or cold?" data-max-options="1" required='true'>
             <option value="Cold">Cold</option>
             <option value="Warm">Warm</option>
           </select>
         </FormGroup>
 
-        <FormGroup controlId="formControlsSelect">
+        <FormGroup controlId="formControlsSelect" >
           <ControlLabel>Select Favorite Season</ControlLabel>
-          <select className='selectpicker season' title="favorite season" data-max-options="1" required='true'>
+          <select value={this.state.season} onChange={this.onSeasonChange} className='selectpicker season' title="favorite season" data-max-options="1" required='true'>
             <option value="spring">Spring</option>
             <option value="summer">Summer</option>
             <option value="Autumn">Autumn</option>
@@ -110,17 +134,17 @@ class SurveyForm extends React.Component {
           </select>
         </FormGroup>
 
-        <FormGroup controlId="formControlsSelect">
+        <FormGroup controlId="formControlsSelect" >
           <ControlLabel>Are you House Trained?</ControlLabel>
-          <select className='selectpicker' title="yes or no" data-max-options="1" required='true'>
+          <select value={this.state.trained} onChange={this.onTrainedChange} className='selectpicker' title="yes or no" data-max-options="1" required='true'>
             <option value="yes">Yes</option>
             <option value="no">No</option>
           </select>
         </FormGroup>
 
-        <FormGroup controlId="formControlsSelectMultiple">
+        <FormGroup controlId="formControlsSelectMultiple" >
           <ControlLabel>Select Four Favorite Hobbies</ControlLabel>
-          <select className='selectpicker' multiple title="hobbies" data-max-options="4" required='true'>
+          <select value={this.state.hobbies} onChange={this.onHobbiesChange} className='selectpicker' multiple title="hobbies" data-max-options="4" required='true'>
             <option value="run">Running</option>
             <option value="fly">Fyling</option>
             <option value="nap">Napping</option>
@@ -141,9 +165,9 @@ class SurveyForm extends React.Component {
           </select>
         </FormGroup>
 
-        <FormGroup controlId="formControlsSelectMultiple">
+        <FormGroup controlId="formControlsSelectMultiple" >
           <ControlLabel>Select your Species</ControlLabel>
-          <select className='selectpicker' multiple title="search or select" data-max-options="1" data-live-search="true" required='true'>
+          <select value={this.state.species} onChange={this.onSpeciesChange} className='selectpicker' title="search or select" data-max-options="1" data-live-search="true" required='true'>
             <option value="giraffe">Giraffe, Giraffa camelopardalis</option>
             <option value="dog">Dog, Canis lupus familiaris</option>
             <option value="cat">Cat, Felis silvestris catus</option>
@@ -161,9 +185,9 @@ class SurveyForm extends React.Component {
           </select>
         </FormGroup>
 
-        <FormGroup controlId="formControlsTextarea">
+        <FormGroup controlId="formControlsTextarea" >
           <ControlLabel>Enter your favorite quote</ControlLabel>
-          <FormControl componentClass="textarea" placeholder="'Nature teaches beasts to know their friends.'
+          <FormControl value={this.state.quote} onChange={this.onQuoteChange} componentClass="textarea" placeholder="'Nature teaches beasts to know their friends.'
           -William Shakespeare" required='true' />
         </FormGroup>
 
