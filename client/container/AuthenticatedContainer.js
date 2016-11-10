@@ -7,6 +7,8 @@ export function requireAuthentication(Component) {
     class AuthenticatedComponent extends React.Component {
 
         componentWillMount() {
+          //maybe should be using token? or set isAuthenitcated to true in reducer??
+          console.log('+++====++++==++++==++props.isAuth..', this.props.isAuthenticated)
             this.checkAuth(this.props.isAuthenticated);
         }
 
@@ -36,8 +38,10 @@ export function requireAuthentication(Component) {
     }
 
     const mapStateToProps = (state) => ({
-        token: state.auth.token,
-        isAuthenticated: state.auth.isAuthenticated
+        token: state.token,
+        isAuthenticated: Boolean(state.token)
+        // ,
+        // isAuthenticated: state.auth.isAuthenticated
     });
 
     return connect(mapStateToProps)(AuthenticatedComponent);

@@ -61,6 +61,8 @@ class SurveyForm extends React.Component {
     });
     console.log('SUBMITTED FORM, SurveyFormContainer line 65');
     //redirect to imageUpload view
+
+    //CHANGE THIS TO CONETEXT OR SOMETHING
     browserHistory.push('/imageUploader');
   }
 
