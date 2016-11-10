@@ -6,7 +6,7 @@ const auth = require('./auth');
 const router = express.Router();
 
 router.post('/login', (req, res) => {
-    auth.login(req, res)
+    auth.loginUser(req, res)
         .then((promise) => {
             res.set('token', promise.token);
             res.json(promise.data);
@@ -18,14 +18,14 @@ router.post('/login', (req, res) => {
 });
 
 router.post('/signup', (req, res) => {
-    auth.addUser(req, res)
+    auth.addNewUser(req, res)
         .then((promise) => {
-            console.log('promise from /signup in routes: ', promise)
+            console.log('promise from /signup in routes.js: ', promise)
             res.set('token', promise.token);
             res.json(promise.data);
         })
         .catch((err) => {
-            console.log('---| err in route /signup: ', err);
+            console.log('Error routes.js /signup: ', err);
             res.status(400);
             res.send(err);
         });

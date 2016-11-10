@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PageHeader, Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { signupUser } from '../actions/auth';
@@ -17,9 +17,7 @@ const FieldGroup = ({ id, label, help, ...props }) => {
 class SignupForm extends Component {
     constructor(props) {
         super(props);
-
         this.state = {name: '', email: '', password: ''};
-
         this.onNameChange = this.onNameChange.bind(this);
         this.onEmailChange = this.onEmailChange.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
@@ -49,7 +47,6 @@ class SignupForm extends Component {
 
         return (
             <div>
-                <PageHeader>Sign Up</PageHeader>
                 <form onSubmit={this.onFormSubmit}>
                     <FieldGroup
                         type='text'

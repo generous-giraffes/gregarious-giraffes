@@ -36,9 +36,9 @@ knex.schema.hasTable('users').then((exists) => {
       table.string('name', 40).notNullable()
       table.string('email', 40).notNullable()
       table.text('password').notNullable()
-      table.string('location', 255)
       //from form
       table.increments('id').primary()
+      table.string('location', 255)
       table.string('dob', 20).defaultTo('null')
       table.string('bloodType', 20).defaultTo('null')
       table.string('season', 30).defaultTo('null')
