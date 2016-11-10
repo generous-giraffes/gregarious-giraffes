@@ -25,15 +25,15 @@ export function signupUser(name, email, password) {
 }
 
 export function signinUser(email, password) {
-    const request = axios.post('/api/login', {
+    let request = axios.post('/api/login', {
             user: {
                 email: email,
                 password: password
             }
         })
-        //.then((response) => {
-        //    console.log(response, "this is JAKES FAVORITE ONE");
-        //})
+        .then((response) => {
+           console.log(response, "this is JAKES FAVORITE ONE");
+        })
         .catch((response) => {
             if (response instanceof Error) {
                 console.error('POST ERROR RESPONSE', response);
@@ -49,5 +49,5 @@ export function signinUser(email, password) {
     return {
         type: LOGIN_USER,
         payload: request
-    };
+    }
 }

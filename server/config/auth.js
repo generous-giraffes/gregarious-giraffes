@@ -13,7 +13,6 @@ module.exports = {
             let password = req.body.user.password;
 
             user.find(password, email, (data) => {
-                console.log('Data in authentication: ', data);
 
                 let userInfo = {email: email, password: password};
                 let token = jwt.encode(userInfo, secrets.mySalt);
@@ -53,4 +52,3 @@ module.exports = {
         return addNewUser;
     }
 }
-

@@ -1,6 +1,7 @@
 import { SIGNUP_USER, LOGIN_USER } from '../actions/auth';
 
 export function authReducer(state = {token: null, name: null, email: null}, action) {
+  console.log(action.payload, 'auth reducer++++++++++++++++++++++++++++++++++++++++++++++++++++++');
     switch (action.type) {
         case SIGNUP_USER:
             return Object.assign({}, state,

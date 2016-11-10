@@ -17,7 +17,7 @@ router.post('/image', (req, res) => {
 router.get('/image', (req, res) => {
 	console.log('GET request to /image recieved');
 //UserId hardcoded for testing, REFACTOR to use req.body.userId
-  db('users').where({userId: 1}).select('image')
+  db('users').where({id: 1}).select('image')
 	  .then((img) =>{
       res.send(img[0].image);
     })
