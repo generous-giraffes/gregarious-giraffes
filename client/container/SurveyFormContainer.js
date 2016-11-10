@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { submitForm } from '../actions/form';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
+import { select } from 'bootstrap-select';
 
 //FieldGroup returns a bootstrap form
 const FieldGroup = ({ id, label, help, ...props }) => {
@@ -48,6 +49,7 @@ class SurveyForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     //submit action with all form data
+    console.log(this.props.email, 'email');
     this.props.submitForm({
       dob: this.state.dob,
       bloodType: this.state.bloodType,
@@ -57,9 +59,8 @@ class SurveyForm extends React.Component {
       species: this.state.species,
       quote: this.state.quote,
       //hardcoding userId for testing---REFACTOR-------
-      userId: '1'
+      email: this.props.email
     });
-    console.log('SUBMITTED FORM, SurveyFormContainer line 65');
     //redirect to imageUpload view
 
     //CHANGE THIS TO CONETEXT OR SOMETHING
@@ -119,7 +120,7 @@ class SurveyForm extends React.Component {
         <FormGroup
           controlId="formControlsSelect" >
           <ControlLabel>Select Blood Type</ControlLabel>
-          <select value={this.state.bloodType} onChange={this.onBloodTypeChange} className='selectpicker' title="warm or cold?" data-max-options="1" required='true'>
+          <select noValidate value={this.state.bloodType} onChange={this.onBloodTypeChange} className='selectpicker' title="warm or cold?" data-max-options="1" required='true'>
             <option value="Cold">Cold</option>
             <option value="Warm">Warm</option>
           </select>
@@ -127,7 +128,7 @@ class SurveyForm extends React.Component {
 
         <FormGroup controlId="formControlsSelect" >
           <ControlLabel>Select Favorite Season</ControlLabel>
-          <select value={this.state.season} onChange={this.onSeasonChange} className='selectpicker season' title="favorite season" data-max-options="1" required='true'>
+          <select noValidate value={this.state.season} onChange={this.onSeasonChange} className='selectpicker season' title="favorite season" data-max-options="1" required='true'>
             <option value="spring">Spring</option>
             <option value="summer">Summer</option>
             <option value="Autumn">Autumn</option>
@@ -137,7 +138,7 @@ class SurveyForm extends React.Component {
 
         <FormGroup controlId="formControlsSelect" >
           <ControlLabel>Are you House Trained?</ControlLabel>
-          <select value={this.state.trained} onChange={this.onTrainedChange} className='selectpicker' title="yes or no" data-max-options="1" required='true'>
+          <select noValidate value={this.state.trained} onChange={this.onTrainedChange} className='selectpicker' title="yes or no" data-max-options="1" required='true'>
             <option value="yes">Yes</option>
             <option value="no">No</option>
           </select>
@@ -145,7 +146,7 @@ class SurveyForm extends React.Component {
 
         <FormGroup controlId="formControlsSelectMultiple" >
           <ControlLabel>Select Four Favorite Hobbies</ControlLabel>
-          <select value={this.state.hobbies} onChange={this.onHobbiesChange} className='selectpicker' multiple title="hobbies" data-max-options="4" required='true'>
+          <select noValidate value={this.state.hobbies} onChange={this.onHobbiesChange} className='selectpicker' multiple title="hobbies" data-max-options="4" required='true'>
             <option value="run">Running</option>
             <option value="fly">Fyling</option>
             <option value="nap">Napping</option>
@@ -168,7 +169,7 @@ class SurveyForm extends React.Component {
 
         <FormGroup controlId="formControlsSelectMultiple" >
           <ControlLabel>Select your Species</ControlLabel>
-          <select value={this.state.species} onChange={this.onSpeciesChange} className='selectpicker' title="search or select" data-max-options="1" data-live-search="true" required='true'>
+          <select noValidate value={this.state.species} onChange={this.onSpeciesChange} className='selectpicker' title="search or select" data-max-options="1" data-live-search="true" required='true'>
             <option value="giraffe">Giraffe, Giraffa camelopardalis</option>
             <option value="dog">Dog, Canis lupus familiaris</option>
             <option value="cat">Cat, Felis silvestris catus</option>
@@ -201,8 +202,12 @@ class SurveyForm extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+  return { email: state.email }
+}
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({submitForm}, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(SurveyForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SurveyForm);
