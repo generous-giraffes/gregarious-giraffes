@@ -17,7 +17,11 @@ const FieldGroup = ({ id, label, help, ...props }) => {
 class SignupForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {name: '', email: '', password: ''};
+        this.state = {
+            name: '',
+            email: '',
+            password: ''
+        };
         this.onNameChange = this.onNameChange.bind(this);
         this.onEmailChange = this.onEmailChange.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
@@ -40,7 +44,11 @@ class SignupForm extends Component {
         console.log(event);
         event.preventDefault();
         this.props.signupUser(this.state.name, this.state.email, this.state.password);
-        this.setState({name: '', email: '', password: ''});
+        this.setState({
+            name: '',
+            email: '',
+            password: ''
+        });
     }
 
     render() {
@@ -51,22 +59,22 @@ class SignupForm extends Component {
                     <FieldGroup
                         type='text'
                         label='Name'
-                        placeholder='Enter your name'
+                        placeholder='Name'
                         value={this.state.name}
                         onChange={this.onNameChange}/>
                     <FieldGroup
                         type='email'
                         label='Email Address'
-                        placeholder='Enter your email address'
+                        placeholder='Email Address'
                         value={this.state.email}
                         onChange={this.onEmailChange}/>
                     <FieldGroup
                         type='password'
                         label='Password'
-                        placeholder='Enter your password'
+                        placeholder='Password'
                         value={this.state.password}
                         onChange={this.onPasswordChange}/>
-                    <Button bsStyle="primary" type="submit" value="Submit">Submit</Button>
+                    <Button bsStyle="primary" type="submit" value="Submit">Enter</Button>
                 </form>
             </div>
         );
