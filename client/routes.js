@@ -15,7 +15,7 @@ export default (
         <IndexRoute component={SignUp}/>
         <Route path="signIn" component={SignIn}/>
         <Route path="signUp" component={SignUp}/>
-        <Route path="dashboard" component={requireAuthentication(Home)}/>
+        <Route path="dashboard" component={Home}/>
         <Route path="survey" component={Survey} />
         <Route path="imageUploader" component={ImageUploader} />
         <Route path="getImage" component={GetImage} />
