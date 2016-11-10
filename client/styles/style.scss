@@ -17,24 +17,14 @@
 @import 'partials/login';
 @import 'partials/logout';
 @import 'partials/footer';
+@import 'partials/dashboard';
 
 body {
-  background-color: lightblue;
+  background-color: $light-blue;
   .app {
 
     p {
       color: white;
     }
   }
-}
-
-// Header
-.header-login {
-  float: right;
-}
-
-// Footer
-footer {
-  position: fixed;
-  bottom: 0;
 }

@@ -3,6 +3,7 @@ import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { signupUser } from '../actions/auth';
+import { browserHistory } from 'react-router';
 //need to include the signupuser above in order to dispatch the bindActionCreators
 
 //FieldGroup returns a bootstrap form
@@ -55,6 +56,7 @@ class SignupForm extends Component {
             email: '',
             password: ''
         });
+        browserHistory.push('/signIn');
     }
 
     render() {
