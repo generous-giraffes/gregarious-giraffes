@@ -3,6 +3,7 @@ import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { signinUser } from '../actions/auth';
+//need to include the signinuser above in order to dispatch the bindActionCreators
 
 //FieldGroup returns a bootstrap form
 const FieldGroup = ({ id, label, help, ...props }) => {
@@ -21,23 +22,28 @@ class SigninForm extends Component {
             email: '',
             password: ''
         };
-        this.onEmailChange = this.onEmailChange.bind(this);
-        this.onPasswordChange = this.onPasswordChange.bind(this);
+        this.onEmailSubmit = this.onEmailSubmit.bind(this);
+        this.onPasswordSubmit = this.onPasswordSubmit.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
     }
 
-    onEmailChange(event) {
+    //user submitting their email to login
+    onEmailSubmit(event) {
         this.setState({email: event.target.value});
     }
 
-    onPasswordChange(event) {
+    //user submitting their password to login
+    onPasswordSubmit(event) {
         this.setState({password: event.target.value});
     }
 
+    //user pressing enter to submit their form including teh password and email submission
     onFormSubmit(event) {
-        console.log(event);
+        console.log(event, 'this is the form submit event');
         event.preventDefault();
+        //need props from signInUser
         this.props.signinUser(this.state.email, this.state.password);
+        //This is to remove the text so that it clears the placeholders in the form
         this.setState({
             email: '',
             password: ''
@@ -54,13 +60,13 @@ class SigninForm extends Component {
                         label='Email Address'
                         placeholder='Email Address'
                         value={this.state.email}
-                        onChange={this.onEmailChange}/>
+                        onChange={this.onEmailSubmit}/>
                     <FieldGroup
                         type='password'
                         label='Password'
                         placeholder='Password'
                         value={this.state.password}
-                        onChange={this.onPasswordChange}/>
+                        onChange={this.onPasswordSubmit}/>
                     <Button bsStyle="primary" type="submit" value="Submit">Enter</Button>
                 </form>
             </div>
