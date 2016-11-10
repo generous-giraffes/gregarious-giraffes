@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import { routeReducer } from 'react-router-redux';
-import { authReducer } from './reducer_auth';
+import { auth_Reducer } from './reducer_auth';
 
 
 const rootReducer = combineReducers({
     routing: routeReducer,
-    isAuthorized: authReducer
+    isAuthorized: auth_Reducer
 });
 
 export default rootReducer;
