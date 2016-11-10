@@ -12,9 +12,9 @@ export function signupUser(name, email, password) {
         }
     }).catch((response) => {
         if (response instanceof Error) {
-            console.error('POST | Error sending response', response);
+            console.error('POST ERROR response', response);
         } else {
-            console.log('POST | error from server', response);
+            console.log('POST ERROR server', response);
         }
     });
 
@@ -36,9 +36,9 @@ export function signinUser(email, password) {
         //})
         .catch((response) => {
             if (response instanceof Error) {
-                console.error('POST | Error sending response', response);
+                console.error('POST ERROR RESPONSE', response);
             } else {
-                console.log('POST | error from server', response);
+                console.log('POST ERROR SERVER', response);
             }
         });
 
