@@ -17,9 +17,9 @@ class Home extends React.Component {
                             <p>Quotes</p>
                         </Col>
                     </Row>
-                    <Row className="show-grid">
-                        <Col xs={12} md={8}><code>&lt;{'Col xs={12} md={8}'} /&gt;</code></Col>
-                        <Col xs={6} md={4}><code>&lt;{'Col xs={6} md={4}'} /&gt;</code></Col>
+                    <Row className="main-container">
+                        <Col xs={12} md={6}>This is the left stuff </Col>
+                        <Col xs={12} md={6}>This is the right stuff</Col>
                     </Row>
                 </Grid>
             </div>
