@@ -18,9 +18,15 @@ export default (
         <IndexRoute component={SignUp}/>
         <Route path="signIn" component={SignIn}/>
         <Route path="signUp" component={SignUp}/>
+<<<<<<< HEAD
         <Route path="dashboard" component={requireAuthentication(Dashboard)}/>
         <Route path="survey" component={requireAuthentication(Survey)} />
         <Route path="chat" component={Chat} />
+=======
+        <Route path="dashboard" component={Dashboard}/>
+        <Route path="chat" component={Chat} />
+        <Route path="survey" component={Survey} />
+>>>>>>> feat(chat):add basic working chat component using socket.io; update routes; add necessary dependencies; update server.js for socket.io functionality
         <Route path="imageUploader" component={ImageUploader} />
         <Route path="getImage" component={GetImage} />
         <Route path="myProfile" component={MyProfile} />
