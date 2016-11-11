@@ -37,6 +37,51 @@ var form = require('./config/formRoutes');
 app.use('/api', imageUpload);
 app.use('/api', form);
 
+var request = require('request');
+app.post('/api/pets', (req, res) => {
+  //look up different methods than pet.getRandom
+  // methods: https://www.petfinder.com/developers/api-docs#methods
+  // var reqUrl = 'http://api.petfinder.com/pet.getRandom'
+
+  //for some reason this did not work when the optional parameters were set up in options
+  let reqUrl = 'http://api.petfinder.com/pet.getRandom?format=json&key=b9c347eeb65b532a17e0488aa46e77df&output=basic&animal=dog&location=10012';
+  // + key get an api key from petfinder.com
+  var options = {
+    'method': 'GET',
+    'url': reqUrl
+    // ,
+    // 'format': 'json',
+    // 'key': 'b9c347eeb65b532a17e0488aa46e77df',
+    // 'output': 'basic',
+    // 'animal': req.body.animal || 'dog',
+    // 'location': req.body.location || '10012'
+  };
+  console.log('req.bofy.animal', options );
+  request(options, (error, response, body) => {
+    if (error) throw new Error(error);
+    console.log(body, 'body from ANimal pets server')
+    res.send(body);
+  })
+})
+app.get('/api/pets/news', (req, res) => {
+  //look up different methods than pet.getRandom
+  // methods: https://www.petfinder.com/developers/api-docs#methods
+  var reqUrl = 'https://api.nytimes.com/svc/search/v2/articlesearch.json'
+  // + key get an api key from petfinder.com
+  var options = {
+    'method': 'GET',
+    'url': reqUrl,
+    'api-key': "e7e73dafa9814b9fb3801b53473b59a6",
+    'q': "pets",
+    'sort': "newest"
+  };
+  request(options, (error, response, body) => {
+    if (error) throw new Error(error);
+    res.send(body);
+  })
+})
+
+
 // server serves index.html for all routes
 app.get('*', function(req, res){
   res.sendFile(path.resolve(__dirname, '../client', 'index.html'))
