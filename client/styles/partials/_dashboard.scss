@@ -1,8 +1,12 @@
-.container {
-    width: 100%;
-    .banner {
-        text-align: center;
-        height: 300px;
-        background: $dark-blue;
+.home {
+    .container {
+        max-width: 100%;
+        width: 100%;
+        .banner {
+            text-align: center;
+            height: 300px;
+            background: $dark-blue;
+            margin-bottom: 20px;
+        }
     }
 }

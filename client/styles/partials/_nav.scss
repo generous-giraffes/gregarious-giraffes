@@ -1,6 +1,17 @@
 // Header
 .navbar {
     margin-bottom: 0;
+    background: $dark-blue;
+
+    .container {
+        max-width: 100%;
+    }
+
+    .dropdown {
+        span {
+            display: none;
+        }
+    }
 
     a.header-login {
         text-decoration: none;

@@ -1,8 +1,9 @@
 import React from 'react';
 
 const Footer = () => (
-    <footer className="footer">
-        <p>Footer</p>
+    <footer className="main-footer">
+        <p>Copyright &copy; 2016 Gregarious Giraffes</p>
+        <p>Support: julio57@yahoo.com</p>
     </footer>
 )
 
