@@ -9,6 +9,7 @@ import Survey from './container/SurveyFormContainer';
 import ImageUploader from './container/ImageUploadContainer';
 import GetImage from './container/GetImageContainer';
 import {requireAuthentication} from './container/AuthenticatedContainer';
+import Chat from './components/Chat';
 
 export default (
     <Route path="/" component={App}>
@@ -16,6 +17,7 @@ export default (
         <Route path="signIn" component={SignIn}/>
         <Route path="signUp" component={SignUp}/>
         <Route path="dashboard" component={requireAuthentication(Home)}/>
+        <Route path="chat" component={Chat} />
         <Route path="survey" component={Survey} />
         <Route path="imageUploader" component={ImageUploader} />
         <Route path="getImage" component={GetImage} />
