@@ -50,8 +50,8 @@ class SigninForm extends Component {
             email: '',
             password: ''
         });
-        // browserHistory.push('/dashboard');
-        browserHistory.push('/survey');
+         browserHistory.push('/dashboard');
+        //browserHistory.push('/survey');
     }
 
     render() {
