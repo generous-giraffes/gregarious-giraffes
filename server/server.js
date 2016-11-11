@@ -34,8 +34,11 @@ app.use('/api', routes);
 // require routes
 var imageUpload = require('./config/imageRoutes');
 var form = require('./config/formRoutes');
+var petApi = require('./config/petApiRoutes');
 app.use('/api', imageUpload);
 app.use('/api', form);
+app.use('/api', petApi);
+
 
 // server serves index.html for all routes
 app.get('*', function(req, res){
