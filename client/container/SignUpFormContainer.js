@@ -56,7 +56,7 @@ class SignupForm extends Component {
             email: '',
             password: ''
         });
-        browserHistory.push('/signIn');
+        browserHistory.push('/survey');
     }
 
     render() {

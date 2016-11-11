@@ -1,11 +1,12 @@
 import React from 'react';
-import { Button, Col, Row, Grid, FormControl, FormGroup, ControlLabel, HelpBlock } from 'react-bootstrap';
+import { Button, Col, Row, Grid, FormControl, FormGroup, ControlLabel, HelpBlock, Checkbox } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { submitForm } from '../actions/form';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
-import { select } from 'bootstrap-select';
+import Select from 'react-select';
+
 
 //FieldGroup returns a bootstrap form
 const FieldGroup = ({ id, label, help, ...props }) => {
@@ -16,7 +17,23 @@ const FieldGroup = ({ id, label, help, ...props }) => {
       {help && <HelpBlock>{help}</HelpBlock>}
     </FormGroup>
   );
-}
+};
+
+const HOBBIES = [
+  {label: 'Running', value: 'Running'},
+  {label: 'Sniffing', value: 'Sniffing'},
+  {label: 'Flying', value: 'Flying'},
+  {label: 'Napping', value: 'Napping'},
+  {label: 'Singing', value: 'Singing'},
+  {label: 'Hunting', value: 'Hunting'},
+  {label: 'Swimming', value: 'Swimming'},
+  {label: 'Destroying things', value: 'Destroying things'},
+  {label: 'Snuggling', value: 'Snuggling'},
+  {label: 'Eating humans', value: 'Eating humans'},
+  {label: 'Making Noise', value: 'Making Noise'},
+  {label: 'Marking Territory', value: 'Marking Territory'},
+  {label: 'Stealing Socks', value: 'Stealing Socks'}
+];
 
 //the Form component renders the survey form and sends the responses on submit as a json object to '/survey'
 class SurveyForm extends React.Component {
@@ -28,12 +45,10 @@ class SurveyForm extends React.Component {
         bloodType: '',
         season: '',
         trained: '',
-        //value supplied to <select> must be an array
-        hobbies: [],
-        //hobbies to submit to db
-        hobbiesString: '',
         species: '',
-        quote: ''
+        quote: '',
+        options: HOBBIES,
+        value: []
       }
       //pre-bind functions
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,9 +56,9 @@ class SurveyForm extends React.Component {
       this.onBloodTypeChange = this.onBloodTypeChange.bind(this);
       this.onSeasonChange = this.onSeasonChange.bind(this);
       this.onTrainedChange = this.onTrainedChange.bind(this);
-      this.onHobbiesChange = this.onHobbiesChange.bind(this);
       this.onSpeciesChange = this.onSpeciesChange.bind(this);
       this.onQuoteChange = this.onQuoteChange.bind(this);
+      this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
   handleSubmit(e) {
@@ -55,7 +70,7 @@ class SurveyForm extends React.Component {
       bloodType: this.state.bloodType,
       season: this.state.season,
       trained: this.state.trained,
-      hobbies: this.state.hobbiesString,
+      hobbies: this.state.value,
       species: this.state.species,
       quote: this.state.quote,
       //hardcoding userId for testing---REFACTOR-------
@@ -71,6 +86,11 @@ class SurveyForm extends React.Component {
     this.setState({dob:e.currentTarget.value});
   }
 
+  handleSelectChange(value) {
+    console.log('You\'ve selected:', this.state.value);
+    this.setState({value});
+  }
+
   onBloodTypeChange(e) {
     this.setState({bloodType:e.currentTarget.value});
   }
@@ -81,18 +101,6 @@ class SurveyForm extends React.Component {
 
   onTrainedChange(e) {
     this.setState({trained:e.currentTarget.value});
-  }
-
-  onHobbiesChange(e) {
-    let options = e.target.options;
-    let values = [];
-    for(let i = 0; i < options.length; i += 1) {
-      if (options[i].selected) {
-        values.push(options[i].value);
-      }
-    }
-    let hobbiesString = values.join(', ');
-    this.setState({hobbies: values, hobbiesString: hobbiesString});
   }
 
   onSpeciesChange(e) {
@@ -144,28 +152,12 @@ class SurveyForm extends React.Component {
           </select>
         </FormGroup>
 
-        <FormGroup controlId="formControlsSelectMultiple" >
-          <ControlLabel>Select Four Favorite Hobbies</ControlLabel>
-          <select noValidate value={this.state.hobbies} onChange={this.onHobbiesChange} className='selectpicker' multiple title="hobbies" data-max-options="4" required='true'>
-            <option value="run">Running</option>
-            <option value="fly">Fyling</option>
-            <option value="nap">Napping</option>
-            <option value="swim">Swimming</option>
-            <option value="sun">Sun Bathing</option>
-            <option value="eat">Eating</option>
-            <option value="play">Playing</option>
-            <option value="presents">Presents</option>
-            <option value="learn">Tricks</option>
-            <option value="fetch">Fetching</option>
-            <option value="break">Breaking Rules</option>
-            <option value="tv">Television</option>
-            <option value="read">Reading</option>
-            <option value="code">Coding</option>
-            <option value="music">Music</option>
-            <option value="steal">Stealing-Socks</option>
-            <option value="mark">Marking-Territory</option>
-          </select>
+        <FormGroup>
+          <Select multi simpleValue disabled={this.state.disabled} value={this.state.value}
+                  placeholder="Select your hobbies" options={this.state.options}
+                  onChange={this.handleSelectChange}/>
         </FormGroup>
+
 
         <FormGroup controlId="formControlsSelectMultiple" >
           <ControlLabel>Select your Species</ControlLabel>
