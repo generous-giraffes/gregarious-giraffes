@@ -45,7 +45,7 @@ class PetSearch extends Component {
           let photos = pet.media.photos.photo;
           let name = pet.name['$t'];
           let sex = pet.sex['$t'];
-          
+
           // this.setState({
           //   pet: res.,
           //   image: res.,
@@ -55,17 +55,17 @@ class PetSearch extends Component {
         })
         .catch((err) => console.error(err))
 
-    //   axios.get('/api/pets/news')
-    //     .then((res) => {
-    //       console.log( res, 'response from petnews API')
-    //       // this.setState({
-    //       //   pet: res.,
-    //       //   image: res.,
-    //       //   facts: res.
-    //       //
-    //       // });
-    //     })
-    //     .catch((err) => console.error(err))
+      axios.get('/api/pets/news')
+        .then((res) => {
+          console.log( res, 'response from petnews API')
+          // this.setState({
+          //   pet: res.,
+          //   image: res.,
+          //   facts: res.
+          //
+          // });
+        })
+        .catch((err) => console.error(err))
     }
 
     onChange(e) {
@@ -77,15 +77,9 @@ class PetSearch extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.onSubmit}>
-                    <FieldGroup
-                        type='text'
-                        label='Search for pets'
-                        placeholder='dogs'
-                        value={this.state.search}
-                        onChange={this.onChange}/>
-                    {/* <Button bsStyle="primary" type="submit" value="Submit">Enter</Button> */}
-                </form>
+                <h1>Pet News</h1>
+                <h2>Pet of the Day</h2>
+                {/* make these cards */}
             </div>
         );
     }
