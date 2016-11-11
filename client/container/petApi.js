@@ -36,16 +36,24 @@ class PetSearch extends Component {
       axios.post('/api/pets', { animal: 'cat', location: '10012' })
         .then((res) => {
           console.log( res, 'response from pet API')
-          let pet = res.data.pet;
-          let animal = pet.animal;
-          let breed = pet.breeds.breed[0]['$t'];
-          let email = pet.contact.email[0]['$t'];
-          let description = pet.description[0]['$t'];
+          let pet = res.data.petfinder.pet;
+          let age = pet.age['$t'] || 'No Age';
+          let animal = pet.animal['$t'] || 'Animal';
+          let breed = pet.breeds.breed['$t'] || pet.breeds.breed[0]['$t'] || 'Unknown Breed';
+          let email = pet.contact.email['$t'] || pet.contact.email[0]['$t'] || 'email unavailable';
+          let description = pet.description['$t'] || 'no description';
           // photos is array of objects with href at ['$t']
-          let photos = pet.media.photos.photo;
-          let name = pet.name['$t'];
-          let sex = pet.sex['$t'];
-
+          let photos = pet.media.photos.photo || 'no photos';
+          let name = pet.name['$t'] || 'You can name it!';
+          let sex = pet.sex['$t'] || 'unknwon';
+console.log(age)
+console.log(animal);
+console.log(breed);
+console.log(email);
+console.log(description );
+console.log(photos);
+console.log( mane);
+console.log(sex);
           // this.setState({
           //   pet: res.,
           //   image: res.,
