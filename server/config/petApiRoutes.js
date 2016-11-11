@@ -8,7 +8,8 @@ router.post('/pets', (req, res) => {
   // var reqUrl = 'http://api.petfinder.com/pet.getRandom'
 
   //for some reason the GET request did not work when the optional parameters were set up in options, rather than attached to the url on line 11
-  let reqUrl = 'http://api.petfinder.com/pet.getRandom?format=json&key=' + process.env.petFinderKey + '&output=basic&animal=dog&location=10012';
+  // let reqUrl = 'http://api.petfinder.com/pet.getRandom?format=json&key=' + process.env.petFinderKey + '&output=basic&animal=dog&location=10012';
+  let reqUrl = 'http://api.petfinder.com/pet.getRandom?format=json&key=b9c347eeb65b532a17e0488aa46e77df&output=basic&animal=dog&location=10012';
   var options = {
     'method': 'GET',
     'url': reqUrl
@@ -25,21 +26,36 @@ router.post('/pets', (req, res) => {
   })
 })
 
+// router.get('/pets/news', (req, res) => {
+//   // for more options on the NYT articles endpoint see: https://developer.nytimes.com/article_search_v2.json
+//   var reqUrl = 'https://api.nytimes.com/svc/search/v2/articlesearch.json'
+//     + 'api-key=e7e73dafa9814b9fb3801b53473b59a6'
+//     + 'q=pets'
+//     + 'srot=newset';
+//     ////need to add & or ?
+//
+//   var options = {
+//     'method': 'GET',
+//     'url': reqUrl,
+//   };
+//   request(options, (error, response, body) => {
+//     if (error) throw new Error(error);
+//     res.send(body);
+//   })
+// })
 router.get('/pets/news', (req, res) => {
-  // for more options on the NYT articles endpoint see: https://developer.nytimes.com/article_search_v2.json
-  var reqUrl = 'https://api.nytimes.com/svc/search/v2/articlesearch.json'
-  // + key get an api key from petfinder.com
-  var options = {
-    'method': 'GET',
-    'url': reqUrl,
-    'api-key': process.env.NYTKey,
-    'q': 'pets',
-    'sort': 'newest'
-  };
-  request(options, (error, response, body) => {
-    if (error) throw new Error(error);
-    res.send(body);
-  })
+request.get({
+  url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
+  qs: {
+    'api-key': "e7e73dafa9814b9fb3801b53473b59a6",
+    'q': "pets",
+    'sort': "newest"
+  },
+}, function(err, response, body) {
+  body = JSON.parse(body);
+  console.log('one two three', body);
+  res.send(body)
+})
 })
 
 
