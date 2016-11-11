@@ -45,20 +45,11 @@ class PetSearch extends Component {
           // photos is array of objects with href at ['$t']
           let photos = pet.media.photos.photo || 'no photos';
           let name = pet.name['$t'] || 'You can name it!';
-          let sex = pet.sex['$t'] || 'unknwon';
-console.log(age)
-console.log(animal);
-console.log(breed);
-console.log(email);
-console.log(description );
-console.log(photos);
-console.log( mane);
-console.log(sex);
+          let sex = pet.sex['$t'] || 'unknown';
           // this.setState({
           //   pet: res.,
           //   image: res.,
           //   facts: res.
-          //
           // });
         })
         .catch((err) => console.error(err))
