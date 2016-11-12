@@ -1,7 +1,11 @@
 .map {
-  width: 80%;
-  height:80%;
-  position: fixed;
-  top: 150px;
-  right:10%;
+  .mapSearch {
+    .col-xs-12 {
+      text-align: center;
+      > div {
+        max-width: 800px;
+        height: 500px;
+      }
+    }
+  }
 }
