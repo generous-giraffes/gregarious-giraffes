@@ -8,7 +8,6 @@ export function petApi_Reducer(state = {}, action) {
           articles: action.data.data.response.docs
         });
       case GET_PET:
-      console.log('petApi reducer  ACTION.PAYLOAD', action.data);
         return Object.assign({}, state,
           {
             adoptPetData: {
