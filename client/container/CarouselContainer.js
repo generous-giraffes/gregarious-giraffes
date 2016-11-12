@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button, Col, Row, Grid, FormGroup, FormControl, Thumbnail, Carousel } from 'react-bootstrap';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
+import { signinUser } from '../actions/auth';
 
 
-class MyCarousel extends React.Component {
+class MyCarousel extends Component {
 
     constructor(props) {
         super(props);
+
+        console.log('this is the user ========>>>>', this.props.user);
     }
+
+    componentDidMount() {
+        this.props.signinUser();
+    }
+
 
 
     render() {
@@ -33,4 +44,15 @@ class MyCarousel extends React.Component {
     }
 }
 
-export default MyCarousel
+
+function mapStateToProps(state) {
+    return {
+        user: state.reducers.isAuthorized
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({signinUser}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyCarousel);

@@ -8,7 +8,6 @@ import Dashboard from './components/dashboard';
 import Survey from './container/SurveyFormContainer';
 import ImageUploader from './container/ImageUploadContainer';
 import GetImage from './container/GetImageContainer';
-import Carousel from './container/CarouselContainer';
 import PetSearch from './container/petApi';
 import MyProfile from './container/profileContainer';
 import SimpleMapPage from './container/map';
@@ -23,7 +22,6 @@ export default (
         <Route path="survey" component={Survey} />
         <Route path="imageUploader" component={ImageUploader} />
         <Route path="getImage" component={GetImage} />
-        <Route path="carousel" component={Carousel}/>
         <Route path="petSearch" component={PetSearch} />
         <Route path="myProfile" component={MyProfile} />
         <Route path="map" component={SimpleMapPage} />

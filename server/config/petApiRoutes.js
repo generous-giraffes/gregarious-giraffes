@@ -9,7 +9,7 @@ router.post('/pets', (req, res) => {
 
   //for some reason the GET request did not work when the optional parameters were set up in options, rather than attached to the url on line 11
   // let reqUrl = 'http://api.petfinder.com/pet.getRandom?format=json&key=' + process.env.petFinderKey + '&output=basic&animal=dog&location=10012';
-  let reqUrl = 'http://api.petfinder.com/pet.getRandom?format=json&key=b9c347eeb65b532a17e0488aa46e77df&output=basic&animal=dog&location=10012';
+  const reqUrl = 'http://api.petfinder.com/pet.getRandom?format=json&key=b9c347eeb65b532a17e0488aa46e77df&output=basic&animal=dog&location=10012';
   var options = {
     'method': 'GET',
     'url': reqUrl

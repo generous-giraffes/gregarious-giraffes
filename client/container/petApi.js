@@ -10,8 +10,8 @@ class PetSearch extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          //  pet: []
-         }
+            //  pet: []
+        }
 
         //  store.subscribe(() => {
         //    // When state will be updated(in our case, when items will be fetched), we will update local component state and force component to rerender with new data.
@@ -19,43 +19,44 @@ class PetSearch extends Component {
         //      pet: store.getState().adoptPetData
         //    })
         //  })
-       }
+    }
 
     componentDidMount() {
-      this.props.getPet();
-      this.props.getPetNews();
+        this.props.getPet();
+        this.props.getPetNews();
     }
-    
+
     // called before the render method and enables to define if a re-rendering is needed or can be skipped
-    shouldComponentUpdate(nextProps, nextState){
-      // return a boolean value
-      return true;
+    shouldComponentUpdate(nextProps, nextState) {
+        // return a boolean value
+        return true;
     }
+
     // called as soon as the the shouldComponentUpdate returned true. Any state changes via this.setState are not allowed as this method should be strictly used to prepare for an upcoming update not trigger an update itself.
-    componentWillUpdate(nextProps, nextState){
-      // perform any preparations for an upcoming update
-      console.log(nextProps, "props++++++state", nextState);
+    componentWillUpdate(nextProps, nextState) {
+        // perform any preparations for an upcoming update
+        console.log(nextProps, "props++++++state", nextState);
     }
 
     render() {
-      //MOVE THIS INTO A LIFECYCLE METHOD --> probs componentDidRecieveProps or componentWillUpdate
-      let $data = null;
-      if(this.props.pet.adoptPetData) {
-        let pet = this.props.pet.adoptPetData;
-          $data = (<div>
-            <div>{pet.description}</div>
-            {/* apply a filter to photos to only get ones with '@size':'x' (largest) and 'pn' second largest */}
-            {
-              pet.photos
-              .filter((p) => p['@size'] === 'x' || p['@size'] === 'pn' )
-              .map((p) =>
-                <img src={p['$t']} />
-              )
-            }
-          </div>
-        );
+        //MOVE THIS INTO A LIFECYCLE METHOD --> probs componentDidRecieveProps or componentWillUpdate
+        let $data = null;
+        if (this.props.pet.adoptPetData) {
+            let pet = this.props.pet.adoptPetData;
+            $data = (<div>
+                    <div>{pet.description}</div>
+                    {/* apply a filter to photos to only get ones with '@size':'x' (largest) and 'pn' second largest */}
+                    {
+                        pet.photos
+                            .filter((p) => p['@size'] === 'x' || p['@size'] === 'pn')
+                            .map((p) =>
+                                <img src={p['$t']}/>
+                            )
+                    }
+                </div>
+            );
         } else {
-          $data = (<div>Please GET SOME PROPS</div>);
+            $data = (<div>Please GET SOME PROPS</div>);
         }
         return (
             <div>
@@ -71,13 +72,13 @@ class PetSearch extends Component {
 
 //why are articles in adoptPetData in the state
 function mapStateToProps(state) {
-  return {
-    pet: state.reducers.getPets
-   }
+    return {
+        pet: state.reducers.getPets
+    }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getPet, getPetNews }, dispatch);
+    return bindActionCreators({getPet, getPetNews}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PetSearch);
