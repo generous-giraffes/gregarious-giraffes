@@ -11,6 +11,7 @@ import GetImage from './container/GetImageContainer';
 import Carousel from './container/CarouselContainer';
 import PetSearch from './container/petApi';
 import MyProfile from './container/profileContainer';
+import SimpleMapPage from './container/map';
 import {requireAuthentication} from './container/AuthenticatedContainer';
 
 export default (
@@ -25,5 +26,6 @@ export default (
         <Route path="carousel" component={Carousel}/>
         <Route path="petSearch" component={PetSearch} />
         <Route path="myProfile" component={MyProfile} />
+        <Route path="map" component={SimpleMapPage} />
     </Route>
 );
