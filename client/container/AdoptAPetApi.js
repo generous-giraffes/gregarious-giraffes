@@ -1,30 +1,22 @@
 import React, { Component } from 'react';
-import { Button, Col, Row, Grid } from 'react-bootstrap';
+import { Button, Col, Row, Grid, Thumbnail } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { getPet, getPetNews } from '../actions/getPets';
+import { getPet } from '../actions/getPets';
 import axios from 'axios';
 
 class PetSearch extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            //  pet: []
-        }
-
-        //  store.subscribe(() => {
-        //    // When state will be updated(in our case, when items will be fetched), we will update local component state and force component to rerender with new data.
-        //    this.setState({
-        //      pet: store.getState().adoptPetData
-        //    })
-        //  })
+        this.state = {}
     }
 
     componentDidMount() {
         this.props.getPet();
-        this.props.getPetNews();
     }
+
 
     // called before the render method and enables to define if a re-rendering is needed or can be skipped
     shouldComponentUpdate(nextProps, nextState) {
@@ -43,34 +35,45 @@ class PetSearch extends Component {
         let $data = null;
         if (this.props.pet.adoptPetData) {
             let pet = this.props.pet.adoptPetData;
-            $data = (<div>
-                    <div>{pet.description}</div>
+            let first = pet.photos.filter((p) => p['@size'] === 'x');
+            console.log(first, 'this is first!!!!!');
+            let image = (<img src={first[0]['$t']}/>);
+            var maxlength = 60;
+            $('p.description').text(function (_, text) {
+                return $.trim(text).substring(0, maxlength);
+            });
+            $data = (
+                <div className="petOfDay">
+                    <Grid>
+                        <Row>
+                            <Col xs={12}>
+                                <Thumbnail>
+                                    <h3>Pet of the Day</h3>
+                                    { image }
+                                    <p className="description">{pet.description}</p>
+                                    <p>
+                                        <Button href='https://www.petfinder.com/' target='_blank' bsStyle="primary">More Information</Button>
+                                    </p>
+
+                                </Thumbnail>
+
+                            </Col>
+                        </Row>
+                    </Grid>
                     {/* apply a filter to photos to only get ones with '@size':'x' (largest) and 'pn' second largest */}
-                    {
-                        pet.photos
-                            .filter((p) => p['@size'] === 'x' || p['@size'] === 'pn')
-                            .map((p) =>
-                                <img src={p['$t']}/>
-                            )
-                    }
                 </div>
             );
         } else {
             $data = (<div>Please GET SOME PROPS</div>);
         }
         return (
-            <div>
-                <h2>Pet of the Day</h2>
+            <div className="petOfDay">
                 {$data}
-                <h1>Pet News</h1>
-                {}
             </div>
         );
     }
 }
-// let unsubscribe = store.subscribe(PetSearch)
 
-//why are articles in adoptPetData in the state
 function mapStateToProps(state) {
     return {
         pet: state.reducers.getPets
@@ -78,7 +81,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({getPet, getPetNews}, dispatch);
+    return bindActionCreators({getPet}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PetSearch);

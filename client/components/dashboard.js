@@ -1,7 +1,9 @@
 import React from 'react';
 import Feed from '../container/FeedContainer';
-import MyInfo from '../container/MyInfoContainer';
 import MyCarousel from '../container/CarouselContainer';
+import FriendSearch from '../container/FriendSearchContainer';
+import PetSearch from '../container/AdoptAPetApi';
+import PetNewsSearch from '../container/PetNewsApi';
 import { Button, Col, Row, Grid, FormGroup, FormControl, Thumbnail, Navbar, Carousel } from 'react-bootstrap';
 
 
@@ -11,7 +13,6 @@ class Home extends React.Component {
 
         console.log(this.state, 'trying to get user name');
     }
-
 
 
     render() {
@@ -29,14 +30,13 @@ class Home extends React.Component {
                         </Col>
                         <Col xs={12} md={6}>
                             <Col xs={12}>
-                                <FormGroup>
-                                    <FormControl type="text" placeholder="Search for a PlayMate"/>
-                                </FormGroup>
-                                {' '}
-                                <Button type="submit">Submit</Button>
+                                <FriendSearch />
                             </Col>
                             <Col xs={12}>
-                                <MyInfo />
+                                <PetSearch />
+                            </Col>
+                            <Col xs={12}>
+                                <PetNewsSearch />
                             </Col>
                         </Col>
                     </Row>
