@@ -32,11 +32,11 @@ class PetSearch extends Component {
             <div>
                 <h1>Pet News</h1>
                 <h2>Pet of the Day</h2>
-                {/* <img src={this.props.please.photos[2]['$t']} /> */}
+
                 <div>{this.props.please.age}</div>
                 {
                   this.props.please ? <div> please wait</div> :
-                  <img src={this.props.please.photos[2]['$t']} />
+                  <div>{this.props.please.age}</div>
                 }
 
             </div>
