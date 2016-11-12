@@ -28,27 +28,41 @@ class PetSearch extends Component {
 
 
     render() {
+      //MOVE THIS INTO A LIFECYCLE METHOD --> probs componentDidRecieveProps or componentWillUpdate
+      let $data = null;
+      if(this.props.pet.adoptPetData) {
+        let pet = this.props.pet.adoptPetData;
+          $data = (<div>
+            <div>{pet.description}</div>
+            {/* apply a filter to photos to only get ones with '@size':'x' (largest) and 'pn' second largest */}
+            {
+              pet.photos
+              .filter((p) => p['@size'] === 'x' || p['@size'] === 'pn' )
+              .map((p) =>
+                <img src={p['$t']} />
+              )
+            }
+          </div>
+        );
+        } else {
+          $data = (<div>Please GET SOME PROPS</div>);
+        }
         return (
             <div>
-                <h1>Pet News</h1>
                 <h2>Pet of the Day</h2>
-                {/* <img src={this.props.please.photos[2]['$t']} /> */}
-                <div>{this.props.please.age}</div>
-                {
-                  this.props.please ? <div> please wait</div> :
-                  <img src={this.props.please.photos[2]['$t']} />
-                }
-
+                {$data}
+                <h1>Pet News</h1>
+                {}
             </div>
         );
     }
 }
 // let unsubscribe = store.subscribe(PetSearch)
 
+//why are articles in adoptPetData in the state
 function mapStateToProps(state) {
   return {
-    pet: state,
-    please: state.reducers.getPets
+    pet: state.reducers.getPets
    }
 }
 

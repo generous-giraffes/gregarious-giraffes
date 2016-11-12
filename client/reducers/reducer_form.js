@@ -1,17 +1,18 @@
-import { SUMBIT_FORM } from '../actions/form';
+import { SUBMIT_FORM } from '../actions/form';
 
-export function formReducer(state = {}, action) {
+export function form_Reducer(state = {}, action) {
   switch (action.type) {
     case SUBMIT_FORM:
+    console.log(action, 'action form+++++++++');
       return Object.assign({}, state,
         {
-          dob: action.payload.data.dob,
-      		bloodType: action.payload.data.bloodType,
-      		season: action.payload.data.season,
-      		trained: action.payload.data.trained,
-      		hobbies: action.payload.data.hobbies,
-      		species: action.payload.data.species,
-      		quote: action.payload.data.quote,
+          dob: action.payload.dob,
+      		bloodType: action.payload.bloodType,
+      		season: action.payload.season,
+      		trained: action.payload.trained,
+      		hobbies: action.payload.hobbies,
+      		species: action.payload.species,
+      		quote: action.payload.quote,
       		image: null
         });
     default:

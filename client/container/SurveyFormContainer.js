@@ -42,10 +42,11 @@ class SurveyForm extends React.Component {
 
       this.state = {
         dob: '',
-        bloodType: '',
-        season: '',
-        trained: '',
-        species: '',
+        //default values show on dropdowns
+        bloodType: 'Cold',
+        season: 'spring',
+        trained: 'yes',
+        species: 'giraffe',
         quote: '',
         options: HOBBIES,
         value: []
@@ -64,7 +65,6 @@ class SurveyForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     //submit action with all form data
-    console.log(this.props.email, 'email');
     this.props.submitForm({
       dob: this.state.dob,
       bloodType: this.state.bloodType,
@@ -77,8 +77,6 @@ class SurveyForm extends React.Component {
       email: this.props.email
     });
     //redirect to imageUpload view
-
-    //CHANGE THIS TO CONETEXT OR SOMETHING
     browserHistory.push('/imageUploader');
   }
 
@@ -195,7 +193,7 @@ class SurveyForm extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { email: state.email }
+  return { email: state.reducers.isAuthorized.email }
 }
 
 function mapDispatchToProps(dispatch) {
