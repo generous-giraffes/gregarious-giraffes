@@ -65,7 +65,7 @@ class MyProfile extends React.Component {
               <div className="card card-inverse card-danger text-center">
                   <div className="card-block">
                       <blockquote className="card-blockquote">
-                          <img src={this.props.image}/>
+                          <img width={500} height={300} mode='fit' src={this.props.image}/>
                           <footer>Someone famous in
                               <cite title="Source Title">Source Title</cite>
                           </footer>
