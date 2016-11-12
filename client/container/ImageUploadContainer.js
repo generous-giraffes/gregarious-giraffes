@@ -1,5 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { submitImage } from '../actions/image';
+import { browserHistory } from 'react-router';
 
 //ImageUpload uses FileReader to asynchronously read the contents of an image that the user uploads
 class ImageUpload extends React.Component {
@@ -18,17 +22,12 @@ class ImageUpload extends React.Component {
     //post request to server goes to imageRoutes and the image gets added to db using userId to find the user
     //only post if there is an image in state
     if(this.state.imagePreviewUrl) {
-      axios.post('/api/image', {
+      this.props.submitImage({
         image: this.state.imagePreviewUrl,
-        //hardcoding userId for testing
-        userId: '1'
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.error(error);
+        email: this.props.email
       });
+      // handle the lack of props before rendering at myProfile
+      browserHistory.push('/myProfile');
     } else {
       alert('Please upload an image, we want you to have the profile image of your choice!');
     }
@@ -74,4 +73,12 @@ class ImageUpload extends React.Component {
   }
 }
 
-export default ImageUpload;
+function mapStateToProps(state) {
+  return { email: state.reducers.isAuthorized.email }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({submitImage}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImageUpload);

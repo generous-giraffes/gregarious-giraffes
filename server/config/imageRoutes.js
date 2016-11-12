@@ -8,10 +8,12 @@ router.post('/image', (req, res) => {
 //selects image from users table where the user id matches the user that uploaded the photo and updates the image
 
 //insert image for a specific user
-	db.insert({ 'image': req.body.image }).into('users').where('id', req.userId)
-	.then((res) => { console.log(res, "inserted image"); })
-	.catch((err) => { console.error(err); });
-  res.sendStatus(200);
+	db.update({ 'image': req.body.image }).into('users').where('email', req.body.email)
+	  .then((data) => {
+	  	return db.select('image').from('users').where('email', req.body.email);
+	  })
+	  .then((data) => res.send(data))
+	  .catch((err) => console.error(err));
 });
 
 router.get('/image', (req, res) => {

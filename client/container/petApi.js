@@ -25,7 +25,17 @@ class PetSearch extends Component {
       this.props.getPet();
       this.props.getPetNews();
     }
-
+    
+    // called before the render method and enables to define if a re-rendering is needed or can be skipped
+    shouldComponentUpdate(nextProps, nextState){
+      // return a boolean value
+      return true;
+    }
+    // called as soon as the the shouldComponentUpdate returned true. Any state changes via this.setState are not allowed as this method should be strictly used to prepare for an upcoming update not trigger an update itself.
+    componentWillUpdate(nextProps, nextState){
+      // perform any preparations for an upcoming update
+      console.log(nextProps, "props++++++state", nextState);
+    }
 
     render() {
       //MOVE THIS INTO A LIFECYCLE METHOD --> probs componentDidRecieveProps or componentWillUpdate
