@@ -64,13 +64,14 @@ class SurveyForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    let hobbies = this.state.value.split(',').join(', ');
     //submit action with all form data
     this.props.submitForm({
       dob: this.state.dob,
       bloodType: this.state.bloodType,
       season: this.state.season,
       trained: this.state.trained,
-      hobbies: this.state.value,
+      hobbies: hobbies,
       species: this.state.species,
       quote: this.state.quote,
       //hardcoding userId for testing---REFACTOR-------
