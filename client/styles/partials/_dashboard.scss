@@ -8,5 +8,28 @@
             background: $dark-blue;
             margin-bottom: 20px;
         }
+        .thumbnail {
+            text-align: center;
+
+            .caption {
+                img {
+                    max-width: 300px;
+                    max-height: 400px;
+                }
+            }
+        }
+
+        .petNews{
+            .thumbnail {
+                height: 370px;
+
+                img {
+                    margin-top: 15px;
+                }
+                p.snippet {
+                    font-size: 12px;
+                }
+            }
+        }
     }
 }
