@@ -21,8 +21,9 @@ app.use((req, res, next) => {
 });
 
 //middleware
-app.use(bodyparser.json({limit: "50mb"}));
-app.use(bodyparser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
+//remove limit when switch to s3 bucket
+app.use(bodyparser.json({limit: "1.6mb"}));
+app.use(bodyparser.urlencoded({limit: "1.6mb", extended: true, parameterLimit:50000}));
 app.use(bodyparser());
 app.use(logger('dev'));
 app.use(express.static(__dirname + '/../client'));
