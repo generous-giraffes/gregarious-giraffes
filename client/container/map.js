@@ -62,28 +62,30 @@ export default class SimpleMapPage extends Component {
   render() {
     let model = null;
     return (
-      <div  className='map'>
-      {/* <Grid>
-        <Row> */}
-        {model}
-        <SearchBox
-        // handlePlacesChange={this.handlePlacesChange}
-        // onPlacesChanged={this.handlePlacesChanged}
-        ></SearchBox>
-          {/* <Col xs={12} md={8} xsOffset={4} mdOffset={4}> */}
-          <GoogleMap
-          bootstrapURLKeys={{
-            key: 'AIzaSyCzQe1AnEIoJJcPIrfOXVTldfdUhxMY7kw'
-          }}
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}>
-          <MyGreatPlace showData={this.showData} lat={40.782864} lng={-73.96535510000001} text={'Central Park'} /* Kreyser Avrora */ />
-          <MyGreatPlace showData={this.showData} {...this.props.madisonSquarePark} text={'Madison Square Park'} /* road circle */ />
+      <div className='map'>
+        <Grid>
+          <Row className="mapSearch">
+            <Col xs={12}>
+              {model}
+              <SearchBox
+                  // handlePlacesChange={this.handlePlacesChange}
+                  // onPlacesChanged={this.handlePlacesChanged}
+              ></SearchBox>
+              <div className="extra">
+                <GoogleMap className="extra"
+                           bootstrapURLKeys={{key: 'AIzaSyCzQe1AnEIoJJcPIrfOXVTldfdUhxMY7kw'}}
+                           defaultCenter={this.props.center}
+                           defaultZoom={this.props.zoom}>
+                  <MyGreatPlace className="test" showData={this.showData} lat={40.782864} lng={-73.96535510000001}
+                                text={'Central Park'} /* Kreyser Avrora */ />
+                  <MyGreatPlace showData={this.showData} {...this.props.madisonSquarePark}
+                                text={'Madison Square Park'} /* road circle */ />
 
-          </GoogleMap>
-          {/* </Col> */}
-        {/* </Row>
-      </Grid> */}
+                </GoogleMap>
+              </div>
+            </Col>
+          </Row>
+        </Grid>
       </div>
     );
   }
