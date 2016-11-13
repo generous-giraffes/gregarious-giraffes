@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { signupUser } from '../actions/auth';
 import { browserHistory } from 'react-router';
-//need to include the signupuser above in order to dispatch the bindActionCreators
 
 //FieldGroup returns a bootstrap form
 const FieldGroup = ({ id, label, help, ...props }) => {
@@ -47,16 +46,17 @@ class SignupForm extends Component {
 
     //user submitting their form to create a new user
     onFormSubmit(event) {
-        console.log(event, 'LINE 49, SignUpFormContainer this is the form submission event to create a new user');
         event.preventDefault();
         //need this from signUpUser or won't have the data
-        this.props.signupUser(this.state.name, this.state.email, this.state.password);
+        this.props.signupUser(this.state.name, this.state.email, this.state.password)
+          .then(() => browserHistory.push('/survey'));
         this.setState({
             name: '',
             email: '',
             password: ''
         });
-        browserHistory.push('/survey');
+        //moved browserHistory.push into promise so that the user becomes authenticated before the view is changed
+        // browserHistory.push('/survey');
     }
 
     render() {

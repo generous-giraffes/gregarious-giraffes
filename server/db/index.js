@@ -1,19 +1,18 @@
 //when this file is required, knex sets up a connection with the databse and creates the tables if they do not exist
 
 //++++++++FOR LOCAL TESTING++++++++
-//var knex = require('knex')({
+//start and setup mysql in termina: $ mysql.server start, then, $ mysql -h localhost -u root -p
+//when in the mysql terminal type: create database giraffeLocal;, and then type: use giraffeLocal;
+// var knex = require('knex')({
 //  client: 'mysql',
 //  connection: {
-//    //do not push these to git
-//    host: 'west2-mysql-giraffes.cdt7ljmioe25.us-west-2.rds.amazonaws.com',
-//    port: '3306',
-//    //host: 'localhost',
+//    host: 'localhost',
 //    user: 'root',
-//    password: '',//your local password for root user
-//    database: 'users'
+//    password: 'a',//your local password for root user
+//    database: 'giraffeLocal'
 //  }
-//});
-
+// });
+//
 var knex = require('knex')({
   client: 'mysql',
   connection: {
@@ -60,8 +59,8 @@ knex.schema.hasTable('users').then((exists) => {
 knex.schema.hasTable('friends').then((exists) => {
   if(!exists) {
     return knex.schema.createTable('friends', (table) => {
-      table.integer('user1_id')
-      table.integer('user2_id')
+      table.integer('user1_id').unsigned()
+      table.integer('user2_id').unsigned()
       table.foreign('user1_id').references('id').inTable('users')
       table.foreign('user2_id').references('id').inTable('users')
 
