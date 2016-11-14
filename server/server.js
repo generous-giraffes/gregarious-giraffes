@@ -8,9 +8,12 @@ var webpackHotMiddleware = require('webpack-hot-middleware');
 var config = require('../webpack.config');
 var router = express.Router();
 
-
 //initiate express
 var app = express();
+
+//This is needed for socket.io to work
+var http = require('http').Server(app)
+var io = require('socket.io')(http);
 
 //Coors
 app.use((req, res, next) => {
@@ -46,10 +49,20 @@ app.get('*', function(req, res){
   res.sendFile(path.resolve(__dirname, '../client', 'index.html'))
 });
 
+io.sockets.on('connection',function(socket){
+    console.log("Connected: ", socket.id);
+
+    socket.on('chatlist',(payload)=>{
+        console.log(payload);
+        console.log("received");
+        this.emit('chatlist', payload);
+    })
+});
+
 //set and run the port and server
 app.set('port', process.env.PORT || 8080);
 var port = app.get('port');
-app.listen(port);
+http.listen(port);
 console.log("Server listening on PORT", port);
 
 module.exports = app;
