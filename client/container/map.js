@@ -2,7 +2,7 @@ import React, {PropTypes, Component} from 'react';
 // import shouldPureComponentUpdate from 'react-pure-render/function';
 import { Button, Col, Row, Grid, FormGroup, FormControl, Thumbnail, Carousel } from 'react-bootstrap';
 import GoogleMap from 'google-map-react';
-import SearchBox from './searchBox';
+import SearchBox from './SearchBox';
 
 export default class SimpleMapPage extends Component {
   static defaultProps = {

@@ -20,7 +20,7 @@ const Navigation = () => (
                     <NavItem eventKey={1}>Edit Profile</NavItem>
                 </LinkContainer>
                 <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown" onSelect={handleSelect}>
-                    <MenuItem eventKey={3.1}>Action</MenuItem>
+                    <MenuItem eventKey={3.1}>Events</MenuItem>
                     <MenuItem eventKey={3.2}>Another action</MenuItem>
                     <MenuItem eventKey={3.3}>Something else here</MenuItem>
                     <MenuItem divider/>
@@ -38,6 +38,8 @@ const Navigation = () => (
 function handleSelect(eventKey) {
   if (eventKey === 3.4) {
     browserHistory.push('/chat');
+  } else if (eventKey === 3.1) {
+    browserHistory.push('/events');
   }
 }
 
