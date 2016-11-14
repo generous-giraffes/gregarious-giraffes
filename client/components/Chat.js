@@ -2,7 +2,6 @@ import React from 'react';
 import io from 'socket.io-client';
 import { Button, Col, Row, Grid, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 
-
 class ChatBox extends React.Component {
   constructor(){
       super();
