@@ -3,7 +3,7 @@ import Feed from '../container/FeedContainer';
 import MyCarousel from '../container/CarouselContainer';
 import FriendSearch from '../container/FriendSearchContainer';
 import PetSearch from '../container/AdoptAPetApi';
-import PetNewsSearch from '../container/PetNewsApi';
+import PetNewsSearch from '../container/PetNewsApiContainer';
 import { Button, Col, Row, Grid, FormGroup, FormControl, Thumbnail, Navbar, Carousel } from 'react-bootstrap';
 
 

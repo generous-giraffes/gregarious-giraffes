@@ -1,0 +1,36 @@
+import React from 'react';
+import EventList from '../container/EventListContainer';
+import CreateEvent from '../container/CreateEventContainer';
+import { Button, Col, Row, Grid, FormGroup, FormControl, Thumbnail, Navbar, Carousel } from 'react-bootstrap';
+
+
+class Events extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+
+    render() {
+        return (
+            <div className="events">
+                <Grid>
+                    <Row className="banner">
+                        <Col xs={12}>
+                            <h1>Events Page</h1>
+                        </Col>
+                    </Row>
+                    <Row className="main-container">
+                        <Col xs={12} md={6}>
+                            <EventList />
+                        </Col>
+                        <Col xs={12} md={6}>
+                            <CreateEvent />
+                        </Col>
+                    </Row>
+                </Grid>
+            </div>
+        )
+    }
+}
+
+export default Events
