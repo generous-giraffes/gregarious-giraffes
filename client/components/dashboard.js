@@ -32,12 +32,12 @@ class Home extends React.Component {
                             <Col xs={12}>
                                 <FriendSearch />
                             </Col>
-                            <Col xs={12}>
+                            {/* <Col xs={12}>
                                 <PetSearch />
-                            </Col>
-                            <Col xs={12}>
+                            </Col> */}
+                            {/* <Col xs={12}>
                                 <PetNewsSearch />
-                            </Col>
+                            </Col> */}
                         </Col>
                     </Row>
                 </Grid>

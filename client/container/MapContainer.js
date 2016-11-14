@@ -1,7 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import { Modal, Button, Col, Row, Grid, FormGroup, FormControl, Thumbnail, Carousel } from 'react-bootstrap';
 import GoogleMap from 'google-map-react';
-import SearchBox from './searchBox';
+import SearchBox from './SearchBoxContainer';
 
 export default class SimpleMapPage extends Component {
   static defaultProps = {
@@ -69,13 +69,11 @@ export default class SimpleMapPage extends Component {
   }
 
   render() {
-    let model = null;
     return (
       <div className='map'>
         <Grid>
           <Row className="mapSearch">
             <Col xs={12}>
-              {model}
               {this.state.modal}
 
               <SearchBox></SearchBox>

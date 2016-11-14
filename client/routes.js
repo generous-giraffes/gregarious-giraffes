@@ -9,7 +9,7 @@ import Survey from './container/SurveyFormContainer';
 import ImageUploader from './container/ImageUploadContainer';
 import GetImage from './container/GetImageContainer';
 import MyProfile from './container/profileContainer';
-import SimpleMapPage from './container/map';
+import SimpleMapPage from './container/MapContainer';
 import {requireAuthentication} from './container/AuthenticatedContainer';
 
 export default (
@@ -17,7 +17,7 @@ export default (
         <IndexRoute component={SignUp}/>
         <Route path="signIn" component={SignIn}/>
         <Route path="signUp" component={SignUp}/>
-        <Route path="dashboard" component={requireAuthentication(Dashboard)}/>
+        <Route path="dashboard" component={Dashboard}/>
         <Route path="survey" component={requireAuthentication(Survey)} />
         <Route path="imageUploader" component={ImageUploader} />
         <Route path="getImage" component={GetImage} />
