@@ -44,14 +44,14 @@ class SigninForm extends Component {
         console.log(event, 'this is the form submit event');
         event.preventDefault();
         //need props from signInUser
-        this.props.signinUser(this.state.email, this.state.password);
+        this.props.signinUser(this.state.email, this.state.password)
+          .then(() => browserHistory.push('/dashboard'));
         //This is to remove the text so that it clears the placeholders in the form
         this.setState({
             email: '',
             password: ''
         });
-         browserHistory.push('/dashboard');
-        //browserHistory.push('/survey');
+        //  browserHistory.push('/dashboard');
     }
 
     render() {

@@ -1,14 +1,13 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {pushState} from 'redux-router';
+import { connect } from 'react-redux';
+// import {pushState} from 'redux-router';
+import { browserHistory } from 'react-router';
 
 export function requireAuthentication(Component) {
 
     class AuthenticatedComponent extends React.Component {
 
         componentWillMount() {
-          //maybe should be using token? or set isAuthenitcated to true in reducer??
-          console.log('+++====++++==++++==++props.isAuth..', this.props.isAuthenticated)
             this.checkAuth(this.props.isAuthenticated);
         }
 
@@ -18,9 +17,10 @@ export function requireAuthentication(Component) {
 
         checkAuth(isAuthenticated) {
             if (!isAuthenticated) {
-                let redirectAfterLogin = this.props.location.pathname;
-                this.props
-                    .dispatch(pushState(null, `/login?next=${redirectAfterLogin}`));
+              browserHistory.push('/signIn');
+                // let redirectAfterLogin = this.props.location.pathname;
+                // this.props
+                //     .dispatch(pushState(null, `/login?next=${redirectAfterLogin}`));
             }
         }
 
@@ -39,12 +39,9 @@ export function requireAuthentication(Component) {
 
     const mapStateToProps = (state) => ({
         token: state.token,
-        isAuthenticated: Boolean(state.token)
-        // ,
-        // isAuthenticated: state.auth.isAuthenticated
+        isAuthenticated: state.reducers.isAuthorized.isAuthenticated
     });
 
     return connect(mapStateToProps)(AuthenticatedComponent);
 
 }
-
