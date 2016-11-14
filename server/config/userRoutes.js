@@ -23,4 +23,22 @@ router.get('/users/count', (req, res) => {
 	  .catch((err) => console.error(err));
 });
 
+router.post('/users/friend', (req, res) => {
+  let email1 = req.body.email1;
+  let email2 = req.body.email2;
+  let userId1, userId2;
+
+	db('users').select('id').where('email', email1)
+    .then((data) => {
+      userId1 = data[0].id;
+      return db('users').select('id').where('email', email2);
+    })
+	  .then((data) => {
+      userId2 = data[0].id;
+      db('friends').insert({user1_id: userId1, user2_id: userId2})
+        .then((data) => res.send(data))
+	  })
+	  .catch((err) => console.error(err));
+});
+
 module.exports = router;

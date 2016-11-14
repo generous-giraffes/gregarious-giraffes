@@ -15,7 +15,7 @@ module.exports = {
     db('users').insert({
       email: email,
       password: password,
-      name: name,
+      name: name
     })
     .then(() => {
       return db('users')

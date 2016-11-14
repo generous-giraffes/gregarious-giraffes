@@ -68,6 +68,14 @@ class FriendSearch extends Component {
 
   friend() {
     //create server route that adds the two users to the friends table
+    let email1 = this.state.selectedUser.email;
+    let email2 = this.props.email;
+    console.log(email1, email2, 'email 1 and 2');
+    axios.post('/api/users/friend', {email1: email1 , email2: email2})
+      .then((res) => {
+        console.log(res, 'friended success');
+      })
+      .catch((err) => console.log(err))
   }
 
   viewProfile() {
@@ -137,7 +145,8 @@ class FriendSearch extends Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.reducers.isAuthorized
+        user: state.reducers.isAuthorized,
+        email: state.reducers.isAuthorized.email
     }
 }
 
