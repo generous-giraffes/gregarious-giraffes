@@ -19,29 +19,52 @@ export default class SimpleMapPage extends Component {
       {name:'Corlears Hook Park', coord: {lat:40.71169649999999, lng:-73.97969720000003}}
     ]
   //when use default props over setting initial state?
+  //should this go in store?, should the state also go in the store?
+
+
+// Should I use component state to store X?
+  // If I can calculate X from props -> No.
+  // If I am not using X in the render method -> No.
+  // Else -> Yes.
   };
 
   constructor(props) {
     super(props);
     this.state = {
       location: '',
-      modal: ''
+      modal: '',
+      isOpen: false
     }
   }
+
+  close() {
+    // this.setState({ isOpen: false });
+    this.setState({ modal: '' })
+  }
+//uncomment these functions and the <Modal ..> in showData to fix modal logic?
+  // open() {
+  //   this.setState({ isOpen: true });
+  // }
 
   showData(e) {
     console.log('event current target, e',e.currentTarget.innerText,);
     console.log(this.state, 'state');
-    this.setState({modal: (
-      <Modal.Dialog>
-          <Modal.Header>
-              <Modal.Title>Create an Event</Modal.Title>
-          </Modal.Header>
-          <Modal.Footer>
-              {e.currentTarget.innerText}
-              <Button onClick={alert('hey')} bsStyle="success">Create an Event</Button>
-          </Modal.Footer>
-      </Modal.Dialog>)
+    this.setState({
+      // isOpen: true,
+      modal: (
+        // <Modal className='event-modal' show={this.state.isOpen} onHide={() => {this.isOpen()}}>
+            <Modal.Dialog>
+                <Modal.Header>
+                    <Modal.Title>Create an Event</Modal.Title>
+                </Modal.Header>
+                <Modal.Footer>
+                    {e.currentTarget.innerText}
+                    {/* <Button onClick={alert('hey')} bsStyle="success">Create an Event</Button> */}
+                    <Button onClick={() => {this.close()}} bsStyle="success">Look at Other Parks</Button>
+                </Modal.Footer>
+            </Modal.Dialog>
+        // </Modal>
+      )
     })
   }
 
