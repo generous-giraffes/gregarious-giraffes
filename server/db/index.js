@@ -8,11 +8,11 @@
 //  connection: {
 //    host: 'localhost',
 //    user: 'root',
-//    password: 'a',//your local password for root user
+//    password: '',//your local password for root user
 //    database: 'giraffeLocal'
 //  }
 // });
-//
+
 var knex = require('knex')({
   client: 'mysql',
   connection: {

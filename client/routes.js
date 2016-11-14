@@ -22,6 +22,6 @@ export default (
         <Route path="imageUploader" component={ImageUploader} />
         <Route path="getImage" component={GetImage} />
         <Route path="myProfile" component={MyProfile} />
-        <Route path="map" component={requireAuthentication(SimpleMapPage)} />
+        <Route path="map" component={SimpleMapPage} />
     </Route>
 );
