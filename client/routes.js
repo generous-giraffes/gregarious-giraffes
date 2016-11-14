@@ -11,6 +11,7 @@ import GetImage from './container/GetImageContainer';
 import MyProfile from './container/profileContainer';
 import SimpleMapPage from './container/map';
 import {requireAuthentication} from './container/AuthenticatedContainer';
+import Chat from './container/ChatContainer';
 
 export default (
     <Route path="/" component={App}>
@@ -18,6 +19,7 @@ export default (
         <Route path="signIn" component={SignIn}/>
         <Route path="signUp" component={SignUp}/>
         <Route path="dashboard" component={Dashboard}/>
+        <Route path="chat" component={Chat} />
         <Route path="survey" component={Survey} />
         <Route path="imageUploader" component={ImageUploader} />
         <Route path="getImage" component={GetImage} />
