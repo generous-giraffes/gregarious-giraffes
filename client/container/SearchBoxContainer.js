@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 
 class SearchBox extends Component {
   static propTypes = {
-    placeholder: React.PropTypes.string
-    // ,
-    // onPlacesChanged: React.PropTypes.func
+    placeholder: React.PropTypes.string,
+    onPlacesChanged: React.PropTypes.func
   }
 
   onPlacesChanged = () => {
-    console.log('CHANGED');
     console.log('CHANGED2', this.searchBox.getPlaces());
     let place = this.searchBox.getPlaces();
+    console.log(place,"--========__", 'lat', place[0].geometry.location.lat(), 'lng',place[0].geometry.location.lng())
+    console.log('{lat:' + place[0].geometry.location.lat() + ', '+ 'lng:' + place[0].geometry.location.lng() + '}')
 //dispatch action to oupdate state with place
     //formatted_address ---> "Madison Ave, New York, NY 10010, USA"
     //location.lat() ,   .lng
@@ -24,17 +24,12 @@ class SearchBox extends Component {
       // profile_photo_url: "//lh4.googleusercontent.com/-W7xBOOpnzWU/AAAAAAAAAAI/AAAAAAAABqo/QW7BQ0bpq20/photo.jpg"
       // rating: 5
       // text: "An awesome p
-
-    // if (this.props.onPlacesChanged) {
-    //   this.props.onPlacesChanged(this.searchBox.getPlaces());
-    // }
   }
 
   componentDidMount() {
     var input = ReactDOM.findDOMNode(this.refs.input);
     this.searchBox = new google.maps.places.SearchBox(input);
     this.searchBox.addListener('places_changed', this.onPlacesChanged);
-    // this.searchBox.addListener('places_changed', this.props.handlePlacesChange);
   }
 
   componentWillUnmount() {
@@ -42,8 +37,13 @@ class SearchBox extends Component {
   }
 
   render() {
-    // return <input ref="input" {...this.props} type="text"/>;
-    return <input {...this.props} id='mapSearch' style={{'width': '300px'}} ref="input" type="text"/>;
+    return <input {...this.props}
+              placeholder='Search for a Park'
+              id='mapSearch'
+              style={{'width': '300px'}}
+              ref="input"
+              type="text"
+            />;
   }
 }
 
