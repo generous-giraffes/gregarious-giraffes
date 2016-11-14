@@ -11,7 +11,7 @@ import GetImage from './container/GetImageContainer';
 import MyProfile from './container/profileContainer';
 import SimpleMapPage from './container/map';
 import {requireAuthentication} from './container/AuthenticatedContainer';
-import Chat from './components/Chat';
+import Chat from './container/ChatContainer';
 
 export default (
     <Route path="/" component={App}>
