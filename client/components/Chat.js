@@ -1,15 +1,7 @@
 import React from 'react';
 import io from 'socket.io-client';
+import { Button, Col, Row, Grid, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 
-class MainChat extends React.Component {
-  render() {
-      return (
-          <div>
-          <ChatBox />
-      </div>
-      );
-  }
-}
 
 class ChatBox extends React.Component {
   constructor(){
@@ -18,7 +10,7 @@ class ChatBox extends React.Component {
       this.updateChatList = this.updateChatList.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
       this.socket = io('http://localhost:8080');
       this.socket.on('connect', this.connect);
       this.socket.on('chatlist', this.updateChatList);
@@ -49,10 +41,10 @@ class ChatBox extends React.Component {
 
   render() {
       return (
-          <div className="chatBox">
+        <div className="chatBox">
           <ChatList data={this.state.data}/>
-          <CommentForm  onChatSubmit={this.handleChatSubmit.bind(this)} />
-      </div>
+          <CommentForm onChatSubmit={(comment) => this.handleChatSubmit(comment)} />
+        </div>
       );
   }
 }
@@ -62,14 +54,16 @@ class ChatList extends React.Component {
       var commentNodes = this.props.data.map((comment) => {
         return (
           <Comment author={comment.author} key={comment.id}>
-          {comment.text}
+            {comment.text}
           </Comment>
         );
       });
       return (
-        <div className="chatList">
-          <h3>Chat Room</h3>
-          {commentNodes}
+        <div className="panel panel-default">
+          <div className="page-header">
+            <h1 className="text-center">Chat Room</h1>
+          </div>
+          <div className="chat-list">{commentNodes}</div>
         </div>
       );
   }
@@ -118,13 +112,17 @@ class CommentForm extends React.Component {
 
     render() {
         return (
-          <form className="commentForm" onSubmit={this.handleSubmit.bind(this)}>
-           <input type="text" placeholder="Enter name" value={this.state.author} onChange={this.handleAuthorChange.bind(this)} />
-           <input type="text" placeholder="Type here..." value={this.state.text} onChange={this.handleTextChange.bind(this)} />
-           <input type="submit" value="Send" />
+          <form className='chat-form' onSubmit={(e) => this.handleSubmit(e)}>
+            <FormGroup controlId="formBasicText" >
+              <ControlLabel>Enter name</ControlLabel>
+              <FormControl type="text" value={this.state.author} onChange={(e) => this.handleAuthorChange(e)} />
+              <ControlLabel>Enter message</ControlLabel>
+              <FormControl type="text" value={this.state.text} onChange={(e) => this.handleTextChange(e)} />
+            </FormGroup>
+            <Button type="submit">Send</Button>
           </form>
         );
     }
 }
 
-export default MainChat
+export default ChatBox

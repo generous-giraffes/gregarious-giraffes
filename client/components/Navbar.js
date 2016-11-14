@@ -24,7 +24,7 @@ const Navigation = () => (
                     <MenuItem eventKey={3.2}>Another action</MenuItem>
                     <MenuItem eventKey={3.3}>Something else here</MenuItem>
                     <MenuItem divider/>
-                    <MenuItem eventKey={3.4}>Chat Forum</MenuItem>
+                    <MenuItem eventKey={3.4}>Chat</MenuItem>
                 </NavDropdown>
             </Nav>
             <Nav pullRight>
@@ -36,7 +36,6 @@ const Navigation = () => (
 )
 
 function handleSelect(eventKey) {
-  console.log(eventKey);
   if (eventKey === 3.4) {
     browserHistory.push('/chat');
   }
