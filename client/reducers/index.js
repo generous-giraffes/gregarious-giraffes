@@ -2,12 +2,14 @@ import { combineReducers } from 'redux';
 import { auth_Reducer } from './reducer_auth';
 import { petApi_Reducer } from './reducer_petApi';
 import { form_Reducer } from './reducer_form';
+import { eventForm_Reducer } from './reducer_eventForm';
 import { image_Reducer } from './reducer_image';
 
 
 const rootReducer = combineReducers({
     getPets: petApi_Reducer,
     form: form_Reducer,
+    eventForm: eventForm_Reducer,
     image: image_Reducer,
     isAuthorized: auth_Reducer
 });

@@ -3,15 +3,16 @@
 //++++++++FOR LOCAL TESTING++++++++
 //start and setup mysql in termina: $ mysql.server start, then, $ mysql -h localhost -u root -p
 //when in the mysql terminal type: create database giraffeLocal;, and then type: use giraffeLocal;
-var knex = require('knex')({
- client: 'mysql',
- connection: {
-   host: 'localhost',
-   user: 'root',
-   password: 'a',//your local password for root user
-   database: 'giraffeLocal'
- }
-});
+
+ var knex = require('knex')({
+  client: 'mysql',
+  connection: {
+    host: 'localhost',
+    user: 'root',
+    password: 'admin',//your local password for root user
+    database: 'giraffeLocal'
+  }
+ });
 
 // var knex = require('knex')({
 //   client: 'mysql',
@@ -69,6 +70,27 @@ knex.schema.hasTable('friends').then((exists) => {
     .catch((error) => {
       throw error;
     })
+  }
+})
+
+//create events table
+knex.schema.hasTable('events').then((exists) => {
+  if (!exists) {
+    return knex.schema.createTable('events', (table) => {
+          table.increments('id').primary()
+          table.string('location', 255).defaultTo('null')
+          table.string('date', 30).defaultTo('null')
+          table.integer('time').unsigned()
+          table.string('gifts', 20).defaultTo('null')
+          table.text('animals').defaultTo('null')
+          table.text('eating').defaultTo('null')
+          table.text('danger').defaultTo('null')
+
+          console.log('EVENTS TABLE CREATED');
+        })
+        .catch((error) => {
+          throw error;
+        })
   }
 })
 
