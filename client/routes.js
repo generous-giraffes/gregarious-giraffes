@@ -10,6 +10,7 @@ import Survey from './container/User/SurveyFormContainer';
 import ImageUploader from './container/User/ImageUploadContainer';
 import GetImage from './container/User/GetImageContainer';
 import Profile from './components/Profile';
+import FriendProfile from './components/FriendProfile';
 import Events from './components/Events';
 import SimpleMapPage from './container/Features/MapContainer';
 import {requireAuthentication} from './container/Auth/AuthenticatedContainer';
@@ -26,6 +27,7 @@ export default (
         <Route path="imageUploader" component={ImageUploader} />
         <Route path="getImage" component={GetImage} />
         <Route path="myProfile" component={Profile} />
+        <Route path="friendProfile" component={FriendProfile} />
         <Route path="map" component={SimpleMapPage} />
         <Route path="events" component={Events}/>
     </Route>

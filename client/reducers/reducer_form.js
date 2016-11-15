@@ -3,7 +3,6 @@ import { SUBMIT_FORM } from '../actions/form';
 export function form_Reducer(state = {}, action) {
   switch (action.type) {
     case SUBMIT_FORM:
-    console.log(action, 'action form+++++++++');
       return Object.assign({}, state,
         {
           dob: action.payload.dob,
