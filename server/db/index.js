@@ -9,7 +9,7 @@
   connection: {
     host: 'localhost',
     user: 'root',
-    password: 'admin',//your local password for root user
+    password: 'a',//your local password for root user
     database: 'giraffeLocal'
   }
  });

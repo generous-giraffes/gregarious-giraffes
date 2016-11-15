@@ -74,7 +74,6 @@ class SurveyForm extends React.Component {
       hobbies: hobbies,
       species: this.state.species,
       quote: this.state.quote,
-      //hardcoding userId for testing---REFACTOR-------
       email: this.props.email
     });
     //redirect to imageUpload view

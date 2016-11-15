@@ -1,5 +1,4 @@
 import React from 'react';
-import ChatBox from '../../components/Chat';
 import io from 'socket.io-client';
 import { Button, Col, Row, Grid, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 

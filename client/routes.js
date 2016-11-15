@@ -4,11 +4,12 @@ import { Route, IndexRoute } from 'react-router';
 import App from './components/App';
 
 import SignUp from './container/Auth/SignUpFormContainer';
+import SignIn from './container/Auth/SignInFormContainer';
 import Dashboard from './components/Dashboard';
 import Survey from './container/User/SurveyFormContainer';
 import ImageUploader from './container/User/ImageUploadContainer';
 import GetImage from './container/User/GetImageContainer';
-import MyProfile from './container/Profile/ProfileContainer';
+import Profile from './components/Profile';
 import Events from './components/Events';
 import SimpleMapPage from './container/Features/MapContainer';
 import {requireAuthentication} from './container/Auth/AuthenticatedContainer';
@@ -24,7 +25,7 @@ export default (
         <Route path="chat" component={Chat} />
         <Route path="imageUploader" component={ImageUploader} />
         <Route path="getImage" component={GetImage} />
-        <Route path="myProfile" component={MyProfile} />
+        <Route path="myProfile" component={Profile} />
         <Route path="map" component={SimpleMapPage} />
         <Route path="events" component={Events}/>
     </Route>
