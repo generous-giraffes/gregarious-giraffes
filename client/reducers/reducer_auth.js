@@ -9,7 +9,8 @@ export function auth_Reducer(state = {}, action) {
                     token: action.payload.headers.token,
                     name: action.payload.data.name,
                     email: action.payload.data.email,
-                    isAuthenticated: Boolean(action.payload.headers.token)
+                    isAuthenticated: Boolean(action.payload.headers.token),
+                    id: action.payload.data.id
                 });
         case LOGIN_USER:
         console.log('auth reducer, data, login', action.data);
@@ -18,7 +19,8 @@ export function auth_Reducer(state = {}, action) {
                     token: action.data.token,
                     name: action.data.name,
                     email: action.data.email,
-                    isAuthenticated: Boolean(action.data.token)
+                    isAuthenticated: Boolean(action.data.token),
+                    id: action.data.id
                 });
         default:
             return state;
