@@ -9,32 +9,27 @@ router.post('/users', (req, res) => {
   let offset = req.body.offset || 0
 
 	db('users').select('name', 'email', 'image').offset(offset).limit(10)
-	  .then((data) => {
-      console.log('data from in user routes', data);
-	  	res.send(data);
-	  })
+	  .then((data) => res.send(data))
 	  .catch((err) => console.error(err));
 });
+
 //get number of users in db for dropdownlist on dashboard
 router.get('/users/count', (req, res) => {
 	console.log('post request to /users/count recieved');
 	db('users').count('name')
-	  .then((data) => {
-	  	res.send(data);
-	  })
+	  .then((data) => res.send(data))
 	  .catch((err) => console.error(err));
 });
+
 //add friends to friend table
 router.post('/users/friend', (req, res) => {
   let friendEmail = req.body.friendEmail;
   let id = req.body.id;
   let friendId;
-  console.log(friendEmail, id, friendId, '+++++++');
+
 //first get id of user that is being friended
 	db('users').select('id').where('email', friendEmail)
-    .then((data) => {
-      friendId = data[0].id;
-    })//then add the userId and FriendId to the friends table
+    .then((data) => {friendId = data[0].id})//then add the userId and FriendId to the friends table
 	  .then(() => {
       db('friends').insert({
         user1_id: id,
@@ -48,12 +43,9 @@ router.post('/users/friend', (req, res) => {
 router.get('/users/friends', (req, res) => {
   let id = req.query.id;
   db('users').select('*').leftOuterJoin('friends', 'users.id', 'friends.user2_id')
-  .where('friends.user1_id', id)
-    .then((data) => {
-      console.log(data, 'user friends retrival data');
-      res.send(data);
-    })
-	  .catch((err) => console.error(err));
+    .where('friends.user1_id', id)
+      .then((data) => res.send(data))
+  	  .catch((err) => console.error(err));
 });
 
 module.exports = router;
