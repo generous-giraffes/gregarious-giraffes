@@ -1,11 +1,7 @@
 import React from 'react';
-<<<<<<< HEAD:client/container/Features/ChatContainer.js
 import ChatBox from '../../components/Chat';
-import { Col, Row, Grid } from 'react-bootstrap';
-=======
 import io from 'socket.io-client';
 import { Button, Col, Row, Grid, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
->>>>>>> feature(chat): update Chat & ChatContainer file:client/container/ChatContainer.js
 
 class ChatBox extends React.Component {
   constructor(){
