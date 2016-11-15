@@ -8,7 +8,7 @@ var db = require('../db/index');
 router.post('/users', (req, res) => {
   let offset = req.body.offset || 0
 
-	db('users').select('name', 'email', 'image').offset(offset).limit(10)
+	db('users').select('*').offset(offset).limit(10)
 	  .then((data) => res.send(data))
 	  .catch((err) => console.error(err));
 });
@@ -26,7 +26,6 @@ router.post('/users/friend', (req, res) => {
   let friendEmail = req.body.friendEmail;
   let id = req.body.id;
   let friendId;
-
 //first get id of user that is being friended
 	db('users').select('id').where('email', friendEmail)
     .then((data) => {friendId = data[0].id})//then add the userId and FriendId to the friends table
@@ -35,10 +34,12 @@ router.post('/users/friend', (req, res) => {
         user1_id: id,
         user2_id: friendId
        })
+        .then(() => db('users').select('*').where('id', friendId))
         .then((data) => res.send(data))
 	  })
 	  .catch((err) => console.error(err));
 });
+
 //retrieve friends for profile page
 router.get('/users/friends', (req, res) => {
   let id = req.query.id;

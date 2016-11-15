@@ -3,7 +3,7 @@ import { Panel, Button, Modal } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { getFriends } from '../../actions/friends';
+import { getFriends, setCurrentFriend } from '../../actions/friends';
 import axios from 'axios';
 
 class Friends extends Component {
@@ -11,40 +11,29 @@ class Friends extends Component {
     super(props);
     this.state = {
       open1: false,
-      open2: false,
-      newFriends: []
+      open2: false
     }
     this.goBack = this.goBack.bind(this);
     this.getFriends = this.getFriends.bind(this);
+    this.viewProfile = this.viewProfile.bind(this);
   }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   console.log( 'new', prevState);
-  //   let prevLength = prevState.newFriends.length;
-  //   let newFriends = this.props.friends.slice(prevLength)
-  //   console.log(newFriends, 'NEW FRIENDS');
-  //   this.state.newFriends = newFriends;
-  // }
 
   componentDidMount() {
     this.getFriends();
-    this.getFriends();
+    console.log('new friend', this.props.newFriend);
   }
+
   getFriends() {
     let id = this.props.id
     this.props.getFriends(id)
       .then(() => console.log('SUCCESS ON GETTINF FRIENDS, that is if you have any ;)'))
       .catch((err) => console.log(err));
-      ///GET FRIENDS IN MAP STATE TO PROPS
+  }
 
-    // axios.get('/api/users/friends?id=' + id)
-    //   .then((res) => {
-    //     console.log('response friends', res);
-    //     let friends = res.data;
-    //     this.setState({friends: friends})
-    //     console.log('state set', this.state);
-    //   })
-    //   .catch((err) => console.log(err));
+  viewProfile() {
+    //dispatch an action that sets the state
+    //make a component to render a different user's profile
+    browserHistory.push('/friendProfile')
   }
 
   goBack() {
@@ -65,30 +54,31 @@ class Friends extends Component {
     this.setState({ open1: true });
   }
 
+  viewProfile(e) {
+      let index = e.currentTarget.getAttribute('data-index')
+      let selectedUser = this.props.friends[index];
+      console.log(selectedUser,"selecte USEr+++++++++++");
+      this.props.setCurrentFriend(selectedUser);
+      browserHistory.push('/friendProfile')
+  }
+
 
     render() {
       return(
         <div className="friends-div">
         <Modal show={this.state.open1} onHide={() => {this.close1()}}>
             <Modal.Header closeButton>
-                <Modal.Title>New Friends</Modal.Title>
+                <Modal.Title>New Friend</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {this.state.newFriends ? (<h5>No New Friends, Head to the dahsboard to makes some new ones!</h5>) : null}
-                {/* {this.state.newFriends.map((friend) => {
-                  <div>
-                  <h5>Name: {friend.name}</h5>
-                  <h6>Species: {friend.species}</h6>
-                  </div>
-                })} */}
+                {this.props.newFriend ? (<h5>{this.props.newFriend.name}</h5>) : (<p>No friends were recently added, go to the dashboard to find some new friends!</p>)}
             </Modal.Body>
             <Modal.Footer>
             <h5>Keep on Smiling!</h5>
             <Button onClick={() => {this.close1()}}>Close</Button>
-            <Button onClick={() => {this.viewProfile()}}>View Profile</Button>
             </Modal.Footer>
         </Modal>
-        <Button bsStyle='info' onClick={() => this.setState({open1: !this.state.open1})}></Button>
+        <Button bsStyle='info' onClick={() => this.setState({open1: !this.state.open1})}>Newest Friend</Button>
 
             <Button className="friends-btn" bsStyle="primary" onClick={()=> this.setState({ open2: !this.state.open2 })}>
                 Your Friends
@@ -100,10 +90,10 @@ class Friends extends Component {
                 <Panel header="Margaret Thatcher" bsStyle="primary">
                   Margaret likes to be a classic dog
                 </Panel>
-                {this.props.friends.map((friend)=>
+                {this.props.friends.map((friend, i)=>
                   <Panel header={friend.name} bsStyle="primary">
                   <p>{friend.quote}</p>
-                  <Button bsStyle="primary" onClick={()=>{browserHistory.push('/friendProfile')}}></Button>
+                  <Button bsStyle="primary" data-index={i}  onClick={this.viewProfile}>View Profile</Button>
                   </Panel>
                 )}
             </Panel>
@@ -119,12 +109,12 @@ function mapStateToProps(state) {
     name: state.reducers.isAuthorized.name,
     id: state.reducers.isAuthorized.id,
     friends: state.reducers.friends.allFriends,
-    newfriends: state.reducers.friends.newfriends
+    newFriend: state.reducers.friends.newFriends
    }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({getFriends}, dispatch);
+  return bindActionCreators({getFriends, setCurrentFriend}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Friends);
