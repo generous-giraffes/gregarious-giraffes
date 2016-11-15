@@ -59,9 +59,8 @@ class MyProfile extends React.Component {
                             View Events
                         </Button>
                         <Panel collapsible expanded={this.state.open1}>
-                            <Panel header="Madision Square Park" bsStyle="success">
-                              There is an Event in Madison Square Park.
-                              Thursday Novermber 21, 2016 at 10:00am
+                            <Panel header="Madison Square Park" bsStyle="success">
+                              <h2>Location: {this.props.location}</h2>
                             </Panel>
                             <Panel header="Central Park" bsStyle="success">
                               There is an Event in Central  Park.
@@ -102,7 +101,14 @@ function mapStateToProps(state) {
     quote: state.reducers.form.quote,
     season: state.reducers.form.season,
     species: state.reducers.form.species,
-    trained: state.reducers.form.trained
+    trained: state.reducers.form.trained,
+    time: state.reducers.eventForm.time,
+    date: state.reducers.eventForm.date,
+    gifts: state.reducers.eventForm.gifts,
+    danger: state.reducers.eventForm.danger,
+    animals: state.reducers.eventForm.animals,
+    eating: state.reducers.eventForm.eating,
+    location: state.reducers.eventForm.location
    }
 }
 

@@ -38,9 +38,11 @@ app.use('/api', routes);
 // require routes
 var imageUpload = require('./config/imageRoutes');
 var form = require('./config/formRoutes');
+var eventForm = require('./config/eventFormRoutes');
 var petApi = require('./config/petApiRoutes');
 app.use('/api', imageUpload);
 app.use('/api', form);
+app.use('/api', eventForm);
 app.use('/api', petApi);
 
 
