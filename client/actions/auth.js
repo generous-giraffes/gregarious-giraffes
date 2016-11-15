@@ -42,7 +42,8 @@ export function signinUser(email, password) {
         let payload = {
           token: response.headers.token,
           name: response.data[0].name,
-          email: response.data[0].email
+          email: response.data[0].email,
+          id: response.data[0].id
         };
         // Dispatch a synchronous action to handle payload
         dispatch(signInUserSuccess(payload))

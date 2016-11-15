@@ -2,39 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { Panel, PageHeader, Modal, Button, Col, Row, Grid, FormGroup, FormControl, Thumbnail, ListGroup, ListGroupItem } from 'react-bootstrap';
-import axios from 'axios';
 
-class MyProfile extends React.Component {
+class FriendProfile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      open1: false,
-      open2: false,
-      friends: []
-    }
-
+    this.state = { open1: false, open2: false }
     this.goBack = this.goBack.bind(this);
-    this.getFriends = this.getFriends.bind(this);
-  }
-
-  componentDidMount() {
-    this.getFriends();
-  }
-  getFriends() {
-    console.log('get friends called id', this.props.id);
-    let id = this.props.id
-    axios.post('/api/users/friends', {id: id})
-      .then((res) => {
-        console.log('response friends', res);
-        let friends = res.data;
-        this.setState({friends: friends})
-        console.log('state set', this.state);
-      })
-      .catch((err) => console.log(err));
   }
 
   goBack() {
-    browserHistory.push('/imageUploader');
+    browserHistory.push('/myProfile');
   }
 
   render() {
@@ -103,12 +80,12 @@ class MyProfile extends React.Component {
                             <Panel header="Margaret Thatcher" bsStyle="primary">
                               Margaret likes to be a classic dog
                             </Panel>
-                            {this.state.friends.map((friend)=>
+                            {/* {this.state.friends.map((friend)=>{
                               <Panel header={friend.name} bsStyle="primary">
-                              <p>{friend.quote}</p>
+                              {friend.quote}
                               <Button bsStyle="primary" onClick={()=>{browserHistory.push('/friendProfile')}}></Button>
                               </Panel>
-                            )}
+                            })} */}
                         </Panel>
                     </div>
                 </Col>
@@ -119,7 +96,6 @@ class MyProfile extends React.Component {
   }
 }
 
-//ADD SUBSCRIBE?
 function mapStateToProps(state) {
   return {
     email: state.reducers.isAuthorized.email,
@@ -132,8 +108,8 @@ function mapStateToProps(state) {
     season: state.reducers.form.season,
     species: state.reducers.form.species,
     trained: state.reducers.form.trained,
-    id: state.reducers.isAuthorized.id
+    id: state.reducers.form.id
    }
 }
 
-export default connect(mapStateToProps)(MyProfile);
+export default connect(mapStateToProps)(FriendProfile);
