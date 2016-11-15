@@ -11,6 +11,7 @@ class EventList extends React.Component {
     render() {
         return (
             <div className="feed">
+                <h3>List of Events</h3>
                 <div className="demo-card">
                     <div className="card card-inverse card-primary text-center">
                         <div className="card-block">
