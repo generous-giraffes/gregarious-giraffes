@@ -13,7 +13,8 @@ export function form_Reducer(state = {}, action) {
       		hobbies: action.payload.hobbies,
       		species: action.payload.species,
       		quote: action.payload.quote,
-      		image: null
+      		image: null,
+          id: action.payload.id
         });
     default:
       return state;
