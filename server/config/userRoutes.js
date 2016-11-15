@@ -26,34 +26,32 @@ router.get('/users/count', (req, res) => {
 });
 //add friends to friend table
 router.post('/users/friend', (req, res) => {
-  let email1 = req.body.email1;
-  let email2 = req.body.email2;
-  let userId1, userId2;
-
-	db('users').select('id').where('email', email1)
+  let friendEmail = req.body.friendEmail;
+  let id = req.body.id;
+  let friendId;
+  console.log(friendEmail, id, friendId, '+++++++');
+//first get id of user that is being friended
+	db('users').select('id').where('email', friendEmail)
     .then((data) => {
-      userId1 = data[0].id;
-      return db('users').select('id').where('email', email2);
-    })
-	  .then((data) => {
-      userId2 = data[0].id;
+      friendId = data[0].id;
+    })//then add the userId and FriendId to the friends table
+	  .then(() => {
       db('friends').insert({
-        user1_id: userId1,
-        user2_id: userId2,
-        user1_id: userId2,
-        user2_id: userId1
+        user1_id: id,
+        user2_id: friendId
        })
         .then((data) => res.send(data))
 	  })
 	  .catch((err) => console.error(err));
 });
 //retrieve friends for profile page
-router.post('/users/friends', (req, res) => {
-  let id = req.body.id;
-  db('users').select('*').leftOuterJoin('friends', 'users.id', 'friends.user2_id').where('users.id', id)
+router.get('/users/friends', (req, res) => {
+  let id = req.query.id;
+  db('users').select('*').leftOuterJoin('friends', 'users.id', 'friends.user2_id')
+  .where('friends.user1_id', id)
     .then((data) => {
       console.log(data, 'user friends retrival data');
-      res.send(data)
+      res.send(data);
     })
 	  .catch((err) => console.error(err));
 });

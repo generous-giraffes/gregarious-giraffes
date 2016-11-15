@@ -3,6 +3,7 @@ import { Panel, Button } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
+import { getFriends } from '../../actions/friends';
 import axios from 'axios';
 
 class Friends extends Component {
@@ -17,21 +18,32 @@ class Friends extends Component {
     this.getFriends = this.getFriends.bind(this);
   }
 
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log('prev props', prevProps.friends, 'new', this.props.friends);
+  //   let prevLength = prevProps.friends.length;
+  //   let newFriends = this.props.friends.slice(prevLength)
+  //   console.log(newFriends, 'NEW FRIENDS');
+  // }
+
   componentDidMount() {
+    this.getFriends();
     this.getFriends();
   }
   getFriends() {
-    console.log('get friends called id', this.props.id);
-    console.log('get friends called id', this.props.id);
     let id = this.props.id
-    axios.post('/api/users/friends', {id: id})
-      .then((res) => {
-        console.log('response friends', res);
-        let friends = res.data;
-        this.setState({friends: friends})
-        console.log('state set', this.state);
-      })
+    this.props.getFriends(id)
+      .then(() => console.log('SUCCESS ON GETTINF FRIENDS, that is if you have any ;)'))
       .catch((err) => console.log(err));
+      ///GET FRIENDS IN MAP STATE TO PROPS
+
+    // axios.get('/api/users/friends?id=' + id)
+    //   .then((res) => {
+    //     console.log('response friends', res);
+    //     let friends = res.data;
+    //     this.setState({friends: friends})
+    //     console.log('state set', this.state);
+    //   })
+    //   .catch((err) => console.log(err));
   }
 
   goBack() {
@@ -52,7 +64,7 @@ class Friends extends Component {
                 <Panel header="Margaret Thatcher" bsStyle="primary">
                   Margaret likes to be a classic dog
                 </Panel>
-                {this.state.friends.map((friend)=>
+                {this.props.friends.map((friend)=>
                   <Panel header={friend.name} bsStyle="primary">
                   <p>{friend.quote}</p>
                   <Button bsStyle="primary" onClick={()=>{browserHistory.push('/friendProfile')}}></Button>
@@ -69,8 +81,13 @@ function mapStateToProps(state) {
   return {
     email: state.reducers.isAuthorized.email,
     name: state.reducers.isAuthorized.name,
-    id: state.reducers.isAuthorized.id
+    id: state.reducers.isAuthorized.id,
+    friends: state.reducers.friends.friends
    }
 }
 
-export default connect(mapStateToProps)(Friends);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({getFriends}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Friends);
