@@ -21,7 +21,7 @@ const Navigation = () => (
                 </LinkContainer>
                 <NavDropdown eventKey={3} title="See More" id="basic-nav-dropdown" onSelect={handleSelect}>
                     <MenuItem eventKey={3.1}>Events</MenuItem>
-                    <MenuItem eventKey={3.2}>Another action</MenuItem>
+                    <MenuItem eventKey={3.2}>My Profile</MenuItem>
                     <MenuItem eventKey={3.3}>Something else here</MenuItem>
                     <MenuItem divider/>
                     <MenuItem eventKey={3.4}>Chat</MenuItem>
@@ -40,6 +40,8 @@ function handleSelect(eventKey) {
     browserHistory.push('/chat');
   } else if (eventKey === 3.1) {
     browserHistory.push('/events');
+  } else if (eventKey === 3.2) {
+    browserHistory.push('/myProfile');
   }
 }
 
