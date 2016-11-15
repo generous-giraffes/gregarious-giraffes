@@ -41,12 +41,13 @@ var form = require('./config/formRoutes');
 var eventForm = require('./config/eventFormRoutes');
 var petApi = require('./config/petApiRoutes');
 var users = require('./config/userRoutes');
+var chat = require('./config/chatRoutes');
 app.use('/api', imageUpload);
 app.use('/api', form);
 app.use('/api', eventForm);
 app.use('/api', petApi);
 app.use('/api', users);
-
+app.use('/api', chat);
 
 // server serves index.html for all routes
 app.get('*', function(req, res){

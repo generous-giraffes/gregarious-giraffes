@@ -10,6 +10,6 @@ export function saveChat(data) {
     .catch((err) => console.error(err));
   return {
     type: SAVE_CHAT,
-    payload: data.comments
+    payload: response
   }
 }
