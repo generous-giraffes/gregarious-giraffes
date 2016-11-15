@@ -2,8 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from './components/App';
-<<<<<<< HEAD
-import SignIn from './container/Auth/SignInFormContainer';
+
 import SignUp from './container/Auth/SignUpFormContainer';
 import Dashboard from './components/Dashboard';
 import Survey from './container/User/SurveyFormContainer';
@@ -14,18 +13,6 @@ import Events from './components/Events';
 import SimpleMapPage from './container/Features/MapContainer';
 import {requireAuthentication} from './container/Auth/AuthenticatedContainer';
 import Chat from './container/Features/ChatContainer';
-=======
-import SignIn from './container/SignInFormContainer';
-import SignUp from './container/SignUpFormContainer';
-import Dashboard from './components/dashboard';
-import Survey from './container/SurveyFormContainer';
-import ImageUploader from './container/ImageUploadContainer';
-import GetImage from './container/GetImageContainer';
-import MyProfile from './container/profileContainer';
-import SimpleMapPage from './container/map';
-import {requireAuthentication} from './container/AuthenticatedContainer';
-import Chat from './components/Chat';
->>>>>>> feature(chat): update Chat & ChatContainer file
 
 export default (
     <Route path="/" component={App}>
