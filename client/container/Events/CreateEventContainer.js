@@ -64,15 +64,17 @@ class CreateEvent extends React.Component {
         this.handleTimeChange = this.handleTimeChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleDangerChange = this.handleDangerChange.bind(this);
+        this.handleNameChange = this.handleNameChange.bind(this);
         this.handleEatingChange = this.handleEatingChange.bind(this);
         this.handleGiftChange = this.handleGiftChange.bind(this);
         this.handleLocationChange = this.handleLocationChange.bind(this);
         this.handleSelectChange = this.handleSelectChange.bind(this);
 
         this.state = {
-            time: 0,
+            time: "1:00",
             date: new Date().toISOString(),
             gifts: 'yes',
+            name: '',
             location: '',
             danger: '',
             eating: '',
@@ -88,6 +90,7 @@ class CreateEvent extends React.Component {
         this.props.submitEventForm({
             time: this.state.time,
             date: this.state.date,
+            name: this.state.name,
             gifts: this.state.gifts,
             danger: this.state.danger,
             animals: animals,
@@ -105,6 +108,9 @@ class CreateEvent extends React.Component {
     }
 
     handleDateChange(date) {
+        //console.log('this is the date = trying to edit it', date)
+        //var newDate = date.substring(0, date.indexOf("T"));
+        //return newDate;
         this.setState({date});
     }
 
@@ -113,7 +119,11 @@ class CreateEvent extends React.Component {
     }
 
     handleGiftChange(gifts) {
-        this.setState({gifts});
+        this.setState({gifts: gifts.currentTarget.value});
+    }
+
+    handleNameChange(name) {
+        this.setState({name: name.currentTarget.value});
     }
 
     handleDangerChange(danger) {
@@ -135,14 +145,23 @@ class CreateEvent extends React.Component {
                 <h3>Create an Event</h3>
                 <form onSubmit={this.handleSubmit} data-toggle='validator'>
 
+                    <FormGroup controlId="formControlsTextarea">
+                        <ControlLabel>Name</ControlLabel>
+                        <FormControl value={this.state.name}
+                                     onChange={this.handleNameChange}
+                                     componentClass="textarea"
+                                     placeholder="What is the name of your event?"
+                                     required='true'/>
+                    </FormGroup>
+
                     <FormGroup>
                         <ControlLabel>Time</ControlLabel>
-                        <TimePicker onChange={this.handleTimeChange} value={this.state.time}/>
+                        <TimePicker start="10:00" end="21:00" step={30} onChange={this.handleTimeChange} value={this.state.time}/>
                     </FormGroup>
 
                     <FormGroup>
                         <ControlLabel>Date</ControlLabel>
-                        <DatePicker value={this.state.date} onChange={this.handleDateChange}/>
+                        <DatePicker value={this.state.date} dateFormat="MM-DD-YYYY" onChange={this.handleDateChange}/>
                     </FormGroup>
 
                     <FormGroup controlId="formControlsTextarea">
