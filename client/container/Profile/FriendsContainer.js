@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, Button } from 'react-bootstrap';
+import { Panel, Button, Modal } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
@@ -12,17 +12,18 @@ class Friends extends Component {
     this.state = {
       open1: false,
       open2: false,
-      friends: []
+      newFriends: []
     }
     this.goBack = this.goBack.bind(this);
     this.getFriends = this.getFriends.bind(this);
   }
 
   // componentDidUpdate(prevProps, prevState) {
-  //   console.log('prev props', prevProps.friends, 'new', this.props.friends);
-  //   let prevLength = prevProps.friends.length;
+  //   console.log( 'new', prevState);
+  //   let prevLength = prevState.newFriends.length;
   //   let newFriends = this.props.friends.slice(prevLength)
   //   console.log(newFriends, 'NEW FRIENDS');
+  //   this.state.newFriends = newFriends;
   // }
 
   componentDidMount() {
@@ -49,11 +50,46 @@ class Friends extends Component {
   goBack() {
     browserHistory.push('/imageUploader');
   }
+  close() {
+    this.setState({ open: false });
+  }
+
+  open() {
+    this.setState({ open: true });
+  }
+  close1() {
+    this.setState({ open1: false });
+  }
+
+  open1() {
+    this.setState({ open1: true });
+  }
 
 
     render() {
       return(
         <div className="friends-div">
+        <Modal show={this.state.open1} onHide={() => {this.close1()}}>
+            <Modal.Header closeButton>
+                <Modal.Title>New Friends</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                {this.state.newFriends ? (<h5>No New Friends, Head to the dahsboard to makes some new ones!</h5>) : null}
+                {/* {this.state.newFriends.map((friend) => {
+                  <div>
+                  <h5>Name: {friend.name}</h5>
+                  <h6>Species: {friend.species}</h6>
+                  </div>
+                })} */}
+            </Modal.Body>
+            <Modal.Footer>
+            <h5>Keep on Smiling!</h5>
+            <Button onClick={() => {this.close1()}}>Close</Button>
+            <Button onClick={() => {this.viewProfile()}}>View Profile</Button>
+            </Modal.Footer>
+        </Modal>
+        <Button bsStyle='info' onClick={() => this.setState({open1: !this.state.open1})}></Button>
+
             <Button className="friends-btn" bsStyle="primary" onClick={()=> this.setState({ open2: !this.state.open2 })}>
                 Your Friends
             </Button>
@@ -82,7 +118,8 @@ function mapStateToProps(state) {
     email: state.reducers.isAuthorized.email,
     name: state.reducers.isAuthorized.name,
     id: state.reducers.isAuthorized.id,
-    friends: state.reducers.friends.friends
+    friends: state.reducers.friends.allFriends,
+    newfriends: state.reducers.friends.newfriends
    }
 }
 
