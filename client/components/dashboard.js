@@ -1,9 +1,9 @@
 import React from 'react';
-import Feed from '../container/FeedContainer';
-import MyCarousel from '../container/CarouselContainer';
-import FriendSearch from '../container/FriendSearchContainer';
-import PetSearch from '../container/AdoptAPetApi';
-import PetNewsSearch from '../container/PetNewsApiContainer';
+import Feed from '../container/Dashboard/FeedContainer';
+import MyCarousel from '../container/Dashboard/CarouselContainer';
+import FriendSearch from '../container/Dashboard/FriendSearchContainer';
+import PetSearch from '../container/Dashboard/AdoptAPetApi';
+import PetNewsSearch from '../container/Dashboard/PetNewsApiContainer';
 import { Button, Col, Row, Grid, FormGroup, FormControl, Thumbnail, Navbar, Carousel } from 'react-bootstrap';
 
 

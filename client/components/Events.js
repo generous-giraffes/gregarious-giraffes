@@ -1,6 +1,6 @@
 import React from 'react';
-import EventList from '../container/EventListContainer';
-import CreateEvent from '../container/CreateEventContainer';
+import EventList from '../container/Events/EventListContainer';
+import CreateEvent from '../container/Events/CreateEventContainer';
 import { Button, Col, Row, Grid, FormGroup, FormControl, Thumbnail, Navbar, Carousel } from 'react-bootstrap';
 
 

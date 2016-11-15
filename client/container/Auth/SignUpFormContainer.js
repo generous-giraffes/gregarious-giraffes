@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { signinUser } from '../actions/auth';
+import { signupUser } from '../../actions/auth';
 import { browserHistory } from 'react-router';
-
-//need to include the signinuser above in order to dispatch the bindActionCreators
 
 //FieldGroup returns a bootstrap form
 const FieldGroup = ({ id, label, help, ...props }) => {
@@ -17,41 +15,48 @@ const FieldGroup = ({ id, label, help, ...props }) => {
     );
 }
 
-class SigninForm extends Component {
+class SignupForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            name: '',
             email: '',
             password: ''
         };
-        this.onEmailSubmit = this.onEmailSubmit.bind(this);
-        this.onPasswordSubmit = this.onPasswordSubmit.bind(this);
+        this.onNameCreate = this.onNameCreate.bind(this);
+        this.onEmailCreate = this.onEmailCreate.bind(this);
+        this.onPasswordCreate = this.onPasswordCreate.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
     }
 
-    //user submitting their email to login
-    onEmailSubmit(event) {
+    //user creating their name to create a new user
+    onNameCreate(event) {
+        this.setState({name: event.target.value});
+    }
+
+    //user creating their email to create a new user
+    onEmailCreate(event) {
         this.setState({email: event.target.value});
     }
 
-    //user submitting their password to login
-    onPasswordSubmit(event) {
+    //user creating their password to create a new user
+    onPasswordCreate(event) {
         this.setState({password: event.target.value});
     }
 
-    //user pressing enter to submit their form including teh password and email submission
+    //user submitting their form to create a new user
     onFormSubmit(event) {
-        console.log(event, 'this is the form submit event');
         event.preventDefault();
-        //need props from signInUser
-        this.props.signinUser(this.state.email, this.state.password)
-          .then(() => browserHistory.push('/dashboard'));
-        //This is to remove the text so that it clears the placeholders in the form
+        //need this from signUpUser or won't have the data
+        this.props.signupUser(this.state.name, this.state.email, this.state.password)
+          .then(() => browserHistory.push('/survey'));
         this.setState({
+            name: '',
             email: '',
             password: ''
         });
-        //  browserHistory.push('/dashboard');
+        //moved browserHistory.push into promise so that the user becomes authenticated before the view is changed
+        // browserHistory.push('/survey');
     }
 
     render() {
@@ -61,16 +66,22 @@ class SigninForm extends Component {
                 <form onSubmit={this.onFormSubmit}>
                     <FieldGroup
                         type='text'
+                        label='Name'
+                        placeholder='Name'
+                        value={this.state.name}
+                        onChange={this.onNameCreate}/>
+                    <FieldGroup
+                        type='email'
                         label='Email Address'
                         placeholder='Email Address'
                         value={this.state.email}
-                        onChange={this.onEmailSubmit}/>
+                        onChange={this.onEmailCreate}/>
                     <FieldGroup
                         type='password'
                         label='Password'
                         placeholder='Password'
                         value={this.state.password}
-                        onChange={this.onPasswordSubmit}/>
+                        onChange={this.onPasswordCreate}/>
                     <Button bsStyle="primary" type="submit" value="Submit">Enter</Button>
                 </form>
             </div>
@@ -78,13 +89,8 @@ class SigninForm extends Component {
     }
 }
 
-// function mapStateToProps(state) {
-//   return {email: state.email, password:state.password, token:state.token}
-// }
-// console.log(state, "state from mapStateToProps in singinform")
-
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({signinUser}, dispatch);
+    return bindActionCreators({signupUser}, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(SigninForm);
+export default connect(null, mapDispatchToProps)(SignupForm);

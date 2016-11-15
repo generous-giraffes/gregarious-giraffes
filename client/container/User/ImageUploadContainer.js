@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { submitImage } from '../actions/image';
+import { submitImage } from '../../actions/image';
 import { browserHistory } from 'react-router';
 
 //ImageUpload uses FileReader to asynchronously read the contents of an image that the user uploads

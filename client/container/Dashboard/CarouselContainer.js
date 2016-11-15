@@ -3,7 +3,7 @@ import { Button, Col, Row, Grid, FormGroup, FormControl, Thumbnail, Carousel } f
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { signinUser } from '../actions/auth';
+import { signinUser } from '../../actions/auth';
 
 
 class MyCarousel extends Component {

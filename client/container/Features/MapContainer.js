@@ -47,7 +47,7 @@ export default class SimpleMapPage extends Component {
   // }
 
   showData(e) {
-    console.log('event current target, e',e.currentTarget.innerText,);
+    console.log('event current target, e',e.currentTarget.innerText);
     console.log(this.state, 'state');
     this.setState({
       // isOpen: true,
