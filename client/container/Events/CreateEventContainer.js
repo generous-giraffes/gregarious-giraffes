@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Col, Row, Grid, FormGroup, FormControl, Navbar, ControlLabel, Checkbox, Radio, HelpBlock } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { submitEventForm } from '../actions/eventForm';
+import { submitEventForm } from '../../actions/eventForm';
 import { browserHistory } from 'react-router';
 import TimePicker from 'react-bootstrap-time-picker';
 var DatePicker = require("react-bootstrap-date-picker");

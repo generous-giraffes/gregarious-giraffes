@@ -131,7 +131,7 @@ function mapStateToProps(state) {
     season: state.reducers.form.season,
     species: state.reducers.form.species,
     trained: state.reducers.form.trained,
-    id: state.reducers.isAuthorized.id
+    id: state.reducers.isAuthorized.id,
     time: state.reducers.eventForm.time,
     date: state.reducers.eventForm.date,
     gifts: state.reducers.eventForm.gifts,

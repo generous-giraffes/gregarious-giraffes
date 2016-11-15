@@ -2,17 +2,17 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from './components/App';
-import SignIn from './container/SignInFormContainer';
-import SignUp from './container/SignUpFormContainer';
+import SignIn from './container/Auth/SignInFormContainer';
+import SignUp from './container/Auth/SignUpFormContainer';
 import Dashboard from './components/Dashboard';
-import Survey from './container/SurveyFormContainer';
-import ImageUploader from './container/ImageUploadContainer';
-import GetImage from './container/GetImageContainer';
-import MyProfile from './container/ProfileContainer';
+import Survey from './container/User/SurveyFormContainer';
+import ImageUploader from './container/User/ImageUploadContainer';
+import GetImage from './container/User/GetImageContainer';
+import MyProfile from './container/Profile/ProfileContainer';
 import Events from './components/Events';
-import SimpleMapPage from './container/MapContainer';
-import {requireAuthentication} from './container/AuthenticatedContainer';
-import Chat from './container/ChatContainer';
+import SimpleMapPage from './container/Features/MapContainer';
+import {requireAuthentication} from './container/Auth/AuthenticatedContainer';
+import Chat from './container/Features/ChatContainer';
 
 export default (
     <Route path="/" component={App}>

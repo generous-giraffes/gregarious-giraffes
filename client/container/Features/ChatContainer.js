@@ -1,5 +1,5 @@
 import React from 'react';
-import ChatBox from '../components/Chat';
+import ChatBox from '../../components/Chat';
 import { Col, Row, Grid } from 'react-bootstrap';
 
 

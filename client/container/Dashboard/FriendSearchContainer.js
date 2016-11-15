@@ -3,7 +3,7 @@ import { Popover, OverlayTrigger, Modal, ButtonGroup, DropdownButton, MenuItem, 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { signinUser } from '../actions/auth';
+import { signinUser } from '../../actions/auth';
 import axios from 'axios';
 
 //FriendSearch renders a dropdown menu and a button that loads 10 users with the option to load the next ten

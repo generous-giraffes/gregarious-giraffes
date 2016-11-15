@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Col, Row, Grid, FormControl, FormGroup, ControlLabel, HelpBlock, Checkbox } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { submitForm } from '../actions/form';
+import { submitForm } from '../../actions/form';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 import Select from 'react-select';
