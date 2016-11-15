@@ -4,14 +4,15 @@ import { petApi_Reducer } from './reducer_petApi';
 import { form_Reducer } from './reducer_form';
 import { eventForm_Reducer } from './reducer_eventForm';
 import { image_Reducer } from './reducer_image';
-
+import { chat_Reducer } from './reducer_chat';
 
 const rootReducer = combineReducers({
     getPets: petApi_Reducer,
     form: form_Reducer,
     eventForm: eventForm_Reducer,
     image: image_Reducer,
-    isAuthorized: auth_Reducer
+    isAuthorized: auth_Reducer,
+    chat: chat_Reducer
 });
 
 export default rootReducer;
