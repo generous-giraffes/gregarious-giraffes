@@ -4,6 +4,7 @@ import { petApi_Reducer } from './reducer_petApi';
 import { form_Reducer } from './reducer_form';
 import { eventForm_Reducer } from './reducer_eventForm';
 import { image_Reducer } from './reducer_image';
+import { friends_Reducer } from './reducer_friends';
 
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
     form: form_Reducer,
     eventForm: eventForm_Reducer,
     image: image_Reducer,
-    isAuthorized: auth_Reducer
+    isAuthorized: auth_Reducer,
+    friends: friends_Reducer
 });
 
 export default rootReducer;
