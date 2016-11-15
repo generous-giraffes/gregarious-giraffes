@@ -11,6 +11,7 @@ router.post('/eventForm', (req, res) => {
             date: req.body.date,
             gifts: req.body.gifts,
             location: req.body.location,
+            name: req.body.name,
             danger: req.body.danger,
             animals: req.body.animals,
             eating: req.body.eating

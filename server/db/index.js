@@ -78,6 +78,7 @@ knex.schema.hasTable('events').then((exists) => {
   if (!exists) {
     return knex.schema.createTable('events', (table) => {
           table.increments('id').primary()
+          table.string('name', 255).defaultTo('null')
           table.string('location', 255).defaultTo('null')
           table.string('date', 30).defaultTo('null')
           table.integer('time').unsigned()
