@@ -30,14 +30,14 @@ function mapStateToProps(state) {
   return {
     email: state.reducers.isAuthorized.email,
     name: state.reducers.isAuthorized.name,
-    bloodType: state.reducers.form.bloodType,
-    dob: state.reducers.form.dob,
-    hobbies: state.reducers.form.hobbies,
-    image: state.reducers.image.image,
-    quote: state.reducers.form.quote,
-    season: state.reducers.form.season,
-    species: state.reducers.form.species,
-    trained: state.reducers.form.trained,
+    bloodType: state.reducers.form.bloodType || state.reducers.isAuthorized.bloodType,
+    dob: state.reducers.form.dob || state.reducers.isAuthorized.dob,
+    hobbies: state.reducers.form.hobbies || state.reducers.isAuthorized.hobbies,
+    image: state.reducers.image.image || state.reducers.isAuthorized.image,
+    quote: state.reducers.form.quote || state.reducers.isAuthorized.quote,
+    season: state.reducers.form.season || state.reducers.isAuthorized.season,
+    species: state.reducers.form.species || state.reducers.isAuthorized.species,
+    trained: state.reducers.form.trained || state.reducers.isAuthorized.trained,
     id: state.reducers.isAuthorized.id
    }
 }

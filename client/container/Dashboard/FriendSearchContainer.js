@@ -46,7 +46,6 @@ class FriendSearch extends Component {
         open: true
       })
       let selectedUser = this.state.users[index];
-      console.log(selectedUser,"selecte USEr+++++++++++");
       this.props.setCurrentFriend(selectedUser);
   }
 
