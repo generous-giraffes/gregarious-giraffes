@@ -9,7 +9,7 @@
   connection: {
     host: 'localhost',
     user: 'root',
-    password: 'a',//your local password for root user
+    password: 'admin',//your local password for root user
     database: 'giraffeLocal'
   }
  });
@@ -93,6 +93,23 @@ knex.schema.hasTable('events').then((exists) => {
           throw error;
         })
   }
+})
+
+//create event attending table
+knex.schema.hasTable('attendingEvents').then((exists) => {
+    if (!exists) {
+        return knex.schema.createTable('attendingEvents', (table) => {
+                table.integer('user_id').unsigned()
+                table.integer('event_id').unsigned()
+                table.foreign('user_id').references('id').inTable('users')
+                table.foreign('event_id').references('id').inTable('events')
+
+                console.log('ATTENDING EVENTS TABLE CREATED');
+            })
+            .catch((error) => {
+                throw error;
+            })
+    }
 })
 
 module.exports = knex;

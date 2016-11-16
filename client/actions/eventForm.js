@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const SUBMIT_EVENT_FORM = 'SUBMIT_EVENT_FORM';
 export const GET_EVENT_FORM = 'GET_EVENT_FORM';
+export const ADD_EVENT = 'ADD_EVENT';
 
 //action to be dispatched if getEventForm is successful
 const getEventFormSuccess = (data) => {
@@ -32,5 +33,22 @@ export function getEvent() {
                 dispatch(getEventFormSuccess(res));
             })
             .catch((err) => console.error(err))
+    }
+}
+
+export function addEvent(id, email) {
+    let response = axios.post('/api/attendingEvents', {
+            friendEmail: email,
+            id: id
+        })
+        .then((res) => {
+            console.log(res, 'added event success');
+            return res.data[0];
+        })
+        .catch((err) => console.log(err));
+
+    return {
+        type: ADD_EVENT,
+        payload: response
     }
 }
