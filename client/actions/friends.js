@@ -3,7 +3,6 @@ import axios from 'axios';
 export const GET_FRIENDS = 'GET_FRIENDS';
 export const ADD_FRIEND = 'ADD_FRIEND';
 export const SET_CURRENT_FRIEND = 'SET_CURRENT_FRIEND';
-export const LOAD_USERS = 'LOAD_USERS';
 
 export function getFriends(id) {
   let response = axios.get('/api/users/friends?id=' + id)

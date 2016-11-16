@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button, Col, Row, Grid, FormGroup, FormControl, Navbar } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
-import { getEvent } from '../../actions/eventForm';
+import { getEvent, attendEvent } from '../../actions/eventForm';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
@@ -12,13 +12,27 @@ class EventList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            attending: []
+            attending: [],
+            currentEvent: []
         }
+
     }
 
     componentDidMount() {
         this.props.getEvent();
+        this.props.attendEvent();
     }
+
+    attend(e) {
+        let user_id = this.props.id; //this is the id of signed in user
+        let event_id = e.currentTarget.getAttribute('data-eventID');
+        this.props.attendEvent(event_id, user_id)
+            .then((data) => {
+                console.log('success on adding an event!!!!')
+            })
+            .catch((err) => console.log(err));
+    }
+
 
 
     // called as soon as the the shouldComponentUpdate returned true. Any state changes via this.setState are not allowed as this method should be strictly used to prepare for an upcoming update not trigger an update itself.
@@ -27,11 +41,14 @@ class EventList extends React.Component {
         console.log(nextProps, "props++++++state for EVENT LIST", nextState);
     }
 
+
+
     render() {
         let $data = null;
 
         if (this.props.event) {
             let eventList = this.props.event;
+            console.log(this.attend, 'this.attend');
             $data = (
                 <div className="eventList">
                     <Grid>
@@ -51,16 +68,22 @@ class EventList extends React.Component {
                                                                 <p>Food Options? {e.eating}</p>
                                                                 <p>Any Danger? {e.danger}</p>
                                                                 <p>Animals in Attendance: {e.animals}</p>
-                                                                <Button className="events-btn" bsStyle="success">
+                                                                <Button
+                                                                    className="events-btn"
+                                                                    bsStyle="success"
+                                                                    onClick={(e) => this.attend(e)}
+                                                                    data-eventID={e.id}
+                                                                    data-index={i}>
                                                                     Attend Event
                                                                 </Button>
+
                                                             </blockquote>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                             )
-                                        })
+                                        }, this)
                                     }
                             </Col>
                         </Row>
@@ -90,7 +113,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({getEvent}, dispatch);
+    return bindActionCreators({getEvent, attendEvent}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventList);

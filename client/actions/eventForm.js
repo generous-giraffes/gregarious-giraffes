@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const SUBMIT_EVENT_FORM = 'SUBMIT_EVENT_FORM';
 export const GET_EVENT_FORM = 'GET_EVENT_FORM';
-export const ADD_EVENT = 'ADD_EVENT';
+export const ATTEND_EVENT = 'ATTEND_EVENT';
 
 //action to be dispatched if getEventForm is successful
 const getEventFormSuccess = (data) => {
@@ -36,10 +36,10 @@ export function getEvent() {
     }
 }
 
-export function addEvent(id, email) {
-    let response = axios.post('/api/attendingEvents', {
-            friendEmail: email,
-            id: id
+export function attendEvent(event_id, user_id) {
+    let response = axios.post('/api/attendEvent', {
+            event_id: event_id,
+            user_id: user_id
         })
         .then((res) => {
             console.log(res, 'added event success');
@@ -48,7 +48,19 @@ export function addEvent(id, email) {
         .catch((err) => console.log(err));
 
     return {
-        type: ADD_EVENT,
+        type: ATTEND_EVENT,
         payload: response
     }
 }
+//
+//export function showEvent(event_id, user_id) {
+//    let response = (res) => {
+//        return axios.get('/api/attendEvent')
+//            .then((res) => res )
+//            .catch((err) => console.error(err))
+//    }
+//    return {
+//        type: SHOW_EVENT,
+//        payload: response
+//    }
+//}
