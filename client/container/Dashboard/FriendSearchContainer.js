@@ -3,7 +3,7 @@ import { Popover, OverlayTrigger, Modal, ButtonGroup, DropdownButton, MenuItem, 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { addFriend, setCurrentFriend } from '../../actions/friends';
+import { getMax, loadUsers, addFriend, setCurrentFriend } from '../../actions/friends';
 import axios from 'axios';
 
 //FriendSearch renders a dropdown menu and a button that loads 10 users with the option to load the next ten
@@ -22,18 +22,8 @@ class FriendSearch extends Component {
   }
   //get the intial ten users for the dropdown menu and get the total number of users in the db
   componentDidMount() {
-    this.getMax();
-    this.loadUsers();
-  }
-  getMax() {
-    console.log('getting max');
-    axios.get('/api/users/count')
-      .then((res) => {
-        console.log(res.data, 'response data');
-        let count = res.data[0]["count(`name`)"];
-        this.setState({max: count});
-      })
-      .catch((err) => console.log(err))
+    this.props.getMax();
+    this.props.loadUsers();
   }
 
   friendOrViewProfile(e) {
@@ -50,16 +40,7 @@ class FriendSearch extends Component {
       this.props.setCurrentFriend(selectedUser);
   }
 
-  loadUsers() {
-    let offset = this.state.offset > this.state.max ? 0 : this.state.offset;
-    axios.post('/api/users', {offset : offset})
-    .then((res) => {
-      let nextOffset = offset + 10;
-      let users = res.data;
-      this.setState({users: users, offset: nextOffset});
-    })
-    .catch((err) => console.log(err))
-  }
+
 
   friend() {
     let email = this.state.selectedUser.email; //person being friended
@@ -144,7 +125,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({addFriend, setCurrentFriend}, dispatch);
+    return bindActionCreators({getMax, addFriend, loadUsers, setCurrentFriend}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FriendSearch);

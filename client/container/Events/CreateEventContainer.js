@@ -99,7 +99,7 @@ class CreateEvent extends React.Component {
             email: this.props.email
         });
         //redirect to profile
-        browserHistory.push('/myProfile');
+        browserHistory.push('/dashboard');
     }
 
 

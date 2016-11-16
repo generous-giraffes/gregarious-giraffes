@@ -1,4 +1,4 @@
-import { SUBMIT_EVENT_FORM, GET_EVENT_FORM } from '../actions/eventForm';
+import { SUBMIT_EVENT_FORM, GET_EVENT_FORM, ADD_EVENT } from '../actions/eventForm';
 
 export function eventForm_Reducer(state = { events: [] }, action) {
     switch (action.type) {
@@ -22,6 +22,15 @@ export function eventForm_Reducer(state = { events: [] }, action) {
                 ...action.data.data
             ];
             return Object.assign({}, state, {events});
+        case ADD_EVENT:
+            let allEvents = [
+                ...state.events,
+                ...action.data.data
+            ];
+            let currentUser = [
+                ...state.users
+            ]
+            return Object.assign({}, state, {allEvents}, {currentUser});
         default:
             return state;
     }
