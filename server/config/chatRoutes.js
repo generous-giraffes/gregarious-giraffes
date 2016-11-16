@@ -20,16 +20,16 @@ router.post('/chat', (req, res) => {
         .catch((err) => console.error(err));
 });
 //need this for users signing back in, otherwise info is passed around in state
-// router.get('/chat', (req, res) => {
-//     console.log('GET request to /chat received');
-// //Abstract the database functions out into utilities directory
-//     db('chats').select('*')
-//         .then((data) => {
-//             res.send(data);
-//         })
-//         .catch((err) => {
-//             console.error(err);
-//         })
-// });
+router.get('/chat', (req, res) => {
+    console.log('GET request to /chat received');
+
+    db('chats').select('*')
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((err) => {
+            console.error(err);
+        })
+});
 
 module.exports = router;
