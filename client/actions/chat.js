@@ -2,14 +2,14 @@ import axios from 'axios';
 
 // action: submission of the chat message
 
-export const SUBMIT_CHAT = 'SUBMIT_CHAT';
+export const SAVE_CHAT = 'SAVE_CHAT';
 
-export function submitMessage(data) {
-  let response = axios.post('/api/chat', data)  // do we need to save chat messages in database????
+export function saveChat(data) {
+  let response = axios.post('/api/chat', data)
     .then((res) => res.data[0])
     .catch((err) => console.error(err));
   return {
-    type: SUBMIT_CHAT,
+    type: SAVE_CHAT,
     payload: response
   }
 }
