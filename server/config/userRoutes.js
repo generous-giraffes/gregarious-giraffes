@@ -49,4 +49,14 @@ router.get('/users/friends', (req, res) => {
   	  .catch((err) => console.error(err));
 });
 
+router.get('/users/search', (req,res) => {
+  let name = req.query.name
+    db('users').select('*').where('name', name)
+      .then((data) => {
+        console.log(data, 'search function data');
+        res.send(data);
+      })
+})
+
+
 module.exports = router;

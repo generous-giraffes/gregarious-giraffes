@@ -15,7 +15,7 @@ export function friends_Reducer(state = { allFriends: [], newFriends: [], curren
       let currentFriend = action.payload;
       console.log(currentFriend, 'CURRENT FRIEND, friends reducer');
       return Object.assign({}, state, { currentFriend });
-      
+
     default:
       return state;
   }
