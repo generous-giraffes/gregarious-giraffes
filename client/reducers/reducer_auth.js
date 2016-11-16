@@ -20,7 +20,15 @@ export function auth_Reducer(state = {}, action) {
                     name: action.data.name,
                     email: action.data.email,
                     isAuthenticated: Boolean(action.data.token),
-                    id: action.data.id
+                    id: action.data.id,
+                    dob: action.data.dob,
+                    bloodType: action.data.bloodType,
+                    season: action.data.season,
+                    trained: action.data.trained,
+                    hobbies: action.data.hobbies,
+                    species: action.data.species,
+                    quote: action.data.quote,
+                    image: action.data.image
                 });
         default:
             return state;

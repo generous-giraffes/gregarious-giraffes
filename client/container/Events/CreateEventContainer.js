@@ -104,14 +104,23 @@ class CreateEvent extends React.Component {
 
 
     handleTimeChange(time) {
-        this.setState({time});
+      let hrs = Math.floor(time/3600);
+      let mnt = Math.floor((time % 3600)/60)
+      let minutes = mnt === 0 ? '00' : mnt;
+      let amPm = hrs > 12 ? 'p.m.' : 'a.m.';
+      let hours = hrs > 12 ? hrs - 12 : hrs;
+      if(hours === 12 && minutes === 30) { amPm = 'p.m.' }
+      let timeStr = `${hours}:${minutes} ${amPm}`;
+      this.setState({time:timeStr});
     }
 
     handleDateChange(date) {
-        //console.log('this is the date = trying to edit it', date)
-        //var newDate = date.substring(0, date.indexOf("T"));
-        //return newDate;
-        this.setState({date});
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+      let niceDate = date.split('T')[0].split('-')
+      let year = niceDate[0];
+      let month = months[Number(niceDate[1])-1]
+      let nicerDate = `${month} ${niceDate[2]}, ${year}`;
+      this.setState({ date:nicerDate });
     }
 
     handleEatingChange(eating) {
@@ -161,7 +170,7 @@ class CreateEvent extends React.Component {
 
                     <FormGroup>
                         <ControlLabel>Date</ControlLabel>
-                        <DatePicker value={this.state.date} dateFormat="MM-DD-YYYY" onChange={this.handleDateChange}/>
+                        <DatePicker  value={this.state.date} dateFormat="MM-DD-YYYY" onChange={this.handleDateChange}/>
                     </FormGroup>
 
                     <FormGroup controlId="formControlsTextarea">

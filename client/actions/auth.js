@@ -43,7 +43,15 @@ export function signinUser(email, password) {
           token: response.headers.token,
           name: response.data[0].name,
           email: response.data[0].email,
-          id: response.data[0].id
+          id: response.data[0].id,
+          dob: response.data[0].dob,
+          bloodType: response.data[0].bloodType,
+          season: response.data[0].season,
+          trained: response.data[0].trained,
+          hobbies: response.data[0].hobbies,
+          species: response.data[0].species,
+          quote: response.data[0].quote,
+          image: response.data[0].image
         };
         // Dispatch a synchronous action to handle payload
         dispatch(signInUserSuccess(payload))

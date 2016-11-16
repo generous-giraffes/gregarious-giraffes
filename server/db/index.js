@@ -81,7 +81,7 @@ knex.schema.hasTable('events').then((exists) => {
           table.string('name', 255).defaultTo('null')
           table.string('location', 255).defaultTo('null')
           table.string('date', 30).defaultTo('null')
-          table.integer('time').unsigned()
+          table.string('time', 20).defaultTo('null')
           table.string('gifts', 20).defaultTo('null')
           table.text('animals').defaultTo('null')
           table.text('eating').defaultTo('null')
