@@ -120,7 +120,7 @@ class CreateEvent extends React.Component {
       let year = niceDate[0];
       let month = months[Number(niceDate[1])-1]
       let nicerDate = `${month} ${niceDate[2]}, ${year}`;
-      this.setState({ date:nicerDate });
+      this.setState({ date: nicerDate });
     }
 
     handleEatingChange(eating) {

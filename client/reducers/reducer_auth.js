@@ -13,7 +13,7 @@ export function auth_Reducer(state = {}, action) {
                     id: action.payload.data.id
                 });
         case LOGIN_USER:
-        console.log('auth reducer, data, login', action.data);
+        console.log('auth reducer, data, login', action.data, action.type);
             return Object.assign({}, state,
                 {
                     token: action.data.token,

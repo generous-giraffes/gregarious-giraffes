@@ -43,28 +43,3 @@ export function setCurrentFriend(userInfo) {
     payload: userInfo
   }
 }
-
-export function loadUsers() {
-    let offset = this.state.offset > this.state.max ? 0 : this.state.offset;
-    let response = axios.post('/api/users', {offset: offset})
-        .then((res) => {
-            let nextOffset = offset + 10;
-            let users = res.data;
-            this.setState({users: users, offset: nextOffset});
-        })
-        .catch((err) => console.log(err));
-    return {
-        type: LOAD_USERS,
-        payload: response
-    }
-}
-export function getMax() {
-    console.log('getting max');
-    axios.get('/api/users/count')
-        .then((res) => {
-            console.log(res.data, 'response data');
-            let count = res.data[0]["count(`name`)"];
-            this.setState({max: count});
-        })
-        .catch((err) => console.log(err))
-}
