@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
     eventForm: eventForm_Reducer,
     image: image_Reducer,
     isAuthorized: auth_Reducer,
-    friends: friends_Reducer
+    friends: friends_Reducer,
     chat: chat_Reducer
 });
 

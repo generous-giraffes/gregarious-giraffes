@@ -110,6 +110,7 @@ knex.schema.hasTable('attendingEvents').then((exists) => {
                 throw error;
             })
     }
+})
 
 //create chat table
 knex.schema.hasTable('chats').then((exists) => {
