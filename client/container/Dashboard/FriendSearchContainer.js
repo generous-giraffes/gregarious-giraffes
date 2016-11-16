@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Popover, OverlayTrigger, Modal, ButtonGroup, DropdownButton, MenuItem, Button, Col, Row, Grid, FormGroup, FormControl, Thumbnail, Carousel } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, ButtonToolbar, ControlLabel, Popover, OverlayTrigger, Modal, ButtonGroup, DropdownButton, MenuItem, Button, Col, Row, Grid, FormGroup, FormControl, Thumbnail, Carousel } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { getMax, loadUsers, addFriend, setCurrentFriend } from '../../actions/friends';
+import { addFriend, setCurrentFriend } from '../../actions/friends';
 import axios from 'axios';
+import {toastr} from 'react-redux-toastr'
 
 //FriendSearch renders a dropdown menu and a button that loads 10 users with the option to load the next ten
 //if the next ten exceed the number of users in the db then the users being fetched starts from the beginning
@@ -13,17 +14,32 @@ class FriendSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      offset: 0,
-      users: [],
-      max: 0,
       open: false,
-      selectedUser: {}
-}
+      selectedUser: {},
+      userOptions: [],
+      name: ''
+    }
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
-  //get the intial ten users for the dropdown menu and get the total number of users in the db
+  //get the intial ten users for the dropdown menu and get the total number of users in the db, or not
   componentDidMount() {
-    this.props.getMax();
-    this.props.loadUsers();
+
+  }
+  //when button is clicked a request goes to db to see if mathcing name is there
+  handleSubmit(e) {
+    e.preventDefault()
+    let name = this.state.name;
+    axios.get('/api/users/search?name=' + name)
+      .then((data) => this.setState({userOptions:data.data}))
+      .catch((err)=> console.log(err));
+  }
+  //when text is changed a request goes to db to see if mathcing name is there, appears like a live update
+  handleChange(name) {
+    axios.get('/api/users/search?name=' + name.currentTarget.value)
+      .then((data) => this.setState({userOptions:data.data}))
+      .catch((err)=> console.log(err));
+    this.setState({name: name.currentTarget.value});
   }
 
   friendOrViewProfile(e) {
@@ -35,11 +51,9 @@ class FriendSearch extends Component {
         selectedUser:{email: email, name: name, image: image},
         open: true
       })
-      let selectedUser = this.state.users[index];
+      let selectedUser = this.state.userOptions[index];
       this.props.setCurrentFriend(selectedUser);
   }
-
-
 
   friend() {
     let email = this.state.selectedUser.email; //person being friended
@@ -47,7 +61,7 @@ class FriendSearch extends Component {
     //dispatch action to add a friend
     this.props.addFriend(id, email)
       .then((data) => {
-        console.log('success on adding a friend, that is if you have any ;)')
+        console.log('success on adding a friend, that is if you have any')
         // this.setState({})//something to do with friend success
       })
       .catch((err) => console.log(err));
@@ -91,24 +105,45 @@ class FriendSearch extends Component {
                     <h5>Keep on Smiling!</h5>
                     <Button onClick={() => {this.close()}}>Close</Button>
                     <Button onClick={() => {this.viewProfile()}}>View Profile</Button>
-                    <Button onClick={() => {this.friend()}}>Friend</Button>
+                    <Button
+                      onClick={() => {this.friend();
+                                      toastr.success('Friended Success!', `You friended ${this.state.selectedUser.name}`);
+                                      setTimeout(() => {this.close()}, 3000)
+                              }}> Friend
+                    </Button>
                </Modal.Footer>
             </Modal>
-            <ButtonGroup>
-                <Button onClick={() => this.loadUsers()}>Load More Users</Button>
-                <DropdownButton title="Dropdown" id="bg-nested-dropdown">
-                    {this.state.users.map((user, i)=> (
-                        <MenuItem onClick={(e) => {this.friendOrViewProfile(e)}}
-                            data-email={user.email}
-                            data-name={user.name}
-                            data-image={user.image}
-                            data-index={i}
-                            eventKey={i}  >
-                            name: {user.name}, email: {user.email}
-                        </MenuItem>
-                    ))}
-                </DropdownButton>
-            </ButtonGroup>
+            <form onSubmit={this.handleSubmit} data-toggle='validator'>
+
+                <FormGroup controlId="formControlsTextarea">
+                    <ControlLabel>Name</ControlLabel>
+                    <FormControl value={this.state.name}
+                                 onChange={this.handleChange}
+                                 componentClass="input"
+                                 placeholder="Name"
+                                 required='true'/>
+                </FormGroup>
+                <Button type="submit">
+                    Submit
+                </Button>
+                </form>
+                {/* <ButtonToolbar>
+                    <DropdownButton open={true} bsStyle='default' noCaret title="Users" id="bg-nested-dropdown"> */}
+                    <ListGroup>
+                        {this.state.userOptions.map((user, i)=> (
+                            <ListGroupItem onClick={(e) => {this.friendOrViewProfile(e)}}
+                                href="#"
+                                data-email={user.email}
+                                data-name={user.name}
+                                data-image={user.image}
+                                data-index={i}
+                                eventKey={i}  >
+                                name: {user.name}, email: {user.email}, species: {user.species}
+                            </ListGroupItem>
+                        ))}
+                    </ListGroup>
+                    {/* </DropdownButton>
+                </ButtonToolbar> */}
             </div>
         )
     }
@@ -124,7 +159,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({getMax, addFriend, loadUsers, setCurrentFriend}, dispatch);
+    return bindActionCreators({addFriend, setCurrentFriend}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FriendSearch);
