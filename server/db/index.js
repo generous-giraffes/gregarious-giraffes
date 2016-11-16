@@ -95,7 +95,6 @@ knex.schema.hasTable('events').then((exists) => {
   }
 })
 
-<<<<<<< HEAD
 //create event attending table
 knex.schema.hasTable('attendingEvents').then((exists) => {
     if (!exists) {
@@ -111,7 +110,7 @@ knex.schema.hasTable('attendingEvents').then((exists) => {
                 throw error;
             })
     }
-=======
+
 //create chat table
 knex.schema.hasTable('chats').then((exists) => {
   if (!exists) {
@@ -125,7 +124,6 @@ knex.schema.hasTable('chats').then((exists) => {
           throw error;
         })
   }
->>>>>>> chatFeature4
 })
 
 module.exports = knex;
