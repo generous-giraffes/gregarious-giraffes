@@ -132,7 +132,7 @@ class FriendSearch extends Component {
                                 data-image={user.image}
                                 data-index={i}
                                 eventKey={i}  >
-                                name: {user.name}, email: {user.email}
+                                name: {user.name}, email: {user.email}, species: {user.species}
                             </ListGroupItem>
                         ))}
                     </ListGroup>

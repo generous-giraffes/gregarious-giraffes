@@ -20,13 +20,12 @@ class Friends extends Component {
 
   componentDidMount() {
     this.getFriends();
-    console.log('new friend', this.props.newFriend);
   }
 
   getFriends() {
     let id = this.props.id
     this.props.getFriends(id)
-      .then(() => console.log('SUCCESS ON GETTINF FRIENDS, that is if you have any ;)'))
+      .then(() => console.log('Got Friends'))
       .catch((err) => console.log(err));
   }
 
@@ -37,7 +36,7 @@ class Friends extends Component {
   }
 
   goBack() {
-    browserHistory.push('/imageUploader');
+    browserHistory.goBack()
   }
   close() {
     this.setState({ open: false });
@@ -57,7 +56,6 @@ class Friends extends Component {
   viewProfile(e) {
       let index = e.currentTarget.getAttribute('data-index')
       let selectedUser = this.props.friends[index];
-      console.log(selectedUser,"selecte USEr+++++++++++");
       this.props.setCurrentFriend(selectedUser);
       browserHistory.push('/friendProfile')
   }
@@ -66,20 +64,19 @@ class Friends extends Component {
     render() {
       return(
         <div className="friends-div">
-        <Modal show={this.state.open1} onHide={() => {this.close1()}}>
-            <Modal.Header closeButton>
-                <Modal.Title>New Friend</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                {this.props.newFriend ? (<h5>{this.props.newFriend.name}</h5>) : (<p>No friends were recently added, go to the dashboard to find some new friends!</p>)}
-            </Modal.Body>
-            <Modal.Footer>
-            <h5>Keep on Smiling!</h5>
-            <Button onClick={() => {this.close1()}}>Close</Button>
-            </Modal.Footer>
-        </Modal>
-        <Button bsStyle='info' onClick={() => this.setState({open1: !this.state.open1})}>Newest Friend</Button>
-
+            <Modal show={this.state.open1} onHide={() => {this.close1()}}>
+                <Modal.Header closeButton>
+                    <Modal.Title>New Friend</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {this.props.newFriend ? (<h5>{this.props.newFriend.name}</h5>) : (<p>No friends were recently added, go to the dashboard to find some new friends!</p>)}
+                </Modal.Body>
+                <Modal.Footer>
+                    <h5>Keep on Smiling!</h5>
+                    <Button onClick={() => {this.close1()}}>Close</Button>
+                </Modal.Footer>
+            </Modal>
+            {this.props.newFriend.name ? (<Button bsStyle='info' onClick={() => this.setState({open1: !this.state.open1})}>Newest Friend</Button>) : null }
             <Button className="friends-btn" bsStyle="primary" onClick={()=> this.setState({ open2: !this.state.open2 })}>
                 Your Friends
             </Button>
@@ -92,7 +89,7 @@ class Friends extends Component {
                 </Panel>
                 {this.props.friends.map((friend, i)=>
                   <Panel header={friend.name} bsStyle="primary">
-                  <p>{friend.quote}</p>
+                      <p>{friend.quote}</p>
                   <Button bsStyle="primary" data-index={i}  onClick={this.viewProfile}>View Profile</Button>
                   </Panel>
                 )}

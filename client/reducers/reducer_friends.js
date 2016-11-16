@@ -1,7 +1,10 @@
-import { ADD_FRIEND, SET_CURRENT_FRIEND } from '../actions/friends';
+import { GET_FRIENDS, ADD_FRIEND, SET_CURRENT_FRIEND } from '../actions/friends';
 
 export function friends_Reducer(state = { allFriends: [], newFriends: [], currentFriend: {} }, action) {
   switch (action.type) {
+    case GET_FRIENDS:
+      let allFriends = action.payload;
+      return Object.assign({}, state, { allFriends });
 
     case ADD_FRIEND:
       let newFriends = action.payload;
