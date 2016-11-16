@@ -6,7 +6,7 @@ const db = require('./index');
 module.exports = {
   //find user for signin, used in server/config/auth.js
   find(password, email, callback) {
-    db('users').where({email:email}).select('name', 'email', 'password', 'id')
+    db('users').where({email:email}).select('*')
       .then((res) => callback(res))
       .catch((err) => console.log(err))
   },
