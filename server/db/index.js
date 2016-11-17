@@ -38,7 +38,6 @@ var knex = require('knex')({
     database: 'giraffeLocal'
   }
  });
->>>>>>> 46e5a211e527dbe3af2f5009f1e9ad1319538c6b
 
  //var knex = require('knex')({
  //  client: 'mysql',
