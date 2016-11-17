@@ -1,10 +1,11 @@
 import React from 'react';
-import { Button, Col, Row, Grid, FormGroup, FormControl, Navbar } from 'react-bootstrap';
+import { OverlayTrigger, Popover, Button, Col, Row, Grid, FormGroup, FormControl, Navbar } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 import { getEvent, attendEvent } from '../../actions/eventForm';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import SimpleMapPage from '../Features/MapContainer';
 
 
 
@@ -63,6 +64,14 @@ class EventList extends React.Component {
                                                             <blockquote className="card-blockquote">
                                                                 <h2>{e.name}</h2>
                                                                 <h4>Location: {e.location}</h4>
+                                                                <p>
+                                                                    <OverlayTrigger trigger="click" overlay={
+                                                                            <Popover id="modal-popover" title="map">
+                                                                                <div><SimpleMapPage place={e.coordinates} address={e.address} name={e.location}/></div>
+                                                                            </Popover>}>
+                                                                        <a style={{'color':'white'}} href="#">{e.address} <span style={{'fontSize': '10px'}}>click to view on map</span></a>
+                                                                    </OverlayTrigger>
+                                                                </p>
                                                                 <h4>Time: {e.time}</h4>
                                                                 <h4>Date: {e.date}</h4>
                                                                 <p>Food Options? {e.eating}</p>
