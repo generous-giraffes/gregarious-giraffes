@@ -1,12 +1,19 @@
 import React from 'react';
 import io from 'socket.io-client';
 import { Button, Col, Row, Grid, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { saveChat, getChats } from '../../actions/chat';
 
 class ChatBox extends React.Component {
   constructor(){
       super();
       this.state = {data :[]};
       this.updateChatList = this.updateChatList.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.getChats();
   }
 
   componentDidMount() {
@@ -35,21 +42,34 @@ class ChatBox extends React.Component {
           data: newComments
       });
 
+      this.props.saveChat({
+        // this.props.user is the user
+        // id: this.props.user.id,
+        // this is equivalent to just putting 'comment' (object shorthand)
+        comment: comment
+      });
+
       this.socket.emit("chatlist", newComments);
   }
 
   render() {
       return (
-        <div className="chatBox">
-          <ChatList data={this.state.data}/>
-          <CommentForm onChatSubmit={(comment) => this.handleChatSubmit(comment)} />
-        </div>
+        <Grid>
+          <Row className="show-grid">
+            <Col xs={12}>
+              <div className="chatBox">
+                <ChatList data={this.state.data} comments={this.props.comments}/>
+                <CommentForm onChatSubmit={(comment) => this.handleChatSubmit(comment)} />
+              </div>
+            </Col>
+          </Row>
+        </Grid>
       );
   }
 }
 
 class ChatList extends React.Component {
-  render() {
+    render() {
       var commentNodes = this.props.data.map((comment) => {
         return (
           <Comment author={comment.author} key={comment.id}>
@@ -57,12 +77,24 @@ class ChatList extends React.Component {
           </Comment>
         );
       });
+
+      var chatHistory = this.props.comments.map((comment) => {
+        return (
+          <Comment author={comment.name} key={comment.id}>
+            {comment.comment}
+          </Comment>
+        );
+      });
+
       return (
         <div className="panel panel-default">
           <div className="page-header">
             <h1 className="text-center">Chat Room</h1>
           </div>
-          <div className="chat-list">{commentNodes}</div>
+          <div className="chat-list">
+            {chatHistory}
+            {commentNodes}
+          </div>
         </div>
       );
   }
@@ -84,7 +116,7 @@ class Comment extends React.Component {
 class CommentForm extends React.Component {
     constructor(){
         super();
-        this.state = {author :'',text : ''}
+        this.state = {author :'', text : ''}
     }
     handleAuthorChange(e) {
         this.setState({author : e.target.value})
@@ -124,4 +156,18 @@ class CommentForm extends React.Component {
     }
 }
 
-export default ChatBox
+function mapStateToProps(state) {
+  return {
+    // This is the user from the store (email, id, name, etc.)
+    // userEmail: state.reducers.isAuthorized.email
+    // userName: state.reducers.isAuthorized.name
+    user: state.reducers.isAuthorized,
+    comments: state.reducers.chat.comments
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({saveChat, getChats}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatBox);

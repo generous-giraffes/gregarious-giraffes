@@ -1,16 +1,26 @@
-import { SUBMIT_CHAT } from '../actions/chat';
+import { SAVE_CHAT, CHATS_RECEIVED } from '../actions/chat';
 
-// reducer for chat
+// Set comment default since it's not there until first submission
+const defaultState = {
+  comments: []
+};
 
-export function chat_Reducer(state = {}, action) {
+export function chat_Reducer(state = defaultState, action) {
   switch (action.type) {
-    case SUBMIT_CHAT:
-    console.log(action, 'action chat+++++++++');
-    console.log('action payload=====:', action.payload.data)
-      return Object.assign({}, state,
-        {
-          message: action.payload.data
-        });
+    case SAVE_CHAT:
+      // If there's no payload, set empty array as default because payload can be empty
+      const newComment = action.payload ? action.payload.data : [];
+      return {
+          ...state, // takes stuff inside object and spreads it out
+          // Adds new comment to the previous state's comments array
+          // comments: state.comments.concat(newComment)
+        };
+
+      case CHATS_RECEIVED:
+        return {
+          ...state,
+          comments: action.data.data ? action.data.data : []
+        }
     default:
       return state;
   }
