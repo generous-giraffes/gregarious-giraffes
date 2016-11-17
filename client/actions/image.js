@@ -11,7 +11,7 @@ export function submitImage(data) {
     filename: data.filename,
     filetype: data.filetype
   })
-    .then((res) => res)
+    .then((res) => res.data)
     .catch((error) => console.error(error));
 
   return {

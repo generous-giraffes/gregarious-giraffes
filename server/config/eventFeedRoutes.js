@@ -27,6 +27,7 @@ router.get('/attendEvent', (req, res) => {
     db('users')
       .join('attendingEvents as aE', 'users.id', '=', 'aE.user_id')
       .join('events as e', 'e.id', '=', 'aE.event_id')
+      .where('users.id', userId)
       .select('e.name', 'e.location', 'e.date', 'e.time', 'e.gifts', 'e.animals', 'e.eating', 'e.danger', 'e.address', 'e.coordinates')
         .then((data) => {
             res.send(data);

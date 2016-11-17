@@ -4,28 +4,28 @@
 //start and setup mysql in termina: $ mysql.server start, then, $ mysql -h localhost -u root -p
 //when in the mysql terminal type: create database giraffeLocal;, and then type: use giraffeLocal;
 
- // var knex = require('knex')({
- //  client: 'mysql',
- //  connection: {
- //    host: 'localhost',
- //    user: 'root',
- //    password: 'admin',//your local password for root user
- //    database: 'giraffeLocal'
- //  }
- // });
+ var knex = require('knex')({
+  client: 'mysql',
+  connection: {
+    host: 'localhost',
+    user: 'root',
+    password: 'a',//your local password for root user
+    database: 'giraffeLocal'
+  }
+ });
 
-var knex = require('knex')({
-    client: 'mysql',
-    connection: {
-        host: 'giraffe.cdt7ljmioe25.us-west-2.rds.amazonaws.com',
-        user: 'giraffes',
-        password: 'giraffes',
-        port: '3306',
-        database: 'giraffes',
-        debug: true
-    },
-    pool: {min: 0, max: 10}
-});
+// var knex = require('knex')({
+//     client: 'mysql',
+//     connection: {
+//         host: 'giraffe.cdt7ljmioe25.us-west-2.rds.amazonaws.com',
+//         user: 'giraffes',
+//         password: 'giraffes',
+//         port: '3306',
+//         database: 'giraffes',
+//         debug: true
+//     },
+//     pool: {min: 0, max: 10}
+// });
 
 //create users table
 knex.schema.hasTable('users').then((exists) => {
@@ -33,7 +33,7 @@ knex.schema.hasTable('users').then((exists) => {
   if(!exists) {
     return knex.schema.createTable('users', (table) => {
       //from and for authentication
-      table.string('name', 40).notNullable()
+      table.string('name', 40).notNullable().defaultTo('jake smith')
       table.string('email', 40).notNullable().unique()
       table.text('password').notNullable()
       table.increments('id').primary()

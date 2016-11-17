@@ -25,7 +25,7 @@ class Friends extends Component {
   getFriends() {
     let id = this.props.id
     this.props.getFriends(id)
-      .then(() => console.log('Got Friends'))
+      // .then(() => console.log('Got Friends'))
       .catch((err) => console.log(err));
   }
 

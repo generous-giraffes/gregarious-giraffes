@@ -13,12 +13,12 @@ router.post('/form', (req, res) => {
 			trained: req.body.trained,
 			hobbies: req.body.hobbies,
 			species: req.body.species,
-			quote: req.body.quote,
-			image: null
+			quote: req.body.quote
 		})
 		.where('email', req.body.email)
-		.returning('*') //this was not working, can also add returning as the next argument to update but that did not work either
+		// .returning('*') //this was not working, can also add returning as the next argument to update but that did not work either
 		.then((data) => {
+			console.log(req.body.email, 'form EMAIL ++++++');
 			return db.select('*').from('users').where('email', req.body.email);
 		})//this works but does not seem like is is a good way, should be able to add reutnring above
 		 .then((data) => res.send(data))
