@@ -33,6 +33,11 @@ class EventInfo extends Component {
                 Wednesday Novermber 20, 2016 at 9:00am
             </Panel>
             </Panel>
+            {this.props.userEvent.map((event, i) =>
+              <Panel header={event.name} bsStyle="success">
+                  {event.location}
+              </Panel>
+            , this)}
         </div>
       )
     }
@@ -53,4 +58,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventInfo);
-
