@@ -21,12 +21,12 @@ router.post('/attendEvent', (req, res) => {
     .catch((err) => console.error(err))
 });
 
-//retrieve friends for profile page
+//retrieve events for a specific user's profile page
 router.get('/attendEvent', (req, res) => {
-    let user_id = req.query.id;
-    let event_id = req.query.event_id;
-    db('users').select('*').fullOuterJoin('attendingEvents', 'user_id', 'event_id')
-        .where('attendingEvents.user_id', event_id)
+    let user_id = req.query.userId;
+    console.log(req.query, 'this is USER ID WOOOHOOOOO!')
+    //db.select('*').from('users').fullOuterJoin('attendingEvents', 'user.id', 'event.id')
+    //    .where('attendingEvents.user_id', user_id)
         .then((data) => {
             console.log(data, 'data for the join table attending events!');
             res.send(data);

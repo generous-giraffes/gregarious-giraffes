@@ -11,11 +11,7 @@ import axios from 'axios';
 class EventList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            attending: [],
-            currentEvent: []
-        }
-
+        this.state = {}
     }
 
     componentDidMount() {
