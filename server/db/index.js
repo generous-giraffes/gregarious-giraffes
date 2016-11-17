@@ -29,6 +29,16 @@ var knex = require('knex')({
     pool: {min: 0, max: 10}
 });
 
+ var knex = require('knex')({
+  client: 'mysql',
+  connection: {
+    host: 'localhost',
+    user: 'root',
+    password: 'admin',//your local password for root user
+    database: 'giraffeLocal'
+  }
+ });
+>>>>>>> 46e5a211e527dbe3af2f5009f1e9ad1319538c6b
 
  //var knex = require('knex')({
  //  client: 'mysql',
