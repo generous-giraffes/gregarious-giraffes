@@ -9,7 +9,7 @@ const Navigation = () => (
     <Navbar inverse collapseOnSelect>
         <Navbar.Header>
             <Navbar.Brand>
-                <Link to="/dashboard"></Link>
+                <Link to="/dashboard"><img src={'../styles/assets/pawprint2.png'}/></Link>
             </Navbar.Brand>
             <Navbar.Toggle />
         </Navbar.Header>
