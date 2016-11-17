@@ -1,4 +1,8 @@
-form {
-    width: 800px;
-    margin: 0 auto;
+
+.login {
+    @include vertical-center-flex(81vh);
+    form {
+        width: 800px;
+        margin: 0 auto;
+    }
 }

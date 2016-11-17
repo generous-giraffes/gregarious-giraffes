@@ -1,1 +1,8 @@
 @import '../modules/variables';
+
+@mixin vertical-center-flex($height) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $height;
+}
