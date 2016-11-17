@@ -7,7 +7,7 @@ export const SET_CURRENT_FRIEND = 'SET_CURRENT_FRIEND';
 export function getFriends(id) {
   let response = axios.get('/api/users/friends?id=' + id)
     .then((res) => {
-      console.log('response friends', res.data);
+      // console.log('response friends', res.data);
       let friends = res.data;
       return friends;
     })

@@ -15,7 +15,7 @@ class EventInfo extends Component {
     }
 
     componentWillUpdate(nextProps, nextState) {
-        console.log(nextProps, "Props for EVENT ON PROFILE", nextState);
+        // console.log(nextProps, "Props for EVENT ON PROFILE", nextState);
     }
 
     render() {

@@ -30,8 +30,8 @@ export function eventForm_Reducer(state = { currentEvent: [], events: [], userEv
             return Object.assign({}, state, {currentEvent});
 
         case SHOW_EVENT:
-            console.log(action, "SHOWING THE EVENTS THAT THIS USER IS ATTENDING");
-            console.log(state.currentEvent, "is the current event messing it up because not in default");
+            // console.log(action, "SHOWING THE EVENTS THAT THIS USER IS ATTENDING");
+            // console.log(state.currentEvent, "is the current event messing it up because not in default");
             let userEvents = [
                 ...state.currentEvent,
                 ...action.data.data
