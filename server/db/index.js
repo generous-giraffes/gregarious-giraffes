@@ -117,6 +117,7 @@ knex.schema.hasTable('chats').then((exists) => {
   if (!exists) {
     return knex.schema.createTable('chats', (table) => {
           table.increments('id').primary()
+          table.string('name', 255).defaultTo('null')
           table.text('comment').defaultTo('null')
 
           console.log('CHATS TABLE CREATED');
