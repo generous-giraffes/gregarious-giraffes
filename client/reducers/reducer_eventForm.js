@@ -13,7 +13,9 @@ export function eventForm_Reducer(state = { events: [] }, action) {
                     gifts: action.payload.gifts,
                     danger: action.payload.danger,
                     animals: action.payload.animals,
-                    eating: action.payload.eating
+                    eating: action.payload.eating,
+                    address: action.payload.address,
+                    coordinates: action.payload.coordinates
                 });
         case GET_EVENT_FORM:
             console.log(action, 'action GETTING THE EVENTS form+++++++++');
@@ -35,4 +37,3 @@ export function eventForm_Reducer(state = { events: [] }, action) {
             return state;
     }
 }
-
