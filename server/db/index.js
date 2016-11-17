@@ -5,17 +5,18 @@
 //when in the mysql terminal type: create database giraffeLocal;, and then type: use giraffeLocal;
 
 
- var knex = require('knex')({
-  client: 'mysql',
-  connection: {
-    host: 'localhost',
-    user: 'root',
-    password: 'admin',//your local password for root user
-    database: 'giraffeLocal'
-  }
- });
+ // var knex = require('knex')({
+ //  client: 'mysql',
+ //  connection: {
+ //    host: 'localhost',
+ //    user: 'root',
+ //    password: 'admin',//your local password for root user
+ //    database: 'giraffeLocal'
+ //  }
+ // });
 
-var knex = requist('knex')({
+
+var knex = require('knex')({
     client: 'mysql',
     connection: {
         host: 'giraffe.cdt7ljmioe25.us-west-2.rds.amazonaws.com',
