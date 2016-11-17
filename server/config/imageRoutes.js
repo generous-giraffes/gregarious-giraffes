@@ -1,48 +1,28 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db/index');
-var imageUpload = require('../utilities/imageUpload');
-
-// post image responses, insert into db
-// router.post('/image', (req, res) => {
-// 	console.log('post request to /image recieved', req.body.image);
-// //selects image from users table where the user id matches the user that uploaded the photo and updates the image
-//
-// //insert image for a specific user
-// 	db.update({ 'image': req.body.image }).into('users').where('email', req.body.email)
-// 	  .then((data) => {
-// 	  	return db.select('image').from('users').where('email', req.body.email);
-// 	  })
-// 	  .then((data) => res.send(data))
-// 	  .catch((err) => console.error(err));
-// });
+var ImageUploader = require('../utilities/imageUpload');
 
 router.post('/image', (req, res) => {
-	console.log('request to /image recieved, jere is the req.body data, file, type...', req.body.filename,req.body.filetype);
+	const onBadImageProcess = (resp) => res.send({status: 'error'});
+	const onGoodImageProcess = ({email, url}) => {
+		db('users').update('image', url).where('email', email)
+			.then((data) => {
+				res.send({status: 'success', uri: url});
+			})
+			.catch((err) => console.log(err))
+	}
 
-  var image = imageUpload({
+	//send image info to imageUploader which returns a promise object which will be resolved when the s3 Bucket responds to the request
+  var image = ImageUploader({
     data_uri: req.body.data_uri,
     filename: req.body.filename,
-    filetype: req.body.filetype
+    filetype: req.body.filetype,
+		email: req.body.email
   }).then(onGoodImageProcess, onBadImageProcess);
-
-  function onGoodImageProcess(resp) {
-		console.log('complete, resp', resp);
-    res.send({
-      status: 'success',
-      uri: resp
-    });
-  }
-
-  function onBadImageProcess(resp) {
-    res.send({
-     status: 'error'
-    });
-  }
-
 });
 
-
+//UPDATE THIS ++++++++++++
 router.get('/image', (req, res) => {
 	console.log('GET request to /image recieved');
 //UserId hardcoded for testing, REFACTOR to use req.body.userId
