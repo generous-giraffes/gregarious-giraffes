@@ -3,11 +3,15 @@ import axios from 'axios';
 export const SUBMIT_IMAGE = 'SUBMIT_IMAGE';
 
 export function submitImage(data) {
+  console.log(data, 'SUBMIT IAMGE action');
   let response = axios.post('/api/image', {
     image: data.image,
-    email: data.email
+    email: data.email,
+    data_uri: data.data_uri,
+    filename: data.filename,
+    filetype: data.filetype
   })
-    .then((res) => res.data[0])
+    .then((res) => res)
     .catch((error) => console.error(error));
 
   return {
