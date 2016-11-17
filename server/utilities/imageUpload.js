@@ -2,43 +2,33 @@ var Q = require('q');
 var knox = require('knox');
 
 var ImageUploader = function(options){
-  console.log('in IMAGE UPLOADER IN UTILITIES, options:', options.filename
-,options.filetype);
+  //deffered is used to handle async functions with callbacks (rather than asynch promises)
+  //deffered is a deffered object that returns a promise to the caller (ImageUploader() in imageRoutes.js)
+  //so the .then() on ImageUploader will not fire until deferred is resolved or rejected
   var deferred = Q.defer();
   var buf = new Buffer(options.data_uri.replace(/^data:image\/\w+;base64,/, ""),'base64');
 
- knoxClient = knox.createClient({
-      key: 'AKIAJDZGCTJ676WJRFXA',
-      secret: 'xXQZoL1ePo8ZHVLYX5Wcn7x5Opvqxjah9GaCSenJ',
-      bucket: 'giraffepawprints',
-      endpoint: 's3-website-us-west-2.amazonaws.com'
-    });
-  // knoxClient = knox.createClient({
-  //   key: '',//use .env for these
-  //   secret: '',
-  //   bucket: ''
-  //   // ,
-  //   // endpoint: 's3-website-us-west-2.amazonaws.com'
-  // });
+  var knoxClient = knox.createClient({
+    key: '',//use .env for these
+    secret: '',
+    bucket: ''
+  });
 
-  // put to a path in our bucket, and make readable by the public
+  // endpoint and options for the request headers to the s3 bucket, sent with req.end(buf)
   req = knoxClient.put('/photos/' + options.filename, {
    'Content-Length': buf.length,
    'Content-Type': options.filetype,
    'x-amz-acl': 'public-read'
   });
-  console.log(req, 'req in server');
 
+  //on response from the s3 bucket send the url of the saved image to ImageUploader.then() in imageRoutes
   req.on('response', function(res) {
-    console.log(knoxClient, "knox client in IMAGE UPLOAD");
     if (res.statusCode === 200) {
-      console.log('reposne from S2, 200 recieved');
-      deferred.resolve(req.url);
+      deferred.resolve({url:req.url, email:options.email});
     } else
-    console.log('reposne from S3, rejected recieved',res.statusCode);
       deferred.reject({error: 'true'});
   });
-
+//start the requset by sending the file as a buffer to the s3 Bucket
   req.end(buf);
   return deferred.promise;
 }
