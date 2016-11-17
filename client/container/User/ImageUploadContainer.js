@@ -12,19 +12,25 @@ class ImageUpload extends React.Component {
 
     this.state = {
       file: '',
-      imagePreviewUrl: ''
+      imagePreviewUrl: '',
+      data_uri: '',
+      filename: '',
+      filetype: ''
     };
   }
   //posts file to db if there has been an image uploaded
   handleSubmit(e) {
     e.preventDefault();
-    console.log('handle uploading', this.state.file);
+    console.log('handle uploading action about to dispatch', this.state);
     //post request to server goes to imageRoutes and the image gets added to db using userId to find the user
     //only post if there is an image in state
     if(this.state.imagePreviewUrl) {
       this.props.submitImage({
         image: this.state.imagePreviewUrl,
-        email: this.props.email
+        email: this.props.email,
+        data_uri: this.state.data_uri,
+        filename: this.state.filename,
+        filetype: this.state.filetype
       });
       // handle the lack of props before rendering at myProfile
       browserHistory.push('/myProfile');
@@ -44,7 +50,11 @@ class ImageUpload extends React.Component {
     reader.onloadend = () => {
       this.setState({
         file: file,
-        imagePreviewUrl: reader.result
+        imagePreviewUrl: reader.result,
+        data_uri: reader.result,
+        filename: file.name,
+        filetype: file.type
+
       });
     }
   }
