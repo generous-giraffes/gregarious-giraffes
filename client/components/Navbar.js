@@ -9,7 +9,7 @@ const Navigation = () => (
     <Navbar inverse collapseOnSelect>
         <Navbar.Header>
             <Navbar.Brand>
-                <Link to="/dashboard"><img src={'../styles/assets/pawprint2.png'}/></Link>
+                <Link to="/"><img src={'../styles/assets/pawprint2.png'}/></Link>
             </Navbar.Brand>
             <Navbar.Toggle />
         </Navbar.Header>
@@ -18,15 +18,14 @@ const Navigation = () => (
                 <LinkContainer to={{ pathname: '/signin'}} className="header-login">
                     <NavItem eventKey={1}>Log In</NavItem>
                 </LinkContainer>
-                <LinkContainer to={{ pathname: '/'}} className="header-login">
-                    <NavItem eventKey={1}>Edit Profile</NavItem>
+                <LinkContainer to={{ pathname: '/myProfile'}} className="header-login">
+                    <NavItem eventKey={2}>My Profile</NavItem>
                 </LinkContainer>
                 <NavDropdown eventKey={3} title="See More" id="basic-nav-dropdown" onSelect={handleSelect}>
-                    <MenuItem eventKey={3.1}>Events</MenuItem>
-                    <MenuItem eventKey={3.2}>My Profile</MenuItem>
-                    <MenuItem eventKey={3.3}>Something else here</MenuItem>
+                    <MenuItem eventKey={3.1}>Dashboard</MenuItem>
+                    <MenuItem eventKey={3.2}>Events</MenuItem>
                     <MenuItem divider/>
-                    <MenuItem eventKey={3.4}>Chat</MenuItem>
+                    <MenuItem eventKey={3.3}>Chat</MenuItem>
                 </NavDropdown>
             </Nav>
             <Nav pullRight>
@@ -38,12 +37,12 @@ const Navigation = () => (
 );
 
 function handleSelect(eventKey) {
-  if (eventKey === 3.4) {
+  if (eventKey === 3.3) {
     browserHistory.push('/chat');
-  } else if (eventKey === 3.1) {
-    browserHistory.push('/events');
   } else if (eventKey === 3.2) {
-    browserHistory.push('/myProfile');
+    browserHistory.push('/events');
+  } else if (eventKey === 3.1) {
+    browserHistory.push('/dashboard');
   }
 }
 
