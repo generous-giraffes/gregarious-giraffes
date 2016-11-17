@@ -86,7 +86,9 @@ knex.schema.hasTable('events').then((exists) => {
           table.text('animals').defaultTo('null')
           table.text('eating').defaultTo('null')
           table.text('danger').defaultTo('null')
-
+          table.string('address', 255).defaultTo('null')
+          table.string('coordinates', 255).defaultTo('null')
+          
           console.log('EVENTS TABLE CREATED');
         })
         .catch((error) => {

@@ -8,6 +8,8 @@ import TimePicker from 'react-bootstrap-time-picker';
 var DatePicker = require("react-bootstrap-date-picker");
 import Select from 'react-select';
 import axios from 'axios';
+import SearchBox from '../Features/SearchBoxContainer';
+import ReactDOM from 'react-dom';
 
 
 function FieldGroup({ id, label, help, ...props }) {
@@ -69,13 +71,17 @@ class CreateEvent extends React.Component {
         this.handleGiftChange = this.handleGiftChange.bind(this);
         this.handleLocationChange = this.handleLocationChange.bind(this);
         this.handleSelectChange = this.handleSelectChange.bind(this);
+        this.onPlaceChange = this.onPlaceChange.bind(this);
 
         this.state = {
             time: "1:00",
+            formattedTime: '',
             date: new Date().toISOString(),
             gifts: 'yes',
             name: '',
             location: '',
+            address: '',
+            coordinates: '',
             danger: '',
             eating: '',
             options: ANIMALS,
@@ -88,7 +94,7 @@ class CreateEvent extends React.Component {
         let animals = this.state.value.split(',').join(', ');
         //submit action with all form data
         this.props.submitEventForm({
-            time: this.state.time,
+            time: this.state.formattedTime,
             date: this.state.date,
             name: this.state.name,
             gifts: this.state.gifts,
@@ -96,9 +102,10 @@ class CreateEvent extends React.Component {
             animals: animals,
             eating: this.state.eating,
             location: this.state.location,
-            email: this.props.email
+            email: this.props.email,
+            address: this.state.address,
+            coordinates: this.state.coordinates
         });
-        //redirect to profile
         browserHistory.push('/dashboard');
     }
 
@@ -111,7 +118,8 @@ class CreateEvent extends React.Component {
       let hours = hrs > 12 ? hrs - 12 : hrs;
       if(hours === 12 && minutes === 30) { amPm = 'p.m.' }
       let timeStr = `${hours}:${minutes} ${amPm}`;
-      this.setState({time:timeStr});
+      console.log(timeStr, 'time++++++++++++');
+      this.setState({formattedTime:timeStr, time: time});
     }
 
     handleDateChange(date) {
@@ -147,6 +155,25 @@ class CreateEvent extends React.Component {
         this.setState({value});
     }
 
+    componentDidMount() {
+      var input = ReactDOM.findDOMNode(this.refs.Search);
+      console.log(input, 'INPPUT');
+      this.searchBox = new google.maps.places.SearchBox(input);
+      this.searchBox.addListener('places_changed', this.onPlaceChange);
+    }
+    // componentWillUnmount() {
+    //   this.searchBox.removeListener('places_changed', this.onPlaceChange);
+    // }
+    onPlaceChange() {
+        let place = this.searchBox.getPlaces();
+        console.log(place,"--===CREATE EVENT=====__", 'lat', place[0].geometry.location.lat(), 'lng',place[0].geometry.location.lng())
+        console.log('{lat:' + place[0].geometry.location.lat() + ', '+ 'lng:' + place[0].geometry.location.lng() + '}')
+        let coordinates = '{lat:' + place[0].geometry.location.lat() + ', '+ 'lng:' + place[0].geometry.location.lng() + '}'
+        let address = place[0].formatted_address;
+        this.setState({coordinates, address});
+
+    }
+
 
     render() {
         return (
@@ -165,7 +192,7 @@ class CreateEvent extends React.Component {
 
                     <FormGroup>
                         <ControlLabel>Time</ControlLabel>
-                        <TimePicker start="10:00" end="21:00" step={30} onChange={this.handleTimeChange} value={this.state.time}/>
+                        <TimePicker onChange={this.handleTimeChange} value={this.state.time}/>
                     </FormGroup>
 
                     <FormGroup>
@@ -174,7 +201,7 @@ class CreateEvent extends React.Component {
                     </FormGroup>
 
                     <FormGroup controlId="formControlsTextarea">
-                        <ControlLabel>Location</ControlLabel>
+                        <ControlLabel>Name of Location</ControlLabel>
                         <FormControl
                             value={this.state.location}
                             onChange={this.handleLocationChange}
@@ -182,6 +209,11 @@ class CreateEvent extends React.Component {
                             placeholder="Where will the event be held?"
                             required='true'/>
                     </FormGroup>
+
+                    <FormGroup >
+                        <ControlLabel>Address</ControlLabel>
+                        <SearchBox ref='Search' onSubmit={this.onPlaceChange}></SearchBox>
+                      </FormGroup>
 
                     <FormGroup>
                         <Select multi simpleValue disabled={this.state.disabled} value={this.state.value}

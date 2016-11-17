@@ -14,7 +14,9 @@ router.post('/eventForm', (req, res) => {
             name: req.body.name,
             danger: req.body.danger,
             animals: req.body.animals,
-            eating: req.body.eating
+            eating: req.body.eating,
+            address: req.body.address,
+            coordinates: req.body.coordinates
         })
         .then((data) => {
             return db('events').select('*');
