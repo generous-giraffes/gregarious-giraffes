@@ -1,6 +1,6 @@
-import { SUBMIT_EVENT_FORM, GET_EVENT_FORM, ATTEND_EVENT } from '../actions/eventForm';
+import { SUBMIT_EVENT_FORM, GET_EVENT_FORM, ATTEND_EVENT, SHOW_EVENT } from '../actions/eventForm';
 
-export function eventForm_Reducer(state = { events: []}, action) {
+export function eventForm_Reducer(state = { events: [], userEvents: []}, action) {
     switch (action.type) {
         case SUBMIT_EVENT_FORM:
             console.log(action, 'action NEW EVENT form+++++++++');
@@ -26,9 +26,16 @@ export function eventForm_Reducer(state = { events: []}, action) {
             return Object.assign({}, state, {events});
 
         case ATTEND_EVENT:
-            console.log(action, "TRYING TO FIGURE OUT WHY MY PAYLOAD IS EMPTY");
             let currentEvent = action.payload;
             return Object.assign({}, state, {currentEvent});
+
+        case SHOW_EVENT:
+            console.log(action, "SHOWING THE EVENTS THAT THIS USER IS ATTENDING");
+            let userEvents = [
+                ...state.currentEvent,
+                ...action.data.data
+            ];
+            return Object.assign({}, state, {userEvents});
         default:
             return state;
     }

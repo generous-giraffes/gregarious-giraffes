@@ -3,11 +3,19 @@ import axios from 'axios';
 export const SUBMIT_EVENT_FORM = 'SUBMIT_EVENT_FORM';
 export const GET_EVENT_FORM = 'GET_EVENT_FORM';
 export const ATTEND_EVENT = 'ATTEND_EVENT';
+export const SHOW_EVENT = 'SHOW_EVENT';
 
 //action to be dispatched if getEventForm is successful
 const getEventFormSuccess = (data) => {
     return {
         type: GET_EVENT_FORM,
+        data: data
+    }
+};
+
+const getShowEventSuccess = (data) => {
+    return {
+        type: SHOW_EVENT,
         data: data
     }
 };
@@ -52,15 +60,13 @@ export function attendEvent(event_id, user_id) {
         payload: response
     }
 }
-//
-//export function showEvent(event_id, user_id) {
-//    let response = (res) => {
-//        return axios.get('/api/attendEvent')
-//            .then((res) => res )
-//            .catch((err) => console.error(err))
-//    }
-//    return {
-//        type: SHOW_EVENT,
-//        payload: response
-//    }
-//}
+
+export function showEvent(eventId, userId) {
+    return (dispatch) => {
+        return axios.get(`/api/attendEvent?userid=${userId}&eventid=${eventId}`)
+            .then((res) => {
+                dispatch(getShowEventSuccess(res));
+            })
+            .catch((err) => console.error(err))
+    }
+}
