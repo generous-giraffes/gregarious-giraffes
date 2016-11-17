@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
 
+
+
 module.exports = {
   //entry point for the react app. starts in index.js in the client folder
   entry: ['./client/index.js'],
@@ -9,6 +11,7 @@ module.exports = {
     path: __dirname + '/client/public',
     filename: 'bundle.js'
   },
+
   //Laurhens - please comment in this area
   debug: true,
   module: {
@@ -16,6 +19,7 @@ module.exports = {
       //Here we say load on .js files and webpack uses babel to convert them from jsx and es2015 to javascript
       test: /\.js$/,
       loader: 'babel-loader',
+
       // here we simply want to ignore the node_modules or bower_components (if any) directory
       exclude: /(node_modules|bower_components)/,
       // here we are specifically telling babel what transformations we want it to do to our code via presets based on our dependencies - react, ES6
@@ -28,6 +32,10 @@ module.exports = {
       {
         test: /\.scss$/,
         loader: "style!css!sass"
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'file-loader?name=images/[name].[ext]'
       }
     ]
   }

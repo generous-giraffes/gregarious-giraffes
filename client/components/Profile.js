@@ -6,6 +6,7 @@ import ProfileHeader from '../container/Profile/HeaderContainer';
 import EventInfo from '../container/Profile/EventsContainer';
 import Friends from '../container/Profile/FriendsContainer';
 import SurveyInfo from '../container/Profile/SurveyInfoContainer';
+import Photos from '../container/Profile/PhotoContainer';
 
 class MyProfile extends React.Component {
 
@@ -16,6 +17,7 @@ class MyProfile extends React.Component {
             <Row className="profile-data">
                 <Col xs={12} md={6}>
                     <SurveyInfo />
+                    <Photos />
                 </Col>
                 <Col xs={12} md={6} className="Events-and-Friends">
                     <EventInfo />

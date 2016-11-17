@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
-import {Navbar, Nav, MenuItem, NavItem, NavDropdown} from 'react-bootstrap';
+import {Navbar, Nav, MenuItem, NavItem, NavDropdown, Image} from 'react-bootstrap';
+
+
 
 const Navigation = () => (
     <Navbar inverse collapseOnSelect>
         <Navbar.Header>
             <Navbar.Brand>
-                <Link to="/dashboard">PawPrints</Link>
+                <Link to="/dashboard"></Link>
             </Navbar.Brand>
             <Navbar.Toggle />
         </Navbar.Header>
@@ -33,7 +35,7 @@ const Navigation = () => (
         </Navbar.Collapse>
     </Navbar>
 
-)
+);
 
 function handleSelect(eventKey) {
   if (eventKey === 3.4) {
