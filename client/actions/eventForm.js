@@ -61,10 +61,11 @@ export function attendEvent(event_id, user_id) {
     }
 }
 
-export function showEvent(eventId, userId) {
+export function showEvent(userId) {
     return (dispatch) => {
-        return axios.get(`/api/attendEvent?userid=${userId}&eventid=${eventId}`)
+        return axios.get(`/api/attendEvent?userid=${userId}`)
             .then((res) => {
+              console.log(res, 'respponse in action');//res.data is array of objects
                 dispatch(getShowEventSuccess(res));
             })
             .catch((err) => console.error(err))

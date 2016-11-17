@@ -24,14 +24,12 @@ router.post('/attendEvent', (req, res) => {
 //retrieve events for a specific user's profile page
 router.get('/attendEvent', (req, res) => {
     let userId = req.query.userid;
-    console.log(req.query, 'this is USER ID WOOOHOOOOO!')
     db('users')
       .join('attendingEvents', 'users.id', '=', 'attendingEvents.user_id')
       .join('events as e', 'e.id', '=', 'attendingEvents.event_id')
       .select('e.name', 'e.location', 'e.date', 'e.time', 'e.gifts', 'e.animals', 'e.eating', 'e.danger', 'e.address', 'e.coordinates')
         .then((data) => {
             console.log(data, 'data for the join table attending events!');
-            data
             res.send(data);
         })
         .catch((err) => console.error(err));

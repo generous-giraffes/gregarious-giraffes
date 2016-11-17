@@ -1,6 +1,6 @@
 import { SUBMIT_EVENT_FORM, GET_EVENT_FORM, ATTEND_EVENT, SHOW_EVENT } from '../actions/eventForm';
 
-export function eventForm_Reducer(state = { events: [], userEvents: []}, action) {
+export function eventForm_Reducer(state = { currentEvent: [], events: [], userEvents: []}, action) {
     switch (action.type) {
         case SUBMIT_EVENT_FORM:
             console.log(action, 'action NEW EVENT form+++++++++');
@@ -31,6 +31,7 @@ export function eventForm_Reducer(state = { events: [], userEvents: []}, action)
 
         case SHOW_EVENT:
             console.log(action, "SHOWING THE EVENTS THAT THIS USER IS ATTENDING");
+            console.log(state.currentEvent, "is the current event messing it up because not in default");
             let userEvents = [
                 ...state.currentEvent,
                 ...action.data.data

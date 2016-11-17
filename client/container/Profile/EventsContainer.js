@@ -11,7 +11,7 @@ class EventInfo extends Component {
     }
 
     componentDidMount() {
-        this.props.showEvent(this.props.event[0].id, this.props.id);
+        this.props.showEvent(this.props.id);
     }
 
     componentWillUpdate(nextProps, nextState) {
@@ -32,12 +32,20 @@ class EventInfo extends Component {
                 There is an Event in Central  Park.
                 Wednesday Novermber 20, 2016 at 9:00am
             </Panel>
-            </Panel>
             {this.props.userEvent.map((event, i) =>
               <Panel header={event.name} bsStyle="success">
-                  {event.location}
+                  <p>location: {event.location}</p>
+                  <p>date: {event.date}</p>
+                  <p>time: {event.time}</p>
+                  <p>gifts: {event.gifts}</p>
+                  <p>animals: {event.animals}</p>
+                  <p>eating: {event.eating}</p>
+                  <p>danger: {event.danger}</p>
+                  <p>address: {event.address}</p>
+                  <p>coordinates: {event.coordinates}</p>
               </Panel>
             , this)}
+            </Panel>
         </div>
       )
     }
