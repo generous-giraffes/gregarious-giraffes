@@ -4,58 +4,55 @@
 
     .profile-user {
       height: 100%;
-      background: #997855;
-      margin: 12px;
+      background: $brown;
+      margin-bottom: 15px;
       padding: 8px;
       display: flex;
       align-items: center;
 
-      // .col-md-4 {
-      // }
       .profile-image {
         display: flex;
         align-items: center;
       }
       .user-image {
-        background: #997855;
-        border-color: white;
+        background: $brown;
+        border: $white 1px solid;
         border-radius: 2px;
-        border-width: medium;
       }
-
-
     }
 
     .profile-data {
 
       .list-group {
-        margin-top: 10px;
+
+        .list-group-item {
+          margin-bottom: 15px;
+
+          .list-group-item-heading {
+            font-size: 16px;
+          }
+
+          .list-group-item-text {
+            font-size: 14px;
+            color: black;
+          }
+        }
       }
 
-      .list-group-item-heading {
-        font-size: 16px;
-      }
-
-      .list-group-item-text {
-        font-size: 14px;
-        color:black;
-      }
-
-      .list-group-item {
-        margin: 15px;
+      .photos {
+        width: 100%;
       }
     }
-
-    .Events-and-Friends {
-      .events-btn {
-        width: 100%;
-        display: table;
-        margin: auto;
-      }
-      .friends-btn {
-        width: 100%;
-        display: table;
-        margin: auto;
-      }
+  .Events-and-Friends {
+    .events-btn {
+      width: 100%;
+      display: table;
+      margin: auto;
     }
+    .friends-btn {
+      width: 100%;
+      display: table;
+      margin: auto;
+    }
+  }
 }
