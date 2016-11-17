@@ -1,6 +1,9 @@
 import React from 'react';
 import io from 'socket.io-client';
 import { Button, Col, Row, Grid, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { saveChat } from '../../actions/chat';
 
 class ChatBox extends React.Component {
   constructor(){
@@ -35,15 +38,28 @@ class ChatBox extends React.Component {
           data: newComments
       });
 
+      this.props.saveChat({
+        // this.props.user is the user
+        id: this.props.user.id,
+        // this is equivalent to just putting 'comment' (object shorthand)
+        comment: comment
+      });
+
       this.socket.emit("chatlist", newComments);
   }
 
   render() {
       return (
-        <div className="chatBox">
-          <ChatList data={this.state.data}/>
-          <CommentForm onChatSubmit={(comment) => this.handleChatSubmit(comment)} />
-        </div>
+        <Grid>
+          <Row className="show-grid">
+            <Col xs={12}>
+              <div className="chatBox">
+                <ChatList data={this.state.data}/>
+                <CommentForm onChatSubmit={(comment) => this.handleChatSubmit(comment)} />
+              </div>
+            </Col>
+          </Row>
+        </Grid>
       );
   }
 }
@@ -124,4 +140,15 @@ class CommentForm extends React.Component {
     }
 }
 
-export default ChatBox
+function mapStateToProps(state) {
+  return {
+    // This is the user from the store (email, id, name, etc.)
+    user: state.reducers.isAuthorized
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({saveChat}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatBox);
