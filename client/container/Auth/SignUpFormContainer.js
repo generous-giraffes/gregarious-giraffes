@@ -62,7 +62,7 @@ class SignupForm extends Component {
     render() {
 
         return (
-            <div>
+            <div className="login">
                 <form onSubmit={this.onFormSubmit}>
                     <FieldGroup
                         type='text'

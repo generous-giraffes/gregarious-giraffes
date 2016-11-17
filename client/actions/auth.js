@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const SIGNUP_USER = 'SIGNUP_USER';
 export const LOGIN_USER = 'LOGIN_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';
 //action to be dispatched if signInUser is successful
 const signInUserSuccess = (data) => {
   return {
@@ -9,6 +10,7 @@ const signInUserSuccess = (data) => {
     data
   }
 };
+
 //function that sends user info to db and sends the user's data to the auth reducer
 export function signupUser(name, email, password) {
   const request = axios.post('/api/signup', {
@@ -59,4 +61,14 @@ export function signinUser(email, password) {
           throw(error);
       });
   };
+}
+
+export function logoutAndRedirect() {
+    localStorage.removeItem('token');
+
+    return {
+        type: LOGOUT_USER
+    }
 };
+
+
