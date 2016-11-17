@@ -2,9 +2,21 @@
 .navbar {
     margin-bottom: 0;
     background: $dark-blue;
+    height: 75px;
 
     .container {
         max-width: 100%;
+
+        .navbar-nav {
+            margin-top: 10px;
+        }
+
+        .navbar-brand {
+            padding: 0;
+            img {
+                width: 50px;
+            }
+        }
     }
 
     .dropdown {
