@@ -7,12 +7,9 @@ export const GET_RECENT_USERS = 'GET_RECENT_USERS';
 
 
 export function getRecentUsers(id) {
-    let response = axios.get('/api/dashboardUsers/' + id)
-        .then((res) => {
-            let recentUsers = res.data;
-            return recentUsers;
-        })
-        .catch((err) => console.log(err));
+    let response = axios.get('/api/dashboardUsers/')
+        .then((res) => res.data)
+        .catch((error) => console.error(error));
 
     return {
         type: GET_RECENT_USERS,
