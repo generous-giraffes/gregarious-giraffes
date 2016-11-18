@@ -24,7 +24,6 @@ export default (
         <Route path="survey" component={requireAuthentication(Survey)} />
         <Route path="chat" component={requireAuthentication(Chat)} />
         <Route path="imageUploader" component={requireAuthentication(ImageUploader)} />
-        <Route path="getImage" component={requireAuthentication(GetImage)} />
         <Route path="myProfile" component={requireAuthentication(Profile)} />
         <Route path="friendProfile" component={requireAuthentication(FriendProfile)} />
         <Route path="map" component={requireAuthentication(SimpleMapPage)} />
