@@ -14,9 +14,9 @@ class Feed extends React.Component {
         return (
             <div className="feed">
                 <div className="demo-card">
-                    <div className="card card-inverse card-primary text-center">
+
                         <UserFeed />
-                    </div>
+
                     <div className="card card-inverse card-success text-center">
                         <ImageFeed />
                     </div>

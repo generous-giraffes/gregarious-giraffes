@@ -14,22 +14,29 @@ class UserFeed extends Component {
 
     componentDidMount() {
         this.props.getRecentUsers();
+        console.log('getRecent users all users for dashboard feed');
     }
 
 
     render() {
-        console.log(this.props.users, "THESE ARE TEH USERS!");
         return (
-            <div className="card-block">
-
-                <blockquote className="card-blockquote">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a
-                        ante.</p>
-                    <footer>Someone famous in
-                        <cite title="Source Title">Source Title</cite>
-                    </footer>
-                </blockquote>
+            <div className="userFeed">
+                {this.props.recentUsers.map((e) => (
+                <div className="card card-inverse card-primary text-center">
+                    <div className="card-block">
+                        <blockquote className="card-blockquote">
+                            <h5>Name: {e.name}</h5>
+                            <h6>Species: {e.species}</h6>
+                            <h6>Hobbies: {e.hobbies}</h6>
+                            <footer>Quote:
+                                <cite title="Source Title"> {e.quote}</cite>
+                            </footer>
+                        </blockquote>
+                    </div>
+                </div>
+                ))}
             </div>
+
         )
     }
 }
@@ -37,8 +44,10 @@ class UserFeed extends Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.reducers.isAuthorized,
-        users: state.reducers.users
+        email: state.reducers.isAuthorized.email,
+        name: state.reducers.isAuthorized.name,
+        id: state.reducers.isAuthorized.id,
+        recentUsers: state.reducers.feedReducer.recentUsers
     }
 }
 
