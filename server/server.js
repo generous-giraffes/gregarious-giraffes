@@ -36,20 +36,24 @@ const routes = require('./config/routes');
 app.use('/api', routes);
 
 // require routes
-var imageUpload = require('./config/imageRoutes');
-var form = require('./config/formRoutes');
-var eventForm = require('./config/eventFormRoutes');
+
 var attendEvent = require('./config/eventFeedRoutes');
+var chat = require('./config/chatRoutes');
+var dashboardFeed = require('./config/dashboardFeedRoutes');
+var eventForm = require('./config/eventFormRoutes');
+var form = require('./config/formRoutes');
+var imageUpload = require('./config/imageRoutes');
 var petApi = require('./config/petApiRoutes');
 var users = require('./config/userRoutes');
-var chat = require('./config/chatRoutes');
-app.use('/api', imageUpload);
-app.use('/api', form);
-app.use('/api', eventForm);
 app.use('/api', attendEvent);
+app.use('/api', chat);
+app.use('/api', dashboardFeed);
+app.use('/api', eventForm);
+app.use('/api', form);
+app.use('/api', imageUpload);
 app.use('/api', petApi);
 app.use('/api', users);
-app.use('/api', chat);
+
 
 // server serves index.html for all routes
 app.get('*', function(req, res){
