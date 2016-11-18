@@ -48,6 +48,7 @@ class DashboardImagesContainer extends Component {
 
 
     render() {
+      console.log(this.props.dashImages, 'dash images');
         return (
             <Grid className="photos">
                 <Modal show={this.state.open} onHide={() => {this.close()}}>
@@ -71,14 +72,14 @@ class DashboardImagesContainer extends Component {
                   <Col xs={12} md={6}>
                       <Thumbnail src={image.image}>
                           <h3>{image.name}: {image.caption}</h3>
+                          <ul>{image.comments.map((comment)=> (<li>{comment}</li>))}</ul>
                           <p>
-                              <Button bsStyle="primary">Like</Button>
                               <Button
                                   onClick={(e) => {this.open(e)}}
                                   data-imageId={image.id}
                                   data-user_image_id={image.user_image_id}
-                                  bsStyle="default"
-                                  >Comment
+                                  bsStyle="default">
+                                  Comment
                                 </Button>
                           </p>
                       </Thumbnail>

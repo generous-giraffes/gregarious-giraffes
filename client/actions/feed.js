@@ -22,8 +22,25 @@ export function getRecentUsers(id) {
 
 export function getDashboardImages() {
   let response = axios.get('/api/dashboardImages')
-    .then((res) => res.data)
-    .catch((error) => console.error(error));
+    .then((res) => {
+      //use reduce to make an object with photos, create an array of comments, and remove repeat images. stored by their id in this object e.g. {1: {image1}, 2:{image2}}
+      let commentedPhotos = res.data.reduce((obj, photo) => {
+        if(!obj[photo.id]) {
+          obj[photo.id] = photo;
+          obj[photo.id].comments = [photo.comment];
+          return obj;
+        }
+        obj[photo.id].comments.push(photo.comment);
+        return obj;
+      }, {})
+      let photos = [];
+      for(var photoObj in commentedPhotos){
+        photos.push(commentedPhotos[photoObj]);
+      }
+      console.log(photos, 'commentedPhotos, action GET DASH IMAGES');
+      return photos;
+    }
+  ).catch((error) => console.error(error));
 
   return {
     type: GET_DASH_IMAGES,
