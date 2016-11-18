@@ -1,12 +1,15 @@
 import axios from 'axios';
 
-export const PROFILE_IMAGE = 'PROFILE_IMAGE';
+export const SUBMIT_PROFILE_IMAGE = 'SUBMIT_PROFILE_IMAGE';
+export const GET_PROFILE_IMAGE = 'GET_PROFILE_IMAGE';
 export const POST_USER_IMAGE = 'POST_USER_IMAGE';
-export const GET_USER_IMAGE = 'GET_USER_IMAGE';
+export const GET_USER_IMAGES = 'GET_USER_IMAGES';
+export const GET_DASH_IMAGES = 'GET_DASH_IMAGES';
+export const COMMENT_ON_DASH_IMAGE = 'COMMENT_ON_DASH_IMAGE';
 
 export function submitProfileImage(data) {
-  console.log(data, 'PROFILE_IMAGE action');
-  let response = axios.post('/api/image', {
+  console.log(data, 'SUBMIT_PROFILE_IMAGE action');
+  let response = axios.post('/api/profileImage', {
     image: data.image,
     email: data.email,
     data_uri: data.data_uri,
@@ -17,7 +20,7 @@ export function submitProfileImage(data) {
     .catch((error) => console.error(error));
 
   return {
-    type: PROFILE_IMAGE,
+    type: SUBMIT_PROFILE_IMAGE,
     payload: response
   }
 }
@@ -44,13 +47,51 @@ export function submitUserImage(data) {
 }
 
 export function getUserImages(id) {
-  console.log(id, 'GET_USER_IMAGE action, is');
-  let response = axios.get('/api/image?id=' + id)
+  console.log(id, 'user iamges action');
+  let response = axios.get('/api/userImages?id=' + id)
     .then((res) => res.data)
     .catch((error) => console.error(error));
 
   return {
-    type: GET_USER_IMAGE,
+    type: GET_USER_IMAGES,
+    payload: response
+  }
+}
+export function getProfileImage(id) {
+  console.log(id, 'GET_PROFILE_IMAGE action');
+  let response = axios.get('/api/profileImage?id=' + id)
+    .then((res) => res.data)
+    .catch((error) => console.error(error));
+
+  return {
+    type: GET_PROFILE_IMAGE,
+    payload: response
+  }
+}
+
+export function getDashboardImages() {
+  console.log( 'GET_DASH_IMAGES action');
+  let response = axios.get('/api/dashboardImages')
+    .then((res) => res.data)
+    .catch((error) => console.error(error));
+
+  return {
+    type: GET_DASH_IMAGES,
+    payload: response
+  }
+}
+
+export function commentOnDashImage(userId, comment) {
+  console.log(userId, comment, 'COMMENT_ON_DASH_IMAGE action');
+  let response = axios.post('/api/dashboardComment', {
+    id: userId,
+    comment: comment
+  })
+    .then((res) => res.data)
+    .catch((error) => console.error(error));
+
+  return {
+    type: COMMENT_ON_DASH_IMAGE,
     payload: response
   }
 }

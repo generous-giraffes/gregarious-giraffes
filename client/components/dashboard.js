@@ -4,14 +4,13 @@ import MyCarousel from '../container/Dashboard/CarouselContainer';
 import FriendSearch from '../container/Dashboard/FriendSearchContainer';
 import PetSearch from '../container/Dashboard/AdoptAPetApi';
 import PetNewsSearch from '../container/Dashboard/PetNewsApiContainer';
+import DashboardImagesContainer from '../container/Dashboard/DashboardImagesContainer';
 import { Button, Col, Row, Grid, FormGroup, FormControl, Thumbnail, Navbar, Carousel } from 'react-bootstrap';
 
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
-
-        console.log(this.state, 'trying to get user name');
     }
 
 
@@ -22,6 +21,7 @@ class Home extends React.Component {
                     <Row className="banner">
                         <Col xs={12}>
                             <MyCarousel />
+                            <DashboardImagesContainer />
                         </Col>
                     </Row>
                     <Row className="main-container">

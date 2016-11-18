@@ -37,6 +37,7 @@ app.use('/api', routes);
 
 // require routes
 var imageUpload = require('./config/imageRoutes');
+var dashboardImages = require('./config/dashboardImageRoutes');
 var form = require('./config/formRoutes');
 var eventForm = require('./config/eventFormRoutes');
 var attendEvent = require('./config/eventFeedRoutes');
@@ -44,6 +45,7 @@ var petApi = require('./config/petApiRoutes');
 var users = require('./config/userRoutes');
 var chat = require('./config/chatRoutes');
 app.use('/api', imageUpload);
+app.use('/api', dashboardImages);
 app.use('/api', form);
 app.use('/api', eventForm);
 app.use('/api', attendEvent);

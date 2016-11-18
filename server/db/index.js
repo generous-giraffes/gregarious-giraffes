@@ -13,7 +13,7 @@
  //    database: 'giraffeLocal'
  //  }
  // });
-//
+
 var knex = require('knex')({
     client: 'mysql',
     connection: {
@@ -97,9 +97,11 @@ knex.schema.hasTable('imageComment').then((exists) => {
       return knex.schema.createTable('imageComment', (table) => {
         table.integer('user_comment_id').unsigned()
         table.integer('image_id').unsigned()
-        table.foreign('user_comment_id').references('id').inTable('users')
-        table.foreign('image_id').references('id').inTable('images')
+        table.integer('userImageId').unsigned()
         table.text('comment').defaultTo('null')
+        table.foreign('user_comment_id').references('id').inTable('users')
+        table.foreign('userImageId').references('user_image_id').inTable('images')
+        table.foreign('image_id').references('id').inTable('images')
 
         console.log('IMAGECOMMENT TABLE CREATED');
       })
