@@ -3,41 +3,37 @@ import { Button, Col, Row, Grid, FormGroup, FormControl, Thumbnail, Carousel } f
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { signinUser } from '../../actions/auth';
+import { getRecentUsers } from '../../actions/feed';
 
 
 class MyCarousel extends Component {
 
     constructor(props) {
         super(props);
-
-        console.log('this is the user ========>>>>', this.props.user);
     }
 
     componentDidMount() {
-        this.props.signinUser();
+        this.props.getRecentUsers();
     }
-
 
 
     render() {
         return (
             <div className="carousel">
                 <Carousel>
+                    {this.props.recentUsers.map((image) => (
                     <Carousel.Item>
-                        <img src="http://www.artwallpaperhi.com/thumbnails/detail/20121017/abstract%20striped%20texture%20digital%20art%201680x1050%20wallpaper_www.artwallpaperhi.com_4.jpg"/>
-                        <Carousel.Caption>
-                            <h3>First slide label</h3>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                        </Carousel.Caption>
+                        <Col xs={12} md={6}>
+                            <img src={image.image}/>
+                        </Col>
+                        <Col xs={12} md={6}>
+                            <Carousel.Caption>
+                                <h3>{image.name}</h3>
+                                <p>{image.species}</p>
+                            </Carousel.Caption>
+                        </Col>
                     </Carousel.Item>
-                    <Carousel.Item>
-                        <img src="http://www.artwallpaperhi.com/thumbnails/detail/20121017/abstract%20striped%20texture%20digital%20art%201680x1050%20wallpaper_www.artwallpaperhi.com_4.jpg"/>
-                        <Carousel.Caption>
-                            <h3>Second slide label</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
+                    ))}
                 </Carousel>
             </div>
         )
@@ -47,12 +43,15 @@ class MyCarousel extends Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.reducers.isAuthorized
+        email: state.reducers.isAuthorized.email,
+        name: state.reducers.isAuthorized.name,
+        id: state.reducers.isAuthorized.id,
+        recentUsers: state.reducers.feedReducer.recentUsers
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({signinUser}, dispatch);
+    return bindActionCreators({getRecentUsers}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyCarousel);
