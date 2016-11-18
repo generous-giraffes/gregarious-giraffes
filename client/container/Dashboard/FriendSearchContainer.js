@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { addFriend, setCurrentFriend } from '../../actions/friends';
 import axios from 'axios';
-import {toastr} from 'react-redux-toastr'
+import {toastr} from 'react-redux-toastr';
 
 //FriendSearch renders a dropdown menu and a button that loads 10 users with the option to load the next ten
 //if the next ten exceed the number of users in the db then the users being fetched starts from the beginning

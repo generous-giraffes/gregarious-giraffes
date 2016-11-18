@@ -17,13 +17,9 @@ var profileImageUploader = function(options){
   var knoxClient = knox.createClient({
     key: 'AKIAJDZGCTJ676WJRFXA',
     secret: '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',
-    bucket: 'giraffepawprints'
+    bucket: 'giraffepawprints',
+    region: 'us-west-2'
   });
-  // var knoxClient = knox.createClient({
-  //    key: 'AKIAJDZGCTJ676WJRFXA',
-  //    secret: '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',
-  //    bucket: 'giraffepawprints'
-  //  });
 
   // endpoint and options for the request headers to the s3 bucket, sent with req.end(buf)
   req = knoxClient.put('/photos/' + options.filename, {
