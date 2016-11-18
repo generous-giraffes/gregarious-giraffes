@@ -36,7 +36,6 @@ const routes = require('./config/routes');
 app.use('/api', routes);
 
 // require routes
-
 var attendEvent = require('./config/eventFeedRoutes');
 var chat = require('./config/chatRoutes');
 var dashboardFeed = require('./config/dashboardFeedRoutes');

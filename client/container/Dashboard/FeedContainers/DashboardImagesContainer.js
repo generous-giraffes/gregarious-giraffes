@@ -1,36 +1,65 @@
 import React, {Component} from 'react';
-import { Row, Col, Grid, Thumbnail, Button } from 'react-bootstrap';
+import { Modal, Row, Col, Grid, Thumbnail, Button } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { submitUserImage, getUserImages } from '../../actions/image';
-import UserImageUpload from './UserImageUploadContainer'
+import { getDashboardImages, commentOnDashImage } from '../../../actions/image';
+import { toastr } from 'react-redux-toastr';
 
-class Photos extends Component {
+class DashboardImagesContainer extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+          open: false,
+          comment: ''
+        }
     }
 
     componentDidMount() {
-        this.props.getUserImages(this.props.id);
-        console.log('getuser images submitted');
+        this.props.getDashboardImages();
+        console.log('getDashboardImagesuser images submitted');
+    }
+
+    handleCommentSubmit() {
+      let id = this.props.id;
+      let comment = this.state.comment;
+      console.log(id, commment, 'id and comment in handle comment dashboardimagescontainer');
+      this.props.commentOnDashImage(id, comment);
+    }
+
+    handleCommentChange(e) {
+      console.log(e.currentTarget.value, 'comment value');
+      this.setState({comment: e.currentTarget.value});
     }
 
 
     render() {
         return (
             <Grid className="photos">
-                <UserImageUpload />
+                <Modal show={this.state.open} onHide={() => {this.close()}}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Comment on this Image</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <input className="commentInput" type="text" onChange={(e)=>this.handleCommentChange(e)} />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={() => {this.close()}}>Close</Button>
+                        <Button onClick={() => {
+                          this.handleCommentSubmit();
+                          toastr.success('Comment Success!', `You commented ${this.state.comment}`);
+                          setTimeout(() => {this.close()}, 2500)
+                        }}>Click to Comment</Button>
+                   </Modal.Footer>
+                </Modal>
                 <Row>
-                {this.props.images.map((image) => (
+                {this.props.dashImages.map((image) => (
                   <Col xs={12} md={6}>
                       <Thumbnail src={image.image}>
-                          <img src={image.uri}/>
                           <h3>{image.caption}</h3>
-                          {/* <p>
+                          <p>
                               <Button bsStyle="primary">Like</Button>&nbsp;
                               <Button bsStyle="default">Comment</Button>
-                          </p> */}
+                          </p>
                       </Thumbnail>
                   </Col>
                 ))}
@@ -86,12 +115,12 @@ function mapStateToProps(state) {
         email: state.reducers.isAuthorized.email,
         name: state.reducers.isAuthorized.name,
         id: state.reducers.isAuthorized.id,
-        images: state.reducers.image.UserImages
+        dashImages: state.reducers.image.dashImages
     }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({submitUserImage, getUserImages}, dispatch);
+  return bindActionCreators({getDashboardImages, commentOnDashImage}, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Photos);
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardImagesContainer);

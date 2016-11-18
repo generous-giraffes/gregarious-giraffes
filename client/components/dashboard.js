@@ -10,8 +10,6 @@ import { Button, Col, Row, Grid, FormGroup, FormControl, Thumbnail, Navbar, Caro
 class Home extends React.Component {
     constructor(props) {
         super(props);
-
-        console.log(this.state, 'trying to get user name');
     }
 
 

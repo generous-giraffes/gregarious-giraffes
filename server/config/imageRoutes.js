@@ -6,9 +6,10 @@ var db = require('../db/index');
 var profileImageUploader = require('../utilities/profileImageUpload');
 var UserImageUploader = require('../utilities/userImagesUpload');
 
-router.post('/image', (req, res) => {
+router.post('/profileImage', (req, res) => {
 	const onBadImageProcess = (resp) => res.send({status: 'error'});
 	const onGoodImageProcess = (resp) => {
+		console.log('url from s3 bucker+++++++++++++++++', resp.url);
 		db('users').update('image', resp.url).where('email', resp.email)
 			.then((data) => {
 				res.send({status: 'success', uri: resp.url});
@@ -24,10 +25,20 @@ router.post('/image', (req, res) => {
   }).then(onGoodImageProcess, onBadImageProcess);
 });
 
-router.get('/image', (req, res) => {
+router.get('/profileImage', (req, res) => {
 	let id = req.query.id;
 	console.log('GET request to /image recieved+++++++++++++', id);
-  db('images').where('user_image_id', id)
+  db('users').where('id', id).select('image')
+		.then((data) => {
+			console.log(data, 'get /image data+++++++++++++')
+			res.send(data);
+		})
+});
+
+router.get('/userImages', (req, res) => {
+	let id = req.query.id;
+	console.log('GET request to /userImages recieved+++++++++++++', id);
+  db('images').where('user_image_id', id).select('image', 'caption')
 		.then((data) => {
 			console.log(data, 'get /image data+++++++++++++')
 			res.send(data);

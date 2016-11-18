@@ -7,17 +7,18 @@ var UserImageUploader = function(options){
   //so the .then() on ImageUploader will not fire until deferred is resolved or rejected
   var deferred = Q.defer();
   var buf = new Buffer(options.data_uri.replace(/^data:image\/\w+;base64,/, ""),'base64');
-console.log('in UserImageUploader, these are teh options, make sure id and caption are here++++', options);
-  var knoxClient = knox.createClient({
-    key: '',//use .env for these
-    secret: '',
-    bucket: ''
-  });
+
   // var knoxClient = knox.createClient({
-  //    key: 'AKIAJDZGCTJ676WJRFXA',
-  //    secret: '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',
-  //    bucket: 'giraffepawprints'
-  //  });
+  //   key: '',//use .env for these
+  //   secret: '',
+  //   bucket: ''
+  // });
+  var knoxClient = knox.createClient({
+     key: 'AKIAJDZGCTJ676WJRFXA',
+     secret: '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',
+     bucket: 'giraffepawprints',
+     region: 'us-west-2'
+   });
 
   // endpoint and options for the request headers to the s3 bucket, sent with req.end(buf)
   req = knoxClient.put('/photos/' + options.filename, {
