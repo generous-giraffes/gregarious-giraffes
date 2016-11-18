@@ -55,54 +55,14 @@ class DashboardImagesContainer extends Component {
                 {this.props.dashImages.map((image) => (
                   <Col xs={12} md={6}>
                       <Thumbnail src={image.image}>
-                          <h3>{image.caption}</h3>
+                          <h3>{image.name}: {image.caption}</h3>
                           <p>
-                              <Button bsStyle="primary">Like</Button>&nbsp;
+                              <Button bsStyle="primary">Like</Button>
                               <Button bsStyle="default">Comment</Button>
                           </p>
                       </Thumbnail>
                   </Col>
                 ))}
-                    {/* <Col xs={12} md={6}>
-                        <Thumbnail src="https://i.ytimg.com/vi/x9Jr9JKpsX8/maxresdefault.jpg">
-                            <h3>Thumbnail label</h3>
-                            <p>Description</p>
-                            <p>
-                                <Button bsStyle="primary">Like</Button>&nbsp;
-                                <Button bsStyle="default">Comment</Button>
-                            </p>
-                        </Thumbnail>
-                    </Col>
-                    <Col xs={12} md={6}>
-                        <Thumbnail src="https://i.ytimg.com/vi/x9Jr9JKpsX8/maxresdefault.jpg">
-                            <h3>Thumbnail label</h3>
-                            <p>Description</p>
-                            <p>
-                                <Button bsStyle="primary">Like</Button>&nbsp;
-                                <Button bsStyle="default">Comment</Button>
-                            </p>
-                        </Thumbnail>
-                    </Col>
-                    <Col xs={12} md={6}>
-                        <Thumbnail src="https://i.ytimg.com/vi/x9Jr9JKpsX8/maxresdefault.jpg">
-                            <h3>Thumbnail label</h3>
-                            <p>Description</p>
-                            <p>
-                                <Button bsStyle="primary">Like</Button>&nbsp;
-                                <Button bsStyle="default">Comment</Button>
-                            </p>
-                        </Thumbnail>
-                    </Col>
-                    <Col xs={12} md={6}>
-                        <Thumbnail src="https://i.ytimg.com/vi/x9Jr9JKpsX8/maxresdefault.jpg">
-                            <h3>Thumbnail label</h3>
-                            <p>Description</p>
-                            <p>
-                                <Button bsStyle="primary">Like</Button>&nbsp;
-                                <Button bsStyle="default">Comment</Button>
-                            </p>
-                        </Thumbnail>
-                    </Col> */}
                 </Row>
             </Grid>
         )

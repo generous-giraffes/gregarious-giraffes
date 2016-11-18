@@ -27,53 +27,9 @@ class Photos extends Component {
                       <Thumbnail src={image.image}>
                           <img src={image.uri}/>
                           <h3>{image.caption}</h3>
-                          {/* <p>
-                              <Button bsStyle="primary">Like</Button>&nbsp;
-                              <Button bsStyle="default">Comment</Button>
-                          </p> */}
                       </Thumbnail>
                   </Col>
                 ))}
-                    {/* <Col xs={12} md={6}>
-                        <Thumbnail src="https://i.ytimg.com/vi/x9Jr9JKpsX8/maxresdefault.jpg">
-                            <h3>Thumbnail label</h3>
-                            <p>Description</p>
-                            <p>
-                                <Button bsStyle="primary">Like</Button>&nbsp;
-                                <Button bsStyle="default">Comment</Button>
-                            </p>
-                        </Thumbnail>
-                    </Col>
-                    <Col xs={12} md={6}>
-                        <Thumbnail src="https://i.ytimg.com/vi/x9Jr9JKpsX8/maxresdefault.jpg">
-                            <h3>Thumbnail label</h3>
-                            <p>Description</p>
-                            <p>
-                                <Button bsStyle="primary">Like</Button>&nbsp;
-                                <Button bsStyle="default">Comment</Button>
-                            </p>
-                        </Thumbnail>
-                    </Col>
-                    <Col xs={12} md={6}>
-                        <Thumbnail src="https://i.ytimg.com/vi/x9Jr9JKpsX8/maxresdefault.jpg">
-                            <h3>Thumbnail label</h3>
-                            <p>Description</p>
-                            <p>
-                                <Button bsStyle="primary">Like</Button>&nbsp;
-                                <Button bsStyle="default">Comment</Button>
-                            </p>
-                        </Thumbnail>
-                    </Col>
-                    <Col xs={12} md={6}>
-                        <Thumbnail src="https://i.ytimg.com/vi/x9Jr9JKpsX8/maxresdefault.jpg">
-                            <h3>Thumbnail label</h3>
-                            <p>Description</p>
-                            <p>
-                                <Button bsStyle="primary">Like</Button>&nbsp;
-                                <Button bsStyle="default">Comment</Button>
-                            </p>
-                        </Thumbnail>
-                    </Col> */}
                 </Row>
             </Grid>
         )
