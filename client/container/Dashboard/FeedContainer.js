@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Col, Row, Grid, FormGroup, FormControl, Navbar } from 'react-bootstrap';
+import UserFeed from './FeedContainers/UserFeedContainer';
 
 
 class Feed extends React.Component {
@@ -13,15 +14,7 @@ class Feed extends React.Component {
             <div className="feed">
                 <div className="demo-card">
                     <div className="card card-inverse card-primary text-center">
-                        <div className="card-block">
-                            <blockquote className="card-blockquote">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a
-                                    ante.</p>
-                                <footer>Someone famous in
-                                    <cite title="Source Title">Source Title</cite>
-                                </footer>
-                            </blockquote>
-                        </div>
+                        <UserFeed />
                     </div>
                     <div className="card card-inverse card-success text-center">
                         <div className="card-block">
