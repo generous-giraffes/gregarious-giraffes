@@ -3,21 +3,20 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db/index');
-var ImageUploader = require('../utilities/imageUpload');
+var profileImageUploader = require('../utilities/profileImageUpload');
+var UserImageUploader = require('../utilities/userImagesUpload');
 
 router.post('/image', (req, res) => {
 	const onBadImageProcess = (resp) => res.send({status: 'error'});
 	const onGoodImageProcess = (resp) => {
 		db('users').update('image', resp.url).where('email', resp.email)
 			.then((data) => {
-				console.log(resp.url, 'this is the resp.url +++++++');
 				res.send({status: 'success', uri: resp.url});
 			})
 			.catch((err) => console.log(err))
 	}
-
-	//send image info to imageUploader which returns a promise object which will be resolved when the s3 Bucket responds to the request
-  var image = ImageUploader({
+	//send image info to profileImageUploader which returns a promise object which will be resolved when the s3 Bucket responds to the request
+  var image = profileImageUploader({
     data_uri: req.body.data_uri,
     filename: req.body.filename,
     filetype: req.body.filetype,
@@ -25,17 +24,34 @@ router.post('/image', (req, res) => {
   }).then(onGoodImageProcess, onBadImageProcess);
 });
 
-//UPDATE THIS ++++++++++++
 router.get('/image', (req, res) => {
-	console.log('GET request to /image recieved');
-//UserId hardcoded for testing, REFACTOR to use req.body.userId
-  db('users').where({id: 1}).select('image')
-	  .then((img) =>{
-      res.send(img[0].image);
-    })
-		.catch((err) => {
-			console.error(err);
+	let id = req.query.id;
+	console.log('GET request to /image recieved+++++++++++++', id);
+  db('images').where('user_image_id', id)
+		.then((data) => {
+			console.log(data, 'get /image data+++++++++++++')
+			res.send(data);
 		})
+});
+
+router.post('/userImages', (req, res) => {
+	const onBadImageProcess = (resp) => res.send({status: 'error'});
+	const onGoodImageProcess = (resp) => {
+		db('images').insert({image: resp.url, caption: resp.caption, user_image_id: resp.id})
+			.then((data) => {
+				console.log('post to user/images sending stuff back, resp', resp);
+				res.send({status: 'success', uri: resp.url, caption: resp.caption});
+			})
+			.catch((err) => console.log(err))
+	}
+	//send image info to profileImageUploader which returns a promise object which will be resolved when the s3 Bucket responds to the request
+  var image = UserImageUploader({
+    data_uri: req.body.data_uri,
+    filename: req.body.filename,
+    filetype: req.body.filetype,
+		id: req.body.id,
+		caption: req.body.caption
+  }).then(onGoodImageProcess, onBadImageProcess);
 });
 
 module.exports = router;
