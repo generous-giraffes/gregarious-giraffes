@@ -8,7 +8,6 @@ import SignIn from './container/Auth/SignInFormContainer';
 import Dashboard from './components/Dashboard';
 import Survey from './container/User/SurveyFormContainer';
 import ImageUploader from './container/User/ImageUploadContainer';
-import GetImage from './container/User/GetImageContainer';
 import Profile from './components/Profile';
 import FriendProfile from './components/FriendProfile';
 import Events from './components/Events';
