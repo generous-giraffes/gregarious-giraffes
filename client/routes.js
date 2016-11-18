@@ -8,7 +8,6 @@ import SignIn from './container/Auth/SignInFormContainer';
 import Dashboard from './components/Dashboard';
 import Survey from './container/User/SurveyFormContainer';
 import ImageUploader from './container/User/ImageUploadContainer';
-import GetImage from './container/User/GetImageContainer';
 import Profile from './components/Profile';
 import FriendProfile from './components/FriendProfile';
 import Events from './components/Events';
@@ -25,7 +24,6 @@ export default (
         <Route path="survey" component={requireAuthentication(Survey)} />
         <Route path="chat" component={Chat} />
         <Route path="imageUploader" component={ImageUploader} />
-        <Route path="getImage" component={GetImage} />
         <Route path="myProfile" component={Profile} />
         <Route path="friendProfile" component={FriendProfile} />
         <Route path="map" component={SimpleMapPage} />

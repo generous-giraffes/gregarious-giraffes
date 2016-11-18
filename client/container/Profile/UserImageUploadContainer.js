@@ -2,20 +2,19 @@ import React from 'react';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { submitProfileImage } from '../../actions/image';
+import { submitUserImage } from '../../actions/image';
 import { browserHistory } from 'react-router';
 
 //ImageUpload uses FileReader to asynchronously read the contents of an image that the user uploads
-class ImageUpload extends React.Component {
+class UserImageUpload extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      file: '',
-      imagePreviewUrl: '',
       data_uri: '',
       filename: '',
-      filetype: ''
+      filetype: '',
+      caption: ''
     };
   }
   //posts file to db if there has been an image uploaded
@@ -24,19 +23,22 @@ class ImageUpload extends React.Component {
     console.log('handle uploading action about to dispatch', this.state);
     //post request to server goes to imageRoutes and the image gets added to db using userId to find the user
     //only post if there is an image in state
-    if(this.state.imagePreviewUrl) {
-      this.props.submitProfileImage({
-        image: this.state.imagePreviewUrl,
-        email: this.props.email,
+    if(this.state.data_uri && this.state.caption) {
+      this.props.submitUserImage({
+        id: this.props.id,
         data_uri: this.state.data_uri,
         filename: this.state.filename,
-        filetype: this.state.filetype
+        filetype: this.state.filetype,
+        caption: this.state.caption
       });
-      // handle the lack of props before rendering at myProfile
-      browserHistory.push('/myProfile');
     } else {
-      alert('Please upload an image, we want you to have the profile image of your choice!');
+      alert('Please upload an image with a caption, we want you to have cool images to show people!');
     }
+  }
+
+  handleCaptionChange(e) {
+    console.log(e.currentTarget.value, 'handl caption change e current target');
+    this.setState({caption: e.currentTarget.value});
   }
 
   handleImageChange(e) {
@@ -49,22 +51,19 @@ class ImageUpload extends React.Component {
     //on loadend event is triggered when the reader finishes reading, then the state will be set and a preview of the image will be rendered
     reader.onloadend = () => {
       this.setState({
-        file: file,
-        imagePreviewUrl: reader.result,
         data_uri: reader.result,
         filename: file.name,
         filetype: file.type
-
       });
     }
   }
 
   render() {
     //retrieve url from state, then render an image if there is a url else a div
-    let { imagePreviewUrl } = this.state;
+    let { data_uri } = this.state;
     let $imagePreview = null;
-    if(imagePreviewUrl) {
-      $imagePreview = (<img className="previewImage" src={imagePreviewUrl} />);
+    if(data_uri) {
+      $imagePreview = (<img className="previewImage" src={data_uri} />);
     } else {
       $imagePreview = (<div className="previewText">Please select an Image to Upload</div>);
     }
@@ -73,6 +72,7 @@ class ImageUpload extends React.Component {
       <div className="previewComponent">
         <form onSubmit={(e)=>this.handleSubmit(e)}>
           <input className="fileInput" type="file" onChange={(e)=>this.handleImageChange(e)} />
+          <input className="captionInput" type="text" onChange={(e)=>this.handleCaptionChange(e)} />
           <button className="fileUpload" type="submit" onClick={(e)=>this.handleSubmit(e)}>Upload Image</button>
         </form>
         <div className="imgPreview">
@@ -84,11 +84,14 @@ class ImageUpload extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { email: state.reducers.isAuthorized.email }
+  return {
+    email: state.reducers.isAuthorized.email,
+    id: state.reducers.isAuthorized.id
+   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({submitProfileImage}, dispatch);
+  return bindActionCreators({submitUserImage}, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ImageUpload);
+export default connect(mapStateToProps, mapDispatchToProps)(UserImageUpload);

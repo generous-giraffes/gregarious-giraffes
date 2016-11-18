@@ -4,28 +4,28 @@
 //start and setup mysql in termina: $ mysql.server start, then, $ mysql -h localhost -u root -p
 //when in the mysql terminal type: create database giraffeLocal;, and then type: use giraffeLocal;
 
- var knex = require('knex')({
-  client: 'mysql',
-  connection: {
-    host: 'localhost',
-    user: 'root',
-    password: 'a',//your local password for root user
-    database: 'giraffeLocal'
-  }
- });
-
-// var knex = require('knex')({
-//     client: 'mysql',
-//     connection: {
-//         host: 'giraffe.cdt7ljmioe25.us-west-2.rds.amazonaws.com',
-//         user: 'giraffes',
-//         password: 'giraffes',
-//         port: '3306',
-//         database: 'giraffes',
-//         debug: true
-//     },
-//     pool: {min: 0, max: 10}
-// });
+ // var knex = require('knex')({
+ //  client: 'mysql',
+ //  connection: {
+ //    host: 'localhost',
+ //    user: 'root',
+ //    password: 'a',//your local password for root user
+ //    database: 'giraffeLocal'
+ //  }
+ // });
+//
+var knex = require('knex')({
+    client: 'mysql',
+    connection: {
+        host: 'giraffe.cdt7ljmioe25.us-west-2.rds.amazonaws.com',
+        user: 'giraffes',
+        password: 'giraffes',
+        port: '3306',
+        database: 'giraffes',
+        debug: true
+    },
+    pool: {min: 0, max: 10}
+});
 
 //create users table
 knex.schema.hasTable('users').then((exists) => {
@@ -46,7 +46,7 @@ knex.schema.hasTable('users').then((exists) => {
       table.text('hobbies').defaultTo('null')
       table.string('species', 100).defaultTo('null')
       table.text('quote').defaultTo('null')
-      table.text('image').defaultTo('null')//update this with s3 bucket reference
+      table.text('image', 'longtext').defaultTo('null')
 
       console.log('USERS TABLE CREATED');
     })
@@ -55,7 +55,26 @@ knex.schema.hasTable('users').then((exists) => {
     })
   }
 })
-//create friends table
+
+//create images table
+knex.schema.hasTable('images').then((exists) => {
+  if(!exists) {
+    return knex.schema.createTable('images', (table) => {
+      table.increments('id').primary()
+      table.integer('user_image_id').unsigned()
+      table.text('image','longtext').defaultTo('null')
+      table.text('caption').defaultTo('null')
+      table.foreign('user_image_id').references('id').inTable('users')
+
+      console.log('IMAGES TABLE CREATED');
+    })
+    .catch((error) => {
+      throw error;
+    })
+  }
+})
+
+//user friends table
 knex.schema.hasTable('friends').then((exists) => {
   if(!exists) {
     return knex.schema.createTable('friends', (table) => {
@@ -69,6 +88,24 @@ knex.schema.hasTable('friends').then((exists) => {
     .catch((error) => {
       throw error;
     })
+  }
+})
+
+//create event imageComment table
+knex.schema.hasTable('imageComment').then((exists) => {
+    if (!exists) {
+      return knex.schema.createTable('imageComment', (table) => {
+        table.integer('user_comment_id').unsigned()
+        table.integer('image_id').unsigned()
+        table.foreign('user_comment_id').references('id').inTable('users')
+        table.foreign('image_id').references('id').inTable('images')
+        table.text('comment').defaultTo('null')
+
+        console.log('IMAGECOMMENT TABLE CREATED');
+      })
+      .catch((error) => {
+        throw error;
+      })
   }
 })
 
