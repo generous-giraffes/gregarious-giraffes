@@ -1,40 +1,23 @@
 import React, { Component } from 'react';
-import { Button, Col, Row, Grid, FormGroup, FormControl, Thumbnail, Carousel } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { getRecentUsers } from '../../actions/feed';
 
 
+//This was named MyCarousel because it was a carousel, but now it is just a banner showing the current user's name
 class MyCarousel extends Component {
 
     constructor(props) {
         super(props);
-    }
 
-    componentDidMount() {
-        this.props.getRecentUsers();
+        this.state = {}
     }
-
 
     render() {
         return (
             <div className="carousel">
-                <Carousel>
-                    {this.props.recentUsers.map((image) => (
-                    <Carousel.Item>
-                        <Col xs={12} md={6}>
-                            <img src={image.image}/>
-                        </Col>
-                        <Col xs={12} md={6}>
-                            <Carousel.Caption>
-                                <h3>{image.name}</h3>
-                                <p>{image.species}</p>
-                            </Carousel.Caption>
-                        </Col>
-                    </Carousel.Item>
-                    ))}
-                </Carousel>
+                <h1>Welcome {this.props.name}!</h1>
             </div>
         )
     }
@@ -45,13 +28,8 @@ function mapStateToProps(state) {
     return {
         email: state.reducers.isAuthorized.email,
         name: state.reducers.isAuthorized.name,
-        id: state.reducers.isAuthorized.id,
-        recentUsers: state.reducers.feedReducer.recentUsers
+        id: state.reducers.isAuthorized.id
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({getRecentUsers}, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MyCarousel);
+export default connect(mapStateToProps)(MyCarousel);

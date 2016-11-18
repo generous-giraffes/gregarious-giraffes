@@ -24,12 +24,21 @@ class UserFeed extends Component {
                 <div className="card card-inverse card-primary text-center">
                     <div className="card-block">
                         <blockquote className="card-blockquote">
-                            <h5>Name: {e.name}</h5>
-                            <h6>Species: {e.species}</h6>
-                            <h6>Hobbies: {e.hobbies}</h6>
-                            <footer>Quote:
-                                <cite title="Source Title"> {e.quote}</cite>
-                            </footer>
+                            <Grid>
+                                <Row className="myCard">
+                                    <Col xs={12} md={4}>
+                                        <img src={e.image}/>
+                                    </Col>
+                                    <Col xs={12} md={8}>
+                                        <h5>Name: {e.name}</h5>
+                                        <h6>Species: {e.species}</h6>
+                                        <h6>Hobbies: {e.hobbies}</h6>
+                                        <footer>Quote:
+                                            <cite title="Source Title"> {e.quote}</cite>
+                                        </footer>
+                                    </Col>
+                                </Row>
+                            </Grid>
                         </blockquote>
                     </div>
                 </div>
