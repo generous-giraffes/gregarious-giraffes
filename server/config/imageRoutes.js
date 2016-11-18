@@ -1,3 +1,5 @@
+"use strict";
+
 var express = require('express');
 var router = express.Router();
 var db = require('../db/index');
@@ -5,10 +7,11 @@ var ImageUploader = require('../utilities/imageUpload');
 
 router.post('/image', (req, res) => {
 	const onBadImageProcess = (resp) => res.send({status: 'error'});
-	const onGoodImageProcess = ({email, url}) => {
-		db('users').update('image', url).where('email', email)
+	const onGoodImageProcess = (resp) => {
+		db('users').update('image', resp.url).where('email', resp.email)
 			.then((data) => {
-				res.send({status: 'success', uri: url});
+				console.log(resp.url, 'this is the resp.url +++++++');
+				res.send({status: 'success', uri: resp.url});
 			})
 			.catch((err) => console.log(err))
 	}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, browserHistory } from 'react-router';
+import { Router, Link, browserHistory } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 import {Navbar, Nav, MenuItem, NavItem, NavDropdown, Image} from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
@@ -10,18 +10,18 @@ class Navigation extends React.Component {
     constructor(props) {
         super(props);
         this.state = {}
+
     }
 
     componentDidMount() {
         this.props.logoutAndRedirect();
     }
 
-    destroy() {
-        this.props.logoutAndRedirect()
-            .then((data) => {
-                console.log('success on the redirect!!!!')
-            })
-            .catch((err) => console.log(err));
+    logOut(event) {
+        console.log(this.props.token, 'this is the TOKENNNNN')
+        event.preventDefault();
+        this.props.logoutAndRedirect();
+        browserHistory.push('/signin');
     }
 
     componentWillUpdate(nextProps, nextState) {
@@ -54,7 +54,7 @@ class Navigation extends React.Component {
                         </NavDropdown>
                     </Nav>
                     <Nav pullRight>
-                            <NavItem onClick={() => this.destroy()}>Logout</NavItem>
+                            <NavItem onClick={(e) => this.logOut(e)}>Logout</NavItem>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
@@ -76,7 +76,9 @@ function mapStateToProps(state) {
     return {
         email: state.reducers.isAuthorized.email,
         name: state.reducers.isAuthorized.name,
-        id: state.reducers.isAuthorized.id
+        id: state.reducers.isAuthorized.id,
+        token: state.reducers.isAuthorized.token,
+        isAuthenticated: state.reducers.isAuthorized.isAuthenticated
     }
 }
 function mapDispatchToProps(dispatch) {
