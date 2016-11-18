@@ -10,7 +10,9 @@ class DashboardImagesContainer extends Component {
         super(props);
         this.state = {
           open: false,
-          comment: ''
+          comment: '',
+          user_image_id: '',
+          imageId: ''
         }
     }
 
@@ -22,8 +24,10 @@ class DashboardImagesContainer extends Component {
     handleCommentSubmit() {
       let id = this.props.id;
       let comment = this.state.comment;
-      console.log(id, commment, 'id and comment in handle comment dashboardimagescontainer');
-      this.props.commentOnDashImage(id, comment);
+      let imageId = this.state.imageId;
+      let user_image_id = this.state.user_image_id;
+      console.log(id, comment, imageId,user_image_id,'id and comment ,imageId,  user_image_idin handle comment dashboardimagescontainer');
+      this.props.commentOnDashImage(id, comment, imageId, user_image_id);
     }
 
     handleCommentChange(e) {
@@ -31,8 +35,20 @@ class DashboardImagesContainer extends Component {
       this.setState({comment: e.currentTarget.value});
     }
 
+    close() {
+      this.setState({ open: false });
+    }
+
+    open(e) {
+      let imageId = e.currentTarget.getAttribute('data-imageId');
+      let user_image_id = e.currentTarget.getAttribute('data-user_image_id');
+      console.log(imageId, 'image Id for submission');
+      this.setState({ open: true, imageId, user_image_id });
+    }
+
 
     render() {
+      console.log(this.props.dashImages, 'dash images');
         return (
             <Grid className="photos">
                 <Modal show={this.state.open} onHide={() => {this.close()}}>
@@ -56,9 +72,15 @@ class DashboardImagesContainer extends Component {
                   <Col xs={12} md={6}>
                       <Thumbnail src={image.image}>
                           <h3>{image.name}: {image.caption}</h3>
+                          <ul>{image.comments.map((comment)=> (<li>{comment}</li>))}</ul>
                           <p>
-                              <Button bsStyle="primary">Like</Button>
-                              <Button bsStyle="default">Comment</Button>
+                              <Button
+                                  onClick={(e) => {this.open(e)}}
+                                  data-imageId={image.id}
+                                  data-user_image_id={image.user_image_id}
+                                  bsStyle="default">
+                                  Comment
+                                </Button>
                           </p>
                       </Thumbnail>
                   </Col>
