@@ -1,13 +1,13 @@
-import { SHOW_USERS } from '../actions/feed';
+import { GET_RECENT_USERS } from '../actions/feed';
 
-export function feed_Reducer(state = {users: []}, action) {
+export function feed_Reducer(state = {recentUsers: []}, action) {
     switch (action.type) {
-        case SHOW_USERS:
-            let users = [
+        case GET_RECENT_USERS:
+            let recentUsers = [
                 ...state.users,
                 ...action.data.data
             ];
-            return Object.assign({}, state, {users});
+            return Object.assign({}, state, {recentUsers});
         default:
             return state;
     }
