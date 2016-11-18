@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Modal, Row, Col, Grid, Thumbnail, Button } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getDashboardImages, commentOnDashImage } from '../../../actions/image';
+import { getDashboardImages, commentOnDashImage } from '../../../actions/feed';
 import { toastr } from 'react-redux-toastr';
 
 class DashboardImagesContainer extends Component {
@@ -115,7 +115,7 @@ function mapStateToProps(state) {
         email: state.reducers.isAuthorized.email,
         name: state.reducers.isAuthorized.name,
         id: state.reducers.isAuthorized.id,
-        dashImages: state.reducers.image.dashImages
+        dashImages: state.reducers.feedReducer.dashImages
     }
 }
 

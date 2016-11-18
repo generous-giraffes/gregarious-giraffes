@@ -4,8 +4,7 @@ export const SUBMIT_PROFILE_IMAGE = 'SUBMIT_PROFILE_IMAGE';
 export const GET_PROFILE_IMAGE = 'GET_PROFILE_IMAGE';
 export const POST_USER_IMAGE = 'POST_USER_IMAGE';
 export const GET_USER_IMAGES = 'GET_USER_IMAGES';
-export const GET_DASH_IMAGES = 'GET_DASH_IMAGES';
-export const COMMENT_ON_DASH_IMAGE = 'COMMENT_ON_DASH_IMAGE';
+
 
 export function submitProfileImage(data) {
   console.log(data, 'SUBMIT_PROFILE_IMAGE action');
@@ -65,33 +64,6 @@ export function getProfileImage(id) {
 
   return {
     type: GET_PROFILE_IMAGE,
-    payload: response
-  }
-}
-
-export function getDashboardImages() {
-  console.log( 'GET_DASH_IMAGES action');
-  let response = axios.get('/api/dashboardImages')
-    .then((res) => res.data)
-    .catch((error) => console.error(error));
-
-  return {
-    type: GET_DASH_IMAGES,
-    payload: response
-  }
-}
-
-export function commentOnDashImage(userId, comment) {
-  console.log(userId, comment, 'COMMENT_ON_DASH_IMAGE action');
-  let response = axios.post('/api/dashboardComment', {
-    id: userId,
-    comment: comment
-  })
-    .then((res) => res.data)
-    .catch((error) => console.error(error));
-
-  return {
-    type: COMMENT_ON_DASH_IMAGE,
     payload: response
   }
 }
