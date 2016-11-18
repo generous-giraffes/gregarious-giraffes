@@ -31,11 +31,13 @@ export function getDashboardImages() {
   }
 }
 
-export function commentOnDashImage(userId, comment) {
+export function commentOnDashImage(userId, comment, imageId, user_image_id) {
   console.log(userId, comment, 'COMMENT_ON_DASH_IMAGE action');
   let response = axios.post('/api/dashboardComment', {
     id: userId,
-    comment: comment
+    comment,
+    imageId,
+    user_image_id
   })
     .then((res) => res.data)
     .catch((error) => console.error(error));
