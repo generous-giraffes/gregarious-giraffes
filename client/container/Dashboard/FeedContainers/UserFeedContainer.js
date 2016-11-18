@@ -14,7 +14,6 @@ class UserFeed extends Component {
 
     componentDidMount() {
         this.props.getRecentUsers();
-        console.log('getRecent users all users for dashboard feed');
     }
 
 
