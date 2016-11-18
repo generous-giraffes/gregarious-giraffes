@@ -6,13 +6,14 @@ var db = require('../db/index');
 
 
 //get all the users for the dashboard feed to show the latest ten
-router.get('/users', (req, res) => {
+router.get('/dashboardUsers', (req, res) => {
     console.log('get request to /users received for DASH FEED');
-    db('users').select('*')
+    db('users')
+        .select('*')
+        .limit(10)
         .then((data) => res.send(data))
         .catch((err) => console.error(err));
 });
-
 
 router.post('/dashboardComment', (req, res) => {
 	db('imageComment')
@@ -22,16 +23,6 @@ router.post('/dashboardComment', (req, res) => {
 		})
 		.catch((err) => console.log(err))
 });
-//this one may not be needed if the get to sashboarDimages gets the comments too
-// router.get('/dashboardImageComments', (req, res) => {
-// 	console.log('GET request to /dashboardImageComments recieved');
-//   db('imageComment')
-// 		.then((data) => {
-// 			console.log(data, 'get /dashboardImageComments data')
-// 			res.send(data);
-// 		})
-//     .catch((err) => console.log(err))
-// });
 
 router.get('/dashboardImages', (req, res) => {
 	console.log('GET request to /dashboardImageComments recieved');
@@ -48,3 +39,14 @@ router.get('/dashboardImages', (req, res) => {
 
 
 module.exports = router;
+
+//this one may not be needed if the get to sashboarDimages gets the comments too
+// router.get('/dashboardImageComments', (req, res) => {
+// 	console.log('GET request to /dashboardImageComments recieved');
+//   db('imageComment')
+// 		.then((data) => {
+// 			console.log(data, 'get /dashboardImageComments data')
+// 			res.send(data);
+// 		})
+//     .catch((err) => console.log(err))
+// });

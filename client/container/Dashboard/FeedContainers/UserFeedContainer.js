@@ -3,7 +3,7 @@ import { Button, Col, Row, Grid, FormGroup, FormControl, Navbar } from 'react-bo
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { getUsers } from '../../../actions/feed';
+import { getRecentUsers } from '../../../actions/feed';
 
 
 class UserFeed extends Component {
@@ -13,13 +13,15 @@ class UserFeed extends Component {
     }
 
     componentDidMount() {
-        this.props.getUsers();
+        this.props.getRecentUsers();
     }
 
 
     render() {
+        console.log(this.props.users, "THESE ARE TEH USERS!");
         return (
             <div className="card-block">
+
                 <blockquote className="card-blockquote">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a
                         ante.</p>
@@ -35,12 +37,13 @@ class UserFeed extends Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.reducers.isAuthorized
+        user: state.reducers.isAuthorized,
+        users: state.reducers.users
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({getUsers}, dispatch);
+    return bindActionCreators({getRecentUsers}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserFeed);
