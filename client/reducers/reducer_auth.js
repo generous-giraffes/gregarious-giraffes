@@ -1,4 +1,4 @@
-import { SIGNUP_USER, LOGIN_USER } from '../actions/auth';
+import { SIGNUP_USER, LOGIN_USER, LOGOUT_USER } from '../actions/auth';
 
 export function auth_Reducer(state = {}, action) {
     switch (action.type) {
@@ -30,6 +30,9 @@ export function auth_Reducer(state = {}, action) {
                     quote: action.data.quote,
                     image: action.data.image
                 });
+        case LOGOUT_USER:
+            console.log('auth reducer, LOGGG OUTTTT', action.data, action.type);
+            return Object.assign({}, {isAuthenticated: false});
         default:
             return state;
     }

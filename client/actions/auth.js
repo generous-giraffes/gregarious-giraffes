@@ -64,7 +64,6 @@ export function signinUser(email, password) {
 }
 
 export function logoutAndRedirect() {
-    localStorage.removeItem('token');
 
     return {
         type: LOGOUT_USER

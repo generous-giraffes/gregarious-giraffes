@@ -8,10 +8,16 @@ var ImageUploader = function(options){
   var deferred = Q.defer();
   var buf = new Buffer(options.data_uri.replace(/^data:image\/\w+;base64,/, ""),'base64');
 
+  //var knoxClient = knox.createClient({
+  //  key: '',//use .env for these
+  //  secret: '',
+  //  bucket: ''
+  //});
+
   var knoxClient = knox.createClient({
-    key: '',//use .env for these
-    secret: '',
-    bucket: ''
+    key: 'AKIAJDZGCTJ676WJRFXA',
+    secret: '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',
+    bucket: 'giraffepawprints'
   });
 
   // endpoint and options for the request headers to the s3 bucket, sent with req.end(buf)

@@ -5,28 +5,28 @@
 //when in the mysql terminal type: create database giraffeLocal;, and then type: use giraffeLocal;
 
 
- //var knex = require('knex')({
- // client: 'mysql',
- // connection: {
- //   host: 'localhost',
- //   user: 'root',
- //   password: 'a',//your local password for root user
- //   database: 'giraffeLocal'
- // }
- //});
-
  var knex = require('knex')({
-     client: 'mysql',
-     connection: {
-         host: 'giraffe.cdt7ljmioe25.us-west-2.rds.amazonaws.com',
-         user: 'giraffes',
-         password: 'giraffes',
-         port: '3306',
-         database: 'giraffes',
-         debug: true
-     },
-     pool: {min: 0, max: 10}
+  client: 'mysql',
+  connection: {
+    host: 'localhost',
+    user: 'root',
+    password: 'admin',//your local password for root user
+    database: 'giraffeLocal'
+  }
  });
+
+ //var knex = require('knex')({
+ //    client: 'mysql',
+ //    connection: {
+ //        host: 'giraffe.cdt7ljmioe25.us-west-2.rds.amazonaws.com',
+ //        user: 'giraffes',
+ //        password: 'giraffes',
+ //        port: '3306',
+ //        database: 'giraffes',
+ //        debug: true
+ //    },
+ //    pool: {min: 0, max: 10}
+ //});
 
 //create users table
 knex.schema.hasTable('users').then((exists) => {

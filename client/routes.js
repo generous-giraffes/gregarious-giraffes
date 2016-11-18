@@ -21,14 +21,14 @@ export default (
         <IndexRoute component={SignUp}/>
         <Route path="signIn" component={SignIn}/>
         <Route path="signUp" component={SignUp}/>
-        <Route path="dashboard" component={Dashboard}/>
+        <Route path="dashboard" component={requireAuthentication(Dashboard)}/>
         <Route path="survey" component={requireAuthentication(Survey)} />
-        <Route path="chat" component={Chat} />
-        <Route path="imageUploader" component={ImageUploader} />
-        <Route path="getImage" component={GetImage} />
-        <Route path="myProfile" component={Profile} />
-        <Route path="friendProfile" component={FriendProfile} />
-        <Route path="map" component={SimpleMapPage} />
-        <Route path="events" component={Events}/>
+        <Route path="chat" component={requireAuthentication(Chat)} />
+        <Route path="imageUploader" component={requireAuthentication(ImageUploader)} />
+        <Route path="getImage" component={requireAuthentication(GetImage)} />
+        <Route path="myProfile" component={requireAuthentication(Profile)} />
+        <Route path="friendProfile" component={requireAuthentication(FriendProfile)} />
+        <Route path="map" component={requireAuthentication(SimpleMapPage)} />
+        <Route path="events" component={requireAuthentication(Events)}/>
     </Route>
 );
