@@ -4,13 +4,13 @@ var db = require('../db/index');
 
 // post chat responses - insert into db
 router.post('/chat', (req, res) => {
-    var message = req.body.comment.text;
-    var userName = req.body.comment.author;
-    console.log('post request to /chat received', message);
+    var comment = req.body.comment.text; //data from saveChat is req.body (from the post request - only the client does the post request)
+    var name = req.body.user.name;
+    console.log('post request to /chat received', comment);
     db('chats')
         .insert({
-            comment: message,
-            name: userName
+            comment: comment,
+            name: name
         })
         .then((data) => {
             return db('chats').select('*');
@@ -27,6 +27,7 @@ router.get('/chat', (req, res) => {
 
     db('chats').select('*')
         .then((data) => {
+            //this is the data server is sending down from the GET request: {"data":[{"id":1,"name":"skipo","comment":"hey my name is skipo"}]}
             console.log('+++data inside router.get()', data);
             res.json({data: data});
         })
