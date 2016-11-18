@@ -4,9 +4,9 @@
         width: 100%;
         .banner {
             text-align: center;
-            height: 300px;
             background: $dark-blue;
             margin-bottom: 20px;
+            color: $white;
         }
         .thumbnail {
             text-align: center;
@@ -15,6 +15,13 @@
                 img {
                     max-width: 300px;
                     max-height: 400px;
+                }
+            }
+        }
+        .feed {
+            .card-block {
+                img {
+                    width: 100px;
                 }
             }
         }
