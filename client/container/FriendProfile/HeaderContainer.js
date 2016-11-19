@@ -14,7 +14,7 @@ class ProfileHeader extends Component {
       return(
         <Row className="profile-user">
             <Col className='profile-image' xs={12} md={4}>
-                <Thumbnail className='user-image' href="#" alt="Your image was too large, please upload one that is less than 1.6mb" src={this.props.image || '../../styles/assets/sadPup.jpg'} />
+                <Thumbnail className='user-image' href="#" alt="looks like we can't find this image, try again later" src={this.props.image || '../../styles/assets/sadPup.jpg'} />
                 </Col>
             <Col xs={12} md={8}>
                 <PageHeader> {this.props.name}'s Page <small>  As I say:{this.props.quote}</small></PageHeader>

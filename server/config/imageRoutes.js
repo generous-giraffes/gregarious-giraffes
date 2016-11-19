@@ -30,16 +30,16 @@ router.get('/profileImage', (req, res) => {
 
 router.get('/userImages', (req, res) => {
 	let id = req.query.id;
-  db('images').where('user_image_id', id).select('image', 'caption')
+  db('images').where('user_image_id', id).select('image', 'caption', 'file_type')
 		.then((data) => res.send(data))
 });
 
 router.post('/userImages', (req, res) => {
 	const onBadImageProcess = (resp) => res.send({status: 'error'});
 	const onGoodImageProcess = (resp) => {
-		db('images').insert({image: resp.url, caption: resp.caption, user_image_id: resp.id})
+		db('images').insert({image: resp.url, caption: resp.caption, user_image_id: resp.id, file_type: resp.type})
 			.then((data) => {
-				res.send({status: 'success', uri: resp.url, caption: resp.caption});
+				res.send({status: 'success', uri: resp.url, caption: resp.caption, file_type: resp.type});
 			})
 			.catch((err) => console.log(err))
 	}

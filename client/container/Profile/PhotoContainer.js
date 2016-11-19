@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Row, Col, Grid, Thumbnail, Button } from 'react-bootstrap';
+import { Row, Col, Grid, Thumbnail, Button, ResponsiveEmbed } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { submitUserImage, getUserImages } from '../../actions/image';
@@ -24,10 +24,32 @@ class Photos extends Component {
                 <Row>
                 {this.props.images.map((image) => (
                   <Col xs={12} md={6}>
-                      <Thumbnail src={image.image}>
+                      {image.file_type === 'video/mp4' ?
+                          (
+                            <div style={{width: 'auto', height: 'auto'}}>
+                                <ResponsiveEmbed a16by9>
+                                    <embed type="video/mp4" src={image.uri}/>
+                                </ResponsiveEmbed>
+                            </div>
+                          //   <Thumbnail >
+                          //     {/* <iframe
+                          //       src={image.uri}
+                          //       frameBorder='0'
+                          //       webkitAllowFullScreen
+                          //       mozallowfullscreen
+                          //       allowFullScreen>
+                          //     </iframe> */}
+                          //     <h3>{image.caption}</h3>
+                          // </Thumbnail>
+                        )
+                          : (<Thumbnail src={image.image}>
+                              <h3>{image.caption}</h3>
+                           </Thumbnail>)
+                      }
+                      {/* <Thumbnail src={image.image}>
                           <img src={image.uri}/>
                           <h3>{image.caption}</h3>
-                      </Thumbnail>
+                      </Thumbnail> */}
                   </Col>
                 ))}
                 </Row>
