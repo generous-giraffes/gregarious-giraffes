@@ -6,12 +6,16 @@ import { getEvent, attendEvent } from '../../actions/eventForm';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import SimpleMapPage from '../Features/MapContainer';
+import { toastr } from 'react-redux-toastr';
 
 
 
 class EventList extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            event: ''
+        }
     }
 
     componentDidMount() {
@@ -75,7 +79,12 @@ class EventList extends React.Component {
                                                                 <Button
                                                                     className="events-btn"
                                                                     bsStyle="success"
-                                                                    onClick={(e) => this.attend(e)}
+                                                                    onClick={(e) => {
+                                                                    this.attend(e)
+                                                                    toastr.success('Event Success!', `You added the event`);
+                                                                    setTimeout(() => {this.close()}, 2500)
+                                                                    }}
+
                                                                     data-eventID={e.id}
                                                                     data-index={i}>
                                                                     Attend Event
