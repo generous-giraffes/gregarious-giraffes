@@ -1,6 +1,6 @@
-import { GET_RECENT_USERS, GET_DASH_IMAGES, COMMENT_ON_DASH_IMAGE } from '../actions/feed';
+import { GET_RECENT_USERS, GET_DASH_IMAGES, COMMENT_ON_DASH_IMAGE, GET_BDAYS } from '../actions/feed';
 
-export function feed_Reducer(state = { dashImages: [], recentUsers: [] }, action) {
+export function feed_Reducer(state = { dashImages: [], recentUsers: [], birthdays: [] }, action) {
   switch (action.type) {
 
     case GET_RECENT_USERS:
@@ -15,6 +15,9 @@ export function feed_Reducer(state = { dashImages: [], recentUsers: [] }, action
 
       case COMMENT_ON_DASH_IMAGE:
         return Object.assign({}, state, {dashImages: action.payload});
+
+      case GET_BDAYS:
+        return Object.assign({}, state, {birthdays: action.payload});
 
       default:
           return state;

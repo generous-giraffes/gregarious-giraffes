@@ -3,12 +3,10 @@ import { Button, Col, Row, Grid, FormGroup, FormControl, Navbar } from 'react-bo
 import UserFeed from './FeedContainers/UserFeedContainer';
 import ImageFeed from './FeedContainers/DashboardImagesContainer';
 
-
 class Feed extends React.Component {
     constructor(props) {
         super(props);
     }
-
 
     render() {
         return (

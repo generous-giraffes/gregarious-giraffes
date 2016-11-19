@@ -20,7 +20,7 @@ class ProfileHeader extends Component {
       setTimeout( () => {   message = this.props.profileImage ? null
       : (<Modal.Dialog>
             <Modal.Header>
-                <Modal.Title>The image you uploaded was too large, please go back and upload an image smaller than 1.6mb! Thanks!</Modal.Title>
+                <Modal.Title>The image you uploaded was misplaced, please go back and upload another. Thanks!</Modal.Title>
             </Modal.Header>
             <Modal.Footer>
                 <Button onClick={this.goBack} bsStyle="success">Back</Button>

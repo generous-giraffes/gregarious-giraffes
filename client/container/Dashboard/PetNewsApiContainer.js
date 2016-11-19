@@ -35,9 +35,8 @@ class PetNewsSearch extends Component {
         if (this.props.pet.articles) {
             let pet = this.props.pet.articles;
             let filtered =
-                pet
-                    .filter((p) => p['snippet'] !== null && p['web_url'] !== null && p['multimedia'] !== null && p['headline'] !== null)
-                    .slice(0, 4);
+                pet.filter((article) => article['snippet'] !== null && article['web_url'] !== null && article.multimedia.length >= 1 && article['headline'] !== null)
+                   .slice(0, 4);
             let first = filtered[0];
             let second = filtered[1];
             let third = filtered[2];

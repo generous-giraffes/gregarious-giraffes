@@ -40,6 +40,7 @@ router.post('/dashboardComment', (req, res) => {
 		// })
 		.catch((err) => console.log(err))
 });
+
 //return photos with info on the user who uploaded the photo, and any comments
 router.get('/dashboardImages', (req, res) => {
 	console.log('GET request to /dashboardImages recieved');
@@ -56,6 +57,16 @@ router.get('/dashboardImages', (req, res) => {
   )
     .catch((err) => console.log(err))
 });
+
+//get matches for current month's birthday from db
+router.get('/dashboardBdays', (req, res) => {
+  console.log('get request to /dashboardBdays recieved, month:', req.query.month);
+  let month = req.query.month;
+  //dob in databse is YYYY-MM-DD so -month- will select matches to the middle (month) value
+  db('users').select('*').where('dob', 'like', `%-${month}-%`)
+    .then((data) => res.send(data))
+    .catch((err) => console.log(err))
+})
 
 
 module.exports = router;
