@@ -48,10 +48,17 @@ router.get('/users/friends', (req, res) => {
       .then((data) => res.send(data))
   	  .catch((err) => console.error(err));
 });
+//retrieve friend's photos
+router.get('/users/friendsImages', (req, res) => {
+  let id = req.query.id;
+  db('images').select('*').where('user_image_id', id)
+    .then((data) => res.send(data))
+	  .catch((err) => console.error(err));
+});
 
 router.get('/users/search', (req,res) => {
   let name = req.query.name
-    db('users').select('*').where('name', name)
+    db('users').select('*').where('name','like', `%${name}%`)
       .then((data) => {
         console.log(data, 'search function data');
         res.send(data);

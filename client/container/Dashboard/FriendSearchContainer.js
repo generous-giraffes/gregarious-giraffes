@@ -22,10 +22,7 @@ class FriendSearch extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-  //get the intial ten users for the dropdown menu and get the total number of users in the db, or not
-  componentDidMount() {
 
-  }
   //when button is clicked a request goes to db to see if mathcing name is there
   handleSubmit(e) {
     e.preventDefault()
