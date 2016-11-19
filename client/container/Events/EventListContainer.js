@@ -12,7 +12,9 @@ import SimpleMapPage from '../Features/MapContainer';
 class EventList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            isButtonDisabled: false
+        }
     }
 
     componentDidMount() {
@@ -23,6 +25,9 @@ class EventList extends React.Component {
     attend(e) {
         let user_id = this.props.id; //this is the id of signed in user
         let event_id = e.currentTarget.getAttribute('data-eventID');
+        this.setState({
+            isButtonDisabled: true
+        })
         this.props.attendEvent(event_id, user_id)
             .then((data) => {
                 console.log('success on adding an event!!!!')
@@ -78,6 +83,7 @@ class EventList extends React.Component {
                                                                     bsStyle="success"
                                                                     onClick={(e) => this.attend(e)}
                                                                     data-eventID={e.id}
+                                                                    disabled={this.state.isButtonDisabled}
                                                                     data-index={i}>
                                                                     Attend Event
                                                                 </Button>
