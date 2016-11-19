@@ -10,10 +10,9 @@ router.post('/attendEvent', (req, res) => {
     let event_id = req.body.event_id;
     console.log(req.body, 'seeing if this is the right id');
     console.log(event_id, 'seeing if this is the right event_id');
-    db('attendingEvents').insert({
-        user_id: user_id,
-        event_id: event_id
-    }).then((data) => {
+    db('attendingEvents')
+        .insert({ user_id: user_id, event_id: event_id})
+        .then((data) => {
             event_id = data[0].id;
             console.log(data, 'this is the data from the eventFEED ROUTES');
             res.send(data);
@@ -28,6 +27,7 @@ router.get('/attendEvent', (req, res) => {
       .join('attendingEvents as aE', 'users.id', '=', 'aE.user_id')
       .join('events as e', 'e.id', '=', 'aE.event_id')
       .where('users.id', userId)
+      .distinct('user_id', 'event_id')
       .select('e.name', 'e.location', 'e.date', 'e.time', 'e.gifts', 'e.animals', 'e.eating', 'e.danger', 'e.address', 'e.coordinates')
         .then((data) => {
             res.send(data);

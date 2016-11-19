@@ -12,7 +12,6 @@ import SimpleMapPage from '../Features/MapContainer';
 class EventList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
     }
 
     componentDidMount() {

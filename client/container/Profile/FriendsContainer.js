@@ -10,8 +10,9 @@ class Friends extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open1: false,
-      open2: false
+        open1: false,
+        open2: false,
+        isButtonDisabled: false
     }
     this.goBack = this.goBack.bind(this);
     this.getFriends = this.getFriends.bind(this);
@@ -81,12 +82,6 @@ class Friends extends Component {
                 Your Friends
             </Button>
             <Panel collapsible expanded={this.state.open2}>
-                <Panel header="Benny" bsStyle="primary">
-                  Benny likes to sleep and mess up the sofa
-                </Panel>
-                <Panel header="Margaret Thatcher" bsStyle="primary">
-                  Margaret likes to be a classic dog
-                </Panel>
                 {this.props.friends.map((friend, i)=>
                   <Panel header={friend.name} bsStyle="primary">
                       <p>{friend.quote}</p>
