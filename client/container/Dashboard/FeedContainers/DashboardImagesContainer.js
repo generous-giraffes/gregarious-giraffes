@@ -26,8 +26,9 @@ class DashboardImagesContainer extends Component {
       let comment = this.state.comment;
       let imageId = this.state.imageId;
       let user_image_id = this.state.user_image_id;
-      console.log(id, comment, imageId,user_image_id,'id and comment ,imageId,  user_image_idin handle comment dashboardimagescontainer');
-      this.props.commentOnDashImage(id, comment, imageId, user_image_id);
+      let userName = this.props.name;
+      console.log(id, comment, imageId,user_image_id,userName,'id and comment ,imageId,  user_image_idin handle comment dashboardimagescontainer');
+      this.props.commentOnDashImage(id, comment, imageId, user_image_id, userName);
     }
 
     handleCommentChange(e) {
@@ -72,7 +73,9 @@ class DashboardImagesContainer extends Component {
                   <Col xs={12} md={6}>
                       <Thumbnail src={image.image}>
                           <h3>{image.name}: {image.caption}</h3>
-                          <ul>{image.comments.map((comment)=> (<li>{comment}</li>))}</ul>
+                          {image.comments.map((comment)=> {
+                            return comment[0] ? (<p>{comment[0]} commented: {comment[1]}</p>) : null;
+                          })}
                           <p>
                               <Button
                                   onClick={(e) => {this.open(e)}}

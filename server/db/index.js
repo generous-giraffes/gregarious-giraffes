@@ -9,7 +9,7 @@ var knex = require('knex')({
   connection: {
     host: 'localhost',
     user: 'root',
-    password: 'admin',//your local password for root user
+    password: 'a',//your local password for root user
     database: 'giraffeLocal'
   }
 });
@@ -33,8 +33,8 @@ knex.schema.hasTable('users').then((exists) => {
   if(!exists) {
     return knex.schema.createTable('users', (table) => {
       //from and for authentication
-      table.string('name', 40).notNullable().defaultTo('jake smith')
-      table.string('email', 40).notNullable().unique()
+      table.string('name', 100).notNullable().defaultTo('someone')
+      table.string('email', 100).notNullable().unique()
       table.text('password').notNullable()
       table.increments('id').primary()
       //from survey form
@@ -95,12 +95,11 @@ knex.schema.hasTable('friends').then((exists) => {
 knex.schema.hasTable('imageComment').then((exists) => {
     if (!exists) {
       return knex.schema.createTable('imageComment', (table) => {
-        table.integer('user_comment_id').unsigned()
+        table.string('commenter_name').notNullable().defaultTo('someone')
         table.integer('image_id').unsigned()
         table.integer('userImageId').unsigned()
         table.text('comment').defaultTo('null')
-        table.foreign('user_comment_id').references('id').inTable('users')
-        table.foreign('userImageId').references('user_image_id').inTable('images')
+        table.foreign('userImageId').references('id').inTable('users')
         table.foreign('image_id').references('id').inTable('images')
 
         console.log('IMAGECOMMENT TABLE CREATED');

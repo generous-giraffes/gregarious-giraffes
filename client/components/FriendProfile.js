@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import {  Col, Row, Grid, Button } from 'react-bootstrap';
 import ProfileHeader from '../container/FriendProfile/HeaderContainer';
 import SurveyInfo from '../container/FriendProfile/SurveyInfoContainer';
+import FriendImages from '../container/FriendProfile/FriendImagesContainer';
 
 class FriendProfile extends React.Component {
   constructor(props) {
@@ -16,18 +17,17 @@ class FriendProfile extends React.Component {
     browserHistory.goBack();
   }
 
-  friend() {
-
-  }
-
   render() {
     return(
         <Grid className='myProfile'>
             <ProfileHeader />
             <Row className="profile-data">
-                <Col xs={12} md={12}>
+                <Col xs={12} md={6}>
                     <Button onClick={this.goBack} >Go Back</Button>
                     <SurveyInfo />
+                </Col>
+                <Col xs={12} md={6}>
+                    <FriendImages />
                 </Col>
             </Row>
         </Grid>
