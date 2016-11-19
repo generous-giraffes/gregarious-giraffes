@@ -21,7 +21,7 @@ class EventInfo extends Component {
     render() {
       return(
         <div className="events-div">
-            <Button className="events-btn" bsStyle="success" onClick={ ()=> this.setState({ open1: !this.state.open1 })}>
+            <Button className="events-btn" bsStyle="primary" onClick={ ()=> this.setState({ open1: !this.state.open1 })}>
             View Events
             </Button>
             <Panel collapsible expanded={this.state.open1}>

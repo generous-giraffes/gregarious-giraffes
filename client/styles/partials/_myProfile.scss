@@ -60,4 +60,13 @@
       margin: auto;
     }
   }
+  .photos.container {
+    background: $dark-blue;
+    margin-bottom: 20px;
+
+    .user-image-upload {
+      margin: 15px;
+      color: $white;
+    }
+  }
 }

@@ -212,6 +212,7 @@ class CreateEvent extends React.Component {
 
                     <FormGroup >
                         <ControlLabel>Address</ControlLabel>
+                        <br></br>
                         <SearchBox ref='Search' onSubmit={this.onPlaceChange}></SearchBox>
                       </FormGroup>
 

@@ -6,6 +6,7 @@ import { submitUserImage } from '../../actions/image';
 import { browserHistory } from 'react-router';
 import { FormGroup } from 'react-bootstrap';
 import { toastr } from 'react-redux-toastr';
+import { Col, Row, Grid } from 'react-bootstrap';
 
 const toastrOptions = {
   timeOut: 3000
@@ -68,28 +69,34 @@ class UserImageUpload extends React.Component {
     //retrieve url from state, then render an image if there is a url else a div
     let { data_uri } = this.state;
     let preview = null;
+    let preview2 = null;
     if(data_uri) {
       preview = this.state.filetype === 'video/mp4' ?
           (<iframe src={data_uri} frameBorder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen />)
         : (<img className="previewImage" src={data_uri} />)
     } else {
-      preview = (<div className="previewText">Please select an Image to Upload</div>);
+      preview2 = (<div className="previewText">Please select an Image to Upload</div>);
     }
 
     return (
-      <div className="previewComponent">
-      <FormGroup>
-          <form onSubmit={(e)=>this.handleSubmit(e)}>
-              <input className="fileInput" type="file" onChange={(e)=>this.handleImageChange(e)} />
-              <input className="captionInput" type="text" onChange={(e)=>this.handleCaptionChange(e)} />
-              <button className="fileUpload" type="submit" onClick={(e)=>this.handleSubmit(e)}>Upload Image</button>
-          </form>
-          <p>make sure the filename contains no spaces or special characters, thanks!</p>
-      </FormGroup>
-        <div className="imgPreview">
-          {preview}
-        </div>
-      </div>
+      <Grid className="user-image-upload">
+        <Row className="show-grid">
+          <Col xs={12} className="previewComponent">
+            <h3>{preview2}</h3>
+            <FormGroup>
+              <form onSubmit={(e)=>this.handleSubmit(e)}>
+                <input className="fileInput" type="file" onChange={(e)=>this.handleImageChange(e)}/>
+                <input className="captionInput" type="text" onChange={(e)=>this.handleCaptionChange(e)}/>
+                <button className="fileUpload" type="submit" onClick={(e)=>this.handleSubmit(e)}>Upload Image</button>
+              </form>
+              <p>Please ensure your file contains no spaces or special characters.</p>
+            </FormGroup>
+            <div className="imgPreview">
+              {preview}
+            </div>
+          </Col>
+        </Row>
+      </Grid>
     )
   }
 }
