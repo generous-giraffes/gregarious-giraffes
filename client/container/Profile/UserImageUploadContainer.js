@@ -65,28 +65,13 @@ class UserImageUpload extends React.Component {
   }
 
   render() {
-    console.log('+++++++++==============', this.state.filetype);
     //retrieve url from state, then render an image if there is a url else a div
     let { data_uri } = this.state;
     let $imagePreview = null;
     if(data_uri) {
       preview = this.state.filetype === 'video/mp4' ?
-        (<img className="previewImage" src={data_uri} />)
-        : (<iframe
-            src={data_uri}
-            frameBorder='0'
-            webkitAllowFullScreen
-            mozallowfullscreen
-            allowFullScreen
-          />)
-      // preview = (<img className="previewImage" src={data_uri} />);
-  //     preview = (<iframe
-  //   src={data_uri}
-  //   frameBorder='0'
-  //   webkitAllowFullScreen
-  //   mozallowfullscreen
-  //   allowFullScreen
-  // />)
+          (<iframe src={data_uri} frameBorder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen />)
+        : (<img className="previewImage" src={data_uri} />)
     } else {
       preview = (<div className="previewText">Please select an Image to Upload</div>);
     }
