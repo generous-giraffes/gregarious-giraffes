@@ -25,10 +25,9 @@ class UserImageUpload extends React.Component {
   //posts file to db if there has been an image uploaded
   handleSubmit(e) {
     e.preventDefault();
-    console.log('handle uploading action about to dispatch', this.state);
     //post request to server goes to imageRoutes and the image gets added to db using userId to find the user
     //only post if there is an image in state
-    if(this.state.data_uri && this.state.caption) {
+    if(this.state.data_uri && this.state.caption && !chars.includes(' ') && !chars.includes('(') && !chars.includes(')')) {
       this.props.submitUserImage({
         id: this.props.id,
         data_uri: this.state.data_uri,
@@ -43,7 +42,6 @@ class UserImageUpload extends React.Component {
   }
 
   handleCaptionChange(e) {
-    console.log(e.currentTarget.value, 'handl caption change e current target');
     this.setState({caption: e.currentTarget.value});
   }
 
@@ -52,16 +50,22 @@ class UserImageUpload extends React.Component {
     //FileReader asynchronously reads file/blob contents
     let reader = new FileReader();
     let file = e.target.files[0];
-    //reads contents of the file. When the read operation is done, the result attribute will contain the data as a URL representing the file's data as a base64 encoded string.
-    reader.readAsDataURL(file);
-    //on loadend event is triggered when the reader finishes reading, then the state will be set and a preview of the image will be rendered
-    reader.onloadend = () => {
-      this.setState({
-        data_uri: reader.result,
-        filename: file.name,
-        filetype: file.type
-      });
-    }
+    //check if fileName contains characters that are not allowed (they mess with storage in the s3 bucket)
+    let chars = file.name.split('');
+    if(!chars.includes(' ') && !chars.includes('(') && !chars.includes(')')) {
+      //reads contents of the file. When the read operation is done, the result attribute will contain the data as a URL representing the file's data as a base64 encoded string.
+      reader.readAsDataURL(file);
+      //on loadend event is triggered when the reader finishes reading, then the state will be set and a preview of the image will be rendered
+      reader.onloadend = () => {
+        this.setState({
+          data_uri: reader.result,
+          filename: file.name,
+          filetype: file.type
+        });
+      }
+    } else
+    toastr.warning('Warning', 'make sure your filename has no whitespace or special characters', toastrOptions)
+    e.target.value = null;
   }
 
   render() {
