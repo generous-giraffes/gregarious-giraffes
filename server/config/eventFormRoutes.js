@@ -31,7 +31,8 @@ router.post('/eventForm', (req, res) => {
 router.get('/eventForm', (req, res) => {
     console.log('GET request to /eventForm received');
 //Abstract the database functions out into utilities directory
-    db('events').select('*')
+    db('events')
+        .select('*')
         .then((data) => {
             res.send(data);
         })
