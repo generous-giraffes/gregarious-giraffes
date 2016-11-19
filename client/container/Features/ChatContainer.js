@@ -1,9 +1,11 @@
 import React from 'react';
 import io from 'socket.io-client';
-import { Button, Col, Row, Grid, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
+import { Col, Row, Grid } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { saveChat, getChats } from '../../actions/chat';
+import ChatList from '../../components/ChatList';
+import CommentForm from '../../components/CommentForm';
 
 class ChatBox extends React.Component {
   constructor(){
@@ -16,6 +18,7 @@ class ChatBox extends React.Component {
   }
 
   componentDidMount() {
+      //replace localhost with ec2-35-161-238-190.us-west-2.compute.amazonaws.com
       this.socket = io('http://localhost:8080');
       this.socket.on('connect', this.connect);
       this.socket.on('chatlist', this.updateChatList);
@@ -32,7 +35,7 @@ class ChatBox extends React.Component {
   }
 
   handleChatSubmit(comment) {
-      var comments = this.state.data; // empty array
+      var comments = this.state.data; // empty array at first
       console.log("data executed");
 
       comment.id = Date.now(); // {text: 'text' , id: 'id' }
@@ -68,88 +71,6 @@ class ChatBox extends React.Component {
   }
 }
 
-class ChatList extends React.Component {
-    render() {
-      var commentNodes = this.props.data.map((comment) => {
-        return (
-          <Comment user={this.props.user} key={comment.id}>
-            {comment.text}
-          </Comment>
-        );
-      });
-      // this is the persisted data from the store
-      var chatHistory = this.props.comments.map((comment) => {
-        return (
-          <Comment user={comment} key={comment.id}>
-            {comment.comment}
-          </Comment>
-        );
-      });
-
-      return (
-        <div className="panel panel-default">
-          <div className="page-header">
-            <h1 className="text-center">Chat Room</h1>
-          </div>
-          <div className="chat-list">
-            {chatHistory}
-            {commentNodes}
-          </div>
-        </div>
-      );
-  }
-}
-
-class Comment extends React.Component {
-  render() {
-    return (
-      <div>
-        <h4 className="commentAuthor">
-          {this.props.user.name} says:
-        </h4>
-        <span className="comment">{this.props.children}</span>
-      </div>
-    );
-  }
-}
-
-class CommentForm extends React.Component {
-    constructor(){
-        super();
-        this.state = { text : '' }
-    }
-
-    handleTextChange(e) {
-          this.setState({text : e.target.value})
-    }
-    handleSubmit(e) {
-        e.preventDefault();
-
-        var text = this.state.text.trim();
-        if (!text) {
-            return;
-        }
-        this.props.onChatSubmit({
-            text: text
-        });
-        this.setState({
-            text: ''
-        });
-    }
-
-    render() {
-        return (
-          <form className='chat-form' onSubmit={(e) => this.handleSubmit(e)}>
-            <FormGroup controlId="formBasicText" >
-
-              <ControlLabel>Enter message</ControlLabel>
-              <FormControl type="text" value={this.state.text} onChange={(e) => this.handleTextChange(e)} />
-            </FormGroup>
-            <Button type="submit">Send</Button>
-          </form>
-        );
-    }
-}
 
 function mapStateToProps(state) {
   return {
