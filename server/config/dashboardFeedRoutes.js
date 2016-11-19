@@ -57,5 +57,13 @@ router.get('/dashboardImages', (req, res) => {
     .catch((err) => console.log(err))
 });
 
+router.get('/dashboardBdays', (req, res) => {
+  console.log('get request to /dashboardBdays recieved, month:', req.query.month);
+  let month = req.query.month;
+  db('users').select('*').where('dob', 'like', `%-${month}-%`)
+    .then((data) => res.send(data))
+    .catch((err) => console.log(err))
+})
+
 
 module.exports = router;

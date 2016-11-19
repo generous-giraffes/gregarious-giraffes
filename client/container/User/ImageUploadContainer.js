@@ -71,6 +71,7 @@ class ImageUpload extends React.Component {
 
     return (
       <div className="previewComponent">
+        <p>please make sure your filename has now whitespace or special characters, if it does try renaming the file before uploading the image</p>
         <form onSubmit={(e)=>this.handleSubmit(e)}>
           <input className="fileInput" type="file" onChange={(e)=>this.handleImageChange(e)} />
           <button className="fileUpload" type="submit" onClick={(e)=>this.handleSubmit(e)}>Upload Image</button>

@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-
 export const GET_DASH_IMAGES = 'GET_DASH_IMAGES';
 export const COMMENT_ON_DASH_IMAGE = 'COMMENT_ON_DASH_IMAGE';
 export const GET_RECENT_USERS = 'GET_RECENT_USERS';
+export const GET_BDAYS = 'GET_BDAYS';
 
 //a function to sort an array of objects (containing a photo url, id, comment, caption, name, user_image_id by removing duplicates and accumlating comments for the photos in an array
 const removeRepeatsAndAddCommentsArray = (photos) => {
@@ -56,11 +56,22 @@ export function commentOnDashImage(userId, comment, imageId, user_image_id, user
 
 export function getRecentUsers(id) {
   let response = axios.get('/api/dashboardUsers/')
-  .then((res) => res.data)
-  .catch((error) => console.error(error));
+    .then((res) => res.data)
+    .catch((error) => console.error(error));
 
   return {
     type: GET_RECENT_USERS,
     payload: response
   }
+}
+
+export function getBdays(month) {
+  let response = axios.get(`api/dashboardBdays?month=${month}`)
+    .then((res) => res.data)
+    .catch((error) => console.error(error));
+
+    return {
+      type: GET_BDAYS,
+      payload: response
+    }
 }
