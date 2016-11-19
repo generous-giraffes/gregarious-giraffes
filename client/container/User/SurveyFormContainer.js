@@ -112,82 +112,96 @@ class SurveyForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} data-toggle='validator'>
+    <Grid className="survey-form">
+        <Row className="show-grid">
+            <Col xs={12}>
+                <form onSubmit={this.handleSubmit} data-toggle='validator'>
 
-        <FieldGroup
-          id="formControlsDob"
-          type="date"
-          label="date of birth"
-          required='true'
-          value={this.state.dob}
-          onChange={this.onDobChange}
-        />
+                    <FieldGroup
+                        id="formControlsDob"
+                        type="date"
+                        label="date of birth"
+                        required='true'
+                        value={this.state.dob}
+                        onChange={this.onDobChange}
+                    />
 
-        <FormGroup
-          controlId="formControlsSelect" >
-          <ControlLabel>Select Blood Type</ControlLabel>
-          <select noValidate value={this.state.bloodType} onChange={this.onBloodTypeChange} className='selectpicker' title="warm or cold?" data-max-options="1" required='true'>
-            <option value="Cold">Cold</option>
-            <option value="Warm">Warm</option>
-          </select>
-        </FormGroup>
+                    <FormGroup
+                        controlId="formControlsSelect">
+                        <ControlLabel>Select Blood Type</ControlLabel>
+                        <select noValidate value={this.state.bloodType} onChange={this.onBloodTypeChange}
+                                className='selectpicker' title="warm or cold?" data-max-options="1" required='true'>
+                            <option value="Cold">Cold</option>
+                            <option value="Warm">Warm</option>
+                        </select>
+                    </FormGroup>
 
-        <FormGroup controlId="formControlsSelect" >
-          <ControlLabel>Select Favorite Season</ControlLabel>
-          <select noValidate value={this.state.season} onChange={this.onSeasonChange} className='selectpicker season' title="favorite season" data-max-options="1" required='true'>
-            <option value="spring">Spring</option>
-            <option value="summer">Summer</option>
-            <option value="Autumn">Autumn</option>
-            <option value="Winter">Winter</option>
-          </select>
-        </FormGroup>
+                    <FormGroup controlId="formControlsSelect">
+                        <ControlLabel>Select Favorite Season</ControlLabel>
+                        <select noValidate value={this.state.season} onChange={this.onSeasonChange}
+                                className='selectpicker season' title="favorite season" data-max-options="1"
+                                required='true'>
+                            <option value="spring">Spring</option>
+                            <option value="summer">Summer</option>
+                            <option value="Autumn">Autumn</option>
+                            <option value="Winter">Winter</option>
+                        </select>
+                    </FormGroup>
 
-        <FormGroup controlId="formControlsSelect" >
-          <ControlLabel>Are you House Trained?</ControlLabel>
-          <select noValidate value={this.state.trained} onChange={this.onTrainedChange} className='selectpicker' title="yes or no" data-max-options="1" required='true'>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-        </FormGroup>
+                    <FormGroup controlId="formControlsSelect">
+                        <ControlLabel>Are you House Trained?</ControlLabel>
+                        <select noValidate value={this.state.trained} onChange={this.onTrainedChange}
+                                className='selectpicker' title="yes or no" data-max-options="1" required='true'>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </FormGroup>
 
-        <FormGroup>
-          <Select multi simpleValue disabled={this.state.disabled} value={this.state.value}
-                  placeholder="Select your hobbies" options={this.state.options}
-                  onChange={this.handleSelectChange}/>
-        </FormGroup>
+                    <FormGroup>
+                        <Select multi simpleValue disabled={this.state.disabled} value={this.state.value}
+                                placeholder="Select your hobbies" options={this.state.options}
+                                onChange={this.handleSelectChange}/>
+                    </FormGroup>
 
 
-        <FormGroup controlId="formControlsSelectMultiple" >
-          <ControlLabel>Select your Species</ControlLabel>
-          <select noValidate value={this.state.species} onChange={this.onSpeciesChange} className='selectpicker' title="search or select" data-max-options="1" data-live-search="true" required='true'>
-            <option value="giraffe">Giraffe, Giraffa camelopardalis</option>
-            <option value="dog">Dog, Canis lupus familiaris</option>
-            <option value="cat">Cat, Felis silvestris catus</option>
-            <option value="sheep">Sheep, Ovis aries</option>
-            <option value="pig">Pig, Sus scrofa domesticus</option>
-            <option value="goat">Goat, Capra aegagrus hircus</option>
-            <option value="cow">Cow, Bos taurus</option>
-            <option value="chicken">Chicken, Gallus gallus domesticus</option>
-            <option value="duck">Duck, Anas platyrhynchos domesticus</option>
-            <option value="horse">Horse, Equus ferus caballus</option>
-            <option value="goldfish">Goldfish, Carassius auratus auratus</option>
-            <option value="koi">Koi, Cyprinus carpio haematopterus</option>
-            <option value="hedgehog">Hedgehog, Atelerix albiventris</option>
-            <option value="camel">Camel, Camelus dromedarius</option>
-          </select>
-        </FormGroup>
+                    <FormGroup controlId="formControlsSelectMultiple">
+                        <ControlLabel>Select your Species</ControlLabel>
+                        <select noValidate value={this.state.species} onChange={this.onSpeciesChange}
+                                className='selectpicker' title="search or select" data-max-options="1"
+                                data-live-search="true" required='true'>
+                            <option value="giraffe">Giraffe, Giraffa camelopardalis</option>
+                            <option value="dog">Dog, Canis lupus familiaris</option>
+                            <option value="cat">Cat, Felis silvestris catus</option>
+                            <option value="sheep">Sheep, Ovis aries</option>
+                            <option value="pig">Pig, Sus scrofa domesticus</option>
+                            <option value="goat">Goat, Capra aegagrus hircus</option>
+                            <option value="cow">Cow, Bos taurus</option>
+                            <option value="chicken">Chicken, Gallus gallus domesticus</option>
+                            <option value="duck">Duck, Anas platyrhynchos domesticus</option>
+                            <option value="horse">Horse, Equus ferus caballus</option>
+                            <option value="goldfish">Goldfish, Carassius auratus auratus</option>
+                            <option value="koi">Koi, Cyprinus carpio haematopterus</option>
+                            <option value="hedgehog">Hedgehog, Atelerix albiventris</option>
+                            <option value="camel">Camel, Camelus dromedarius</option>
+                        </select>
+                    </FormGroup>
 
-        <FormGroup controlId="formControlsTextarea" >
-          <ControlLabel>Enter your favorite quote</ControlLabel>
-          <FormControl value={this.state.quote} onChange={this.onQuoteChange} componentClass="textarea" placeholder="'Nature teaches beasts to know their friends.'
-          -William Shakespeare" required='true' />
-        </FormGroup>
+                    <FormGroup controlId="formControlsTextarea">
+                        <ControlLabel>Enter your favorite quote</ControlLabel>
+                        <FormControl value={this.state.quote} onChange={this.onQuoteChange} componentClass="textarea"
+                                     placeholder="'Nature teaches beasts to know their friends.'
+          -William Shakespeare" required='true'/>
+                    </FormGroup>
 
-        <Button type="submit">
-          Submit
-        </Button>
+                    <Button type="submit">
+                        Submit
+                    </Button>
 
-      </form>
+                </form>
+            </Col>
+        </Row>
+    </Grid>
+
     )
   }
 }

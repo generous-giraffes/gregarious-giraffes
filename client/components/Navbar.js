@@ -49,7 +49,6 @@ class Navigation extends React.Component {
                         <NavDropdown eventKey={3} title="See More" id="basic-nav-dropdown" onSelect={handleSelect}>
                             <MenuItem eventKey={3.1}>Dashboard</MenuItem>
                             <MenuItem eventKey={3.2}>Events</MenuItem>
-                            <MenuItem divider/>
                             <MenuItem eventKey={3.3}>Chat</MenuItem>
                         </NavDropdown>
                     </Nav>
