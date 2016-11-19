@@ -42,8 +42,9 @@ class Photos extends Component {
                           //     <h3>{image.caption}</h3>
                           // </Thumbnail>
                         )
-                          : (<Thumbnail src={image.image}>
+                          : (<Thumbnail>
                               <h3>{image.caption}</h3>
+                              <img src={image.image}/>
                            </Thumbnail>)
                       }
                       {/* <Thumbnail src={image.image}>

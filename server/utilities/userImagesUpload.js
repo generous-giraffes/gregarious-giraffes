@@ -7,8 +7,8 @@ var UserImageUploader = function(options){
   //deffered is a deffered object that returns a promise to the caller (ImageUploader() in imageRoutes.js)
   //so the .then() on ImageUploader will not fire until deferred is resolved or rejected
   var deferred = Q.defer();
-  var buf = new Buffer(options.data_uri.replace(/^data:image\/\w+;base64,/, ""),'base64');
-
+  var buf =  Buffer.from(options.data_uri.replace(/^data:image\/\w+;base64,/, ""),'base64');
+  // var blob = new Blob([buf], { type: 'video/mp4' });
   // var knoxClient = knox.createClient({
   //   key: '',//use .env for these
   //   secret: '',
