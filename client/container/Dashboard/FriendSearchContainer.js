@@ -40,6 +40,7 @@ class FriendSearch extends Component {
   }
 
   friendOrViewProfile(e) {
+    //add more data attributes and get them here if you want more user info to appear in the modal
       let email = e.currentTarget.getAttribute('data-email');
       let name = e.currentTarget.getAttribute('data-name');
       let image = e.currentTarget.getAttribute('data-image');
@@ -93,10 +94,10 @@ class FriendSearch extends Component {
                 <Modal.Body>
                     <h4>Username:</h4><p><OverlayTrigger overlay={popover}><a href="#">{this.state.selectedUser.name}</a></OverlayTrigger></p>
                     <h4>Email:</h4><p>{this.state.selectedUser.email }</p>
-                    <h4>Species:</h4><p>{this.state.selectedUser.species }</p>
+                    {/* <h4>Species:</h4><p>{this.state.selectedUser.species }</p>
                     <h4>Hobbies:</h4><p>{this.state.selectedUser.hobbies }</p>
                     <h4>BooldType:</h4><p>{this.state.selectedUser.bloodType }</p>
-                    <h4>Quote:</h4><p>{this.state.selectedUser.quote }</p>
+                    <h4>Quote:</h4><p>{this.state.selectedUser.quote }</p> */}
                 </Modal.Body>
                 <Modal.Footer>
                     <h5>Keep on Smiling!</h5>
