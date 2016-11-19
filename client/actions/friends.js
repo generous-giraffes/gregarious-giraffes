@@ -3,6 +3,7 @@ import axios from 'axios';
 export const GET_FRIENDS = 'GET_FRIENDS';
 export const ADD_FRIEND = 'ADD_FRIEND';
 export const SET_CURRENT_FRIEND = 'SET_CURRENT_FRIEND';
+export const GET_FRIEND_IMAGES = 'GET_FRIEND_IMAGES';
 
 export function getFriends(id) {
   let response = axios.get('/api/users/friends?id=' + id)
@@ -40,5 +41,19 @@ export function setCurrentFriend(userInfo) {
   return {
     type: SET_CURRENT_FRIEND,
     payload: userInfo
+  }
+}
+
+export function getFriendImages(id) {
+  let response = axios.get('/api/users/friendsImages?id=' + id)
+    .then((res) => {
+      console.log('++++++++++response ====friends====== get IMAGES+++++', res.data);
+      return res.data
+    })
+    .catch((err) => console.log(err));
+
+  return {
+    type: GET_FRIEND_IMAGES,
+    payload: response
   }
 }

@@ -1,7 +1,8 @@
-import { GET_FRIENDS, ADD_FRIEND, SET_CURRENT_FRIEND } from '../actions/friends';
+import { GET_FRIENDS, ADD_FRIEND, SET_CURRENT_FRIEND, GET_FRIEND_IMAGES } from '../actions/friends';
 
-export function friends_Reducer(state = { allFriends: [], newFriends: [], currentFriend: {} }, action) {
+export function friends_Reducer(state = { allFriends: [], newFriends: [], currentFriend: {}, currentFriendImages: [] }, action) {
   switch (action.type) {
+
     case GET_FRIENDS:
       let allFriends = action.payload;
       return Object.assign({}, state, { allFriends });
@@ -13,8 +14,11 @@ export function friends_Reducer(state = { allFriends: [], newFriends: [], curren
 
     case SET_CURRENT_FRIEND:
       let currentFriend = action.payload;
-      console.log(currentFriend, 'CURRENT FRIEND, friends reducer');
       return Object.assign({}, state, { currentFriend });
+
+      case GET_FRIEND_IMAGES:
+        let currentFriendImages = action.payload;
+        return Object.assign({}, state, { currentFriendImages });
 
     default:
       return state;

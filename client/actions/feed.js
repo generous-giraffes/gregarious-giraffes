@@ -21,7 +21,6 @@ const removeRepeatsAndAddCommentsArray = (photos) => {
   for(var photoObj in commentedPhotos){
     resultPhotos.push(commentedPhotos[photoObj]);
   }
-  console.log(photos,'result phots right', resultPhotos, 'photos in action for stuff+++++++++');
 
   return resultPhotos;
 }
@@ -39,7 +38,6 @@ export function getDashboardImages() {
 }
 
 export function commentOnDashImage(userId, comment, imageId, user_image_id, userName) {
-  console.log(userId, comment,'is username here?? next', userName, 'COMMENT_ON_DASH_IMAGE action');
   let response = axios.post('/api/dashboardComment', {
     id: userId,
     comment,
