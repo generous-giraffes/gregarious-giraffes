@@ -5,7 +5,11 @@ import { connect } from 'react-redux';
 import { submitUserImage } from '../../actions/image';
 import { browserHistory } from 'react-router';
 import { FormGroup } from 'react-bootstrap';
+import { toastr } from 'react-redux-toastr';
 
+const toastrOptions = {
+  timeOut: 3000
+}
 //ImageUpload uses FileReader to asynchronously read the contents of an image that the user uploads
 class UserImageUpload extends React.Component {
   constructor(props) {
@@ -32,8 +36,9 @@ class UserImageUpload extends React.Component {
         filetype: this.state.filetype,
         caption: this.state.caption
       });
+      toastr.info('Upload Success!', 'your image was stored',  toastrOptions)
     } else {
-      alert('Please upload an image with a caption, we want you to have cool images to show people!');
+      toastr.warning('Upload failed', 'make sure your filename has no whitespace or special characters', toastrOptions)
     }
   }
 

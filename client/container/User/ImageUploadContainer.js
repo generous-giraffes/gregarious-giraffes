@@ -4,6 +4,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { submitProfileImage } from '../../actions/image';
 import { browserHistory } from 'react-router';
+import { toastr } from 'react-redux-toastr';
+
+const toastrOptions = {
+  timeOut: 1800
+}
 
 //ImageUpload uses FileReader to asynchronously read the contents of an image that the user uploads
 class ImageUpload extends React.Component {
@@ -33,9 +38,10 @@ class ImageUpload extends React.Component {
         filetype: this.state.filetype
       });
       // handle the lack of props before rendering at myProfile
-      browserHistory.push('/myProfile');
+      toastr.info('Upload Success!', 'your image was stored',  toastrOptions)
+      setTimeout(() => {browserHistory.push('/myProfile')}, 2000)
     } else {
-      alert('Please upload an image, we want you to have the profile image of your choice!');
+      toastr.warning('Upload failed', 'make sure your filename has no whitespace or special characters', toastrOptions)
     }
   }
 

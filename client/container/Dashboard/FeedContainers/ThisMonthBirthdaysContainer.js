@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Col, Row, Grid, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Button, Col, Row, Grid, ListGroup, ListGroupItem, Thumbnail } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getBdays } from '../../../actions/feed';
@@ -20,7 +20,10 @@ class Birthdays extends Component {
       <div>
           <h3>This Month's Birthdays</h3>
           {this.props.birthdays.map((user) => (
-            <p>{user.name}</p>
+            <Thumbnail>
+                <img type="image" src={user.image}  alt="user profile image" style={{width: '100%'}} />
+                <div>{user.name}'s bithday is {user.prettyDob}</div>
+            </Thumbnail>
           ))}
       </div>
     )

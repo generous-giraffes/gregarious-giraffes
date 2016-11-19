@@ -65,9 +65,26 @@ export function getRecentUsers(id) {
   }
 }
 
+const prettifyDOBs = (users) => {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  let niceDobUsers = users.map((user) => {
+    let dob = user.dob.split('-');
+    let month = months[dob[1]-1];
+    let prettyDob = `${month} ${dob[2]}, ${dob[0]}`;
+    user.prettyDob = prettyDob;
+    return user;
+  })
+  return niceDobUsers;
+}
+
 export function getBdays(month) {
   let response = axios.get(`api/dashboardBdays?month=${month}`)
-    .then((res) => res.data)
+    .then((res) => {
+      console.log(prettifyDOBs(res.data), 'prettify DOB in ACTION DISPATCH');//HEREEEE
+    return prettifyDOBs(res.data)
+    // return users;
+    // res.data
+  })
     .catch((error) => console.error(error));
 
     return {
