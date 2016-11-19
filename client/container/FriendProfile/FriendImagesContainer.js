@@ -2,9 +2,8 @@ import React, {Component} from 'react';
 import { Row, Col, Grid, Thumbnail, Button } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { submitUserImage, getUserImages } from '../../actions/image';//change these
-import UserImageUpload from './UserImageUploadContainer'
-//use friends reducer
+import { getFriendImages } from '../../actions/friends';
+
 class FriendImages extends Component {
     constructor(props) {
         super(props);
@@ -12,17 +11,15 @@ class FriendImages extends Component {
     }
 
     componentDidMount() {
-        this.props.getUserImages(this.props.id);
-        console.log('getuser images submitted');
+        this.props.getFriendImages(this.props.friendId);
     }
 
 
     render() {
         return (
             <Grid className="photos">
-                <UserImageUpload />
                 <Row>
-                {this.props.images.map((image) => (
+                {this.props.friendImages.map((image) => (
                   <Col xs={12} md={6}>
                       <Thumbnail src={image.image}>
                           <img src={image.uri}/>
@@ -39,15 +36,14 @@ class FriendImages extends Component {
 
 function mapStateToProps(state) {
     return {
-        email: state.reducers.isAuthorized.email,//change these
-        name: state.reducers.isAuthorized.name,
-        id: state.reducers.isAuthorized.id,
-        images: state.reducers.image.UserImages
+        friendId: state.reducers.friends.currentFriend.id,
+        friendName: state.reducers.friends.currentFriend.name,
+        friendImages: state.reducers.friends.currentFriendImages
     }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({submitUserImage, getUserImages}, dispatch);//change these
+  return bindActionCreators({getFriendImages}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FriendImages);
