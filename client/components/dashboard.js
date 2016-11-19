@@ -17,30 +17,32 @@ class Home extends React.Component {
     render() {
         return (
             <div className="home">
-                <Grid>
-                    <Row className="banner">
-                        <Col xs={12}>
-                            <MyCarousel />
-                        </Col>
-                    </Row>
-                    <Row className="main-container">
-                        <Col xs={12} md={6}>
-                            <Feed />
-                        </Col>
-                        <Col xs={12} md={6}>
+                    <Grid>
+                        <Row className="banner">
                             <Col xs={12}>
-                                <FriendSearch />
-                                <Birthdays />
+                                <MyCarousel />
                             </Col>
-                           <Col xs={12}>
-                                <PetSearch />
+                        </Row>
+                        <Row className="main-container">
+                            <Col xs={12} md={6}>
+                                <Feed />
                             </Col>
-                            <Col xs={12}>
-                                <PetNewsSearch />
+                            <Col xs={12} md={6}>
+                                <Col xs={12}>
+                                    <FriendSearch />
+                                    <Birthdays />
+                                </Col>
+                                <Col xs={12}>
+                                    <PetSearch />
+                                </Col>
+                                <Col xs={12}>
+                                    <PetNewsSearch />
+                                </Col>
                             </Col>
-                        </Col>
-                    </Row>
-                </Grid>
+                        </Row>
+                    </Grid>
+
+
             </div>
         )
     }
