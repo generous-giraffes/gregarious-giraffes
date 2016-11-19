@@ -9,7 +9,7 @@ var knex = require('knex')({
   connection: {
     host: 'localhost',
     user: 'root',
-    password: 'a',//your local password for root user
+    password: 'admin',//your local password for root user
     database: 'giraffeLocal'
   }
 });

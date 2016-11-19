@@ -1,0 +1,9 @@
+.survey-form {
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+}
+
+.survey-form2 {
+    @include vertical-center-flex(81vh);
+}
