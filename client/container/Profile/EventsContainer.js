@@ -25,24 +25,17 @@ class EventInfo extends Component {
             View Events
             </Button>
             <Panel collapsible expanded={this.state.open1}>
-            <Panel header="Madison Square Park" bsStyle="success">
-                <h2>Location: </h2>
-            </Panel>
-            <Panel header="Central Park" bsStyle="success">
-                There is an Event in Central  Park.
-                Wednesday Novermber 20, 2016 at 9:00am
-            </Panel>
             {this.props.userEvent.map((event, i) =>
               <Panel header={event.name} bsStyle="success">
-                  <p>location: {event.location}</p>
-                  <p>date: {event.date}</p>
-                  <p>time: {event.time}</p>
-                  <p>gifts: {event.gifts}</p>
-                  <p>animals: {event.animals}</p>
-                  <p>eating: {event.eating}</p>
-                  <p>danger: {event.danger}</p>
-                  <p>address: {event.address}</p>
-                  <p>coordinates: {event.coordinates}</p>
+                  <p>Location: {event.location}</p>
+                  <p>Date: {event.date}</p>
+                  <p>Time: {event.time}</p>
+                  <p>Gifts: {event.gifts}</p>
+                  <p>Animals: {event.animals}</p>
+                  <p>Eating: {event.eating}</p>
+                  <p>Danger: {event.danger}</p>
+                  <p>Address: {event.address}</p>
+                  {/*<p>Coordinates: {event.coordinates}</p>*/}
               </Panel>
             , this)}
             </Panel>
