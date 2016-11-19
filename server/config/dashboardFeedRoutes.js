@@ -14,70 +14,48 @@ router.get('/dashboardUsers', (req, res) => {
         .then((data) => res.send(data))
         .catch((err) => console.error(err));
 });
-
+//insert comment data into db
 router.post('/dashboardComment', (req, res) => {
-  let id = req.body.id;
+  let user_comment_id = req.body.id;
   let comment = req.body.comment;
   let image_id = req.body.imageId;
   let userImageId = req.body.user_image_id;
-  console.log(id, comment, image_id,userImageId, 'id and comment in dashBoard comment++++');
+  let commenter_name = req.body.userName;
+  //es6 property value shorthand
 	db('imageComment').insert({
-    user_comment_id: id,
     comment,
     image_id,
-    userImageId
-  })
-    .then(() => {
-      return db('images')
-        .join('imageComment as ic', 'ic.image_id', '=', 'images.id')
-        .join('users as u', 'u.id', '=', 'ic.user_comment_id')
-        .select('ic.comment', 'u.name', 'images.image', 'images.caption', 'images.id', 'images.user_image_id')
+    userImageId,
+    commenter_name
+  })//refactored to user redirect instead of writing the commented out join tables again
+    .then(() => { res.redirect('/api/dashboardImages')
+      // return db('images')
+      //   .join('imageComment as ic', 'ic.image_id', '=', 'images.id')
+      //   .join('users as u', 'u.id', '=', 'ic.user_comment_id')
+      //   .select('ic.comment', 'u.name', 'images.image', 'images.caption', 'images.id', 'images.user_image_id')
     })
-		.then((data) => {
-      console.log(data, 'data in doashboardComment post');
-			res.send(data);
-		})
+		// .then((data) => {
+    //   console.log(data, 'data in doashboardComment post');
+		// 	res.send(data);
+		// })
 		.catch((err) => console.log(err))
 });
-//version that works without getting comments
-// router.get('/dashboardImages', (req, res) => {
-// 	console.log('GET request to /dashboardImageComments recieved');
-//   db('images')
-//     .join('users as u', 'u.id', '=', 'images.user_image_id')
-//     .select('u.name', 'images.image', 'images.caption', 'images.id', 'images.user_image_id')
-//     .limit(10)//change the limit when we decide on the layout, could add an offset that is incremented to get more/different images
-// 		.then((data) => {
-// 			console.log(data, 'get /dashboardImageComments data')
-// 			res.send(data);
-// 		})
-//     .catch((err) => console.log(err))
-// });
-
-//attempt to get comments here, requires filtering on front end
+//return photos with info on the user who uploaded the photo, and any comments
 router.get('/dashboardImages', (req, res) => {
 	console.log('GET request to /dashboardImages recieved');
   db('images')
     .join('users as u', 'u.id', '=', 'images.user_image_id')
     .leftOuterJoin('imageComment as ic', 'ic.image_id', 'images.id')
-    .select('u.name', 'images.image', 'images.caption', 'images.id', 'images.user_image_id', 'ic.comment')
+    .select('u.name', 'images.image', 'images.caption', 'images.id', 'images.user_image_id', 'ic.comment', 'ic.commenter_name')
     // .limit(10)//change the limit when we decide on the layout, could add an offset that is incremented to get more/different images
-		.then((data) => {
-			console.log(data, 'get /dashboardImages data')
-			res.send(data);
-		})
+		.then((data) =>
+{
+  console.log(data, 'dat awiht commenting user id');
+  res.send(data)
+}
+  )
     .catch((err) => console.log(err))
 });
 
 
 module.exports = router;
-
-//this one may not be needed if the get to dashboardImageComments gets the comments too
-// router.get('/dashboardImageComments', (req, res) => {
-// 	console.log('GET request to /dashboardImageComments recieved');
-//   db('imageComment')
-// 		.then((data) => {
-// 			console.log(data, 'get /dashboardImageComments data')
-// 			res.send(data);
-// 		})
-//     .catch((err) => console.log(err))
-// });

@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { submitUserImage } from '../../actions/image';
 import { browserHistory } from 'react-router';
+import { FormGroup } from 'react-bootstrap';
 
 //ImageUpload uses FileReader to asynchronously read the contents of an image that the user uploads
 class UserImageUpload extends React.Component {
@@ -70,11 +71,14 @@ class UserImageUpload extends React.Component {
 
     return (
       <div className="previewComponent">
-        <form onSubmit={(e)=>this.handleSubmit(e)}>
-          <input className="fileInput" type="file" onChange={(e)=>this.handleImageChange(e)} />
-          <input className="captionInput" type="text" onChange={(e)=>this.handleCaptionChange(e)} />
-          <button className="fileUpload" type="submit" onClick={(e)=>this.handleSubmit(e)}>Upload Image</button>
-        </form>
+      <FormGroup>
+          <form onSubmit={(e)=>this.handleSubmit(e)}>
+              <input className="fileInput" type="file" onChange={(e)=>this.handleImageChange(e)} />
+              <input className="captionInput" type="text" onChange={(e)=>this.handleCaptionChange(e)} />
+              <button className="fileUpload" type="submit" onClick={(e)=>this.handleSubmit(e)}>Upload Image</button>
+          </form>
+          <p>make sure the filename contains no spaces or special characters, thanks!</p>
+      </FormGroup>
         <div className="imgPreview">
           {$imagePreview}
         </div>
