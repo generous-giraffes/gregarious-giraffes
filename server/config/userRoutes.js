@@ -51,7 +51,7 @@ router.get('/users/friends', (req, res) => {
 
 router.get('/users/search', (req,res) => {
   let name = req.query.name
-    db('users').select('*').where('name', name)
+    db('users').select('*').where('name','like', `%${name}%`)
       .then((data) => {
         console.log(data, 'search function data');
         res.send(data);
