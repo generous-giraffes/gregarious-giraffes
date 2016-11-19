@@ -14,6 +14,7 @@ const getChatSuccess = (data) => {
 };
 
 export function saveChat(data) {
+  // {comment: { text: 'text'}, user: {name: 'name'}}
   let response = axios.post('/api/chat', data)
     .then((res) => {
       console.log("**", res)
@@ -23,7 +24,7 @@ export function saveChat(data) {
 
   return {
     type: SAVE_CHAT,
-    // payload: response
+    payload: response
   }
 }
 

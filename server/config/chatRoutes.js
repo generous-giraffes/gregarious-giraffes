@@ -4,30 +4,26 @@ var db = require('../db/index');
 
 // post chat responses - insert into db
 router.post('/chat', (req, res) => {
-    var message = req.body.comment.text;
-    var userName = req.body.comment.author;
-    console.log('post request to /chat received', message);
+    var comment = req.body.comment.text; //data from saveChat is req.body (from the post request - only the client does the post request)
+    var name = req.body.user.name;
     db('chats')
         .insert({
-            comment: message,
-            name: userName
+            comment: comment,
+            name: name
         })
         .then((data) => {
             return db('chats').select('*');
         })
         .then((data) => {
-            console.log(data,' +++++this is data from chatRoutes')
             res.send(data)
         })
         .catch((err) => console.error(err));
 });
-//need this for users signing back in, otherwise info is passed around in state
-router.get('/chat', (req, res) => {
-    console.log('GET request to /chat received');
 
+router.get('/chat', (req, res) => {
     db('chats').select('*')
         .then((data) => {
-            console.log('+++data inside router.get()', data);
+            //this is the data server is sending down from the GET request: {"data":[{"id":1,"name":"skipo","comment":"hey my name is skipo"}]}
             res.json({data: data});
         })
         .catch((err) => {
