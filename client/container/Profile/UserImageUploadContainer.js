@@ -65,13 +65,30 @@ class UserImageUpload extends React.Component {
   }
 
   render() {
+    console.log('+++++++++==============', this.state.filetype);
     //retrieve url from state, then render an image if there is a url else a div
     let { data_uri } = this.state;
     let $imagePreview = null;
     if(data_uri) {
-      $imagePreview = (<img className="previewImage" src={data_uri} />);
+      preview = this.state.filetype === 'video/mp4' ?
+        (<img className="previewImage" src={data_uri} />)
+        : (<iframe
+            src={data_uri}
+            frameBorder='0'
+            webkitAllowFullScreen
+            mozallowfullscreen
+            allowFullScreen
+          />)
+      // preview = (<img className="previewImage" src={data_uri} />);
+  //     preview = (<iframe
+  //   src={data_uri}
+  //   frameBorder='0'
+  //   webkitAllowFullScreen
+  //   mozallowfullscreen
+  //   allowFullScreen
+  // />)
     } else {
-      $imagePreview = (<div className="previewText">Please select an Image to Upload</div>);
+      preview = (<div className="previewText">Please select an Image to Upload</div>);
     }
 
     return (
@@ -85,7 +102,7 @@ class UserImageUpload extends React.Component {
           <p>make sure the filename contains no spaces or special characters, thanks!</p>
       </FormGroup>
         <div className="imgPreview">
-          {$imagePreview}
+          {preview}
         </div>
       </div>
     )

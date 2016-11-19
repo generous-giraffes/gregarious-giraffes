@@ -9,7 +9,7 @@ var knex = require('knex')({
   connection: {
     host: 'localhost',
     user: 'root',
-    password: 'admin',//your local password for root user
+    password: 'a',//your local password for root user
     database: 'giraffeLocal'
   }
 });
@@ -63,6 +63,7 @@ knex.schema.hasTable('images').then((exists) => {
       table.increments('id').primary()
       table.integer('user_image_id').unsigned()
       table.text('image','longtext').defaultTo('null')
+      table.string('file_type', 20).defaultTo('image')
       table.text('caption').defaultTo('null')
       table.foreign('user_image_id').references('id').inTable('users')
 

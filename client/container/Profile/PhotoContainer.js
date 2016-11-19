@@ -24,10 +24,25 @@ class Photos extends Component {
                 <Row>
                 {this.props.images.map((image) => (
                   <Col xs={12} md={6}>
-                      <Thumbnail src={image.image}>
+                      {image.file_type === 'video/mp4' ?
+                          (<Thumbnail >
+                              <iframe
+                                src={image.image}
+                                frameBorder='0'
+                                webkitAllowFullScreen
+                                mozallowfullscreen
+                                allowFullScreen>
+                              </iframe>
+                              <h3>{image.caption}</h3>
+                          </Thumbnail>)
+                          : (<Thumbnail src={image.image}>
+                              <h3>{image.caption}</h3>
+                           </Thumbnail>)
+                      }
+                      {/* <Thumbnail src={image.image}>
                           <img src={image.uri}/>
                           <h3>{image.caption}</h3>
-                      </Thumbnail>
+                      </Thumbnail> */}
                   </Col>
                 ))}
                 </Row>

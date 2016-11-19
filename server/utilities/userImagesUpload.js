@@ -30,7 +30,7 @@ var UserImageUploader = function(options){
   //on response from the s3 bucket send the url of the saved image to ImageUploader.then() in imageRoutes
   req.on('response', function(res) {
     if (res.statusCode === 200) {
-      deferred.resolve({url: req.url, id: options.id, caption: options.caption});
+      deferred.resolve({url: req.url, id: options.id, caption: options.caption, type: options.filetype});
     } else
       deferred.reject({error: 'true'});
   });
