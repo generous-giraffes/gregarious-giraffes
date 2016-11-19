@@ -67,7 +67,7 @@ class UserImageUpload extends React.Component {
   render() {
     //retrieve url from state, then render an image if there is a url else a div
     let { data_uri } = this.state;
-    let $imagePreview = null;
+    let preview = null;
     if(data_uri) {
       preview = this.state.filetype === 'video/mp4' ?
           (<iframe src={data_uri} frameBorder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen />)

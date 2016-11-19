@@ -1,5 +1,6 @@
 var Q = require('q');
 var knox = require('knox');
+var fs = require('fs')
 
 var UserImageUploader = function(options){
   //deffered is used to handle async functions with callbacks (rather than asynch promises)
@@ -20,6 +21,7 @@ var UserImageUploader = function(options){
      region: 'us-west-2'
    });
 
+
   // endpoint and options for the request headers to the s3 bucket, sent with req.end(buf)
   req = knoxClient.put('/photos/' + options.filename, {
    'Content-Length': buf.length,
@@ -37,6 +39,28 @@ var UserImageUploader = function(options){
 //start the requset by sending the file as a buffer to the s3 Bucket
   req.end(buf);
   return deferred.promise;
+
+
+  // if(options.filetype === 'video/mp4') {
+  //   console.log(options,'hey there');
+  //   fs.stat(options.file, function(err, stat){
+  //     // Be sure to handle `err`.
+  //
+  //     var req = knoxClient.put(options.file, {
+  //         'Content-Length': stat.size
+  //       , 'Content-Type': 'text/plain'
+  //     });
+  //
+  //     fs.createReadStream(options.file).pipe(req);
+  //
+  //     req.on('response', function(res){
+  //       if (res.statusCode === 200) {
+  //         deferred.resolve({url: req.url, id: options.id, caption: options.caption, type: options.filetype});
+  //       } else
+  //         deferred.reject({error: 'true'});
+  //   });
+  //  });
+  // }
 }
 
 module.exports = UserImageUploader;
