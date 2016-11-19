@@ -27,7 +27,6 @@ class DashboardImagesContainer extends Component {
       let imageId = this.state.imageId;
       let user_image_id = this.state.user_image_id;
       let userName = this.props.name;
-      console.log(id, comment, imageId,user_image_id,userName,'id and comment ,imageId,  user_image_idin handle comment dashboardimagescontainer');
       this.props.commentOnDashImage(id, comment, imageId, user_image_id, userName);
     }
 

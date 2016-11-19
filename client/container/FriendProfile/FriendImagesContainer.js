@@ -14,7 +14,6 @@ class FriendImages extends Component {
         this.props.getFriendImages(this.props.friendId);
     }
 
-
     render() {
         return (
             <Grid className="photos">
