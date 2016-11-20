@@ -1,21 +1,23 @@
-var db = require('../db')
+"use strict";
+
+var db = require('../db');
 
 module.exports = {
 
-  fetch10: (data) => {
+  fetch10: () => {
     return db('users').select('*').limit(10)
   },
 
-  addComment: (data) => {
+  addComment: ({ comment, imageId, user_image_id, userName }) => {
     return db('imageComment').insert({
-      comment: data.comment,
-      image_id: data.imageId,
-      userImageId: data.user_image_id,
-      commenter_name: data.userName
+      comment: comment,
+      image_id: imageId,
+      userImageId: user_image_id,
+      commenter_name: userName
     })
   },
 
-  getImages: (data) => {
+  getImages: () => {
     return db('images')
         .join('users as u', 'u.id', '=', 'images.user_image_id')
         .leftOuterJoin('imageComment as ic', 'ic.image_id', 'images.id')

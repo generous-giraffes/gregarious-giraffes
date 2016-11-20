@@ -1,4 +1,6 @@
-var db = require('../db')
+"use strict";
+
+var db = require('../db');
 
 module.exports = {
 
