@@ -1,8 +1,8 @@
 import React from 'react';
-import { OverlayTrigger, Popover, Button, Col, Row, Grid, FormGroup, FormControl, Navbar } from 'react-bootstrap';
+import { OverlayTrigger, Popover, Button, Col, Row, Grid, FormGroup, FormControl, ControlLabel, Navbar } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
-import { getEvent, attendEvent } from '../../actions/eventForm';
+import { getEvent, attendEvent, searchEventsByUserName, searchEventsByEventName } from '../../actions/eventForm';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import SimpleMapPage from '../Features/MapContainer';
@@ -14,7 +14,9 @@ class EventList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            event: ''
+            event: '',
+            eventName: '',
+            userName: ''
         }
     }
 
@@ -41,7 +43,16 @@ class EventList extends React.Component {
         console.log(nextProps, "props++++++state for EVENT LIST", nextState);
     }
 
+    handleUserNameChange(e) {
+      console.log(e.currentTarget.value, "val in andle user or event change");
+      this.props.searchEventsByUserName(e.currentTarget.value);
 
+    }
+
+    handleEventNameChange(e) {
+      console.log(e.currentTarget.value, "val in andle user or event change");
+      this.props.searchEventsByEventName(e.currentTarget.value);
+    }
 
     render() {
         let $data = null;
@@ -109,6 +120,63 @@ class EventList extends React.Component {
         return (
             <div className="eventList">
                 <h3>List of Events</h3>
+                <FormGroup controlId="formControlsTextarea">
+                    <ControlLabel>Search by the name of the event</ControlLabel>
+                    <FormControl
+                      onChange={(e) => {this.handleEventNameChange(e)}}
+                      componentClass="input"
+                      placeholder="Event Name"
+                      required='true'/>
+                </FormGroup>
+                <FormGroup controlId="formControlsTextarea">
+                    <ControlLabel>Search by who is attending the event</ControlLabel>
+                    <FormControl
+                       onChange={(e) => {this.handleUserNameChange(e)}}
+                       componentClass="input"
+                       placeholder="Event Name"
+                       required='true'/>
+                </FormGroup>
+                {this.props.searchedEvents.map((e, i) => {
+                  return(
+                    <div className="demo-card">
+                        <div className="card card-inverse card-primary text-center">
+                            <div className="card-block">
+                                <blockquote className="card-blockquote">
+                                    <h2>{e.name}</h2>
+                                    <h4>Location: {e.location}</h4>
+                                    <p>
+                                        <OverlayTrigger trigger="click" overlay={
+                                                <Popover id="modal-popover" title="map">
+                                                    <div><SimpleMapPage place={e.coordinates} address={e.address} name={e.location}/></div>
+                                                </Popover>}>
+                                            <a style={{'color':'white'}} href="#">{e.address} <span style={{'fontSize': '10px'}}>click to view on map</span></a>
+                                        </OverlayTrigger>
+                                    </p>
+                                    <h4>Time: {e.time}</h4>
+                                    <h4>Date: {e.date}</h4>
+                                    <p>Food Options? {e.eating}</p>
+                                    <p>Any Danger? {e.danger}</p>
+                                    <p>Animals in Attendance: {e.animals}</p>
+                                    <Button
+                                        className="events-btn"
+                                        bsStyle="success"
+                                        onClick={(e) => {
+                                        this.attend(e)
+                                        toastr.success('Event Success!', `You added the event`);
+                                        setTimeout(() => {this.close()}, 2500)
+                                        }}
+
+                                        data-eventID={e.id}
+                                        data-index={i}>
+                                        Attend Event
+                                    </Button>
+
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                  )
+                }, this)}
                 {$data}
             </div>
         );
@@ -121,12 +189,13 @@ function mapStateToProps(state) {
         email: state.reducers.isAuthorized.email,
         name: state.reducers.isAuthorized.name,
         id: state.reducers.isAuthorized.id,
-        event: state.reducers.eventForm.events
+        event: state.reducers.eventForm.events,
+        searchedEvents: state.reducers.eventForm.searchedEvents
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({getEvent, attendEvent}, dispatch);
+    return bindActionCreators({getEvent, attendEvent, searchEventsByUserName, searchEventsByEventName}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventList);

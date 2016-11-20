@@ -174,13 +174,12 @@ class CreateEvent extends React.Component {
     //   this.searchBox.removeListener('places_changed', this.onPlaceChange);
     // }
     onPlaceChange() {
-        let place = this.searchBox.getPlaces();
-        console.log(place,"--===CREATE EVENT=====__", 'lat', place[0].geometry.location.lat(), 'lng',place[0].geometry.location.lng())
-        console.log('{lat:' + place[0].geometry.location.lat() + ', '+ 'lng:' + place[0].geometry.location.lng() + '}')
-        let coordinates = '{lat:' + place[0].geometry.location.lat() + ', '+ 'lng:' + place[0].geometry.location.lng() + '}'
-        let address = place[0].formatted_address;
-        this.setState({coordinates, address});
-
+      let place = this.searchBox.getPlaces();
+      console.log(place,"--===CREATE EVENT=====__", 'lat', place[0].geometry.location.lat(), 'lng',place[0].geometry.location.lng())
+      console.log('{lat:' + place[0].geometry.location.lat() + ', '+ 'lng:' + place[0].geometry.location.lng() + '}')
+      let coordinates = '{lat:' + place[0].geometry.location.lat() + ', '+ 'lng:' + place[0].geometry.location.lng() + '}'
+      let address = place[0].formatted_address;
+      this.setState({coordinates, address});
     }
 
 

@@ -35,4 +35,25 @@ router.get('/attendEvent', (req, res) => {
         .catch((err) => console.error(err));
 });
 
+//get events from searches:
+router.get('/searchEvents/user', (req, res) => {
+  let userName = req.query.userName;
+  db('users')//this is not doing what it is supposed to 
+    .join('attendingEvents as aE', 'users.id', '=', 'aE.user_id')
+    .join('events as e', 'e.id', '=', 'aE.event_id')
+    .where('users.name', 'like', `%${userName}%`)
+    .select('*')
+      .then((data) => res.send(data))
+      .catch((err) => console.error(err));
+});
+
+router.get('/searchEvents/event', (req, res) => {
+  let eventName = req.query.eventName;
+  db('events')
+    .select('*')
+    .where('name', 'like', `%${eventName}%`)
+      .then((data) => res.send(data))
+      .catch((err) => console.error(err));
+});
+
 module.exports = router;
