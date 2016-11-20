@@ -104,7 +104,8 @@ class CreateEvent extends React.Component {
             location: this.state.location,
             email: this.props.email,
             address: this.state.address,
-            coordinates: this.state.coordinates
+            coordinates: this.state.coordinates,
+            user_id: this.props.id
         });
         browserHistory.push('/dashboard');
     }
@@ -256,7 +257,10 @@ class CreateEvent extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return {email: state.reducers.isAuthorized.email}
+    return {
+      email: state.reducers.isAuthorized.email,
+      id: state.reducers.isAuthorized.id
+    }
 }
 
 function mapDispatchToProps(dispatch) {

@@ -20,7 +20,7 @@ class EventList extends React.Component {
 
     componentDidMount() {
         this.props.getEvent();
-        this.props.attendEvent();
+        // this.props.attendEvent();  //I think this was causing issues it does not seem neccessary, how was it  workin if attendEvents needs  user and event Id?
     }
 
     attend(e) {
