@@ -37,6 +37,7 @@ export function getPet(animal) {
         let photos = pet.media.photos.photo || 'no photos';
         let name = pet.name['$t'] || 'You can name it!';
         let sex = pet.sex['$t'] || 'unknown';
+        let id = pet.id ? pet.id['$t'] : null;
 
         let payload = {
           age: age,
@@ -46,7 +47,8 @@ export function getPet(animal) {
           description: description,
           photos: photos,
           name: name,
-          sex: sex
+          sex: sex,
+          id: id
         };
         dispatch(getPetSuccess(payload));
       })
