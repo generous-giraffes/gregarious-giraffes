@@ -24,13 +24,14 @@ class Photos extends Component {
                 <Row>
                 {this.props.images.map((image) => (
                   <Col xs={12} md={6}>
-                      {image.file_type === 'video/mp4' ?
-                          (
-                            <div style={{width: 'auto', height: 'auto'}}>
-                                <ResponsiveEmbed a16by9>
-                                    <embed type="video/mp4" src={image.uri}/>
-                                </ResponsiveEmbed>
-                            </div>
+                      {
+                        // image.file_type === 'video/mp4' ?
+                        //   (
+                        //     <div style={{width: 'auto', height: 'auto'}}>
+                        //         <ResponsiveEmbed a16by9>
+                        //             <embed type="video/mp4" src={image.uri}/>
+                        //         </ResponsiveEmbed>
+                        //     </div>
                           //   <Thumbnail >
                           //     {/* <iframe
                           //       src={image.uri}
@@ -41,10 +42,11 @@ class Photos extends Component {
                           //     </iframe> */}
                           //     <h3>{image.caption}</h3>
                           // </Thumbnail>
-                        )
-                          : (<Thumbnail>
+                        // )
+                        //   :
+                           (<Thumbnail>
                               <h3>{image.caption}</h3>
-                              <img src={image.image}/>
+                              <img style={{width: '200px', height: '200px'}} src={image.image}/>
                            </Thumbnail>)
                       }
                       {/* <Thumbnail src={image.image}>
