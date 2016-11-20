@@ -88,6 +88,14 @@ class CreateEvent extends React.Component {
             value: []
         };
     }
+    componentWillMount() {
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+      let niceDate = new Date().toISOString().split('T')[0].split('-');
+      let year = niceDate[0];
+      let month = months[Number(niceDate[1])-1]
+      let nicerDate = `${month} ${niceDate[2]}, ${year}`;
+      this.setState({date: nicerDate });
+    }
 
     handleSubmit(e) {
         e.preventDefault();
