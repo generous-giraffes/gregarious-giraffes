@@ -19,7 +19,5 @@ module.exports = {
         .then(() => db.select('*').from('users').where('email', data.email))
   },
 
-  fetch: () => {
-    return db('users').where({userId: data.email}).select('*')
-  }
+  fetch: () => db('users').where({userId: data.email}).select('*')
 };
