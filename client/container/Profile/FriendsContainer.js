@@ -79,9 +79,9 @@ class Friends extends Component {
                 </Modal.Footer>
             </Modal> */}
             {/* {this.props.newFriend.name ? (<Button bsStyle='info' onClick={() => this.setState({open1: !this.state.open1})}>Newest Friend</Button>) : null } */}
-            {this.props.newFriend.name ? toastr.info('You have a new friend!', `You are now friends with ${this.props.newFriend.name}`)
-             : null;
-           }
+            {/* {this.props.newFriend.name ? toastr.info('You have a new friend!', `You are now friends with ${this.props.newFriend.name}`)
+             : null
+           } */}
 
             <Button className="friends-btn" bsStyle="primary" onClick={()=> this.setState({ open2: !this.state.open2 })}>
                 Your Friends
