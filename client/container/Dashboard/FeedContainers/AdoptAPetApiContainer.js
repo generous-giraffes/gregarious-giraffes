@@ -43,21 +43,17 @@ class PetSearch extends Component {
             const url = pet.id ? `https://www.petfinder.com/petdetail/${pet.id}` : 'https://www.petfinder.com/';
 
             $data = (
-                <div className="petOfDay">
-                    <h1 className="section_title">Pet Of The Day</h1>
-
-                                <Thumbnail>
-                                    { image }
-                                    <p className="description">{pet.description}</p>
-                                    <p>
-                                        <Button href={url} target='_blank' bsStyle="primary">More Information</Button>
-                                    </p>
-
-                                </Thumbnail>
-
-
-                    {/* apply a filter to photos to only get ones with '@size':'x' (largest) and 'pn' second largest */}
-                </div>
+              <div className="petOfDay">
+                  <h1 className="section_title">Pet Of The Day</h1>
+                  <Thumbnail>
+                      { image }
+                      <p className="description">{pet.description}</p>
+                      <p>
+                          <Button href={url} target='_blank' bsStyle="primary">More Information</Button>
+                      </p>
+                  </Thumbnail>
+                  {/* apply a filter to photos to only get ones with '@size':'x' (largest) and 'pn' second largest */}
+              </div>
             );
         } else {
             $data = (<div>Sorry, there is currently no pet of the day. Check back later!</div>);
