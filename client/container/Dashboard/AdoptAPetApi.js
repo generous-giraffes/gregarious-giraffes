@@ -38,10 +38,10 @@ class PetSearch extends Component {
             let first = pet.photos.filter((p) => p['@size'] === 'x');
             console.log(first, 'this is first!!!!!');
             let image = (<img src={first[0]['$t']}/>);
-            var maxlength = 60;
-            $('p.description').text(function (_, text) {
-                return $.trim(text).substring(0, maxlength);
-            });
+
+            // this is to take user directly to the pet of day's detail page if a pet id exists
+            const url = pet.id ? `https://www.petfinder.com/petdetail/${pet.id}` : 'https://www.petfinder.com/';
+
             $data = (
                 <div className="petOfDay">
                     <Grid>
@@ -52,7 +52,7 @@ class PetSearch extends Component {
                                     { image }
                                     <p className="description">{pet.description}</p>
                                     <p>
-                                        <Button href='https://www.petfinder.com/' target='_blank' bsStyle="primary">More Information</Button>
+                                        <Button href={url} target='_blank' bsStyle="primary">More Information</Button>
                                     </p>
 
                                 </Thumbnail>
