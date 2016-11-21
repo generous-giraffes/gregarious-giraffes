@@ -13,7 +13,6 @@ class Home extends React.Component {
         super(props);
     }
 
-
     render() {
         return (
             <div className="home">
@@ -35,9 +34,7 @@ class Home extends React.Component {
                                 <Col xs={12}>
                                     <PetSearch />
                                 </Col>
-                                 <Col xs={12}>
-                                    <PetNewsSearch />
-                                 </Col>
+
                             </Col>
                         </Row>
                     </Grid>

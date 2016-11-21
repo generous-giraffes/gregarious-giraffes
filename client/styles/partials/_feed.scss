@@ -3,5 +3,25 @@
         width: 100%;
         max-width: 500px;
         margin: 0 auto 100px;
+
+        .myCard {
+
+            .img-container {
+                background: $light-blue;
+                border-radius: .25em;
+                img {
+                    margin-top: 13px;
+                    margin-bottom: 13px;
+                    border-radius: 10px;
+                }
+            }
+            .title {
+                font-size: 14px;
+                text-transform: uppercase;
+            }
+            .detail {
+                font-size: 12px;
+            }
+        }
     }
 }

@@ -169,20 +169,20 @@ class SurveyForm extends React.Component {
                         <select noValidate value={this.state.species} onChange={this.onSpeciesChange}
                                 className='selectpicker' title="search or select" data-max-options="1"
                                 data-live-search="true" required='true'>
-                            <option value="giraffe">Giraffe, Giraffa camelopardalis</option>
-                            <option value="dog">Dog, Canis lupus familiaris</option>
-                            <option value="cat">Cat, Felis silvestris catus</option>
-                            <option value="sheep">Sheep, Ovis aries</option>
-                            <option value="pig">Pig, Sus scrofa domesticus</option>
-                            <option value="goat">Goat, Capra aegagrus hircus</option>
-                            <option value="cow">Cow, Bos taurus</option>
-                            <option value="chicken">Chicken, Gallus gallus domesticus</option>
-                            <option value="duck">Duck, Anas platyrhynchos domesticus</option>
-                            <option value="horse">Horse, Equus ferus caballus</option>
-                            <option value="goldfish">Goldfish, Carassius auratus auratus</option>
-                            <option value="koi">Koi, Cyprinus carpio haematopterus</option>
-                            <option value="hedgehog">Hedgehog, Atelerix albiventris</option>
-                            <option value="camel">Camel, Camelus dromedarius</option>
+                            <option value="Giraffe">Giraffe, Giraffa camelopardalis</option>
+                            <option value="Dog">Dog, Canis lupus familiaris</option>
+                            <option value="Cat">Cat, Felis silvestris catus</option>
+                            <option value="Sheep">Sheep, Ovis aries</option>
+                            <option value="Pig">Pig, Sus scrofa domesticus</option>
+                            <option value="Goat">Goat, Capra aegagrus hircus</option>
+                            <option value="Cow">Cow, Bos taurus</option>
+                            <option value="Chicken">Chicken, Gallus gallus domesticus</option>
+                            <option value="Duck">Duck, Anas platyrhynchos domesticus</option>
+                            <option value="Horse">Horse, Equus ferus caballus</option>
+                            <option value="Goldfish">Goldfish, Carassius auratus auratus</option>
+                            <option value="Koi">Koi, Cyprinus carpio haematopterus</option>
+                            <option value="Hedgehog">Hedgehog, Atelerix albiventris</option>
+                            <option value="Camel">Camel, Camelus dromedarius</option>
                         </select>
                     </FormGroup>
 
