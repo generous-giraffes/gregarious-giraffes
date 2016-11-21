@@ -111,7 +111,7 @@ class FriendSearch extends Component {
                     </Button>
                </Modal.Footer>
             </Modal>
-            <form onSubmit={this.handleSubmit} data-toggle='validator'>
+            {/* <form onSubmit={this.handleSubmit} data-toggle='validator'> */}
 
                 <FormGroup controlId="formControlsTextarea">
                     <ControlLabel>Name</ControlLabel>
@@ -121,10 +121,10 @@ class FriendSearch extends Component {
                                  placeholder="Name"
                                  required='true'/>
                 </FormGroup>
-                <Button type="submit">
+                {/* <Button type="submit">
                     Submit
-                </Button>
-                </form>
+                </Button> */}
+                {/* </form> */}
                 {/* <ButtonToolbar>
                     <DropdownButton open={true} bsStyle='default' noCaret title="Users" id="bg-nested-dropdown"> */}
                     <ListGroup>
