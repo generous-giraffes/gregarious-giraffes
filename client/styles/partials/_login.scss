@@ -1,21 +1,24 @@
+//This stylesheet is for both log in and sign up. "login" is the class
 
 .login {
     @include vertical-center-flex(81vh);
     color: $dark-blue;
 
     form {
-        width: 800px;
         margin: 0 auto;
+        width: 300px;
 
-        h1 {
+        @media #{$mq-md, $mq-lg, $mq-xlg} {
+            width: 600px;
+        }
+
+        h1, h4 {
             text-align: center;
         }
-        h4 {
-            text-align: center;
-        }
+
 
         button {
-            @include three-d-button($dark-blue);
+            @include three-d-button($teal-blue);
         }
 
         .form-group {
