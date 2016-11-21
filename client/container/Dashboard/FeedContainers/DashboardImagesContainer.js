@@ -50,45 +50,47 @@ class DashboardImagesContainer extends Component {
     render() {
       console.log(this.props.dashImages, 'dash images');
         return (
-            <Grid className="photos">
-                <Modal show={this.state.open} onHide={() => {this.close()}}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Comment on this Image</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <input className="commentInput" type="text" onChange={(e)=>this.handleCommentChange(e)} />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button onClick={() => {this.close()}}>Close</Button>
-                        <Button onClick={() => {
+        <div className="photos">
+            <Modal show={this.state.open} onHide={() => {this.close()}}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Comment on this Image</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <input className="commentInput" type="text"
+                           onChange={(e)=>this.handleCommentChange(e)}/>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={() => {this.close()}}>Close</Button>
+                    <Button onClick={() => {
                           this.handleCommentSubmit();
                           toastr.success('Comment Success!', `You commented ${this.state.comment}`);
                           setTimeout(() => {this.close()}, 2500)
                         }}>Click to Comment</Button>
-                   </Modal.Footer>
-                </Modal>
-                <Row>
-                {this.props.dashImages.map((image) => (
-                  <Col xs={12} md={6}>
-                      <Thumbnail src={image.image}>
-                          <h3>{image.name}: {image.caption}</h3>
-                          {image.comments.map((comment)=> {
-                            return comment[0] ? (<p>{comment[0]} commented: {comment[1]}</p>) : null;
-                          })}
-                          <p>
-                              <Button
-                                  onClick={(e) => {this.open(e)}}
-                                  data-imageId={image.id}
-                                  data-user_image_id={image.user_image_id}
-                                  bsStyle="default">
-                                  Comment
+                </Modal.Footer>
+            </Modal>
+            {this.props.dashImages.map((image) => (
+                <div className="card card-inverse card-success text-center">
+                    <div className="card-block">
+                        <Thumbnail src={image.image}>
+                            <h3>{image.name}: {image.caption}</h3>
+                            {image.comments.map((comment)=> {
+                                return comment[0] ? (<p>{comment[0]} commented: {comment[1]}</p>) : null;
+                            })}
+                            <p>
+                                <Button
+                                    onClick={(e) => {this.open(e)}}
+                                    data-imageId={image.id}
+                                    data-user_image_id={image.user_image_id}
+                                    bsStyle="default">
+                                    Comment
                                 </Button>
-                          </p>
-                      </Thumbnail>
-                  </Col>
-                ))}
-                </Row>
-            </Grid>
+                            </p>
+                        </Thumbnail>
+                    </div>
+                </div>
+            ))}
+        </div>
+
         )
 
     }

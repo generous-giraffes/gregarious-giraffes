@@ -64,6 +64,8 @@ class SignupForm extends Component {
         return (
             <div className="login">
                 <form onSubmit={this.onFormSubmit}>
+                    <h1>Welcome to PawPrint</h1>
+                    <h4>Where the animals are always the first to know...</h4>
                     <FieldGroup
                         type='text'
                         label='Name'
@@ -82,7 +84,8 @@ class SignupForm extends Component {
                         placeholder='Password'
                         value={this.state.password}
                         onChange={this.onPasswordCreate}/>
-                    <Button bsStyle="primary" type="submit" value="Submit">Enter</Button>
+
+                    <Button className="myButton" bsStyle="primary" type="submit" value="Submit">Enter</Button>
                 </form>
             </div>
         );

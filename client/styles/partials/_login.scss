@@ -1,8 +1,30 @@
 
 .login {
     @include vertical-center-flex(81vh);
+    color: $dark-blue;
+
     form {
         width: 800px;
         margin: 0 auto;
+
+        h1 {
+            text-align: center;
+        }
+        h4 {
+            text-align: center;
+        }
+
+        button {
+            @include three-d-button($dark-blue);
+        }
+
+        .form-group {
+            input.form-control {
+                border-radius: 5px;
+                border: 2px solid $dark-blue;
+            }
+        }
+
+
     }
 }
