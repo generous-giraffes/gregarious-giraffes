@@ -39,10 +39,8 @@ class Home extends React.Component {
                                     <PetNewsSearch />
                                  </Col>
                             </Col>
-
-                        </Col>
-                    </Row>
-                </Grid>
+                        </Row>
+                    </Grid>
             </div>
         )
     }
