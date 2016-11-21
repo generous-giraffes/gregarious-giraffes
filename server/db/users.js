@@ -1,34 +1,43 @@
-'use strict';
+"use strict";
 
-const auth = require('../config/auth');
-const db = require('./index');
+var db = require('../db');
 
 module.exports = {
-  //find user for signin, used in server/config/auth.js
-  find(password, email, callback) {
-    db('users').where({email:email}).select('*')
-      .then((res) => callback(res))
-      .catch((err) => console.log(err))
+
+  get10: (offset) => {
+    return 	db('users').select('*').offset(offset).limit(10);
   },
 
-  add(email, password, name, callback) {
-    db('users').insert({
-      email: email,
-      password: password,
-      name: name
-    })
-    .then(() => {
-      return db('users')
-          .select('email', 'password', 'name', 'id')
-          .where('email', email)
-    })
-    .then((res) => {
-          let userInfo = res[0];
-          console.log('USER ADDED, users.js 26', userInfo);
-          callback(userInfo);
-    })
-    .catch((err) => {
-      console.log('ERROR ADDING USER, users.js 32', err);
-    })
+  count: () => {
+    return db('users').count('name');
+  },
+
+  findId: (friendEmail) => {
+    return db('users').select('id').where('email', friendEmail)
+  },
+
+  addFriend: (id, friendId) => {
+    return db('friends').insert({
+          user1_id: id,
+          user2_id: friendId
+         })
+  },
+
+  getFriend: (friendId) => {
+    return db('users').select('*').where('id', friendId);
+  },
+
+  getFriends: (id) => {
+    return db('users').select('*')
+      .leftOuterJoin('friends', 'users.id', 'friends.user2_id')
+      .where('friends.user1_id', id)
+  },
+
+  getFriendPhotos: (id) => {
+    return db('images').select('*').where('user_image_id', id)
+  },
+
+  search: (name) => {
+    return db('users').select('*').where('name','like', `%${name}%`)
   }
 };

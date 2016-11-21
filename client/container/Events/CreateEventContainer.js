@@ -88,6 +88,14 @@ class CreateEvent extends React.Component {
             value: []
         };
     }
+    componentWillMount() {
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+      let niceDate = new Date().toISOString().split('T')[0].split('-');
+      let year = niceDate[0];
+      let month = months[Number(niceDate[1])-1]
+      let nicerDate = `${month} ${niceDate[2]}, ${year}`;
+      this.setState({date: nicerDate });
+    }
 
     handleSubmit(e) {
         e.preventDefault();
@@ -104,7 +112,8 @@ class CreateEvent extends React.Component {
             location: this.state.location,
             email: this.props.email,
             address: this.state.address,
-            coordinates: this.state.coordinates
+            coordinates: this.state.coordinates,
+            user_id: this.props.id
         });
         browserHistory.push('/dashboard');
     }
@@ -165,13 +174,12 @@ class CreateEvent extends React.Component {
     //   this.searchBox.removeListener('places_changed', this.onPlaceChange);
     // }
     onPlaceChange() {
-        let place = this.searchBox.getPlaces();
-        console.log(place,"--===CREATE EVENT=====__", 'lat', place[0].geometry.location.lat(), 'lng',place[0].geometry.location.lng())
-        console.log('{lat:' + place[0].geometry.location.lat() + ', '+ 'lng:' + place[0].geometry.location.lng() + '}')
-        let coordinates = '{lat:' + place[0].geometry.location.lat() + ', '+ 'lng:' + place[0].geometry.location.lng() + '}'
-        let address = place[0].formatted_address;
-        this.setState({coordinates, address});
-
+      let place = this.searchBox.getPlaces();
+      console.log(place,"--===CREATE EVENT=====__", 'lat', place[0].geometry.location.lat(), 'lng',place[0].geometry.location.lng())
+      console.log('{lat:' + place[0].geometry.location.lat() + ', '+ 'lng:' + place[0].geometry.location.lng() + '}')
+      let coordinates = '{lat:' + place[0].geometry.location.lat() + ', '+ 'lng:' + place[0].geometry.location.lng() + '}'
+      let address = place[0].formatted_address;
+      this.setState({coordinates, address});
     }
 
 
@@ -257,7 +265,10 @@ class CreateEvent extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return {email: state.reducers.isAuthorized.email}
+    return {
+      email: state.reducers.isAuthorized.email,
+      id: state.reducers.isAuthorized.id
+    }
 }
 
 function mapDispatchToProps(dispatch) {
