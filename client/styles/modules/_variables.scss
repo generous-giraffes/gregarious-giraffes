@@ -7,6 +7,10 @@ $grey: #c7c1be;
 $white: #fff;
 $brown: #89553d;
 
+//This is the form/input styling
+$input-border: 2px solid $dark-blue;
+$input-radius: 5px;
+
 //Media Queries
 $mq-xs: "(max-width: 767px)";
 $mq-sm: "(min-width: 768px) and (max-width: 991px)";

@@ -6,41 +6,75 @@
 
     .container {
         max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
 
-        .navbar-nav {
-            margin-top: 10px;
+        .navbar-header {
+            .navbar-brand {
+                padding: 0 0 0 15px;
 
-            .header-login.active {
-                a {
-                    background: none;
-                    color: $light-blue;
+                @media #{$mq-md} {
+                    padding: 0;
+                }
+
+                img {
+                    width: 45px;
                 }
             }
+        }
 
-            a {
-                &:hover {
-                    background: none;
-                    color: $light-blue;
+        .navbar-collapse {
+            background: $dark-blue;
+            border: $dark-blue;
+            .navbar-nav {
+                margin-top: 10px;
+
+                li {
+                    a {
+                        &:hover {
+                            background: none;
+                            color: $light-blue;
+                        }
+                    }
+                }
+
+                .header-login.active {
+                    a {
+                        background: none;
+                        color: $light-blue;
+                    }
+                }
+
+                .header-login {
+                    a {
+                        text-decoration: none;
+                        color: $white;
+
+                        &:hover, &:focus {
+                            background: none;
+                            color: $light-blue;
+                        }
+                    }
+                }
+                .dropdown {
+                    span {
+                        display: none;
+                    }
+                    #basic-nav-dropdown {
+                        background: $dark-blue;
+                    }
+                    .dropdown-menu {
+                        background: $dark-blue;
+
+                        a {
+                            &:hover {
+                                background: $dark-blue;
+                                color: $light-blue;
+                            }
+                        }
+                    }
                 }
             }
         }
-
-        .navbar-brand {
-            padding: 0;
-            img {
-                width: 50px;
-            }
-        }
-    }
-
-    .dropdown {
-        span {
-            display: none;
-        }
-    }
-
-    a.header-login {
-        text-decoration: none;
-        color: $white;
     }
 }
