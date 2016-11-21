@@ -18,7 +18,8 @@ export function petApi_Reducer(state = {}, action) {
               description: action.data.description,
               photos: action.data.photos,
               name: action.data.name,
-              sex: action.data.sex
+              sex: action.data.sex,
+              id: action.data.id
             }
           });
       default:

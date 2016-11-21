@@ -32,17 +32,15 @@ class Home extends React.Component {
                                     <FriendSearch />
                                     <Birthdays />
                                 </Col>
-                                <Col xs={12}>
-                                    <PetSearch />
-                                </Col>
-                                <Col xs={12}>
-                                    <PetNewsSearch />
-                                </Col>
+                             <Col xs={12}>
+                                <PetSearch />
                             </Col>
-                        </Row>
-                    </Grid>
-
-
+                            {/*<Col xs={12}>
+                                <PetNewsSearch />
+                            </Col>*/}
+                        </Col>
+                    </Row>
+                </Grid>
             </div>
         )
     }
