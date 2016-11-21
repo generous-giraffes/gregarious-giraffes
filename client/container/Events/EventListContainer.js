@@ -137,7 +137,24 @@ class EventList extends React.Component {
                        required='true'/>
                 </FormGroup>
                 {this.props.searchedEvents.map((e, i) => {
-                  return(
+                  return(//maybe use a collapsible group for this
+                    // <div id="accordion" role="tablist" aria-multiselectable="true">
+                    //   <div class="card">
+                    //     <div class="card-header" role="tab" id="headingOne">
+                    //       <h5 class="mb-0">
+                    //         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    //           Collapsible Group Item #1
+                    //         </a>
+                    //       </h5>
+                    //     </div>
+                    //
+                    //     <div id="collapseOne" class="collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    //       <div class="card-block">
+                    //         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    //       </div>
+                    //     </div>
+                    //   </div>
+                    //   </div>
                     <div className="demo-card">
                         <div className="card card-inverse card-primary text-center">
                             <div className="card-block">
@@ -177,7 +194,7 @@ class EventList extends React.Component {
                     </div>
                   )
                 }, this)}
-                {$data}
+                {/* {$data} */}
             </div>
         );
     }
