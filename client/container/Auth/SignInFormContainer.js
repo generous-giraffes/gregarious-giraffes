@@ -59,6 +59,8 @@ class SigninForm extends Component {
         return (
             <div className="login">
                 <form onSubmit={this.onFormSubmit}>
+                    <h1>Welcome to PawPrint</h1>
+                    <h4>Where the animals are always the first to know...</h4>
                     <FieldGroup
                         type='text'
                         label='Email Address'

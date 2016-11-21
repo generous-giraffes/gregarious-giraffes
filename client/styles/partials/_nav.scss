@@ -9,6 +9,20 @@
 
         .navbar-nav {
             margin-top: 10px;
+
+            .header-login.active {
+                a {
+                    background: none;
+                    color: $light-blue;
+                }
+            }
+
+            a {
+                &:hover {
+                    background: none;
+                    color: $light-blue;
+                }
+            }
         }
 
         .navbar-brand {

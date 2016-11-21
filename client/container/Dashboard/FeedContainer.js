@@ -13,9 +13,8 @@ class Feed extends React.Component {
             <div className="feed">
                 <div className="demo-card">
                     <UserFeed />
-                    <div className="card card-inverse card-success text-center">
-                        <ImageFeed />
-                    </div>
+                    <ImageFeed />
+
                     <div className="card card-inverse card-info text-center">
                         <div className="card-block">
                             <blockquote className="card-blockquote">
