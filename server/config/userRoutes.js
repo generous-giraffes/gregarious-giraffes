@@ -53,11 +53,28 @@ router.get('/users/friends', (req, res) => {
       .then((data) => res.send(data))
   	  .catch((err) => console.error(err));
 });
+
 //retrieve friend's photos
 router.get('/users/friendsImages', (req, res) => {
   let id = req.query.id;
   // db('images').select('*').where('user_image_id', id)
   Users.getFriendPhotos(id)
+    .then((data) => res.send(data))
+	  .catch((err) => console.error(err));
+});
+
+//retrieve friend's events
+router.get('/users/friendsEvents', (req, res) => {
+  let id = req.query.id;
+  Users.getFriendEvents(id)
+    .then((data) => res.send(data))
+	  .catch((err) => console.error(err));
+});
+
+//retrieve friend's friends
+router.get('/users/friendsFriends', (req, res) => {
+  let id = req.query.id;
+  Users.getFriends(id)
     .then((data) => res.send(data))
 	  .catch((err) => console.error(err));
 });

@@ -5,12 +5,13 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { getFriends, setCurrentFriend } from '../../actions/friends';
 import axios from 'axios';
+import { toastr } from 'react-redux-toastr';
 
 class Friends extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        open1: false,
+        // open1: false,
         open2: false,
         isButtonDisabled: false
     }
@@ -46,13 +47,13 @@ class Friends extends Component {
   open() {
     this.setState({ open: true });
   }
-  close1() {
-    this.setState({ open1: false });
-  }
-
-  open1() {
-    this.setState({ open1: true });
-  }
+  // close1() {
+  //   this.setState({ open1: false });
+  // }
+  //
+  // open1() {
+  //   this.setState({ open1: true });
+  // }
 
   viewProfile(e) {
       let index = e.currentTarget.getAttribute('data-index')
@@ -65,7 +66,7 @@ class Friends extends Component {
     render() {
       return(
         <div className="friends-div">
-            <Modal show={this.state.open1} onHide={() => {this.close1()}}>
+            {/* <Modal show={this.state.open1} onHide={() => {this.close1()}}>
                 <Modal.Header closeButton>
                     <Modal.Title>New Friend</Modal.Title>
                 </Modal.Header>
@@ -76,8 +77,12 @@ class Friends extends Component {
                     <h5>Keep on Smiling!</h5>
                     <Button onClick={() => {this.close1()}}>Close</Button>
                 </Modal.Footer>
-            </Modal>
-            {this.props.newFriend.name ? (<Button bsStyle='info' onClick={() => this.setState({open1: !this.state.open1})}>Newest Friend</Button>) : null }
+            </Modal> */}
+            {/* {this.props.newFriend.name ? (<Button bsStyle='info' onClick={() => this.setState({open1: !this.state.open1})}>Newest Friend</Button>) : null } */}
+            {/* {this.props.newFriend.name ? toastr.info('You have a new friend!', `You are now friends with ${this.props.newFriend.name}`)
+             : null
+           } */}
+
             <Button className="friends-btn" bsStyle="primary" onClick={()=> this.setState({ open2: !this.state.open2 })}>
                 Your Friends
             </Button>

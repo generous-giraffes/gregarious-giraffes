@@ -4,17 +4,11 @@ var db = require('../db');
 
 module.exports = {
 
-  get10: (offset) => {
-    return 	db('users').select('*').offset(offset).limit(10);
-  },
+  get10: (offset) => db('users').select('*').offset(offset).limit(10),
 
-  count: () => {
-    return db('users').count('name');
-  },
+  count: () => db('users').count('name'),
 
-  findId: (friendEmail) => {
-    return db('users').select('id').where('email', friendEmail)
-  },
+  findId: (friendEmail) => db('users').select('id').where('email', friendEmail),
 
   addFriend: (id, friendId) => {
     return db('friends').insert({
@@ -23,9 +17,7 @@ module.exports = {
          })
   },
 
-  getFriend: (friendId) => {
-    return db('users').select('*').where('id', friendId);
-  },
+  getFriend: (friendId) => db('users').select('*').where('id', friendId),
 
   getFriends: (id) => {
     return db('users').select('*')
@@ -33,11 +25,16 @@ module.exports = {
       .where('friends.user1_id', id)
   },
 
-  getFriendPhotos: (id) => {
-    return db('images').select('*').where('user_image_id', id)
+  getFriendPhotos: (id) => db('images').select('*').where('user_image_id', id),
+
+  getFriendEvents: (id) => {
+    return db('users as u')
+      .join('attendingEvents as aE', 'u.id', '=', 'aE.user_id')
+      .join('events as e', 'e.id', '=', 'aE.event_id')
+      .where('u.id', id)
+      .distinct('user_id', 'event_id')
+      .select('e.name', 'e.location', 'e.date', 'e.time', 'e.gifts', 'e.animals', 'e.eating', 'e.danger', 'e.address', 'e.coordinates');
   },
 
-  search: (name) => {
-    return db('users').select('*').where('name','like', `%${name}%`)
-  }
+  search: (name) => db('users').select('*').where('name', 'like', `%${name}%`)
 };
