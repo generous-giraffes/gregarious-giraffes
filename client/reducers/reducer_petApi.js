@@ -19,6 +19,7 @@ export function petApi_Reducer(state = {}, action) {
               photos: action.data.photos,
               name: action.data.name,
               sex: action.data.sex,
+              // to access unique id for the pet of day and use it to go to pet's detailed page
               id: action.data.id
             }
           });

@@ -39,7 +39,7 @@ class PetSearch extends Component {
             console.log(first, 'this is first!!!!!');
             let image = (<img src={first[0]['$t']}/>);
 
-            // this is to take user directly to the pet of day's detail page if a pet id exists
+            // this is to take user directly to the pet's detailed page if a pet id exists when the More Info button is clicked
             const url = pet.id ? `https://www.petfinder.com/petdetail/${pet.id}` : 'https://www.petfinder.com/';
 
             $data = (
@@ -50,6 +50,7 @@ class PetSearch extends Component {
                                 <Thumbnail>
                                     <h3>Pet of the Day</h3>
                                     { image }
+                                    {/* Added ellipsis and crop styling to the petOfDay description from _dashboard.scss */}
                                     <p className="description">{pet.description}</p>
                                     <p>
                                         <Button href={url} target='_blank' bsStyle="primary">More Information</Button>

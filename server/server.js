@@ -11,7 +11,7 @@ var router = express.Router();
 //initiate express
 var app = express();
 
-//This is needed for socket.io to work
+//This is needed for socket.io to work by attaching a socket.io server to express
 var http = require('http').Server(app)
 var io = require('socket.io')(http);
 
@@ -59,12 +59,14 @@ app.get('*', function(req, res){
   res.sendFile(path.resolve(__dirname, '../client', 'index.html'))
 });
 
+// via the http server set up in line 16, we open the socket.io connection
 io.sockets.on('connection',function(socket){
     console.log("Connected: ", socket.id);
 
     socket.on('chatlist',(payload)=>{
         console.log(payload);
         console.log("received");
+        // listens and broadcasts the messages sent from client-side
         this.emit('chatlist', payload);
     })
 });

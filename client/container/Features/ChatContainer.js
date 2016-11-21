@@ -35,27 +35,24 @@ class ChatBox extends React.Component {
   }
 
   handleChatSubmit(comment) {
-      var comments = this.state.data; // empty array at first
+      var comments = this.state.data;
       console.log("data executed");
 
-      comment.id = Date.now(); // {text: 'text' , id: 'id' }
-      var newComments = comments.concat([comment]); // [{text: 'text' , id: 'id' }]
+      comment.id = Date.now();
+      var newComments = comments.concat([comment]);
       this.setState({
-          data: newComments   // {data: [{text: 'text' , id: 'id' }]}
+          data: newComments
       });
 
       this.props.saveChat({
-        // this.props.user is the user
         user: this.props.user,
-        // this is equivalent to just putting 'comment' (object shorthand)
         comment: comment
       });
-
+      // this is where socket.io broadcasts the chat messages the user sends to server
       this.socket.emit("chatlist", newComments);
   }
 
   render() {
-    // this.props.comments and this.props.user comes from the store
       return (
         <Grid>
           <Row className="show-grid">
@@ -74,7 +71,6 @@ class ChatBox extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    // This is the user from the store (email, id, name, etc.)
     user: state.reducers.isAuthorized,
     comments: state.reducers.chat.comments
   }
