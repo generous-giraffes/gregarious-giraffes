@@ -7,6 +7,15 @@
     height: $height;
 }
 
+@mixin section_title($color) {
+    text-align: center;
+    background: $dark-blue;
+    color: $color;
+    border: 2px solid $dark-blue;
+    padding: 5px;
+    border-radius: $card-radius;
+}
+
 @mixin three-d-button($color) {
     color: $white;
     font-size: inherit;

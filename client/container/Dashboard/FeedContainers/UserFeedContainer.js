@@ -20,6 +20,7 @@ class UserFeed extends Component {
     render() {
         return (
             <div className="userFeed">
+                <h1 className="section_title">Recent Users</h1>
                 {this.props.recentUsers.map((e) => (
                 <div className="card card-inverse card-primary text-center">
                     <div className="card-block">

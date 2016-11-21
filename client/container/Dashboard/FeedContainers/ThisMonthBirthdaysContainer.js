@@ -17,8 +17,8 @@ class Birthdays extends Component {
 
   render() {
     return (
-      <div>
-          <h3>This Month's Birthdays</h3>
+      <div className="birthdayFeed">
+          <h1 className="section_title">This Month's Birthdays</h1>
           {this.props.birthdays.map((user) => (
               <div className="card card-inverse card-info text-center">
                   <div className="card-block">

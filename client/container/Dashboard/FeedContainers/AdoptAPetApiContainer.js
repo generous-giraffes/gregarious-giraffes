@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { getPet } from '../../actions/getPets';
+import { getPet } from '../../../actions/getPets';
 import axios from 'axios';
 
 class PetSearch extends Component {
@@ -44,11 +44,9 @@ class PetSearch extends Component {
 
             $data = (
                 <div className="petOfDay">
-                    <Grid>
-                        <Row>
-                            <Col xs={12}>
+                    <h1 className="section_title">Pet Of The Day</h1>
+
                                 <Thumbnail>
-                                    <h3>Pet of the Day</h3>
                                     { image }
                                     <p className="description">{pet.description}</p>
                                     <p>
@@ -57,9 +55,7 @@ class PetSearch extends Component {
 
                                 </Thumbnail>
 
-                            </Col>
-                        </Row>
-                    </Grid>
+
                     {/* apply a filter to photos to only get ones with '@size':'x' (largest) and 'pn' second largest */}
                 </div>
             );

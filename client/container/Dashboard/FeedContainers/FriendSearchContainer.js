@@ -3,7 +3,7 @@ import { ListGroup, ListGroupItem, ButtonToolbar, ControlLabel, Popover, Overlay
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { addFriend, setCurrentFriend } from '../../actions/friends';
+import { addFriend, setCurrentFriend } from '../../../actions/friends';
 import axios from 'axios';
 import {toastr} from 'react-redux-toastr';
 
@@ -87,34 +87,34 @@ class FriendSearch extends Component {
       );
         return (
             <div className="FriendSearch">
-            <Modal show={this.state.open} onHide={() => {this.close()}}>
-                <Modal.Header closeButton>
-                    <Modal.Title>What would you like to do?</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <h4>Username:</h4><p><OverlayTrigger overlay={popover}><a href="#">{this.state.selectedUser.name}</a></OverlayTrigger></p>
-                    <h4>Email:</h4><p>{this.state.selectedUser.email }</p>
-                    {/* <h4>Species:</h4><p>{this.state.selectedUser.species }</p>
-                    <h4>Hobbies:</h4><p>{this.state.selectedUser.hobbies }</p>
-                    <h4>BooldType:</h4><p>{this.state.selectedUser.bloodType }</p>
-                    <h4>Quote:</h4><p>{this.state.selectedUser.quote }</p> */}
-                </Modal.Body>
-                <Modal.Footer>
-                    <h5>Keep on Smiling!</h5>
-                    <Button onClick={() => {this.close()}}>Close</Button>
-                    <Button onClick={() => {this.viewProfile()}}>View Profile</Button>
-                    <Button
-                      onClick={() => {this.friend();
-                                      toastr.success('Friended Success!', `You friended ${this.state.selectedUser.name}`);
-                                      setTimeout(() => {this.close()}, 3000)
-                              }}> Friend
-                    </Button>
-               </Modal.Footer>
-            </Modal>
+                <h1 className="section_title">Search For Friends</h1>
+                <Modal show={this.state.open} onHide={() => {this.close()}}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>What would you like to do?</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <h4>Username:</h4><p><OverlayTrigger overlay={popover}><a href="#">{this.state.selectedUser.name}</a></OverlayTrigger></p>
+                        <h4>Email:</h4><p>{this.state.selectedUser.email }</p>
+                        {/* <h4>Species:</h4><p>{this.state.selectedUser.species }</p>
+                        <h4>Hobbies:</h4><p>{this.state.selectedUser.hobbies }</p>
+                        <h4>BooldType:</h4><p>{this.state.selectedUser.bloodType }</p>
+                        <h4>Quote:</h4><p>{this.state.selectedUser.quote }</p> */}
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <h5>Keep on Smiling!</h5>
+                        <Button onClick={() => {this.close()}}>Close</Button>
+                        <Button onClick={() => {this.viewProfile()}}>View Profile</Button>
+                        <Button
+                          onClick={() => {this.friend();
+                                          toastr.success('Friended Success!', `You friended ${this.state.selectedUser.name}`);
+                                          setTimeout(() => {this.close()}, 3000)
+                                  }}> Friend
+                        </Button>
+                   </Modal.Footer>
+                </Modal>
             {/* <form onSubmit={this.handleSubmit} data-toggle='validator'> */}
 
                 <FormGroup controlId="formControlsTextarea">
-                    <ControlLabel>Name</ControlLabel>
                     <FormControl value={this.state.name}
                                  onChange={this.handleChange}
                                  componentClass="input"
