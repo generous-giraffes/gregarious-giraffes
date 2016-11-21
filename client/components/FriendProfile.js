@@ -5,6 +5,8 @@ import {  Col, Row, Grid, Button } from 'react-bootstrap';
 import ProfileHeader from '../container/FriendProfile/HeaderContainer';
 import SurveyInfo from '../container/FriendProfile/SurveyInfoContainer';
 import FriendImages from '../container/FriendProfile/FriendImagesContainer';
+import FriendEvents from '../container/FriendProfile/FriendEventsContainer';
+import FriendFriends from '../container/FriendProfile/FriendFriendsContainer';
 
 class FriendProfile extends React.Component {
   constructor(props) {
@@ -25,9 +27,11 @@ class FriendProfile extends React.Component {
                 <Col xs={12} md={6}>
                     <Button onClick={this.goBack} >Go Back</Button>
                     <SurveyInfo />
+                    <FriendImages />
                 </Col>
                 <Col xs={12} md={6}>
-                    <FriendImages />
+                    <FriendEvents />
+                    <FriendFriends />
                 </Col>
             </Row>
         </Grid>
