@@ -50,7 +50,8 @@ class DashboardImagesContainer extends Component {
     render() {
       console.log(this.props.dashImages, 'dash images');
         return (
-        <div className="photos">
+        <div className="imagesFeed">
+            <h1 className="section_title">Recent Images</h1>
             <Modal show={this.state.open} onHide={() => {this.close()}}>
                 <Modal.Header closeButton>
                     <Modal.Title>Comment on this Image</Modal.Title>

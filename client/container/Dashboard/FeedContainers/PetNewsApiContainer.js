@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { getPet, getPetNews } from '../../actions/getPets';
+import { getPet, getPetNews } from '../../../actions/getPets';
 import axios from 'axios';
 
 class PetNewsSearch extends Component {
