@@ -24,9 +24,9 @@ app.use((req, res, next) => {
 });
 
 //middleware
-//remove limit when switch to s3 bucket
-app.use(bodyparser.json({limit: "10mb"}));
-app.use(bodyparser.urlencoded({limit: "10mb", extended: true, parameterLimit:50000}));
+//limit set to 5mb to handle photos uploaded to s3 bucket
+app.use(bodyparser.json({limit: "5mb"}));
+app.use(bodyparser.urlencoded({limit: "5mb", extended: true, parameterLimit:50000}));
 app.use(bodyparser());
 app.use(logger('dev'));
 app.use(express.static(__dirname + '/../client'));

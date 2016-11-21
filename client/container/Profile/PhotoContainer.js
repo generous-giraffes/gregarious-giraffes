@@ -22,43 +22,16 @@ class Photos extends Component {
             <Grid className="photos">
                 <UserImageUpload />
                 <Row>
-                {this.props.images.map((image) => (
-                  <Col xs={12} md={6}>
-                      {
-                        // image.file_type === 'video/mp4' ?
-                        //   (
-                        //     <div style={{width: 'auto', height: 'auto'}}>
-                        //         <ResponsiveEmbed a16by9>
-                        //             <embed type="video/mp4" src={image.uri}/>
-                        //         </ResponsiveEmbed>
-                        //     </div>
-                          //   <Thumbnail >
-                          //     {/* <iframe
-                          //       src={image.uri}
-                          //       frameBorder='0'
-                          //       webkitAllowFullScreen
-                          //       mozallowfullscreen
-                          //       allowFullScreen>
-                          //     </iframe> */}
-                          //     <h3>{image.caption}</h3>
-                          // </Thumbnail>
-                        // )
-                        //   :
-                           (<Thumbnail>
+                    {this.props.images.map((image) => (
+                      <Col xs={12} md={6}>
+                          <Thumbnail src={image.image}>
                               <h3>{image.caption}</h3>
-                              <img style={{width: '200px', height: '200px'}} src={image.image}/>
-                           </Thumbnail>)
-                      }
-                      {/* <Thumbnail src={image.image}>
-                          <img src={image.uri}/>
-                          <h3>{image.caption}</h3>
-                      </Thumbnail> */}
-                  </Col>
-                ))}
+                          </Thumbnail>
+                      </Col>
+                    ))}
                 </Row>
             </Grid>
         )
-
     }
 }
 

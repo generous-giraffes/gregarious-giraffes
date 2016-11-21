@@ -4,17 +4,11 @@ var db = require('../db');
 
 module.exports = {
 
-  addProfileImage: (data) => {
-    return 	db('users').update('image', data.url).where('email', data.email)
-  },
+  addProfileImage: (data) => db('users').update('image', data.url).where('email', data.email),
 
-  getProfileImage: (id) => {
-    return db('users').where('id', id).select('image')
-  },
+  getProfileImage: (id) => db('users').where('id', id).select('image'),
 
-  getUserImages: (id) => {
-    return db('images').where('user_image_id', id).select('image', 'caption', 'file_type')
-  },
+  getUserImages: (id) => db('images').where('user_image_id', id).select('image', 'caption', 'file_type'),
 
   addUserImage: (data) => {
     return db('images').insert({
