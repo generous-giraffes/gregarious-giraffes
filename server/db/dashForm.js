@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var db = require('../db');
 
@@ -8,12 +8,12 @@ module.exports = {
     return db('users').select('*').limit(10)
   },
 
-  addComment: ({ comment, imageId, user_image_id, userName }) => {
+  addComment: (data) => {
     return db('imageComment').insert({
-      comment: comment,
-      image_id: imageId,
-      userImageId: user_image_id,
-      commenter_name: userName
+      comment: data.comment,
+      image_id: data.imageId,
+      userImageId: data.user_image_id,
+      commenter_name: data.userName
     })
   },
 

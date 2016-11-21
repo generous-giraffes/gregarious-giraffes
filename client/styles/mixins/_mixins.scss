@@ -6,3 +6,46 @@
     justify-content: center;
     height: $height;
 }
+
+@mixin three-d-button($color) {
+    color: $grey;
+    font-size: inherit;
+    border-color: $teal-blue;
+    border-radius: 0 0 5px 5px;
+    background: $teal-blue;
+    cursor: pointer;
+    padding: 15px 35px;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    box-shadow: 0 6px $dark-blue;
+    -webkit-transition: none;
+    -moz-transition: none;
+    transition: none;
+
+    &:after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+    }
+    &:hover {
+        box-shadow: 0 4px $dark-blue;
+        top: 2px;
+        background: $teal-blue;
+        color: $grey;
+    }
+
+    &:active {
+        box-shadow: 0 4px $dark-blue;
+        top: 6px;
+        background: $teal-blue;
+        color: $grey;
+    }
+}
+
+
+
+
