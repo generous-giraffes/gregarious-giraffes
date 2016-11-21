@@ -24,7 +24,7 @@ class Birthdays extends Component {
                   <div className="card-block">
                       <blockquote className="card-blockquote">
                           {/*<img type="image" src={user.image} alt="user profile image" style={{width: '100%'}}/> */}
-                              <div>{user.name}'s bithday is {user.prettyDob}</div>
+                              <div>{user.name}'s birthday is {user.prettyDob}</div>
                       </blockquote>
                   </div>
               </div>
