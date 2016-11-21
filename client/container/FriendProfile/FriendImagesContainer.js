@@ -18,14 +18,13 @@ class FriendImages extends Component {
         return (
             <Grid className="photos">
                 <Row>
-                {this.props.friendImages.map((image) => (
-                  <Col xs={12} md={6}>
-                      <Thumbnail src={image.image}>
-                          <img src={image.uri}/>
-                          <h3>{image.caption}</h3>
-                      </Thumbnail>
-                  </Col>
-                ))}
+                  {this.props.friendImages.map((image) => (
+                    <Col xs={12} md={6}>
+                        <Thumbnail src={image.image}>
+                            <h3>{image.caption}</h3>
+                        </Thumbnail>
+                    </Col>
+                  ))}
                 </Row>
             </Grid>
         )

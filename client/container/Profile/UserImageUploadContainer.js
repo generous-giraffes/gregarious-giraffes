@@ -36,9 +36,9 @@ class UserImageUpload extends React.Component {
         filetype: this.state.filetype,
         caption: this.state.caption
       });
-      toastr.info('Upload Success!', 'your image was stored',  toastrOptions)
+      toastr.info('Upload Success!', 'Your image was stored',  toastrOptions)
     } else {
-      toastr.warning('Upload failed', 'make sure your filename has no whitespace or special characters', toastrOptions)
+      toastr.warning('Upload failed', 'Please make sure your filename has no whitespace or special characters', toastrOptions)
     }
   }
 
@@ -52,7 +52,7 @@ class UserImageUpload extends React.Component {
     let chars = file.name.split('');
     //check if fileName contains characters that are not allowed (they mess with storage in the s3 bucket)
     if(chars.includes(' ') || chars.includes('(') || chars.includes(')')) {
-      toastr.warning('Warning', 'make sure your filename has no whitespace or special characters', toastrOptions)
+      toastr.warning('Warning', 'Please make sure your filename has no whitespace or special characters', toastrOptions)
       e.target.value = null;
     } else {
       //FileReader asynchronously reads file/blob contents
@@ -77,11 +77,9 @@ class UserImageUpload extends React.Component {
     let preview = null;
     let preview2 = null;
     if(data_uri) {
-      preview = this.state.filetype === 'video/mp4' ?
-          (<iframe src={data_uri} frameBorder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen />)
-        : (<img className="previewImage" src={data_uri} />)
+      preview = (<img className="previewImage" src={data_uri} />);
     } else {
-      preview2 = (<div className="previewText">Please select an Image to Upload</div>);
+      preview2 = (<div className="previewText">Please Select an Image to Upload</div>);
     }
 
     return (
@@ -98,7 +96,7 @@ class UserImageUpload extends React.Component {
               <p>Please ensure your file contains no spaces or special characters.</p>
             </FormGroup>
             <div className="imgPreview">
-              {preview}
+                {preview}
             </div>
           </Col>
         </Row>
