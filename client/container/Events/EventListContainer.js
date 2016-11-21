@@ -16,7 +16,8 @@ class EventList extends React.Component {
         this.state = {
             event: '',
             eventName: '',
-            userName: ''
+            userName: '',
+            search: false
         }
     }
 
@@ -44,23 +45,28 @@ class EventList extends React.Component {
     }
 
     handleUserNameChange(e) {
-      console.log(e.currentTarget.value, "val in andle user or event change");
-      this.props.searchEventsByUserName(e.currentTarget.value);
-
+      if(Boolean(e.currentTarget.value)) {
+        this.props.searchEventsByUserName(e.currentTarget.value);
+        this.setState({search: true})
+      } else
+      this.setState({search: false})
     }
 
     handleEventNameChange(e) {
-      console.log(e.currentTarget.value, "val in andle user or event change");
-      this.props.searchEventsByEventName(e.currentTarget.value);
+      if(Boolean(e.currentTarget.value)) {
+        this.props.searchEventsByEventName(e.currentTarget.value);
+        this.setState({search: true})
+      } else
+      this.setState({search: false})
     }
 
     render() {
-        let $data = null;
+        let defaultEvents = null;
 
         if (this.props.event) {
             let eventList = this.props.event;
             console.log(this.attend, 'this.attend');
-            $data = (
+            defaultEvents = (
                 <div className="eventList">
                     <Grid>
                         <Row>
@@ -115,8 +121,93 @@ class EventList extends React.Component {
                 </div>
             );
         } else {
-            $data = (<div>Please GET SOME PROPS</div>);
+            defaultEvents = (<div>There are no events, fill out the form to create one!</div>);
         }
+
+        let eventsFromSearch = this.props.searchedEvents.map((e, i) => {
+          return(
+
+          // <div class="card">
+          //    <div className="card-header" role="tab" id={`heading${i}`}>
+          //      <h5 className="mb-0">
+          //        <a data-toggle="collapse" data-parent="#accordion" href={`#collapse${i}`} aria-expanded="false" aria-controls={`collapse${i}`}>
+          //          Event name: {e.name}
+          //        </a>
+          //      </h5>
+          //    </div>
+          //
+          //    <div id={`collapse${i}`} className="collapse" role="tabpanel" aria-labelledby={`heading${i}`}>
+          //      <div class="card-block">
+          //          <h2>{e.name}</h2>
+          //          <h4>Location: {e.location}</h4>
+          //          <p>
+          //              <OverlayTrigger trigger="click" overlay={
+          //                      <Popover id="modal-popover" title="map">
+          //                          <div><SimpleMapPage place={e.coordinates} address={e.address} name={e.location}/></div>
+          //                      </Popover>}>
+          //                  <a style={{'color':'white'}} href="#">{e.address} <span style={{'fontSize': '10px'}}>click to view on map</span></a>
+          //              </OverlayTrigger>
+          //          </p>
+          //          <h4>Time: {e.time}</h4>
+          //          <h4>Date: {e.date}</h4>
+          //          <p>Food Options? {e.eating}</p>
+          //          <p>Any Danger? {e.danger}</p>
+          //          <p>Animals in Attendance: {e.animals}</p>
+          //          <Button
+          //              className="events-btn"
+          //              bsStyle="success"
+          //              onClick={(e) => {
+          //              this.attend(e)
+          //              toastr.success('Event Success!', `You added the event`);
+          //              setTimeout(() => {this.close()}, 2500)
+          //              }}
+          //
+          //              data-eventID={e.id}
+          //              data-index={i}>
+          //              Attend Event
+          //          </Button>
+          //      </div>
+          //    </div>
+          //  </div>
+          <div className="demo-card">
+                <div className="card card-inverse card-info text-center">
+                    <div className="card-block">
+                        <blockquote className="card-blockquote">
+                            <h2>{e.name}</h2>
+                            <h4>Location: {e.location}</h4>
+                            <p>
+                                <OverlayTrigger trigger="click" overlay={
+                                        <Popover id="modal-popover" title="map">
+                                            <div><SimpleMapPage place={e.coordinates} address={e.address} name={e.location}/></div>
+                                        </Popover>}>
+                                    <a style={{'color':'white'}} href="#">{e.address} <span style={{'fontSize': '10px'}}>click to view on map</span></a>
+                                </OverlayTrigger>
+                            </p>
+                            <h4>Time: {e.time}</h4>
+                            <h4>Date: {e.date}</h4>
+                            <p>Food Options? {e.eating}</p>
+                            <p>Any Danger? {e.danger}</p>
+                            <p>Animals in Attendance: {e.animals}</p>
+                            <Button
+                                className="events-btn"
+                                bsStyle="success"
+                                onClick={(e) => {
+                                this.attend(e)
+                                toastr.success('Event Success!', `You added the event`);
+                                setTimeout(() => {this.close()}, 2500)
+                                }}
+
+                                data-eventID={e.id}
+                                data-index={i}>
+                                Attend Event
+                            </Button>
+
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+          )
+        }, this) || null;
         return (
             <div className="eventList">
                 <h3>List of Events</h3>
@@ -136,65 +227,8 @@ class EventList extends React.Component {
                        placeholder="Event Name"
                        required='true'/>
                 </FormGroup>
-                {this.props.searchedEvents.map((e, i) => {
-                  return(//maybe use a collapsible group for this
-                    // <div id="accordion" role="tablist" aria-multiselectable="true">
-                    //   <div class="card">
-                    //     <div class="card-header" role="tab" id="headingOne">
-                    //       <h5 class="mb-0">
-                    //         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    //           Collapsible Group Item #1
-                    //         </a>
-                    //       </h5>
-                    //     </div>
-                    //
-                    //     <div id="collapseOne" class="collapse in" role="tabpanel" aria-labelledby="headingOne">
-                    //       <div class="card-block">
-                    //         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    //       </div>
-                    //     </div>
-                    //   </div>
-                    //   </div>
-                    <div className="demo-card">
-                        <div className="card card-inverse card-primary text-center">
-                            <div className="card-block">
-                                <blockquote className="card-blockquote">
-                                    <h2>{e.name}</h2>
-                                    <h4>Location: {e.location}</h4>
-                                    <p>
-                                        <OverlayTrigger trigger="click" overlay={
-                                                <Popover id="modal-popover" title="map">
-                                                    <div><SimpleMapPage place={e.coordinates} address={e.address} name={e.location}/></div>
-                                                </Popover>}>
-                                            <a style={{'color':'white'}} href="#">{e.address} <span style={{'fontSize': '10px'}}>click to view on map</span></a>
-                                        </OverlayTrigger>
-                                    </p>
-                                    <h4>Time: {e.time}</h4>
-                                    <h4>Date: {e.date}</h4>
-                                    <p>Food Options? {e.eating}</p>
-                                    <p>Any Danger? {e.danger}</p>
-                                    <p>Animals in Attendance: {e.animals}</p>
-                                    <Button
-                                        className="events-btn"
-                                        bsStyle="success"
-                                        onClick={(e) => {
-                                        this.attend(e)
-                                        toastr.success('Event Success!', `You added the event`);
-                                        setTimeout(() => {this.close()}, 2500)
-                                        }}
 
-                                        data-eventID={e.id}
-                                        data-index={i}>
-                                        Attend Event
-                                    </Button>
-
-                                </blockquote>
-                            </div>
-                        </div>
-                    </div>
-                  )
-                }, this)}
-                {/* {$data} */}
+                {this.state.search ? eventsFromSearch : defaultEvents}
             </div>
         );
     }

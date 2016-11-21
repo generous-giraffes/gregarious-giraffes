@@ -3,7 +3,6 @@ import { SUBMIT_EVENT_FORM, GET_EVENT_FORM, ATTEND_EVENT, SHOW_EVENT, SEARCH_EVE
 export function eventForm_Reducer(state = { currentEvent: [], events: [], userEvents: [], searchedEvents: []}, action) {
     switch (action.type) {
         case SUBMIT_EVENT_FORM:
-            console.log(action, 'action NEW EVENT form+++++++++');
             return Object.assign({}, state,
                 {//why is all of this being put on state instead of having an object or array like currentEvent...
                     time: action.payload.time,
@@ -36,8 +35,6 @@ export function eventForm_Reducer(state = { currentEvent: [], events: [], userEv
             return Object.assign({}, state, {currentEvent});
 
         case SHOW_EVENT:
-            // console.log(action, "SHOWING THE EVENTS THAT THIS USER IS ATTENDING");
-            // console.log(state.currentEvent, "is the current event messing it up because not in default");
             let userEvents = [
                 ...state.currentEvent,
                 ...action.data.data
