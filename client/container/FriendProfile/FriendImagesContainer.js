@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Row, Col, Grid, Thumbnail, Button } from 'react-bootstrap';
+import { Row, Col, Grid, Thumbnail, Button, Panel } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getFriendImages } from '../../actions/friends';
@@ -7,7 +7,9 @@ import { getFriendImages } from '../../actions/friends';
 class FriendImages extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+          open: false
+        }
     }
 
     componentDidMount() {

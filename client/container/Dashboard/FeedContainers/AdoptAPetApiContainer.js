@@ -60,7 +60,7 @@ class PetSearch extends Component {
                 </div>
             );
         } else {
-            $data = (<div>Please GET SOME PROPS</div>);
+            $data = (<div>Sorry, there is currently no pet of the day. Check back later!</div>);
         }
         return (
             <div className="petOfDay">
