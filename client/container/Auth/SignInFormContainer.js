@@ -80,11 +80,6 @@ class SigninForm extends Component {
     }
 }
 
-// function mapStateToProps(state) {
-//   return {email: state.email, password:state.password, token:state.token}
-// }
-// console.log(state, "state from mapStateToProps in singinform")
-
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({signinUser}, dispatch);
 }

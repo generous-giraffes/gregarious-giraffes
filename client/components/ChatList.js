@@ -3,7 +3,7 @@ import { Button, Col, Row, Grid, FormControl, FormGroup, ControlLabel } from 're
 
 class ChatList extends React.Component {
     render() {
-      var commentNodes = this.props.data.map((comment) => {
+      let commentNodes = this.props.data.map((comment) => {
         return (
           <Comment user={this.props.user} key={comment.id}>
             {comment.text}
@@ -11,7 +11,7 @@ class ChatList extends React.Component {
         );
       });
       // this is the persisted data from the store
-      var chatHistory = this.props.comments.map((comment) => {
+      let chatHistory = this.props.comments.map((comment) => {
         return (
           <Comment user={comment} key={comment.id}>
             {comment.comment}

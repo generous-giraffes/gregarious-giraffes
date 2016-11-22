@@ -1,3 +1,5 @@
+//This file holds all of the actions types linking back to the actions and connecting to the reducer
+
 //auth action
 export const SIGNUP_USER = 'SIGNUP_USER';
 export const LOGIN_USER = 'LOGIN_USER';

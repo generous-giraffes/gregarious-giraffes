@@ -120,7 +120,7 @@ class SurveyForm extends React.Component {
                     <FieldGroup
                         id="formControlsDob"
                         type="date"
-                        label="date of birth"
+                        label="Date of Birth"
                         required='true'
                         value={this.state.dob}
                         onChange={this.onDobChange}
@@ -193,7 +193,7 @@ class SurveyForm extends React.Component {
           -William Shakespeare" required='true'/>
                     </FormGroup>
 
-                    <Button type="submit">
+                    <Button type="submit" bsStyle="primary">
                         Submit
                     </Button>
 

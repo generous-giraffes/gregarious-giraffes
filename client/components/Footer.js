@@ -8,3 +8,5 @@ const Footer = () => (
 )
 
 export default Footer
+
+//Julio5757 is Jake's alterego

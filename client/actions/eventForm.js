@@ -16,6 +16,7 @@ const getShowEventSuccess = (data) => {
     }
 };
 
+//action to be dispatched if the user submits and event form
 export function submitEventForm(data) {
     let response = axios.post('/api/eventForm', data)
         .then((res) => res.data[0])
@@ -26,6 +27,7 @@ export function submitEventForm(data) {
     }
 }
 
+//This action gets all the events for the EventList
 export function getEvent() {
     return (dispatch) => {
         return axios.get('/api/eventForm')
@@ -36,6 +38,8 @@ export function getEvent() {
     }
 }
 
+//This action allows a post to the attendEvent table that they are attending the event
+//matching the user id along with the event id
 export function attendEvent(event_id, user_id) {
     let response = axios.post('/api/attendEvent', {
             event_id: event_id,
@@ -50,6 +54,7 @@ export function attendEvent(event_id, user_id) {
     }
 }
 
+//This action shows the event in the users profile as they are 'attending'
 export function showEvent(userId) {
     return (dispatch) => {
         return axios.get(`/api/attendEvent?userid=${userId}`)
@@ -60,6 +65,7 @@ export function showEvent(userId) {
     }
 }
 
+//This action allows you to search for events by those attending in the eventList
 export function searchEventsByUserName(userName) {
     let response = axios.get(`/api/searchEvents/user?userName=${userName}`)
       .then((res) => res.data)
@@ -71,6 +77,7 @@ export function searchEventsByUserName(userName) {
     }
 }
 
+//This action allows you to search for events by name in the eventList
 export function searchEventsByEventName(eventName) {
     let response = axios.get(`/api/searchEvents/event?eventName=${eventName}`)
       .then((res) => res.data)

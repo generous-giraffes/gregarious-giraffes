@@ -8,6 +8,7 @@ import Birthdays from '../container/Dashboard/FeedContainers/ThisMonthBirthdaysC
 import { Button, Col, Row, Grid, FormGroup, FormControl, Thumbnail, Navbar, Carousel } from 'react-bootstrap';
 
 
+//This is the dashboard that pulls in all the containers for banner, feeds, etc
 class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -16,24 +17,24 @@ class Home extends React.Component {
     render() {
         return (
             <div className="home">
-                    <Grid>
-                        <Row className="banner">
-                            <Col xs={12}>
-                                <MyCarousel />
-                            </Col>
-                        </Row>
-                        <Row className="main-container">
-                            <Col xs={12} md={6}>
-                                <Feed />
-                            </Col>
-                            <Col xs={12} md={6}>
-                                <FriendSearch />
-                                <Birthdays />
-                                {/*<PetSearch />
-                                <PetNewsSearch />*/}
-                            </Col>
-                        </Row>
-                    </Grid>
+                <Grid>
+                    <Row className="banner">
+                        <Col xs={12}>
+                            <MyCarousel />
+                        </Col>
+                    </Row>
+                    <Row className="main-container">
+                        <Col xs={12} md={6}>
+                            <Feed />
+                        </Col>
+                        <Col xs={12} md={6}>
+                            <FriendSearch />
+                            <Birthdays />
+                            {/*<PetSearch />
+                             <PetNewsSearch />*/}
+                        </Col>
+                    </Row>
+                </Grid>
             </div>
         )
     }

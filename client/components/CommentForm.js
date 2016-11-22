@@ -13,7 +13,7 @@ class CommentForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        var text = this.state.text.trim();
+        let text = this.state.text.trim();
         if (!text) {
             return;
         }
@@ -29,7 +29,6 @@ class CommentForm extends React.Component {
         return (
           <form className='chat-form' onSubmit={(e) => this.handleSubmit(e)}>
             <FormGroup controlId="formBasicText" >
-
               <ControlLabel>Enter message</ControlLabel>
               <FormControl type="text" value={this.state.text} onChange={(e) => this.handleTextChange(e)} />
             </FormGroup>

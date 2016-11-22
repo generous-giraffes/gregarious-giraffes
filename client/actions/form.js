@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as types from '../constants/ActionTypes'
 
+//This submits the form that users fill out upon signup
 export function submitForm(data) {
   let response = axios.post('/api/form', data)
     .then((res) => res.data[0])

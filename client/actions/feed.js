@@ -21,6 +21,7 @@ const removeRepeatsAndAddCommentsArray = (photos) => {
   return resultPhotos;
 }
 
+//This action gets images for the dashboard from what users have uploaded
 export function getDashboardImages() {
   let response = axios.get('/api/dashboardImages')
     .then((res) => removeRepeatsAndAddCommentsArray(res.data))
@@ -32,6 +33,7 @@ export function getDashboardImages() {
   }
 }
 
+//This action allows a user to comment on the images loaded to the dashboard
 export function commentOnDashImage(userId, comment, imageId, user_image_id, userName) {
   let response = axios.post('/api/dashboardComment', {
     id: userId,
@@ -49,6 +51,8 @@ export function commentOnDashImage(userId, comment, imageId, user_image_id, user
   }
 }
 
+
+//This action gets recent users and adds them to the dashboard feed
 export function getRecentUsers(id) {
   let response = axios.get('/api/dashboardUsers/')
     .then((res) => res.data)
@@ -60,6 +64,7 @@ export function getRecentUsers(id) {
   }
 }
 
+//This action creates a readable birthdate from the user's birthdays in the database
 const prettifyDOBs = (users) => {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   let niceDobUsers = users.map((user) => {
@@ -72,6 +77,8 @@ const prettifyDOBs = (users) => {
   return niceDobUsers;
 }
 
+
+//This actions pulls the user birthdays for the current month to add to the dashboard feed
 export function getBdays(month) {
   let response = axios.get(`api/dashboardBdays?month=${month}`)
     .then((res) => prettifyDOBs(res.data))
