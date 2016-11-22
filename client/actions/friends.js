@@ -13,7 +13,7 @@ export function getFriends(id) {
 }
 
 export function addFriend(id, email) {
-  let response = axios.post('/api/users/friend', {
+  let response = axios.post('/api/users/addFriend', {
     friendEmail: email,
     id: id
    })

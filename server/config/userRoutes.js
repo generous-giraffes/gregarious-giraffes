@@ -23,7 +23,7 @@ router.get('/users/count', (req, res) => {
 });
 
 //add friends to friend table
-router.post('/users/friend', (req, res) => {
+router.post('/users/addFriend', (req, res) => {
   let friendEmail = req.body.friendEmail;
   let id = req.body.id;
   let friendId;

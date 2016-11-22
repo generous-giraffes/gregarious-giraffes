@@ -47,9 +47,14 @@ class FriendSearch extends Component {
   friend() {
     let email = this.state.selectedUser.email; //person being friended
     let id = this.props.id; //id of signed in user
+    if(email === this.props.email && this.state.selectedUser.name === this.props.name) {
+      toastr.warning('Uh Oh!', `You can't friend yourself, please select a different user`);
+      return null;
+    }
     //dispatch action to add a friend
     this.props.addFriend(id, email)
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err));//add error handling for if already friended
+    toastr.success('Friended Success!', `You friended ${this.state.selectedUser.name}`);
   }
 
   viewProfile() {
@@ -91,7 +96,6 @@ class FriendSearch extends Component {
                         <Button onClick={() => {this.viewProfile()}}>View Profile</Button>
                         <Button
                           onClick={() => {this.friend();
-                                          toastr.success('Friended Success!', `You friended ${this.state.selectedUser.name}`);
                                           setTimeout(() => {this.close()}, 3000)
                                   }}> Friend
                         </Button>
@@ -128,7 +132,8 @@ function mapStateToProps(state) {
     return {
         user: state.reducers.isAuthorized,
         email: state.reducers.isAuthorized.email,
-        id: state.reducers.isAuthorized.id
+        id: state.reducers.isAuthorized.id,
+        name: state.reducers.isAuthorized.name
     }
 }
 
