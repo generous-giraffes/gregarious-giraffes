@@ -79,6 +79,7 @@ class FriendSearch extends Component {
                     </Modal.Header>
                     <Modal.Body>
                         <h4>Username:</h4><p><OverlayTrigger overlay={popover}><a href="#">{this.state.selectedUser.name}</a></OverlayTrigger></p>
+                        <p className="friendImg">**Hover to see this friend's profile photo</p>
                         <h4>Email:</h4><p>{this.state.selectedUser.email }</p>
                     </Modal.Body>
                     <Modal.Footer>

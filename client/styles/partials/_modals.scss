@@ -6,4 +6,21 @@
             @include three-d-button($teal-blue);
         }
     }
+
+    .modal-body {
+
+        p {
+            margin-bottom: 0;
+        }
+        .friendImg {
+            font-size: 10px;
+        }
+    }
+}
+
+.popover {
+    text-align: center;
+    img {
+        max-width: 150px;
+    }
 }
