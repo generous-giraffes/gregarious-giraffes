@@ -1,5 +1,5 @@
 import React, {PropTypes, Component} from 'react';
-import { Modal, Button, Col, Row, Grid, FormGroup, FormControl, Thumbnail, Carousel } from 'react-bootstrap';
+import { Col, Row, Grid } from 'react-bootstrap';
 import GoogleMap from 'google-map-react';
 import SearchBox from './SearchBoxContainer';
 

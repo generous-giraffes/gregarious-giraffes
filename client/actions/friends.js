@@ -3,10 +3,7 @@ import * as types from '../constants/ActionTypes'
 
 export function getFriends(id) {
   let response = axios.get('/api/users/friends?id=' + id)
-    .then((res) => {
-      let friends = res.data;
-      return friends;
-    })
+    .then((res) => res.data)
     .catch((err) => console.log(err));
 
   return {
