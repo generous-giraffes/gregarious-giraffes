@@ -17,8 +17,14 @@ export function addFriend(id, email) {
     friendEmail: email,
     id: id
    })
-    .then((res) => res.data[0])
-    .catch((err) => console.log(err));
+    .then((res) => {
+      console.log(res, 'res++++++++++++++++++++++');
+      return res.data[0]
+    })
+    .catch((err) => {
+      throw 'already friends';
+    }
+  );
 
   return {
     type: types.ADD_FRIEND,
@@ -74,5 +80,18 @@ export function removeFriend(friend_id, user_id) {
   return {
     type: types.GET_FRIENDS,
     payload: response
+  }
+}
+
+export function removeError() {
+  return {
+    type: 'REMOVE_ERROR',
+    payload: ''
+  }
+}
+export function removeToast() {
+  return {
+    type: 'REMOVE_TOAST',
+    payload: ''
   }
 }

@@ -3,7 +3,7 @@ import { ListGroup, ListGroupItem, ButtonToolbar, ControlLabel, Popover, Overlay
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { addFriend, setCurrentFriend } from '../../../actions/friends';
+import { addFriend, setCurrentFriend, removeError, removeToast } from '../../../actions/friends';
 import axios from 'axios';
 import {toastr} from 'react-redux-toastr';
 
@@ -47,18 +47,25 @@ class FriendSearch extends Component {
   friend() {
     let email = this.state.selectedUser.email; //person being friended
     let id = this.props.id; //id of signed in user
+    //check if the user tries to friend themself
     if(email === this.props.email && this.state.selectedUser.name === this.props.name) {
       toastr.warning('Uh Oh!', `You can't friend yourself, please select a different user`);
       return null;
     }
     //dispatch action to add a friend
     this.props.addFriend(id, email)
-      .catch((err) => {
-        console.log(err)
-
-      });//add error handling for if already friended
-
-    toastr.success('Friended Success!', `You friended ${this.state.selectedUser.name}`);
+    //the toast for success or failure wil be determined in componentDidUpdate
+  }
+  //check if there was an error in adding a friend (if the user was already freiends with the person they tried to friend)
+  componentDidUpdate(prevProps, prevState) {
+    //error and toast are from the freinds reducer and they are set to true or false depeneding on if the friending was valid (not already friends)
+    if(this.props.error) {
+        toastr.warning('Uh Oh!', `You can't friend someone you're already friends with, please select a different user`);
+        this.props.removeError();
+    } else if(this.props.toast) {
+      toastr.success('Friended Success!', `You friended ${prevState.selectedUser.name}`)
+      this.props.removeToast();
+    }
   }
 
   viewProfile() {
@@ -134,12 +141,14 @@ function mapStateToProps(state) {
         user: state.reducers.isAuthorized,
         email: state.reducers.isAuthorized.email,
         id: state.reducers.isAuthorized.id,
-        name: state.reducers.isAuthorized.name
+        name: state.reducers.isAuthorized.name,
+        error: state.reducers.friends.error,
+        toast: state.reducers.friends.toast
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({addFriend, setCurrentFriend}, dispatch);
+    return bindActionCreators({addFriend, setCurrentFriend, removeError, removeToast}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FriendSearch);
