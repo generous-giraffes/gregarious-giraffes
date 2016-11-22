@@ -6,26 +6,27 @@
 // CONFIG MODULES
 //----------------------------------*/
 // Config modules
-@import 'modules/variables';
+@import 'modules/bootstrap-select';
 @import 'modules/clearfix';
 @import 'modules/defaults';
 @import 'modules/normalize';
-@import 'modules/bootstrap-select';
 @import 'modules/toaster';
+@import 'modules/variables';
 //----------------------------------*\
 // PARTIALS
 //----------------------------------*/
-@import 'partials/nav';
-@import 'partials/login';
-@import 'partials/footer';
-@import 'partials/modals';
-@import 'partials/dashboard';
-@import 'partials/feed';
-@import 'partials/map';
-@import 'partials/myProfile';
-@import 'partials/form';
 @import 'partials/chat';
+@import 'partials/dashboard';
 @import 'partials/events';
+@import 'partials/feed';
+@import 'partials/footer';
+@import 'partials/images';
+@import 'partials/login';
+@import 'partials/map';
+@import 'partials/modals';
+@import 'partials/myProfile';
+@import 'partials/nav';
+@import 'partials/surveyForm';
 
 body {
   background-color: $light-blue;

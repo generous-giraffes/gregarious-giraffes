@@ -1,0 +1,31 @@
+.survey-form {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 1s; /* Firefox < 16 */
+    -ms-animation: fadein 1s; /* Internet Explorer */
+    -o-animation: fadein 1s; /* Opera < 12.1 */
+    animation: fadein 1s;
+    .show-grid {
+        color: $dark-blue;
+
+        form {
+            .form-group {
+                input.form-control,
+                .selectpicker,
+                #formControlsTextarea,
+                .Select-placeholder,
+                .Select-Control {
+                    border: $input-border;
+                    border-radius: $input-radius;
+                }
+                label {
+                    display: block;
+                }
+            }
+            button {
+                @include three-d-button($teal-blue);
+            }
+        }
+    }
+}
