@@ -39,7 +39,7 @@ class PetSearch extends Component {
             console.log(first, 'this is first!!!!!');
             let image = (<img src={first[0]['$t']}/>);
 
-            // this is to take user directly to the pet of day's detail page if a pet id exists
+            // this is to take user directly to the pet's detailed page if a pet id exists when the More Info button is clicked
             const url = pet.id ? `https://www.petfinder.com/petdetail/${pet.id}` : 'https://www.petfinder.com/';
 
             $data = (
@@ -47,6 +47,7 @@ class PetSearch extends Component {
                   <h1 className="section_title">Pet Of The Day</h1>
                   <Thumbnail>
                       { image }
+                      {/* Added ellipsis and crop styling to the petOfDay description from _feed.scss */}
                       <p className="description">{pet.description}</p>
                       <p>
                           <Button href={url} target='_blank' bsStyle="primary">More Information</Button>
@@ -54,6 +55,7 @@ class PetSearch extends Component {
                   </Thumbnail>
                   {/* apply a filter to photos to only get ones with '@size':'x' (largest) and 'pn' second largest */}
               </div>
+
             );
         } else {
             $data = (<div>Sorry, there is currently no pet of the day. Check back later!</div>);
