@@ -14,6 +14,7 @@ class ChatBox extends React.Component {
   }
 
   componentWillMount() {
+    // when mounted we'll get all previous chats to persist and render
     this.props.getChats();
   }
 
@@ -21,6 +22,7 @@ class ChatBox extends React.Component {
       //replace localhost with ec2-35-161-238-190.us-west-2.compute.amazonaws.com
       this.socket = io('http://localhost:8080');
       this.socket.on('connect', this.connect);
+      // on Mount we connect to socket.io
       this.socket.on('chatlist', this.updateChatList);
   }
 
