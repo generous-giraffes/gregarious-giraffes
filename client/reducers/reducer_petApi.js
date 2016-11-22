@@ -1,4 +1,4 @@
-import { GET_PET_NEWS, GET_PET } from '../actions/getPets';
+import { GET_PET_NEWS, GET_PET } from '../constants/ActionTypes';
 
 export function petApi_Reducer(state = {}, action) {
   switch (action.type) {

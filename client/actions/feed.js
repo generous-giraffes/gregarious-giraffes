@@ -1,9 +1,5 @@
 import axios from 'axios';
-
-export const GET_DASH_IMAGES = 'GET_DASH_IMAGES';
-export const COMMENT_ON_DASH_IMAGE = 'COMMENT_ON_DASH_IMAGE';
-export const GET_RECENT_USERS = 'GET_RECENT_USERS';
-export const GET_BDAYS = 'GET_BDAYS';
+import * as types from '../constants/ActionTypes'
 
 //a function to sort an array of objects (containing a photo url, id, comment, caption, name, user_image_id by removing duplicates and accumlating comments for the photos in an array
 const removeRepeatsAndAddCommentsArray = (photos) => {
@@ -32,7 +28,7 @@ export function getDashboardImages() {
     .catch((error) => console.error(error));
 
   return {
-    type: GET_DASH_IMAGES,
+    type: types.GET_DASH_IMAGES,
     payload: response
   }
 }
@@ -49,7 +45,7 @@ export function commentOnDashImage(userId, comment, imageId, user_image_id, user
     .catch((error) => console.error(error));
 
   return {
-    type: COMMENT_ON_DASH_IMAGE,
+    type: types.COMMENT_ON_DASH_IMAGE,
     payload: response
   }
 }
@@ -60,7 +56,7 @@ export function getRecentUsers(id) {
     .catch((error) => console.error(error));
 
   return {
-    type: GET_RECENT_USERS,
+    type: types.GET_RECENT_USERS,
     payload: response
   }
 }
@@ -88,7 +84,7 @@ export function getBdays(month) {
     .catch((error) => console.error(error));
 
     return {
-      type: GET_BDAYS,
+      type: types.GET_BDAYS,
       payload: response
     }
 }
