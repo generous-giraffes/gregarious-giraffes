@@ -19,8 +19,9 @@ class ChatBox extends React.Component {
   }
 
   componentDidMount() {
-      //replace localhost with ec2-35-161-238-190.us-west-2.compute.amazonaws.com
-      this.socket = io('http://localhost:8080');
+      //replace localhost with the above version for deployment
+      this.socket = io('ec2-35-161-238-190.us-west-2.compute.amazonaws.com');
+      //this.socket = io('http://localhost:8080');
       this.socket.on('connect', this.connect);
       // on Mount we connect to socket.io server to access chatlist
       this.socket.on('chatlist', this.updateChatList);
