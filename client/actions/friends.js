@@ -13,7 +13,7 @@ export function getFriends(id) {
 }
 
 export function addFriend(id, email) {
-  let response = axios.post('/api/users/friend', {
+  let response = axios.post('/api/users/addFriend', {
     friendEmail: email,
     id: id
    })
@@ -62,6 +62,17 @@ export function getFriendFriends(id) {
 
   return {
     type: types.GET_FRIEND_FRIENDS,
+    payload: response
+  }
+}
+
+export function removeFriend(friend_id, user_id) {
+  let response = axios.get(`/api/users/removeFriend?friendId=${friend_id}&userId=${user_id}`)
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+
+  return {
+    type: types.GET_FRIENDS,
     payload: response
   }
 }
