@@ -1,4 +1,4 @@
-import { GET_RECENT_USERS, GET_DASH_IMAGES, COMMENT_ON_DASH_IMAGE, GET_BDAYS } from '../actions/feed';
+import { GET_RECENT_USERS, GET_DASH_IMAGES, COMMENT_ON_DASH_IMAGE, GET_BDAYS } from '../constants/ActionTypes';
 
 export function feed_Reducer(state = { dashImages: [], recentUsers: [], birthdays: [] }, action) {
   switch (action.type) {

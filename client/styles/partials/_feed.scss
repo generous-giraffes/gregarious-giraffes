@@ -1,4 +1,6 @@
 .home {
+    margin-bottom: 20px;
+
     .birthdayFeed {
         h1 {
             @include section_title($white);
@@ -7,6 +9,20 @@
     .FriendSearch {
         h1 {
             @include section_title($white);
+        }
+
+        .form-group {
+            input.form-control {
+                border-radius: $input-radius;
+                border: $input-border;
+            }
+        }
+
+        .list-group {
+            .list-group-item {
+                border-radius: $input-radius;
+                border: $input-border;
+            }
         }
     }
     .petOfDay {
@@ -22,20 +38,25 @@
                 img {
                     max-width: 300px;
                     max-height: 400px;
+                    border-radius: $card-radius;
                 }
-            }
-            // To add an ellipsis and crop the petOfDay description
-            .description {
-                display: -webkit-box;
-                max-width: 100%;
-                height: 70px;
-                margin: 25px;
-                line-height: 1.5;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                text-align: left;
+                .description {
+                    display: -webkit-box;
+                    max-width: 100%;
+                    height: 70px;
+                    margin: 25px;
+                    line-height: 1.5;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    text-align: left;
+                    color: $dark-blue;
+                }
+
+                a {
+                    @include three-d-button($teal-blue);
+                }
             }
         }
     }
@@ -46,6 +67,28 @@
             .imagesFeed {
                 h1 {
                     @include section_title($white);
+                }
+
+                .thumbnail {
+                    background: $green;
+                    border: none;
+                    img {
+                        border-radius: $card-radius;
+                    }
+
+                    .caption {
+                        p {
+                            color: $white;
+                        }
+                    }
+                }
+                .commentary {
+                    p {
+                        color: $white;
+                    }
+                    button {
+                        @include three-d-button($teal-blue);
+                    }
                 }
             }
 

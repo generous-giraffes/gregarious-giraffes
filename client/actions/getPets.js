@@ -1,19 +1,17 @@
 import axios from 'axios';
-
-export const GET_PET = 'GET_PET';
-export const GET_PET_NEWS = 'GET_PET_NEWS';
+import * as types from '../constants/ActionTypes'
 
 //action to be dispatched if getNews is successful
 const getPetNewsSuccess = (data) => {
   return {
-    type: GET_PET_NEWS,
+    type: types.GET_PET_NEWS,
     data: data
   }
 };
 //action to be dispatched if getPet is successful
 const getPetSuccess = (data) => {
   return {
-    type: GET_PET,
+    type: types.GET_PET,
     data: data
   }
 };

@@ -1,9 +1,5 @@
 import axios from 'axios';
-
-export const SUBMIT_PROFILE_IMAGE = 'SUBMIT_PROFILE_IMAGE';
-export const GET_PROFILE_IMAGE = 'GET_PROFILE_IMAGE';
-export const POST_USER_IMAGE = 'POST_USER_IMAGE';
-export const GET_USER_IMAGES = 'GET_USER_IMAGES';
+import * as types from '../constants/ActionTypes'
 
 
 export function submitProfileImage(data) {
@@ -19,7 +15,7 @@ export function submitProfileImage(data) {
     .catch((error) => console.error(error));
 
   return {
-    type: SUBMIT_PROFILE_IMAGE,
+    type: types.SUBMIT_PROFILE_IMAGE,
     payload: response
   }
 }
@@ -40,7 +36,7 @@ export function submitUserImage(data) {
     .catch((error) => console.error(error));
 
   return {
-    type: POST_USER_IMAGE,
+    type: types.POST_USER_IMAGE,
     payload: response
   }
 }
@@ -52,7 +48,7 @@ export function getUserImages(id) {
     .catch((error) => console.error(error));
 
   return {
-    type: GET_USER_IMAGES,
+    type: types.GET_USER_IMAGES,
     payload: response
   }
 }
@@ -63,7 +59,7 @@ export function getProfileImage(id) {
     .catch((error) => console.error(error));
 
   return {
-    type: GET_PROFILE_IMAGE,
+    type: types.GET_PROFILE_IMAGE,
     payload: response
   }
 }

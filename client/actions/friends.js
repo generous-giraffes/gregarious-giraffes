@@ -1,11 +1,5 @@
 import axios from 'axios';
-
-export const GET_FRIENDS = 'GET_FRIENDS';
-export const ADD_FRIEND = 'ADD_FRIEND';
-export const SET_CURRENT_FRIEND = 'SET_CURRENT_FRIEND';
-export const GET_FRIEND_IMAGES = 'GET_FRIEND_IMAGES';
-export const GET_FRIEND_EVENTS = 'GET_FRIEND_EVENTS';
-export const GET_FRIEND_FRIENDS = 'GET_FRIEND_FRIENDS';
+import * as types from '../constants/ActionTypes'
 
 export function getFriends(id) {
   let response = axios.get('/api/users/friends?id=' + id)
@@ -16,7 +10,7 @@ export function getFriends(id) {
     .catch((err) => console.log(err));
 
   return {
-    type: GET_FRIENDS,
+    type: types.GET_FRIENDS,
     payload: response
   }
 }
@@ -30,14 +24,14 @@ export function addFriend(id, email) {
     .catch((err) => console.log(err));
 
   return {
-    type: ADD_FRIEND,
+    type: types.ADD_FRIEND,
     payload: response
   }
 }
 
 export function setCurrentFriend(userInfo) {
   return {
-    type: SET_CURRENT_FRIEND,
+    type: types.SET_CURRENT_FRIEND,
     payload: userInfo
   }
 }
@@ -48,7 +42,7 @@ export function getFriendImages(id) {
     .catch((err) => console.log(err));
 
   return {
-    type: GET_FRIEND_IMAGES,
+    type: types.GET_FRIEND_IMAGES,
     payload: response
   }
 }
@@ -59,7 +53,7 @@ export function getFriendEvents(id) {
     .catch((err) => console.log(err));
 
   return {
-    type: GET_FRIEND_EVENTS,
+    type: types.GET_FRIEND_EVENTS,
     payload: response
   }
 }
@@ -70,7 +64,7 @@ export function getFriendFriends(id) {
     .catch((err) => console.log(err));
 
   return {
-    type: GET_FRIEND_FRIENDS,
+    type: types.GET_FRIEND_FRIENDS,
     payload: response
   }
 }

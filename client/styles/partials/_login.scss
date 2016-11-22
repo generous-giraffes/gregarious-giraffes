@@ -23,8 +23,8 @@
 
         .form-group {
             input.form-control {
-                border-radius: 5px;
-                border: 2px solid $dark-blue;
+                border-radius: $input-radius;
+                border: $input-border;
             }
         }
 

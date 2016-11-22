@@ -1,12 +1,10 @@
 import axios from 'axios';
+import * as types from '../constants/ActionTypes';
 
-export const SIGNUP_USER = 'SIGNUP_USER';
-export const LOGIN_USER = 'LOGIN_USER';
-export const LOGOUT_USER = 'LOGOUT_USER';
 //action to be dispatched if signInUser is successful
 const signInUserSuccess = (data) => {
   return {
-    type: LOGIN_USER,
+    type: types.LOGIN_USER,
     data
   }
 };
@@ -28,7 +26,7 @@ export function signupUser(name, email, password) {
   });
 
   return {
-      type: SIGNUP_USER,
+      type: types.SIGNUP_USER,
       payload: request
   };
 }
@@ -66,7 +64,7 @@ export function signinUser(email, password) {
 export function logoutAndRedirect() {
 
     return {
-        type: LOGOUT_USER
+        type: types.LOGOUT_USER
     }
 };
 

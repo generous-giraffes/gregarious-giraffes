@@ -72,21 +72,29 @@ class DashboardImagesContainer extends Component {
             {this.props.dashImages.map((image) => (
                 <div className="card card-inverse card-success text-center">
                     <div className="card-block">
-                        <Thumbnail src={image.image}>
-                            <h3>{image.name}: {image.caption}</h3>
-                            {image.comments.map((comment)=> {
-                                return comment[0] ? (<p>{comment[0]} commented: {comment[1]}</p>) : null;
-                            })}
-                            <p>
-                                <Button
-                                    onClick={(e) => {this.open(e)}}
-                                    data-imageId={image.id}
-                                    data-user_image_id={image.user_image_id}
-                                    bsStyle="default">
-                                    Comment
-                                </Button>
-                            </p>
-                        </Thumbnail>
+                        <Grid>
+                            <Row>
+                                <Col xs={12} md={6}>
+                                    <Thumbnail src={image.image}>
+                                        <p>{image.name}: {image.caption}</p>
+                                    </Thumbnail>
+                                </Col>
+                                <Col xs={12} md={6}>
+                                    <p className="commentary">
+                                        {image.comments.map((comment)=> {
+                                            return comment[0] ? (<p>{comment[0]} commented: {comment[1]}</p>) : null;
+                                        })}
+                                        <Button
+                                            onClick={(e) => {this.open(e)}}
+                                            data-imageId={image.id}
+                                            data-user_image_id={image.user_image_id}
+                                            bsStyle="default">
+                                            Comment
+                                        </Button>
+                                    </p>
+                                </Col>
+                            </Row>
+                        </Grid>
                     </div>
                 </div>
             ))}
