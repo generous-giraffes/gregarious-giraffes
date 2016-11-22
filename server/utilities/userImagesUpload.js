@@ -9,7 +9,6 @@ var UserImageUploader = function(options){
   var deferred = Q.defer();
   var buf = new Buffer(options.data_uri.replace(/^data:image\/\w+;base64,/, ""),'base64');
 
-
   // var knoxClient = knox.createClient({
   //   key: '',//use .env for these
   //   secret: '',

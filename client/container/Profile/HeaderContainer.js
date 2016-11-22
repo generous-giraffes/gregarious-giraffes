@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Col, Row, Thumbnail, PageHeader, Modal } from 'react-bootstrap';
+import { Button, Col, Row, Thumbnail, PageHeader, Modal, OverlayTrigger, Popover } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import { getProfileImage } from '../../actions/image';
 
 class ProfileHeader extends Component {
@@ -32,9 +33,10 @@ class ProfileHeader extends Component {
             <Col className='profile-image' xs={12} md={4}>
             {message}
                 <Thumbnail className='user-image' href="#" alt="Your image was lost, please go back and try uploading another" src={this.props.profileImage || '../../styles/assets/sadPup.jpg'} />
-                </Col>
+            </Col>
             <Col xs={12} md={8}>
-                <PageHeader> {this.props.name}'s Page <small>  As I say:{this.props.quote}</small></PageHeader>
+                <PageHeader> {this.props.name}'s Page <small>  As I say: {this.props.quote}</small></PageHeader>
+                <Button onClick={()=>{browserHistory.push('/newProfilePicture')}}>Upload a New Photo</Button>
           </Col>
         </Row>
       )
@@ -49,7 +51,7 @@ function mapStateToProps(state) {
     name: state.reducers.isAuthorized.name,
     profileImage: state.reducers.image.profileImage,
     quote: state.reducers.isAuthorized.quote,
-    species: state.reducers.form.species,
+    species: state.reducers.isAuthorized.species,
     id: state.reducers.isAuthorized.id
    }
 }
