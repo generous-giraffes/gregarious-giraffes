@@ -49,6 +49,7 @@ class Navigation extends React.Component {
                             <MenuItem eventKey={3.1}>Dashboard</MenuItem>
                             <MenuItem eventKey={3.2}>Events</MenuItem>
                             <MenuItem eventKey={3.3}>Chat</MenuItem>
+                            <MenuItem eventKey={3.4}>Sign Up</MenuItem>
                         </NavDropdown>
                     </Nav>
                     <Nav pullRight>
@@ -67,6 +68,8 @@ function handleSelect(eventKey) {
         browserHistory.push('/events');
     } else if (eventKey === 3.1) {
         browserHistory.push('/dashboard');
+    } else if (eventKey === 3.4) {
+        browserHistory.push('/signup');
     }
 }
 

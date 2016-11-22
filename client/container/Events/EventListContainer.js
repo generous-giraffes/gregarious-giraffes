@@ -78,21 +78,22 @@ class EventList extends React.Component {
                                                     <div className="card card-inverse card-primary text-center">
                                                         <div className="card-block">
                                                             <blockquote className="card-blockquote">
-                                                                <h4>{e.name}</h4>
-                                                                <h4>Location: {e.location}</h4>
-                                                                <p>
+                                                                <h4 className="title">{e.name}</h4>
+                                                                <p className="detail">Location: {e.location}</p>
+                                                                <p className="detail mobile">{e.address}</p>
+                                                                <p className="detail trigger">
                                                                     <OverlayTrigger trigger="click" overlay={
-                                                                            <Popover id="modal-popover" title="map">
+                                                                            <Popover id="modal-popover" title="Map">
                                                                                 <div><SimpleMapPage place={e.coordinates} address={e.address} name={e.location}/></div>
                                                                             </Popover>}>
-                                                                        <a style={{'color':'white'}} href="#">{e.address} <span style={{'fontSize': '10px'}}>click to view on map</span></a>
+                                                                        <a href="#">{e.address} <span>Click here to view on a map.</span></a>
                                                                     </OverlayTrigger>
                                                                 </p>
-                                                                <p>Time: {e.time}</p>
-                                                                <p>Date: {e.date}</p>
-                                                                <p>Food Options? {e.eating}</p>
-                                                                <p>Any Danger? {e.danger}</p>
-                                                                <p>Animals in Attendance: {e.animals}</p>
+                                                                <p className="detail">Time: {e.time}</p>
+                                                                <p className="detail">Date: {e.date}</p>
+                                                                <p className="detail">Food Options? {e.eating}</p>
+                                                                <p className="detail">Any Danger? {e.danger}</p>
+                                                                <p className="detail">Animals in Attendance: {e.animals}</p>
                                                                 <Button
                                                                     className="events-btn"
                                                                     bsStyle="success"
@@ -131,21 +132,21 @@ class EventList extends React.Component {
                 <div className="card card-inverse card-info text-center">
                     <div className="card-block">
                         <blockquote className="card-blockquote">
-                            <h4>{e.name}</h4>
-                            <h4>Location: {e.location}</h4>
-                            <p>
+                            <h4 className="title">{e.name}</h4>
+                            <p className="detail">Location: {e.location}</p>
+                            <p className="detail">
                                 <OverlayTrigger trigger="click" overlay={
                                         <Popover id="modal-popover" title="map">
                                             <div><SimpleMapPage place={e.coordinates} address={e.address} name={e.location}/></div>
                                         </Popover>}>
-                                    <a style={{'color':'white'}} href="#">{e.address} <span style={{'fontSize': '10px'}}>click to view on map</span></a>
+                                    <a href="#">{e.address} <span>Click here to view on a map.</span></a>
                                 </OverlayTrigger>
                             </p>
-                            <p>Time: {e.time}</p>
-                            <p>Date: {e.date}</p>
-                            <p>Food Options? {e.eating}</p>
-                            <p>Any Danger? {e.danger}</p>
-                            <p>Animals in Attendance: {e.animals}</p>
+                            <p className="detail">Time: {e.time}</p>
+                            <p className="detail">Date: {e.date}</p>
+                            <p className="detail">Food Options? {e.eating}</p>
+                            <p className="detail">Any Danger? {e.danger}</p>
+                            <p className="detail">Animals in Attendance: {e.animals}</p>
                             <Button
                                 className="events-btn"
                                 bsStyle="success"

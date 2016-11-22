@@ -18,15 +18,50 @@
             margin-bottom: 40px;
             .eventList {
 
+
+
                 .container {
                     padding: 0;
+                }
+                .demo-card {
+                    .card-block {
+                        .card-blockquote {
+                            .title {
+                                text-decoration: underline;
+                            }
+                            .mobile {
+                                display: block;
 
-                    .demo-card {
-                        .card-block {
-                            .card-blockquote {
-                                button {
-                                    @include three-d-button($teal-blue);
+                                @media #{$mq-md, $mq-lg, $mq-xlg} {
+                                    display: none;
                                 }
+                            }
+
+                            .trigger {
+                                display: none;
+
+                                @media #{$mq-md, $mq-lg, $mq-xlg} {
+                                    display: block;
+                                }
+                            }
+                            .detail {
+                                font-size: 14px;
+                                a {
+                                    color: $white;
+                                    text-decoration: none;
+
+                                    span {
+                                        display: none;
+                                        font-size: 11px;
+
+                                        @media #{$mq-md, $mq-lg, $mq-xlg} {
+                                            display: block;
+                                        }
+                                    }
+                                }
+                            }
+                            button {
+                                @include three-d-button($teal-blue);
                             }
                         }
                     }
@@ -52,33 +87,17 @@
                 .form-group {
                     color: $dark-blue;
 
-                    #mapSearch {
-                        border: $input-border;
-                        border-radius: $input-radius;
-                    }
-                    .selectpicker {
-                        border: $input-border;
-                        border-radius: $input-radius;
+                    .control-label {
+                        display: block;
                     }
 
-                    .Select-placeholder {
-                        border: $input-border;
-                        border-radius: $input-radius;
-                    }
-
-                    #formControlsTextarea {
-                        border: $input-border;
-                        border-radius: $input-radius;
-                    }
-                    select.form-control {
-                        border: $input-border;
-                        border-radius: $input-radius;
-                    }
+                    #mapSearch,
+                    .selectpicker,
+                    .Select-placeholder,
+                    #formControlsTextarea,
+                    select.form-control,
+                    .Select-Control,
                     span.input-group {
-                        border: $input-border;
-                        border-radius: $input-radius;
-                    }
-                    .Select-Control {
                         border: $input-border;
                         border-radius: $input-radius;
                     }
