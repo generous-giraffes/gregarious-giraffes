@@ -14,7 +14,7 @@ class PetNewsSearch extends Component {
     }
 
     componentDidMount() {
-        this.props.getPetNews();
+        this.props.articles ? null : this.props.getPetNews();
     }
 
     // called before the render method and enables to define if a re-rendering is needed or can be skipped
@@ -32,8 +32,8 @@ class PetNewsSearch extends Component {
     render() {
         //MOVE THIS INTO A LIFECYCLE METHOD --> probs componentDidRecieveProps or componentWillUpdate
         let $data = null;
-        if (this.props.pet.articles) {
-            let pet = this.props.pet.articles;
+        if (this.props.articles) {
+            let pet = this.props.articles;
             let filtered =
                 pet.filter((article) => article['snippet'] !== null && article['web_url'] !== null && article.multimedia.length >= 1 && article['headline'] !== null)
                    .slice(0, 4);
@@ -102,7 +102,7 @@ class PetNewsSearch extends Component {
 
 function mapStateToProps(state) {
     return {
-        pet: state.reducers.getPets
+        articles: state.reducers.getPets.articles
     }
 }
 
