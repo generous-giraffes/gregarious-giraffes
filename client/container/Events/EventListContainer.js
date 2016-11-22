@@ -210,7 +210,7 @@ class EventList extends React.Component {
         }, this) || null;
         return (
             <div className="eventList">
-                <h3>List of Events</h3>
+                <h1 className="section_title">List of Events</h1>
                 <FormGroup controlId="formControlsTextarea">
                     <ControlLabel>Search by the name of the event</ControlLabel>
                     <FormControl
