@@ -11,9 +11,9 @@ class Friends extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        // open1: false,
         open2: false,
-        isButtonDisabled: false
+        isButtonDisabled: false,
+        called: false
     }
     this.goBack = this.goBack.bind(this);
     this.getFriends = this.getFriends.bind(this);
@@ -40,6 +40,7 @@ class Friends extends Component {
   goBack() {
     browserHistory.goBack()
   }
+
   close() {
     this.setState({ open: false });
   }
@@ -47,13 +48,6 @@ class Friends extends Component {
   open() {
     this.setState({ open: true });
   }
-  // close1() {
-  //   this.setState({ open1: false });
-  // }
-  //
-  // open1() {
-  //   this.setState({ open1: true });
-  // }
 
   viewProfile(e) {
       let index = e.currentTarget.getAttribute('data-index')
@@ -64,24 +58,12 @@ class Friends extends Component {
 
 
     render() {
+      if(this.props.newFriend.name && this.state.called === false) {
+        toastr.info('You have a new friend!', `You are now friends with ${this.props.newFriend.name}`);
+        this.setState({called:true});
+      }
       return(
         <div className="friends-div">
-            {/* <Modal show={this.state.open1} onHide={() => {this.close1()}}>
-                <Modal.Header closeButton>
-                    <Modal.Title>New Friend</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {this.props.newFriend ? (<h5>{this.props.newFriend.name}</h5>) : (<p>No friends were recently added, go to the dashboard to find some new friends!</p>)}
-                </Modal.Body>
-                <Modal.Footer>
-                    <h5>Keep on Smiling!</h5>
-                    <Button onClick={() => {this.close1()}}>Close</Button>
-                </Modal.Footer>
-            </Modal> */}
-            {/* {this.props.newFriend.name ? (<Button bsStyle='info' onClick={() => this.setState({open1: !this.state.open1})}>Newest Friend</Button>) : null } */}
-            {/* {this.props.newFriend.name ? toastr.info('You have a new friend!', `You are now friends with ${this.props.newFriend.name}`)
-             : null
-           } */}
 
             <Button className="friends-btn" bsStyle="primary" onClick={()=> this.setState({ open2: !this.state.open2 })}>
                 Your Friends
@@ -89,7 +71,7 @@ class Friends extends Component {
             <Panel collapsible expanded={this.state.open2}>
                 {this.props.friends.map((friend, i)=>
                   <Panel header={friend.name} bsStyle="primary">
-                      <p>{friend.quote}</p>
+                      <p>Quote: {friend.quote}</p>
                   <Button bsStyle="primary" data-index={i}  onClick={this.viewProfile}>View Profile</Button>
                   </Panel>
                 )}
