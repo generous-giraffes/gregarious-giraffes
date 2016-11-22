@@ -3,7 +3,6 @@ import * as types from '../constants/ActionTypes'
 
 
 export function submitProfileImage(data) {
-  console.log(data, 'SUBMIT_PROFILE_IMAGE action');
   let response = axios.post('/api/profileImage', {
     image: data.image,
     email: data.email,
@@ -21,7 +20,6 @@ export function submitProfileImage(data) {
 }
 
 export function submitUserImage(data) {
-  console.log(data, 'POST_USER_IMAGE action');
   let response = axios.post('/api/userImages', {
     caption: data.caption,
     id: data.id,
@@ -29,10 +27,7 @@ export function submitUserImage(data) {
     filename: data.filename,
     filetype: data.filetype
   })
-    .then((res) => {
-      console.log('in submitUserImage, here is the returned from server res.data', res.data);
-      return res.data
-    })
+    .then((res) => res.data)
     .catch((error) => console.error(error));
 
   return {
@@ -42,7 +37,6 @@ export function submitUserImage(data) {
 }
 
 export function getUserImages(id) {
-  console.log(id, 'user iamges action');
   let response = axios.get('/api/userImages?id=' + id)
     .then((res) => res.data)
     .catch((error) => console.error(error));
@@ -53,7 +47,6 @@ export function getUserImages(id) {
   }
 }
 export function getProfileImage(id) {
-  console.log(id, 'GET_PROFILE_IMAGE action');
   let response = axios.get('/api/profileImage?id=' + id)
     .then((res) => res.data)
     .catch((error) => console.error(error));

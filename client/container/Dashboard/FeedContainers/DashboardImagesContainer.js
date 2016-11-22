@@ -18,7 +18,6 @@ class DashboardImagesContainer extends Component {
 
     componentDidMount() {
         this.props.getDashboardImages();
-        console.log('getDashboardImagesuser images submitted');
     }
 
     handleCommentSubmit() {
@@ -31,7 +30,6 @@ class DashboardImagesContainer extends Component {
     }
 
     handleCommentChange(e) {
-      console.log(e.currentTarget.value, 'comment value');
       this.setState({comment: e.currentTarget.value});
     }
 
@@ -42,7 +40,6 @@ class DashboardImagesContainer extends Component {
     open(e) {
       let imageId = e.currentTarget.getAttribute('data-imageId');
       let user_image_id = e.currentTarget.getAttribute('data-user_image_id');
-      console.log(imageId, 'image Id for submission');
       this.setState({ open: true, imageId, user_image_id });
     }
 

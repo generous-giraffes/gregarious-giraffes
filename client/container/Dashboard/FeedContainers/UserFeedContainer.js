@@ -7,7 +7,6 @@ import { getRecentUsers } from '../../../actions/feed';
 
 
 class UserFeed extends Component {
-
     constructor(props) {
         super(props);
     }
@@ -15,7 +14,6 @@ class UserFeed extends Component {
     componentDidMount() {
         this.props.getRecentUsers();
     }
-
 
     render() {
         return (

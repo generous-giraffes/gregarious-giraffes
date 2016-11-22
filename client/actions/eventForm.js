@@ -8,7 +8,7 @@ const getEventFormSuccess = (data) => {
         data: data
     }
 };
-
+//action to be dispatched if getShowEventSuccess is successful
 const getShowEventSuccess = (data) => {
     return {
         type: types.SHOW_EVENT,
@@ -17,12 +17,8 @@ const getShowEventSuccess = (data) => {
 };
 
 export function submitEventForm(data) {
-    console.log("this is submitting the event form", data);
     let response = axios.post('/api/eventForm', data)
-        .then((res) => {
-            console.log(res, 'this is res ==>>>>>> line 9 in eventForm ACTION', res)
-            return res.data[0];
-        })
+        .then((res) => res.data[0])
         .catch((err) => console.error(err));
     return {
         type: types.SUBMIT_EVENT_FORM,
@@ -45,10 +41,7 @@ export function attendEvent(event_id, user_id) {
             event_id: event_id,
             user_id: user_id
         })
-        .then((res) => {
-            console.log(res, 'added event success');
-            return res.data[0];
-        })
+        .then((res) => res.data[0])
         .catch((err) => console.log(err));
 
     return {
@@ -61,7 +54,6 @@ export function showEvent(userId) {
     return (dispatch) => {
         return axios.get(`/api/attendEvent?userid=${userId}`)
             .then((res) => {
-              // console.log(res, 'respponse in action');//res.data is array of objects
                 dispatch(getShowEventSuccess(res));
             })
             .catch((err) => console.error(err))

@@ -30,6 +30,7 @@ class Home extends React.Component {
                                 <FriendSearch />
                                 <Birthdays />
                                 <PetSearch />
+                                <PetNewsSearch />
                             </Col>
                         </Row>
                     </Grid>
