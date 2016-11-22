@@ -13,13 +13,83 @@
             background: $dark-blue;
             margin-bottom: 20px;
         }
-        h3 {
-            text-align: center;
-        }
-        .eventForm {
-            form {
-                width: auto;
+
+        .main-container {
+            margin-bottom: 40px;
+            .eventList {
+
+                .container {
+                    padding: 0;
+
+                    .demo-card {
+                        .card-block {
+                            .card-blockquote {
+                                button {
+                                    @include three-d-button($teal-blue);
+                                }
+                            }
+                        }
+                    }
+                }
+                h1 {
+                    @include section_title($white);
+                }
+
+                .form-group {
+                    color: $dark-blue;
+
+                    input {
+                        border: $input-border;
+                        border-radius: $input-radius;
+                    }
+                }
+
+            }
+            .eventForm {
+                h1 {
+                    @include section_title($white);
+                }
+                .form-group {
+                    color: $dark-blue;
+
+                    #mapSearch {
+                        border: $input-border;
+                        border-radius: $input-radius;
+                    }
+                    .selectpicker {
+                        border: $input-border;
+                        border-radius: $input-radius;
+                    }
+
+                    .Select-placeholder {
+                        border: $input-border;
+                        border-radius: $input-radius;
+                    }
+
+                    #formControlsTextarea {
+                        border: $input-border;
+                        border-radius: $input-radius;
+                    }
+                    select.form-control {
+                        border: $input-border;
+                        border-radius: $input-radius;
+                    }
+                    span.input-group {
+                        border: $input-border;
+                        border-radius: $input-radius;
+                    }
+                    .Select-Control {
+                        border: $input-border;
+                        border-radius: $input-radius;
+                    }
+                }
+
+                button {
+                    @include three-d-button($teal-blue);
+                }
             }
         }
+
+
     }
 }

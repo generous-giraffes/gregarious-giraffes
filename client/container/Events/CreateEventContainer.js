@@ -186,7 +186,7 @@ class CreateEvent extends React.Component {
     render() {
         return (
             <div className="eventForm">
-                <h3>Create an Event</h3>
+                <h1 className="section_title">Create an Event</h1>
                 <form onSubmit={this.handleSubmit} data-toggle='validator'>
 
                     <FormGroup controlId="formControlsTextarea">

@@ -14,16 +14,17 @@
     border: 2px solid $dark-blue;
     padding: 5px;
     border-radius: $card-radius;
+    font-size: 25px;
 }
 
 @mixin three-d-button($color) {
     color: $white;
-    font-size: inherit;
+    font-size: 14px;
     border-color: $teal-blue;
     border-radius: 0 0 5px 5px;
     background: $color;
     cursor: pointer;
-    padding: 12px 25px;
+    padding: 10px 18px;
     display: inline-block;
     text-transform: uppercase;
     letter-spacing: 1px;

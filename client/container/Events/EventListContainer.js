@@ -78,7 +78,7 @@ class EventList extends React.Component {
                                                     <div className="card card-inverse card-primary text-center">
                                                         <div className="card-block">
                                                             <blockquote className="card-blockquote">
-                                                                <h2>{e.name}</h2>
+                                                                <h4>{e.name}</h4>
                                                                 <h4>Location: {e.location}</h4>
                                                                 <p>
                                                                     <OverlayTrigger trigger="click" overlay={
@@ -88,8 +88,8 @@ class EventList extends React.Component {
                                                                         <a style={{'color':'white'}} href="#">{e.address} <span style={{'fontSize': '10px'}}>click to view on map</span></a>
                                                                     </OverlayTrigger>
                                                                 </p>
-                                                                <h4>Time: {e.time}</h4>
-                                                                <h4>Date: {e.date}</h4>
+                                                                <p>Time: {e.time}</p>
+                                                                <p>Date: {e.date}</p>
                                                                 <p>Food Options? {e.eating}</p>
                                                                 <p>Any Danger? {e.danger}</p>
                                                                 <p>Animals in Attendance: {e.animals}</p>
@@ -127,53 +127,11 @@ class EventList extends React.Component {
         let eventsFromSearch = this.props.searchedEvents.map((e, i) => {
           return(
 
-          // <div class="card">
-          //    <div className="card-header" role="tab" id={`heading${i}`}>
-          //      <h5 className="mb-0">
-          //        <a data-toggle="collapse" data-parent="#accordion" href={`#collapse${i}`} aria-expanded="false" aria-controls={`collapse${i}`}>
-          //          Event name: {e.name}
-          //        </a>
-          //      </h5>
-          //    </div>
-          //
-          //    <div id={`collapse${i}`} className="collapse" role="tabpanel" aria-labelledby={`heading${i}`}>
-          //      <div class="card-block">
-          //          <h2>{e.name}</h2>
-          //          <h4>Location: {e.location}</h4>
-          //          <p>
-          //              <OverlayTrigger trigger="click" overlay={
-          //                      <Popover id="modal-popover" title="map">
-          //                          <div><SimpleMapPage place={e.coordinates} address={e.address} name={e.location}/></div>
-          //                      </Popover>}>
-          //                  <a style={{'color':'white'}} href="#">{e.address} <span style={{'fontSize': '10px'}}>click to view on map</span></a>
-          //              </OverlayTrigger>
-          //          </p>
-          //          <h4>Time: {e.time}</h4>
-          //          <h4>Date: {e.date}</h4>
-          //          <p>Food Options? {e.eating}</p>
-          //          <p>Any Danger? {e.danger}</p>
-          //          <p>Animals in Attendance: {e.animals}</p>
-          //          <Button
-          //              className="events-btn"
-          //              bsStyle="success"
-          //              onClick={(e) => {
-          //              this.attend(e)
-          //              toastr.success('Event Success!', `You added the event`);
-          //              setTimeout(() => {this.close()}, 2500)
-          //              }}
-          //
-          //              data-eventID={e.id}
-          //              data-index={i}>
-          //              Attend Event
-          //          </Button>
-          //      </div>
-          //    </div>
-          //  </div>
           <div className="demo-card">
                 <div className="card card-inverse card-info text-center">
                     <div className="card-block">
                         <blockquote className="card-blockquote">
-                            <h2>{e.name}</h2>
+                            <h4>{e.name}</h4>
                             <h4>Location: {e.location}</h4>
                             <p>
                                 <OverlayTrigger trigger="click" overlay={
@@ -183,8 +141,8 @@ class EventList extends React.Component {
                                     <a style={{'color':'white'}} href="#">{e.address} <span style={{'fontSize': '10px'}}>click to view on map</span></a>
                                 </OverlayTrigger>
                             </p>
-                            <h4>Time: {e.time}</h4>
-                            <h4>Date: {e.date}</h4>
+                            <p>Time: {e.time}</p>
+                            <p>Date: {e.date}</p>
                             <p>Food Options? {e.eating}</p>
                             <p>Any Danger? {e.danger}</p>
                             <p>Animals in Attendance: {e.animals}</p>
@@ -210,7 +168,7 @@ class EventList extends React.Component {
         }, this) || null;
         return (
             <div className="eventList">
-                <h3>List of Events</h3>
+                <h1 className="section_title">List of Events</h1>
                 <FormGroup controlId="formControlsTextarea">
                     <ControlLabel>Search by the name of the event</ControlLabel>
                     <FormControl

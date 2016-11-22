@@ -29,8 +29,8 @@ class Home extends React.Component {
                             <Col xs={12} md={6}>
                                 <FriendSearch />
                                 <Birthdays />
-                                <PetSearch />
-                                <PetNewsSearch />
+                                {/*<PetSearch />
+                                <PetNewsSearch />*/}
                             </Col>
                         </Row>
                     </Grid>

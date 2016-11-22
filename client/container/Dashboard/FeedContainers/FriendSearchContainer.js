@@ -79,18 +79,15 @@ class FriendSearch extends Component {
                     </Modal.Header>
                     <Modal.Body>
                         <h4>Username:</h4><p><OverlayTrigger overlay={popover}><a href="#">{this.state.selectedUser.name}</a></OverlayTrigger></p>
+                        <p className="friendImg">**Hover to see this friend's profile photo</p>
                         <h4>Email:</h4><p>{this.state.selectedUser.email }</p>
-                        {/* <h4>Species:</h4><p>{this.state.selectedUser.species }</p>
-                        <h4>Hobbies:</h4><p>{this.state.selectedUser.hobbies }</p>
-                        <h4>BooldType:</h4><p>{this.state.selectedUser.bloodType }</p>
-                        <h4>Quote:</h4><p>{this.state.selectedUser.quote }</p> */}
                     </Modal.Body>
                     <Modal.Footer>
-                        <h5>Keep on Smiling!</h5>
-                        <Button onClick={() => {this.close()}}>Close</Button>
-                        <Button onClick={() => {this.viewProfile()}}>View Profile</Button>
+                        <Button bsStyle="primary" onClick={() => {this.close()}}>Close</Button>
+                        <Button bsStyle="primary" onClick={() => {this.viewProfile()}}>View Profile</Button>
                         <Button
-                          onClick={() => {this.friend();
+                            bsStyle="primary"
+                            onClick={() => {this.friend();
                                           toastr.success('Friended Success!', `You friended ${this.state.selectedUser.name}`);
                                           setTimeout(() => {this.close()}, 3000)
                                   }}> Friend
