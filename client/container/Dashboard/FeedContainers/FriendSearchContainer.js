@@ -53,7 +53,11 @@ class FriendSearch extends Component {
     }
     //dispatch action to add a friend
     this.props.addFriend(id, email)
-      .catch((err) => console.log(err));//add error handling for if already friended
+      .catch((err) => {
+        console.log(err)
+
+      });//add error handling for if already friended
+
     toastr.success('Friended Success!', `You friended ${this.state.selectedUser.name}`);
   }
 

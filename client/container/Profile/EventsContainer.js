@@ -19,12 +19,20 @@ class EventInfo extends Component {
     }
 
     render() {
+      let noEvent = null;
+      console.log(this.props.userEvent, '+++++++++++++++++++++++++++');
+      if(!this.props.userEvent.length) {
+        noEvent = ( <Panel header='You are not currently attending any events' bsStyle="success">
+                      <p>Head over to events to see what is going on</p>
+                  </Panel>)
+      }
       return(
         <div className="events-div">
             <Button className="events-btn" bsStyle="primary" onClick={ ()=> this.setState({ open1: !this.state.open1 })}>
             View Events
             </Button>
             <Panel collapsible expanded={this.state.open1}>
+            {noEvent}
             {this.props.userEvent.map((event, i) =>
               <Panel header={event.name} bsStyle="success">
                   <p>Location: {event.location}</p>
