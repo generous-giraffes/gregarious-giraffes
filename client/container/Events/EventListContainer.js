@@ -2,7 +2,7 @@ import React from 'react';
 import { OverlayTrigger, Popover, Button, Col, Row, Grid, FormGroup, FormControl, ControlLabel, Navbar } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
-import { getEvent, attendEvent, searchEventsByUserName, searchEventsByEventName } from '../../actions/eventForm';
+import { getEvent, attendEvent, searchEventsByUserName, searchEventsByEventName, showEvent } from '../../actions/eventForm';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import SimpleMapPage from '../Features/MapContainer';
@@ -23,17 +23,20 @@ class EventList extends React.Component {
 
     componentDidMount() {
         this.props.getEvent();
-        // this.props.attendEvent();  //I think this was causing issues it does not seem neccessary, how was it  workin if attendEvents needs  user and event Id?
+        this.props.userEvents.length || this.props.showEvent(this.props.id);
     }
 
     attend(e) {
-        let user_id = this.props.id; //this is the id of signed in user
+        let user_id = this.props.id;
         let event_id = e.currentTarget.getAttribute('data-eventID');
+
+        if(this.props.userEvents.filter((event) => event.event_id === event_id)) {
+          toastr.warning('Uh Oh!', 'you are already attending this event.')
+          return null;
+        }
         this.props.attendEvent(event_id, user_id)
-            .then((data) => {
-                console.log('success on adding an event!!!!')
-            })
             .catch((err) => console.log(err));
+        toastr.success('Event Success!', `You added the event`);
     }
 
 
@@ -96,12 +99,7 @@ class EventList extends React.Component {
                                                                 <Button
                                                                     className="events-btn"
                                                                     bsStyle="success"
-                                                                    onClick={(e) => {
-                                                                    this.attend(e)
-                                                                    toastr.success('Event Success!', `You added the event`);
-                                                                    setTimeout(() => {this.close()}, 2500)
-                                                                    }}
-
+                                                                    onClick={(e) => {this.attend(e)}}
                                                                     data-eventID={e.id}
                                                                     data-index={i}>
                                                                     Attend Event
@@ -149,12 +147,7 @@ class EventList extends React.Component {
                             <Button
                                 className="events-btn"
                                 bsStyle="success"
-                                onClick={(e) => {
-                                this.attend(e)
-                                toastr.success('Event Success!', `You added the event`);
-                                setTimeout(() => {this.close()}, 2500)
-                                }}
-
+                                onClick={(e) => {this.attend(e)}}
                                 data-eventID={e.id}
                                 data-index={i}>
                                 Attend Event
@@ -199,12 +192,13 @@ function mapStateToProps(state) {
         name: state.reducers.isAuthorized.name,
         id: state.reducers.isAuthorized.id,
         event: state.reducers.eventForm.events,
-        searchedEvents: state.reducers.eventForm.searchedEvents
+        searchedEvents: state.reducers.eventForm.searchedEvents,
+        userEvents: state.reducers.eventForm.userEvents
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({getEvent, attendEvent, searchEventsByUserName, searchEventsByEventName}, dispatch);
+    return bindActionCreators({getEvent, attendEvent, searchEventsByUserName, searchEventsByEventName, showEvent}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventList);
