@@ -1,4 +1,4 @@
-import { SUBMIT_PROFILE_IMAGE, GET_PROFILE_IMAGE, POST_USER_IMAGE, GET_USER_IMAGES } from '../actions/image';
+import { SUBMIT_PROFILE_IMAGE, GET_PROFILE_IMAGE, POST_USER_IMAGE, GET_USER_IMAGES } from '../constants/ActionTypes';
 
 export function image_Reducer(state = { UserImages: [], profileImage: '' }, action) {
   switch (action.type) {

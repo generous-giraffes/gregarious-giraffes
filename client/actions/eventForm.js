@@ -1,23 +1,17 @@
 import axios from 'axios';
-
-export const SUBMIT_EVENT_FORM = 'SUBMIT_EVENT_FORM';
-export const GET_EVENT_FORM = 'GET_EVENT_FORM';
-export const ATTEND_EVENT = 'ATTEND_EVENT';
-export const SHOW_EVENT = 'SHOW_EVENT';
-export const SEARCH_EVENTS_BY_USER = 'SEARCH_EVENTS_BY_USER';
-export const SEARCH_EVENTS_BY_EVENT_NAME = 'SEARCH_EVENTS_BY_EVENT_NAME';
+import * as types from '../constants/ActionTypes'
 
 //action to be dispatched if getEventForm is successful
 const getEventFormSuccess = (data) => {
     return {
-        type: GET_EVENT_FORM,
+        type: types.GET_EVENT_FORM,
         data: data
     }
 };
 
 const getShowEventSuccess = (data) => {
     return {
-        type: SHOW_EVENT,
+        type: types.SHOW_EVENT,
         data: data
     }
 };
@@ -31,7 +25,7 @@ export function submitEventForm(data) {
         })
         .catch((err) => console.error(err));
     return {
-        type: SUBMIT_EVENT_FORM,
+        type: types.SUBMIT_EVENT_FORM,
         payload: response
     }
 }
@@ -58,7 +52,7 @@ export function attendEvent(event_id, user_id) {
         .catch((err) => console.log(err));
 
     return {
-        type: ATTEND_EVENT,
+        type: types.ATTEND_EVENT,
         payload: response
     }
 }
@@ -80,7 +74,7 @@ export function searchEventsByUserName(userName) {
       .catch((err) => console.error(err))
 
     return {
-        type: SEARCH_EVENTS_BY_USER,
+        type: types.SEARCH_EVENTS_BY_USER,
         payload: response
     }
 }
@@ -91,7 +85,7 @@ export function searchEventsByEventName(eventName) {
       .catch((err) => console.error(err))
 
     return {
-        type: SEARCH_EVENTS_BY_EVENT_NAME,
+        type: types.SEARCH_EVENTS_BY_EVENT_NAME,
         payload: response
     }
 }

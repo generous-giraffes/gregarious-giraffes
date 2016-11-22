@@ -1,4 +1,4 @@
-import { SUBMIT_EVENT_FORM, GET_EVENT_FORM, ATTEND_EVENT, SHOW_EVENT, SEARCH_EVENTS_BY_USER, SEARCH_EVENTS_BY_EVENT_NAME } from '../actions/eventForm';
+import { SUBMIT_EVENT_FORM, GET_EVENT_FORM, ATTEND_EVENT, SHOW_EVENT, SEARCH_EVENTS_BY_USER, SEARCH_EVENTS_BY_EVENT_NAME } from '../constants/ActionTypes';
 //can import * as type from ... then do type.SUBMIT_EVENT_FORM ....
 export function eventForm_Reducer(state = { currentEvent: [], events: [], userEvents: [], searchedEvents: []}, action) {
     switch (action.type) {

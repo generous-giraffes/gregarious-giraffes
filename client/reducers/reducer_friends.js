@@ -1,4 +1,4 @@
-import { GET_FRIENDS, ADD_FRIEND, SET_CURRENT_FRIEND, GET_FRIEND_IMAGES, GET_FRIEND_EVENTS, GET_FRIEND_FRIENDS } from '../actions/friends';
+import { GET_FRIENDS, ADD_FRIEND, SET_CURRENT_FRIEND, GET_FRIEND_IMAGES, GET_FRIEND_EVENTS, GET_FRIEND_FRIENDS } from '../constants/ActionTypes';
 
 export function friends_Reducer(state = { allFriends: [], newFriends: [], currentFriend: {}, currentFriendImages: [], currentFriendEvents: [], currentFriendFriends: [] }, action) {
   switch (action.type) {

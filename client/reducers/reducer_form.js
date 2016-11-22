@@ -1,4 +1,4 @@
-import { SUBMIT_FORM } from '../actions/form';
+import { SUBMIT_FORM } from '../constants/ActionTypes';
 
 export function form_Reducer(state = {}, action) {
   switch (action.type) {

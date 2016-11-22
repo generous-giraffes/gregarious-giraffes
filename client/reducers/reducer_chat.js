@@ -1,4 +1,4 @@
-import { SAVE_CHAT, CHATS_RECEIVED } from '../actions/chat';
+import { SAVE_CHAT, CHATS_RECEIVED } from '../constants/ActionTypes';
 
 // Set comment default since it's not there until first submission
 const defaultState = {

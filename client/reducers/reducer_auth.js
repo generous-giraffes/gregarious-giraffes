@@ -1,4 +1,4 @@
-import { SIGNUP_USER, LOGIN_USER, LOGOUT_USER } from '../actions/auth';
+import { SIGNUP_USER, LOGIN_USER, LOGOUT_USER } from '../constants/ActionTypes';
 
 export function auth_Reducer(state = {}, action) {
     switch (action.type) {

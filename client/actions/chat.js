@@ -1,14 +1,12 @@
 import axios from 'axios';
+import * as types from '../constants/ActionTypes'
 
 // action: submission of the chat message
-
-export const SAVE_CHAT = 'SAVE_CHAT';
-export const CHATS_RECEIVED = 'CHATS_RECEIVED';
 
 const getChatSuccess = (data) => {
   console.log('+++object SUCCESSFUL RETRIEVAL', data);
     return {
-        type: CHATS_RECEIVED,
+        type: types.CHATS_RECEIVED,
         data: data
     }
 };
@@ -22,7 +20,7 @@ export function saveChat(data) {
     .catch((err) => console.error(err));
 
   return {
-    type: SAVE_CHAT,
+    type: types.SAVE_CHAT,
     payload: response
   }
 }

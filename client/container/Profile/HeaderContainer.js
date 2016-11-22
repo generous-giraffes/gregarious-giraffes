@@ -48,7 +48,7 @@ function mapStateToProps(state) {
     email: state.reducers.isAuthorized.email,
     name: state.reducers.isAuthorized.name,
     profileImage: state.reducers.image.profileImage,
-    quote: state.reducers.form.quote,
+    quote: state.reducers.isAuthorized.quote,
     species: state.reducers.form.species,
     id: state.reducers.isAuthorized.id
    }
