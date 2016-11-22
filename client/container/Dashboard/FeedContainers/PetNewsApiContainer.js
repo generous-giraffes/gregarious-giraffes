@@ -50,8 +50,7 @@ class PetNewsSearch extends Component {
                                     <h4>{first.headline.main}</h4>
                                     <p className="snippet">{first.snippet}</p>
                                     <p>
-                                        <Button href={first.web_url} target='_blank' bsStyle="primary">More
-                                            Information</Button>
+                                        <Button href={first.web_url} target='_blank' bsStyle="primary">More</Button>
                                     </p>
                                 </Thumbnail>
                             </Col>
@@ -60,8 +59,7 @@ class PetNewsSearch extends Component {
                                     <h4>{second.headline.main}</h4>
                                     <p className="snippet">{second.snippet}</p>
                                     <p>
-                                        <Button href={second.web_url} target='_blank' bsStyle="primary">More
-                                            Information</Button>
+                                        <Button href={second.web_url} target='_blank' bsStyle="primary">More</Button>
                                     </p>
                                 </Thumbnail>
                             </Col>
@@ -70,8 +68,7 @@ class PetNewsSearch extends Component {
                                     <h4>{third.headline.main}</h4>
                                     <p className="snippet">{third.snippet}</p>
                                     <p>
-                                        <Button href={third.web_url} target='_blank' bsStyle="primary">More
-                                            Information</Button>
+                                        <Button href={third.web_url} target='_blank' bsStyle="primary">More</Button>
                                     </p>
                                 </Thumbnail>
                             </Col>
@@ -81,7 +78,7 @@ class PetNewsSearch extends Component {
                                     <p className="snippet">{fourth.snippet}</p>
                                     <p>
                                         <Button href={fourth.web_url} target='_blank' bsStyle="primary">More
-                                            Information</Button>
+                                            </Button>
                                     </p>
                                 </Thumbnail>
                             </Col>
