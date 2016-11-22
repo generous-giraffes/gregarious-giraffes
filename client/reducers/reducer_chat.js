@@ -11,9 +11,7 @@ export function chat_Reducer(state = defaultState, action) {
       // If there's no payload, set empty array as default because payload can be empty
       const newComment = action.payload ? action.payload.data : [];
       return {
-          ...state, // takes stuff inside object and spreads it out
-          // Adds new comment to the previous state's comments array
-          // comments: state.comments.concat(newComment)
+          ...state
         };
 
       case CHATS_RECEIVED:
