@@ -19,18 +19,9 @@ class FriendSearch extends Component {
       userOptions: [],
       name: ''
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  //when button is clicked a request goes to db to see if mathcing name is there
-  handleSubmit(e) {
-    e.preventDefault()
-    let name = this.state.name;
-    axios.get('/api/users/search?name=' + name)
-      .then((data) => this.setState({userOptions:data.data}))
-      .catch((err)=> console.log(err));
-  }
   //when text is changed a request goes to db to see if mathcing name is there, appears like a live update
   handleChange(name) {
     axios.get('/api/users/search?name=' + name.currentTarget.value)
@@ -58,16 +49,10 @@ class FriendSearch extends Component {
     let id = this.props.id; //id of signed in user
     //dispatch action to add a friend
     this.props.addFriend(id, email)
-      .then((data) => {
-        console.log('success on adding a friend, that is if you have any')
-        // this.setState({})//something to do with friend success
-      })
       .catch((err) => console.log(err));
   }
 
   viewProfile() {
-    //dispatch an action that sets the state
-    //make a component to render a different user's profile
     browserHistory.push('/friendProfile')
   }
 
@@ -112,7 +97,6 @@ class FriendSearch extends Component {
                         </Button>
                    </Modal.Footer>
                 </Modal>
-            {/* <form onSubmit={this.handleSubmit} data-toggle='validator'> */}
 
                 <FormGroup controlId="formControlsTextarea">
                     <FormControl value={this.state.name}
@@ -121,12 +105,6 @@ class FriendSearch extends Component {
                                  placeholder="Name"
                                  required='true'/>
                 </FormGroup>
-                {/* <Button type="submit">
-                    Submit
-                </Button> */}
-                {/* </form> */}
-                {/* <ButtonToolbar>
-                    <DropdownButton open={true} bsStyle='default' noCaret title="Users" id="bg-nested-dropdown"> */}
                     <ListGroup>
                         {this.state.userOptions.map((user, i)=> (
                             <ListGroupItem onClick={(e) => {this.friendOrViewProfile(e)}}
@@ -140,8 +118,6 @@ class FriendSearch extends Component {
                             </ListGroupItem>
                         ))}
                     </ListGroup>
-                    {/* </DropdownButton>
-                </ButtonToolbar> */}
             </div>
         )
     }

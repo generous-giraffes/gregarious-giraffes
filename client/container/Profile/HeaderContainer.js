@@ -36,7 +36,7 @@ class ProfileHeader extends Component {
             </Col>
             <Col xs={12} md={8}>
                 <PageHeader> {this.props.name}'s Page <small>  As I say: {this.props.quote}</small></PageHeader>
-                <Button onClick={()=>{browserHistory.push('/newProfilePicture')}}>Upload a New Photo</Button>
+                <Button onClick={()=>{browserHistory.push('/ImageUploader')}}>Upload a New Photo</Button>
           </Col>
         </Row>
       )

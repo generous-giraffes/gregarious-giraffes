@@ -21,7 +21,6 @@ const removeRepeatsAndAddCommentsArray = (photos) => {
   return resultPhotos;
 }
 
-
 export function getDashboardImages() {
   let response = axios.get('/api/dashboardImages')
     .then((res) => removeRepeatsAndAddCommentsArray(res.data))
@@ -75,12 +74,7 @@ const prettifyDOBs = (users) => {
 
 export function getBdays(month) {
   let response = axios.get(`api/dashboardBdays?month=${month}`)
-    .then((res) => {
-      console.log(prettifyDOBs(res.data), 'prettify DOB in ACTION DISPATCH');//HEREEEE
-    return prettifyDOBs(res.data)
-    // return users;
-    // res.data
-  })
+    .then((res) => prettifyDOBs(res.data))
     .catch((error) => console.error(error));
 
     return {

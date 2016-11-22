@@ -60,6 +60,11 @@
             }
         }
     }
+    .petNews {
+      a {
+        @include three-d-button($teal-blue);
+      }
+    }
     .feed {
         .demo-card {
             width: 100%;
@@ -121,4 +126,3 @@
         }
     }
 }
-

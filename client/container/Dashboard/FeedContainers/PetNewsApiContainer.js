@@ -90,7 +90,7 @@ class PetNewsSearch extends Component {
                 </div>
             );
         } else {
-            $data = (<div>Please GET SOME PROPS</div>);
+            $data = (<div>Check back later for pet news.</div>);
         }
         return (
             <div className="petNews">
