@@ -24,3 +24,17 @@
         max-width: 150px;
     }
 }
+
+
+#modal-popover {
+    max-width: 550px;
+    display: none;
+
+    @media #{$mq-md, $mq-lg, $mq-xlg} {
+        display: block;
+    }
+
+    .extra {
+        width: 500px;
+    }
+}
