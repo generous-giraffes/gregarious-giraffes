@@ -37,10 +37,12 @@ class Comment extends React.Component {
   render() {
     return (
       <div>
-        <h4 className="commentAuthor">
+        <h4 className="comment-author">
           {this.props.user.name} says:
         </h4>
-        <span className="comment">{this.props.children}</span>
+        <div className="comment-bubble">
+          <span className="comment">{this.props.children}</span>
+        </div>
       </div>
     );
   }

@@ -12,12 +12,28 @@
 
   .chat-list {
     height: 400px;
+    margin-left: 5px;
     overflow: auto;
     padding: 15px;
+
+    .comment-bubble {
+      border-radius: 0.5em;
+      background-color: rgba(173, 216, 230, 0.25);
+      width: 370px;
+      min-height: 40px;
+      overflow: hidden;
+      padding: 10px;
+
+    }
   }
 
   .chat-list-wrapper {
     border-radius: 0.1em;
+  }
+
+  .comment-author {
+    color: $dark-blue;
+    font-weight: 500;
   }
 
   button {
