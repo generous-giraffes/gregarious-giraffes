@@ -59,7 +59,7 @@ class ChatBox extends React.Component {
         <Grid>
           <Row className="show-grid">
             <Col xs={12}>
-              <div className="chatBox">
+              <div className="chat-box">
                 <ChatList data={this.state.data} comments={this.props.comments} user={this.props.user}/>
                 <CommentForm onChatSubmit={(comment) => this.handleChatSubmit(comment)} />
               </div>

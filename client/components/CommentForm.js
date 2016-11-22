@@ -30,10 +30,10 @@ class CommentForm extends React.Component {
           <form className='chat-form' onSubmit={(e) => this.handleSubmit(e)}>
             <FormGroup controlId="formBasicText" >
 
-              <ControlLabel>Enter message</ControlLabel>
+              <ControlLabel bsClass="form-label">Enter message</ControlLabel>
               <FormControl type="text" value={this.state.text} onChange={(e) => this.handleTextChange(e)} />
             </FormGroup>
-            <Button type="submit">Send</Button>
+            <Button type="submit" className="btn btn-primary">Send</Button>
           </form>
         );
     }

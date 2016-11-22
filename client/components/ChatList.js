@@ -20,7 +20,7 @@ class ChatList extends React.Component {
       });
 
       return (
-        <div className="panel panel-default">
+        <div className="panel panel-default chat-list-wrapper">
           <div className="page-header">
             <h1 className="text-center">Chat Room</h1>
           </div>

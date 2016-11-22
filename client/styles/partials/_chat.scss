@@ -1,9 +1,11 @@
-.chatBox {
+.chat-box {
   -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fadein 1s; /* Firefox < 16 */
   -ms-animation: fadein 1s; /* Internet Explorer */
   -o-animation: fadein 1s; /* Opera < 12.1 */
   animation: fadein 1s;
+  margin-top: 50px;
+  margin-bottom: 50px;
 
   .chat-form {
     width: 100%;
@@ -14,6 +16,30 @@
     overflow: auto;
     padding: 15px;
   }
+
+  .chat-list-wrapper {
+    border-radius: 0.1em;
+  }
+
+  button {
+    @include three-d-button($teal-blue);
+  }
+
+  h1 {
+    @include section_title($white);
+    margin: 0;
+    padding: 40px;
+  }
+
+  .page-header {
+    margin-top: 0;
+    padding-bottom: 0;
+  }
+
+  .form-label {
+    font-size: 20px;
+  }
+
 }
 
 
