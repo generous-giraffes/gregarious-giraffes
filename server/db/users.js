@@ -11,13 +11,24 @@ module.exports = {
   findId: (friendEmail) => db('users').select('id').where('email', friendEmail),
 
   addFriend: (id, friendId) => {
-    return db('friends').insert({
-          user1_id: id,
-          user2_id: friendId
-         })
+    if(db('friends').count('user2_id').where('user2_id', friendId)) {
+      throw 'already friends';
+    } else {
+      return db('friends').insert({
+        user1_id: id,
+        user2_id: friendId
+      });
+    }
   },
 
   getFriend: (friendId) => db('users').select('*').where('id', friendId),
+
+  removeFriend: (friendId, userId) => db('friends')
+    .where({
+      'user1_id': userId,
+      'user2_id': friendId
+    })
+    .del(),
 
   getFriends: (id) => {
     return db('users').select('*')

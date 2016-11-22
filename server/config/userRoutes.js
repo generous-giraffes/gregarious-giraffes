@@ -23,7 +23,7 @@ router.get('/users/count', (req, res) => {
 });
 
 //add friends to friend table
-router.post('/users/friend', (req, res) => {
+router.post('/users/addFriend', (req, res) => {
   let friendEmail = req.body.friendEmail;
   let id = req.body.id;
   let friendId;
@@ -76,6 +76,15 @@ router.get('/users/friendsFriends', (req, res) => {
   let id = req.query.id;
   Users.getFriends(id)
     .then((data) => res.send(data))
+	  .catch((err) => console.error(err));
+});
+
+router.get('/users/removeFriend', (req, res) => {
+  let friendId = req.query.friendId;
+  let userId = req.query.userId;
+  console.log(userId, friendId, 'user and friend ids +++++++');
+  Users.removeFriend(friendId, userId)
+    .then((data) => res.redirect('/api/users/friends?id=' + userId))
 	  .catch((err) => console.error(err));
 });
 

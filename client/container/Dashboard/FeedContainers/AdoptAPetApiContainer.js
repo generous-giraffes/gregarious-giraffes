@@ -14,7 +14,7 @@ class PetSearch extends Component {
     }
 
     componentDidMount() {
-        this.props.getPet();
+        this.props.pet ? null : this.props.getPet();;
     }
 
 
@@ -33,8 +33,8 @@ class PetSearch extends Component {
     render() {
         //MOVE THIS INTO A LIFECYCLE METHOD --> probs componentDidRecieveProps or componentWillUpdate
         let $data = null;
-        if (this.props.pet.adoptPetData) {
-            let pet = this.props.pet.adoptPetData;
+        if (this.props.pet) {
+            let pet = this.props.pet;
             let first = pet.photos.filter((p) => p['@size'] === 'x');
             console.log(first, 'this is first!!!!!');
             let image = (<img src={first[0]['$t']}/>);
@@ -70,7 +70,7 @@ class PetSearch extends Component {
 
 function mapStateToProps(state) {
     return {
-        pet: state.reducers.getPets
+        pet: state.reducers.getPets.adoptPetData
     }
 }
 
