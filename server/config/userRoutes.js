@@ -79,6 +79,15 @@ router.get('/users/friendsFriends', (req, res) => {
 	  .catch((err) => console.error(err));
 });
 
+router.get('/users/removeFriend', (req, res) => {
+  let friendId = req.query.friendId;
+  let userId = req.query.userId;
+  console.log(userId, friendId, 'user and friend ids +++++++');
+  Users.removeFriend(friendId, userId)
+    .then((data) => res.redirect('/api/users/friends?id=' + userId))
+	  .catch((err) => console.error(err));
+});
+
 router.get('/users/search', (req,res) => {
   let name = req.query.name
     // db('users').select('*').where('name','like', `%${name}%`)

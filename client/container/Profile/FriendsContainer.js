@@ -3,7 +3,7 @@ import { Panel, Button, Modal } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { getFriends, setCurrentFriend } from '../../actions/friends';
+import { getFriends, setCurrentFriend, removeFriend } from '../../actions/friends';
 import axios from 'axios';
 import { toastr } from 'react-redux-toastr';
 
@@ -18,6 +18,7 @@ class Friends extends Component {
     this.goBack = this.goBack.bind(this);
     this.getFriends = this.getFriends.bind(this);
     this.viewProfile = this.viewProfile.bind(this);
+    this.unfriend = this.unfriend.bind(this);
   }
 
   componentDidMount() {
@@ -32,9 +33,16 @@ class Friends extends Component {
   }
 
   viewProfile() {
-    //dispatch an action that sets the state
-    //make a component to render a different user's profile
     browserHistory.push('/friendProfile')
+  }
+
+  unfriend(e) {
+    let index = e.currentTarget.getAttribute('data-index');
+    let removeThisFriendId = this.props.friends[index].id;
+    console.log(removeThisFriendId, 'friend to be removed id in teh friends container', this.props.id);
+    this.props.removeFriend(removeThisFriendId, this.props.id)
+      .then(() => console.log('put a toast here, you unfriended', selectedUser.name))
+      .catch((err) => console.log(err));
   }
 
   goBack() {
@@ -50,7 +58,7 @@ class Friends extends Component {
   }
 
   viewProfile(e) {
-      let index = e.currentTarget.getAttribute('data-index')
+      let index = e.currentTarget.getAttribute('data-index');
       let selectedUser = this.props.friends[index];
       this.props.setCurrentFriend(selectedUser);
       browserHistory.push('/friendProfile')
@@ -73,6 +81,7 @@ class Friends extends Component {
                   <Panel header={friend.name} bsStyle="primary">
                       <p>Quote: {friend.quote}</p>
                   <Button bsStyle="primary" data-index={i}  onClick={this.viewProfile}>View Profile</Button>
+                  <Button bsStyle="primary" data-index={i}  onClick={this.unfriend}>Unfriend</Button>
                   </Panel>
                 )}
             </Panel>
@@ -93,7 +102,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({getFriends, setCurrentFriend}, dispatch);
+  return bindActionCreators({getFriends, setCurrentFriend, removeFriend}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Friends);

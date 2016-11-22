@@ -19,6 +19,13 @@ module.exports = {
 
   getFriend: (friendId) => db('users').select('*').where('id', friendId),
 
+  removeFriend: (friendId, userId) => db('friends')
+    .where({
+      'user1_id': userId,
+      'user2_id': friendId
+    })
+    .del(),
+
   getFriends: (id) => {
     return db('users').select('*')
       .leftOuterJoin('friends', 'users.id', 'friends.user2_id')

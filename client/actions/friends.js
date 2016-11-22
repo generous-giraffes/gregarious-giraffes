@@ -65,3 +65,14 @@ export function getFriendFriends(id) {
     payload: response
   }
 }
+
+export function removeFriend(friend_id, user_id) {
+  let response = axios.get(`/api/users/removeFriend?friendId=${friend_id}&userId=${user_id}`)
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+
+  return {
+    type: types.GET_FRIENDS,
+    payload: response
+  }
+}
