@@ -23,7 +23,6 @@ class EventList extends React.Component {
 
     componentDidMount() {
         this.props.getEvent();
-        // this.props.attendEvent();  //I think this was causing issues it does not seem neccessary, how was it  workin if attendEvents needs  user and event Id?
     }
 
     attend(e) {
@@ -35,8 +34,6 @@ class EventList extends React.Component {
             })
             .catch((err) => console.log(err));
     }
-
-
 
     // called as soon as the the shouldComponentUpdate returned true. Any state changes via this.setState are not allowed as this method should be strictly used to prepare for an upcoming update not trigger an update itself.
     componentWillUpdate(nextProps, nextState) {
@@ -60,6 +57,7 @@ class EventList extends React.Component {
       this.setState({search: false})
     }
 
+    //The first render shows the event list in full as the default when landing on the event page
     render() {
         let defaultEvents = null;
 
@@ -71,51 +69,49 @@ class EventList extends React.Component {
                     <Grid>
                         <Row>
                             <Col xs={12}>
-                                    {
-                                        eventList.map(function(e, i) {
-                                            return (
-                                                <div className="demo-card">
-                                                    <div className="card card-inverse card-primary text-center">
-                                                        <div className="card-block">
-                                                            <blockquote className="card-blockquote">
-                                                                <h4 className="title">{e.name}</h4>
-                                                                <p className="detail">Location: {e.location}</p>
-                                                                <p className="detail mobile">{e.address}</p>
-                                                                <p className="detail trigger">
-                                                                    <OverlayTrigger trigger="click" overlay={
+                                {
+                                    eventList.map(function (e, i) {
+                                        return (
+                                            <div className="demo-card">
+                                                <div className="card card-inverse card-primary text-center">
+                                                    <div className="card-block">
+                                                        <blockquote className="card-blockquote">
+                                                            <h4 className="title">{e.name}</h4>
+                                                            <p className="detail">Location: {e.location}</p>
+                                                            <p className="detail mobile">{e.address}</p>
+                                                            <p className="detail trigger">
+                                                                <OverlayTrigger trigger="click" overlay={
                                                                             <Popover id="modal-popover" title="Map">
                                                                                 <div><SimpleMapPage place={e.coordinates} address={e.address} name={e.location}/></div>
                                                                             </Popover>}>
-                                                                        <a href="#">{e.address} <span>Click here to view on a map.</span></a>
-                                                                    </OverlayTrigger>
-                                                                </p>
-                                                                <p className="detail">Time: {e.time}</p>
-                                                                <p className="detail">Date: {e.date}</p>
-                                                                <p className="detail">Food Options? {e.eating}</p>
-                                                                <p className="detail">Any Danger? {e.danger}</p>
-                                                                <p className="detail">Animals in Attendance: {e.animals}</p>
-                                                                <Button
-                                                                    className="events-btn"
-                                                                    bsStyle="success"
-                                                                    onClick={(e) => {
+                                                                    <a href="#">{e.address} <span>Click here to view on a map.</span></a>
+                                                                </OverlayTrigger>
+                                                            </p>
+                                                            <p className="detail">Time: {e.time}</p>
+                                                            <p className="detail">Date: {e.date}</p>
+                                                            <p className="detail">Food Options? {e.eating}</p>
+                                                            <p className="detail">Any Danger? {e.danger}</p>
+                                                            <p className="detail">Animals in Attendance: {e.animals}</p>
+                                                            <Button
+                                                                className="events-btn"
+                                                                bsStyle="success"
+                                                                onClick={(e) => {
                                                                     this.attend(e)
                                                                     toastr.success('Event Success!', `You added the event`);
                                                                     setTimeout(() => {this.close()}, 2500)
                                                                     }}
 
-                                                                    data-eventID={e.id}
-                                                                    data-index={i}>
-                                                                    Attend Event
-                                                                </Button>
-
-                                                            </blockquote>
-                                                        </div>
+                                                                data-eventID={e.id}
+                                                                data-index={i}>
+                                                                Attend Event
+                                                            </Button>
+                                                        </blockquote>
                                                     </div>
                                                 </div>
-
-                                            )
-                                        }, this)
-                                    }
+                                            </div>
+                                        )
+                                    }, this)
+                                }
                             </Col>
                         </Row>
                     </Grid>
@@ -125,6 +121,7 @@ class EventList extends React.Component {
             defaultEvents = (<div>There are no events, fill out the form to create one!</div>);
         }
 
+        //This section returns all the event information from the search by name of event or attendees
         let eventsFromSearch = this.props.searchedEvents.map((e, i) => {
           return(
 
@@ -155,7 +152,6 @@ class EventList extends React.Component {
                                 toastr.success('Event Success!', `You added the event`);
                                 setTimeout(() => {this.close()}, 2500)
                                 }}
-
                                 data-eventID={e.id}
                                 data-index={i}>
                                 Attend Event
@@ -167,6 +163,8 @@ class EventList extends React.Component {
             </div>
           )
         }, this) || null;
+
+        //Two search bars for events
         return (
             <div className="eventList">
                 <h1 className="section_title">List of Events</h1>

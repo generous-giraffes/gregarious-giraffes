@@ -84,7 +84,6 @@ class SignupForm extends Component {
                         placeholder='Password'
                         value={this.state.password}
                         onChange={this.onPasswordCreate}/>
-
                     <Button className="myButton" bsStyle="primary" type="submit" value="Submit">Enter</Button>
                 </form>
             </div>

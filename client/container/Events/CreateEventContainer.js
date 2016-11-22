@@ -11,7 +11,7 @@ import axios from 'axios';
 import SearchBox from '../Features/SearchBoxContainer';
 import ReactDOM from 'react-dom';
 
-
+//Brings a form in from Bootstrap
 function FieldGroup({ id, label, help, ...props }) {
     return (
         <FormGroup controlId={id}>
@@ -22,6 +22,7 @@ function FieldGroup({ id, label, help, ...props }) {
     );
 }
 
+//Options for animals for species attending the event
 const ANIMALS = [
     {label: 'All Welcome', value: 'All'},
     {label: 'Cat', value: 'Cat'},
@@ -118,7 +119,7 @@ class CreateEvent extends React.Component {
         browserHistory.push('/dashboard');
     }
 
-
+    //Takes the time of the event from NPM module and puts it into readable format
     handleTimeChange(time) {
       let hrs = Math.floor(time/3600);
       let mnt = Math.floor((time % 3600)/60)
@@ -131,6 +132,7 @@ class CreateEvent extends React.Component {
       this.setState({formattedTime:timeStr, time: time});
     }
 
+    //Takes the date of the event from NPM module and makes it readable form
     handleDateChange(date) {
       const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
       let niceDate = date.split('T')[0].split('-')
@@ -170,9 +172,7 @@ class CreateEvent extends React.Component {
       this.searchBox = new google.maps.places.SearchBox(input);
       this.searchBox.addListener('places_changed', this.onPlaceChange);
     }
-    // componentWillUnmount() {
-    //   this.searchBox.removeListener('places_changed', this.onPlaceChange);
-    // }
+
     onPlaceChange() {
       let place = this.searchBox.getPlaces();
       console.log(place,"--===CREATE EVENT=====__", 'lat', place[0].geometry.location.lat(), 'lng',place[0].geometry.location.lng())
@@ -182,32 +182,33 @@ class CreateEvent extends React.Component {
       this.setState({coordinates, address});
     }
 
-
     render() {
         return (
             <div className="eventForm">
                 <h1 className="section_title">Create an Event</h1>
                 <form onSubmit={this.handleSubmit} data-toggle='validator'>
-
                     <FormGroup controlId="formControlsTextarea">
                         <ControlLabel>Name</ControlLabel>
-                        <FormControl value={this.state.name}
-                                     onChange={this.handleNameChange}
-                                     componentClass="textarea"
-                                     placeholder="What is the name of your event?"
-                                     required='true'/>
+                        <FormControl
+                            value={this.state.name}
+                            onChange={this.handleNameChange}
+                            componentClass="textarea"
+                            placeholder="What is the name of your event?"
+                            required='true'/>
                     </FormGroup>
-
                     <FormGroup>
                         <ControlLabel>Time</ControlLabel>
-                        <TimePicker onChange={this.handleTimeChange} value={this.state.time}/>
+                        <TimePicker
+                            onChange={this.handleTimeChange}
+                            value={this.state.time}/>
                     </FormGroup>
-
                     <FormGroup>
                         <ControlLabel>Date</ControlLabel>
-                        <DatePicker  value={this.state.date} dateFormat="MM-DD-YYYY" onChange={this.handleDateChange}/>
+                        <DatePicker
+                            value={this.state.date}
+                            dateFormat="MM-DD-YYYY"
+                            onChange={this.handleDateChange}/>
                     </FormGroup>
-
                     <FormGroup controlId="formControlsTextarea">
                         <ControlLabel>Name of Location</ControlLabel>
                         <FormControl
@@ -217,7 +218,6 @@ class CreateEvent extends React.Component {
                             placeholder="Where will the event be held?"
                             required='true'/>
                     </FormGroup>
-
                     <FormGroup >
                         <ControlLabel>Address</ControlLabel>
                         <br></br>
@@ -225,36 +225,45 @@ class CreateEvent extends React.Component {
                       </FormGroup>
 
                     <FormGroup>
-                        <Select multi simpleValue disabled={this.state.disabled} value={this.state.value}
-                                placeholder="Which type of animal(s) in attendance" options={this.state.options}
-                                onChange={this.handleSelectChange}/>
+                        <Select
+                            multi simpleValue disabled={this.state.disabled}
+                            value={this.state.value}
+                            placeholder="Which type of animal(s) in attendance"
+                            options={this.state.options}
+                            onChange={this.handleSelectChange}/>
                     </FormGroup>
-
                     <FormGroup controlId="formControlsTextarea">
                         <ControlLabel>Dangers</ControlLabel>
-                        <FormControl value={this.state.danger}
-                                     onChange={this.handleDangerChange}
-                                     componentClass="textarea"
-                                     placeholder="Are there any dangers to be aware of?"
-                                     required='true'/>
+                        <FormControl
+                            value={this.state.danger}
+                            onChange={this.handleDangerChange}
+                            componentClass="textarea"
+                            placeholder="Are there any dangers to be aware of?"
+                            required='true'/>
                     </FormGroup>
-
                     <FormGroup controlId="formControlsTextarea">
                         <ControlLabel>Eating Arrangements</ControlLabel>
-                        <FormControl value={this.state.eating} onChange={this.handleEatingChange} componentClass="textarea"
-                                     placeholder="Should I plan on eating before the event?" required='true'/>
+                        <FormControl
+                            value={this.state.eating}
+                            onChange={this.handleEatingChange}
+                            componentClass="textarea"
+                            placeholder="Should I plan on eating before the event?"
+                            required='true'/>
                     </FormGroup>
-
-
                     <FormGroup controlId="formControlsSelect">
                         <ControlLabel>Are gifts accepted?</ControlLabel>
-                        <select noValidate value={this.state.gifts} onChange={this.handleGiftChange}
-                                className='selectpicker' title="yes or no" data-max-options="1" required='true'>
+                        <select
+                            noValidate
+                            value={this.state.gifts}
+                            onChange={this.handleGiftChange}
+                            className='selectpicker'
+                            title="yes or no"
+                            data-max-options="1"
+                            required='true'>
                             <option value="yes">Yes</option>
                             <option value="no">No</option>
                         </select>
                     </FormGroup>
-
                     <Button type="submit">
                         Submit
                     </Button>
