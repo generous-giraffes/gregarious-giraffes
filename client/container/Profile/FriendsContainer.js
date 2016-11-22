@@ -68,6 +68,12 @@ class Friends extends Component {
         toastr.info('You have a new friend!', `You are now friends with ${this.props.newFriend.name}`);
         this.setState({called:true});
       }
+      let noFriends = null;
+      if(!this.props.friends.length) {
+        noFriends = ( <Panel header='You currently have no friends' bsStyle="success">
+                      <p>Head over to the dashbaord make some friends!</p>
+                  </Panel>)
+      }
       return(
         <div className="friends-div">
 
@@ -75,6 +81,7 @@ class Friends extends Component {
                 Your Friends
             </Button>
             <Panel collapsible expanded={this.state.open2}>
+                {noFriends}
                 {this.props.friends.map((friend, i)=>
                   <Panel header={friend.name} bsStyle="primary">
                       <p>Quote: {friend.quote}</p>

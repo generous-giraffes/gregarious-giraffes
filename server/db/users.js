@@ -8,17 +8,22 @@ module.exports = {
 
   count: () => db('users').count('name'),
 
-  findId: (friendEmail) => db('users').select('id').where('email', friendEmail),
+  findId: (friendEmail) => db('users').select('id').where('email', friendEmail).then((data) => data[0].id),
 
   addFriend: (id, friendId) => {
-    if(db('friends').count('user2_id').where('user2_id', friendId)) {
-      throw 'already friends';
-    } else {
-      return db('friends').insert({
-        user1_id: id,
-        user2_id: friendId
-      });
-    }
+    //if the users are already friends return an error else add the friendhip to the friends table
+    return db('friends').count('user2_id').where({'user2_id': friendId,'user1_id': id})
+      .then((count) => {
+        let alreadyFriends = Boolean(count[0]['count(`user2_id`)']);
+        if(alreadyFriends) {
+          return {error:true}
+        } else {
+          return db('friends').insert({
+            user1_id: id,
+            user2_id: friendId
+          });
+        }
+      })
   },
 
   getFriend: (friendId) => db('users').select('*').where('id', friendId),
