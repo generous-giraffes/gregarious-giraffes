@@ -17,6 +17,20 @@
         .main-container {
             margin-bottom: 40px;
             .eventList {
+
+                .container {
+                    padding: 0;
+
+                    .demo-card {
+                        .card-block {
+                            .card-blockquote {
+                                button {
+                                    @include three-d-button($teal-blue);
+                                }
+                            }
+                        }
+                    }
+                }
                 h1 {
                     @include section_title($white);
                 }
@@ -29,6 +43,7 @@
                         border-radius: $input-radius;
                     }
                 }
+
             }
             .eventForm {
                 h1 {
