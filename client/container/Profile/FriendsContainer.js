@@ -28,7 +28,6 @@ class Friends extends Component {
   getFriends() {
     let id = this.props.id
     this.props.getFriends(id)
-      // .then(() => console.log('Got Friends'))
       .catch((err) => console.log(err));
   }
 
@@ -39,10 +38,9 @@ class Friends extends Component {
   unfriend(e) {
     let index = e.currentTarget.getAttribute('data-index');
     let removeThisFriendId = this.props.friends[index].id;
-    console.log(removeThisFriendId, 'friend to be removed id in teh friends container', this.props.id);
     this.props.removeFriend(removeThisFriendId, this.props.id)
-      .then(() => console.log('put a toast here, you unfriended', selectedUser.name))
       .catch((err) => console.log(err));
+    toastr.success('You Removed a Friend!', 'You are no longer friends with' + this.props.friends[index].name)
   }
 
   goBack() {
