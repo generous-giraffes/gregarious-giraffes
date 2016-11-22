@@ -61,6 +61,7 @@ class Navigation extends React.Component {
     }
 }
 
+//This handles all the redirects for the navbar, including all the browserHistory
 function handleSelect(eventKey) {
     if (eventKey === 3.3) {
         browserHistory.push('/chat');

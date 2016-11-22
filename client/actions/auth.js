@@ -10,6 +10,7 @@ const signInUserSuccess = (data) => {
 };
 
 //function that sends user info to db and sends the user's data to the auth reducer
+//in this case it's name, email and the password before it's been encrypted
 export function signupUser(name, email, password) {
   const request = axios.post('/api/signup', {
     user: {
@@ -30,7 +31,8 @@ export function signupUser(name, email, password) {
       payload: request
   };
 }
-//function that sends user info to server to check if it matches info in the db. If it does an action is dispatched to the auth reducer to update the state to authenticate the user
+//function that sends user info to server to check if it matches info in the db.
+// If it does an action is dispatched to the auth reducer to update the state to authenticate the user
 export function signinUser(email, password) {
   return (dispatch) => {
     return axios.post('/api/login', {
@@ -61,6 +63,8 @@ export function signinUser(email, password) {
   };
 }
 
+//This is the function that we are calling during logout from the
+// Navbar component in order to redirect to login and destroy the token
 export function logoutAndRedirect() {
 
     return {

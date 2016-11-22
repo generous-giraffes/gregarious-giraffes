@@ -54,6 +54,8 @@ export function getPet(animal) {
   }
 }
 
+
+//This action gets pet news from the NYT api and puts it on the dashboard in the feed
 export function getPetNews() {
   return (dispatch) => {
     return axios.get('/api/pets/news')
