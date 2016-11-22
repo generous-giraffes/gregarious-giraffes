@@ -20,8 +20,7 @@ export function addFriend(id, email) {
     id: id
    })
     .then((res) => res.data[0])
-    .catch((err) => throw 'already friends'
-  );
+    .catch((err) => 'already friends');
 
   return {
     type: types.ADD_FRIEND,
