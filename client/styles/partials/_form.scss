@@ -16,4 +16,13 @@
     -o-animation: fadein 1s; /* Opera < 12.1 */
     animation: fadein 1s;
     @include vertical-center-flex(81vh);
+
+    .previewComponent {
+      .imgPreview {
+        img {
+            max-width: 300px;
+            max-height: 400px;
+        }
+      }
+    }
 }

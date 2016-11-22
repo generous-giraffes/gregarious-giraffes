@@ -26,7 +26,7 @@ class FriendFriends extends Component {
                         {this.props.friendFriends.map((friend)=>
                           <Panel header={friend.name} bsStyle="primary">
                           {/* can add more info from survey here if desired */}
-                              <p>Hobbies: {friend.hobbies}</p>
+                              <p>Quote: {friend.quote}</p>
                               <p>Email: <a href={'mailto:'+ friend.email}>{friend.email}</a></p>
                           </Panel>
                         )}
