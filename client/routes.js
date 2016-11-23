@@ -5,7 +5,7 @@ import App from './components/App';
 
 import SignUp from './container/Auth/SignUpFormContainer';
 import SignIn from './container/Auth/SignInFormContainer';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/dashboard';
 import Survey from './container/User/SurveyFormContainer';
 import ImageUploader from './container/User/ImageUploadContainer';
 import Profile from './components/Profile';
