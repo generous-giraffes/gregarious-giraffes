@@ -29,7 +29,7 @@ class FriendProfile extends React.Component {
                     <SurveyInfo />
                     <FriendImages />
                 </Col>
-                <Col xs={12} md={6}>
+                <Col className="Events-and-Friends" xs={12} md={6}>
                     <FriendEvents />
                     <FriendFriends />
                 </Col>

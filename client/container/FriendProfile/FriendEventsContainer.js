@@ -25,7 +25,7 @@ class FriendEvents extends Component {
                     <Panel collapsible expanded={this.state.open1}>
 
                     {this.props.friendEvents.map((event, i) =>
-                        <Panel header={event.name} bsStyle="success">
+                        <Panel header={event.name} bsStyle="success" className="events-panel">
                             <p>Location: {event.location}</p>
                             <p>Date: {event.date}</p>
                             <p>Time: {event.time}</p>

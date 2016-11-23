@@ -19,10 +19,10 @@ class FriendImages extends Component {
     render() {
         return (
             <Grid className="photos">
-                <Row>
+                <Row className="userPhotos">
                   {this.props.friendImages.map((image) => (
                     <Col xs={12} md={6}>
-                        <Thumbnail src={image.image}>
+                        <Thumbnail className="photoThumbnail" src={image.image}>
                             <h3>{image.caption}</h3>
                         </Thumbnail>
                     </Col>

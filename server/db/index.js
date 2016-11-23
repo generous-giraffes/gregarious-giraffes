@@ -1,31 +1,30 @@
-//when this file is required, knex sets up a connection with the databse and creates the tables if they do not exist
+//when this file is required, knex sets up a connection with the database and creates the tables if they do not exist
 
 //++++++++FOR LOCAL TESTING++++++++
 //start and setup mysql in terminal: $ mysql.server start, then, $ mysql -h localhost -u root -p
 //when in the mysql terminal type: create database giraffeLocal;, and then type: use giraffeLocal;
 
-//var knex = require('knex')({
+// var knex = require('knex')({
 //  client: 'mysql',
 //  connection: {
 //    host: 'localhost',
 //    user: 'root',
-//    password: 'admin',//your local password for root user
+//    password: 'a',//your local password for root user
 //    database: 'giraffeLocal'
 //  }
-//});
+// });
 
+//this is to connect to the database on EC2 / MYSQL
 var knex = require('knex')({
     client: 'mysql',
     connection: {
-        host: 'giraffe.cdt7ljmioe25.us-west-2.rds.amazonaws.com',
-        user: 'giraffes',
-        password: 'giraffes',
-        port: '3306',
-        database: 'giraffes',
-        debug: true
-    },
-    pool: {min: 0, max: 10}
+        host: 'localhost',
+        user: 'root',
+        password: 'admin',
+        database: 'giraffes'
+    }
 });
+
 
 //create users table
 knex.schema.hasTable('users').then((exists) => {

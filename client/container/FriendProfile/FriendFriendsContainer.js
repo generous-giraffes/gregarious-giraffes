@@ -24,9 +24,9 @@ class FriendFriends extends Component {
                     </Button>
                     <Panel collapsible expanded={this.state.open}>
                         {this.props.friendFriends.map((friend)=>
-                          <Panel header={friend.name} bsStyle="primary">
+                          <Panel header={friend.name} className="Friend-Panel">
                           {/* can add more info from survey here if desired */}
-                              <p>Quote: {friend.quote}</p>
+                              <p>Quote: <span>{friend.quote}</span></p>
                               <p>Email: <a href={'mailto:'+ friend.email}>{friend.email}</a></p>
                           </Panel>
                         )}
