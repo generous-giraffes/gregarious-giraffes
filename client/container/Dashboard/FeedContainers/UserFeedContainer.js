@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { getRecentUsers } from '../../../actions/feed';
 
-
+//Smart container showing the most recent users that have joined the app
 class UserFeed extends Component {
     constructor(props) {
         super(props);

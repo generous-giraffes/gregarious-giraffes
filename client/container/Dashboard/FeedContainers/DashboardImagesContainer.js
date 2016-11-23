@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getDashboardImages, commentOnDashImage } from '../../../actions/feed';
 import { toastr } from 'react-redux-toastr';
 
+//This smart container shows the additional images that users upload from their profiles
 class DashboardImagesContainer extends Component {
     constructor(props) {
         super(props);
@@ -16,6 +17,7 @@ class DashboardImagesContainer extends Component {
         }
     }
 
+    //pulls the props for the Dashboard images
     componentDidMount() {
         this.props.getDashboardImages();
     }

@@ -63,6 +63,7 @@ class CreateEvent extends React.Component {
     constructor(props) {
         super(props);
 
+        //bindings for all the functions
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleTimeChange = this.handleTimeChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
@@ -89,6 +90,8 @@ class CreateEvent extends React.Component {
             value: []
         };
     }
+
+    //setting the nicer date so it's readable
     componentWillMount() {
       const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
       let niceDate = new Date().toISOString().split('T')[0].split('-');
@@ -98,6 +101,7 @@ class CreateEvent extends React.Component {
       this.setState({date: nicerDate });
     }
 
+    //All the props from the submit form
     handleSubmit(e) {
         e.preventDefault();
         let animals = this.state.value.split(',').join(', ');

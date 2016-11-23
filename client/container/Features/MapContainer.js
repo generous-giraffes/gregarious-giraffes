@@ -3,6 +3,7 @@ import { Col, Row, Grid } from 'react-bootstrap';
 import GoogleMap from 'google-map-react';
 import SearchBox from './SearchBoxContainer';
 
+//This maps from the events based on the address the user types in
 export default class SimpleMapPage extends Component {
   static defaultProps = {
     zoom: 14,

@@ -7,6 +7,7 @@ import { browserHistory } from 'react-router';
 import { getPet } from '../../../actions/getPets';
 import axios from 'axios';
 
+//This is the smart container that hits the Pet Finder API and renders the pet of the day
 class PetSearch extends Component {
     constructor(props) {
         super(props);

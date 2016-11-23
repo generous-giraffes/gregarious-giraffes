@@ -10,6 +10,7 @@ export function auth_Reducer(state = {}, action) {
                     name: action.payload.data.name,
                     email: action.payload.data.email,
                     isAuthenticated: Boolean(action.payload.headers.token),
+                    //set the boolean to true or false and then runs through the Authentication container
                     id: action.payload.data.id
                 });
         case LOGIN_USER:
@@ -20,6 +21,7 @@ export function auth_Reducer(state = {}, action) {
                     name: action.data.name,
                     email: action.data.email,
                     isAuthenticated: Boolean(action.data.token),
+                    //set the boolean to true or false and then runs through the Authentication container
                     id: action.data.id,
                     dob: action.data.dob,
                     bloodType: action.data.bloodType,
@@ -33,6 +35,7 @@ export function auth_Reducer(state = {}, action) {
         case LOGOUT_USER:
             console.log('auth reducer, LOGGG OUTTTT', action.data, action.type);
             return Object.assign({}, {isAuthenticated: false});
+            //setting authentication to false in order to destroy props and log the user out
         default:
             return state;
     }
