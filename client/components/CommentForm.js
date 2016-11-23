@@ -10,6 +10,7 @@ class CommentForm extends React.Component {
     handleTextChange(e) {
           this.setState({text : e.target.value})
     }
+
     handleSubmit(e) {
         e.preventDefault();
 
@@ -30,10 +31,9 @@ class CommentForm extends React.Component {
           <form className='chat-form' onSubmit={(e) => this.handleSubmit(e)}>
             <FormGroup controlId="formBasicText" >
 
-              <ControlLabel bsClass="form-label">Enter message</ControlLabel>
-              <FormControl type="text" value={this.state.text} onChange={(e) => this.handleTextChange(e)} />
+              <FormControl type="text" placeholder="Enter message here..." value={this.state.text} onChange={(e) => this.handleTextChange(e)} />
             </FormGroup>
-            <Button type="submit" className="btn btn-primary">Send</Button>
+            <Button type="submit" className="btn btn-primary" onclick="changeColor();">Send</Button>
           </form>
         );
     }

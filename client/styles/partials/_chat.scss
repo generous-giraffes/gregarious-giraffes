@@ -12,14 +12,14 @@
 
   .chat-list {
     height: 400px;
-    margin-left: 5px;
+    margin-left: 125px;
     overflow: auto;
     padding: 15px;
 
     .comment-bubble {
       border-radius: 0.5em;
       background-color: rgba(173, 216, 230, 0.25);
-      width: 370px;
+      width: 515px;
       min-height: 40px;
       overflow: hidden;
       padding: 10px;
@@ -49,16 +49,6 @@
   .page-header {
     margin-top: 0;
     padding-bottom: 0;
-  }
-
-  .form-label {
-    @include section_title($white);
-    border-radius: 0.1em;
-    border-right-width: 4px;
-    border-left-width: 4px;
-    font-size: 15px;
-    margin-bottom: 0.4px;
-
   }
 
 }
