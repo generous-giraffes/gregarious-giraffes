@@ -1,3 +1,4 @@
+// contains whole profile (beneath the navbar)
 .myProfile {
   max-width: 100%;
   width: 100%;
@@ -6,67 +7,216 @@
   -ms-animation: fadein 1s; /* Internet Explorer */
   -o-animation: fadein 1s; /* Opera < 12.1 */
   animation: fadein 1s;
-
+    //contains the profile header (image, new photo button, name, and quote)
     .profile-user {
       height: 100%;
-      background: $brown;
+      background: $dark-blue;
       margin-bottom: 15px;
       padding: 8px;
       display: flex;
       align-items: center;
 
+      h1 {
+        color: $white;
+        text-transform: capitalize;
+        h2 {
+          text-transform: capitalize;
+          display: inline;
+        }
+        p {
+          text-transform: capitalize;
+        }
+        small {
+          color: $white;
+        }
+      }
+      // button for uploading a new profile picture
+      button {
+        @include three-d-button($grey);
+        font-weight: 500;
+        font-size: 12px;
+        color: black;
+      }
+
       .profile-image {
         display: flex;
         align-items: center;
+
+        img {
+          max-width: 300px;
+          max-height: 400px;
+          border-radius: $card-radius;
+        }
       }
       .user-image {
-        background: $brown;
+        background: $navy-blue;
         border: $white 1px solid;
         border-radius: 2px;
       }
     }
 
-    .profile-data {
 
+    // contains everything beneath the header (friends, events, survey info and photos)
+    .profile-data {
+      //survey info
       .list-group {
 
         .list-group-item {
           margin-bottom: 15px;
+          border-radius: $card-radius;
 
           .list-group-item-heading {
             font-size: 16px;
+            color: $dark-blue;
+            text-transform: capitalize;
+            font-weight: 600;
           }
 
           .list-group-item-text {
             font-size: 14px;
-            color: black;
+            color: $dark-blue;
+            font-weight: 500;
           }
         }
       }
-
-      .photos {
-        width: 100%;
-      }
     }
+  //events and frinds dropdowns
   .Events-and-Friends {
     .events-btn {
+      @include three-d-button($teal-blue);
       width: 100%;
       display: table;
       margin: auto;
     }
+    //events dropdown container
+    .events-div {
+      .events-panel {
+        border-color: $green;
+        .panel-heading {
+          border-color: $green;
+          color: $white;
+          background-color: $green;
+          text-transform: capitalize;
+          font-weight: 600;
+        }
+        .panel-body {
+          text-transform: capitalize;
+          color: $dark-blue;
+        }
+      }
+    }
+    //friends dropdown container
+    .Friend-Panel > .panel-heading {
+      border-color: $green;
+      color: $white;
+      background-color: $green;
+      text-transform: capitalize;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .Friend-Panel {
+      .panel-body {
+        text-transform: capitalize;
+        color: $dark-blue;
+        span {
+          text-transform: capitalize;
+          color: $dark-blue;
+        }
+        button {
+          @include three-d-button($teal-blue);
+          font-weight: 400;
+          font-size: 10px;
+        }
+      }
+    }
     .friends-btn {
+      @include three-d-button($teal-blue);
       width: 100%;
       display: table;
       margin: auto;
     }
   }
+  //image upload and photo area for user, just photos for friends
+  .photos {
+    width: 100%;
+  }
   .photos.container {
     background: $dark-blue;
     margin-bottom: 20px;
-
+    //contains uploader and img preview
     .user-image-upload {
       margin: 15px;
       color: $white;
+
+      form {
+        h4 {
+          color: $white;
+          display: inline;
+          margin-right: 10px;
+        }
+        .captionInput {
+          color: $dark-blue;
+          display: inline;
+          margin-top: 15px;
+          margin-bottom: 5px;
+        }
+        button {
+          @include three-d-button($teal-blue);
+          color: $white;
+          margin-bottom: 5px;
+          display: block;//these two new
+          margin-top: 15px;
+        }
+      }
     }
+    .imgPreview {
+      img {
+        max-width: 250px;
+        max-height: 250px;
+        border-radius: $card-radius;
+        border: $white 1px solid;
+        border-radius: 2px;
+      }
+    }
+    //THIS IS WHERE THE USER IMAGES ARE MADE UGLY WITH FLEXBOX
+    .userPhotos {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      .photoThumbnail {
+        padding: 5px;
+        margin: 5px;
+        border-radius: $card-radius;
+        .caption {
+          h3 {
+            color: $dark-blue;
+            text-align: center;
+            font-size: 18px;
+
+          }
+          h3::first-letter {
+            text-transform: capitalize;
+          }
+        }
+      }
+    }
+  }
+}
+//image uploading buttons
+.choose_file{
+  @include three-d-button($teal-blue);
+  display: block;
+  width: 150px;
+  input[type="file"]{
+    -webkit-appearance:none;
+    position:absolute;
+    top:0; left:0;
+    opacity:0;
+    border-radius: $card-radius;
+  }
+  span {
+    color: $white;
+
   }
 }

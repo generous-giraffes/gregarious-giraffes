@@ -35,7 +35,7 @@ class ProfileHeader extends Component {
                 <Thumbnail className='user-image' href="#" alt="Your image was lost, please go back and try uploading another" src={this.props.profileImage || '../../styles/assets/sadPup.jpg'} />
             </Col>
             <Col xs={12} md={8}>
-                <PageHeader> {this.props.name}'s Page <small>  As I say: {this.props.quote}</small></PageHeader>
+                <PageHeader> {this.props.name}'s <h2>Page</h2>   <p><small>  As I say: {this.props.quote}</small></p></PageHeader>
                 <Button onClick={()=>{browserHistory.push('/ImageUploader')}}>Upload a New Photo</Button>
           </Col>
         </Row>
@@ -50,7 +50,7 @@ function mapStateToProps(state) {
     email: state.reducers.isAuthorized.email,
     name: state.reducers.isAuthorized.name,
     profileImage: state.reducers.image.profileImage,
-    quote: state.reducers.isAuthorized.quote,
+    quote: state.reducers.form.quote || state.reducers.isAuthorized.quote,
     species: state.reducers.isAuthorized.species,
     id: state.reducers.isAuthorized.id
    }

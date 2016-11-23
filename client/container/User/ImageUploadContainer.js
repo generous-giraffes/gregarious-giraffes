@@ -89,8 +89,11 @@ class ImageUpload extends React.Component {
           <Row className="show-grid">
             <Col xs={12} className="previewComponent">
                 <form onSubmit={(e)=>this.handleSubmit(e)}>
-                  <input className="fileInput" type="file" onChange={(e)=>this.handleImageChange(e)}/>
-                  <button bsStyle="primary" className="fileUpload" type="submit" onClick={(e)=>this.handleSubmit(e)}>Upload Image</button>
+                    <div className="choose_file">
+                      <span>Choose File</span>
+                      <input className="fileInput" type="file" onChange={(e)=>this.handleImageChange(e)}/>
+                    </div>
+                    <button bsStyle="primary" className="fileUpload" type="submit" onClick={(e)=>this.handleSubmit(e)}>Upload Image</button>
                 </form>
                 <div className="imgPreview">
                   {$imagePreview}

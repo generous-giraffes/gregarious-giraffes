@@ -21,10 +21,10 @@ class Photos extends Component {
         return (
             <Grid className="photos">
                 <UserImageUpload />
-                <Row>
+                <Row className="userPhotos">
                     {this.props.images.map((image) => (
                       <Col xs={12} md={6}>
-                          <Thumbnail src={image.image}>
+                          <Thumbnail className="photoThumbnail" src={image.image}>
                               <h3>{image.caption}</h3>
                           </Thumbnail>
                       </Col>
