@@ -1,7 +1,7 @@
 //when this file is required, knex sets up a connection with the databse and creates the tables if they do not exist
 
 //++++++++FOR LOCAL TESTING++++++++
-//start and setup mysql in termina: $ mysql.server start, then, $ mysql -h localhost -u root -p
+//start and setup mysql in terminal: $ mysql.server start, then, $ mysql -h localhost -u root -p
 //when in the mysql terminal type: create database giraffeLocal;, and then type: use giraffeLocal;
 
 //var knex = require('knex')({
