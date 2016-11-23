@@ -4,7 +4,7 @@
 //start and setup mysql in termina: $ mysql.server start, then, $ mysql -h localhost -u root -p
 //when in the mysql terminal type: create database giraffeLocal;, and then type: use giraffeLocal;
 
-//var knex = require('knex')({
+// var knex = require('knex')({
 //  client: 'mysql',
 //  connection: {
 //    host: 'localhost',
@@ -12,19 +12,16 @@
 //    password: 'admin',//your local password for root user
 //    database: 'giraffeLocal'
 //  }
-//});
+// });
 
 var knex = require('knex')({
     client: 'mysql',
     connection: {
-        host: 'giraffe.cdt7ljmioe25.us-west-2.rds.amazonaws.com',
+        host: 'localhost',
         user: 'giraffes',
         password: 'giraffes',
-        port: '3306',
-        database: 'giraffes',
-        debug: true
-    },
-    pool: {min: 0, max: 10}
+        database: 'giraffes'
+    }
 });
 
 //create users table
