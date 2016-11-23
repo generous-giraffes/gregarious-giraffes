@@ -18,7 +18,7 @@ class EventList extends React.Component {
             eventName: '',
             userName: '',
             search: false,
-            justAttended: ''
+            justAttended: []
         }
     }
 
@@ -29,23 +29,21 @@ class EventList extends React.Component {
 
     attend(e) {
         let user_id = this.props.id;
-        let eventId = e.currentTarget.getAttribute('data-eventID');
-        let result = this.props.userEvents.filter((event) => event['event_id'] === Number(eventId))
+        let event_id = e.currentTarget.getAttribute('data-eventID');
 
-        if(result.length > 0 || eventId === this.state.justAttended) {
+        let attended = this.props.userEvents.filter((event) => event['event_id'] === Number(event_id))
+        let attending = this.state.justAttended.filter((attendedId) => event_id === attendedId)
+
+        //check if the user tried to add an event they are already attedning (from props), or an event they just attended (in state but not in props yet)
+        if(attended.length > 0 || attending.length) {
           toastr.warning('Uh Oh!', 'you are already attending this event.')
           return null;
         }
-        this.props.attendEvent(eventId, user_id)
+        this.props.attendEvent(event_id, user_id)
             .catch((err) => console.log(err));
         toastr.success('Event Success!', `You added the event`);
-        this.setState({justAttended: eventId})
-    }
-
-    // called as soon as the the shouldComponentUpdate returned true. Any state changes via this.setState are not allowed as this method should be strictly used to prepare for an upcoming update not trigger an update itself.
-    componentWillUpdate(nextProps, nextState) {
-        // perform any preparations for an upcoming update
-        // console.log(nextProps, "props++++++state for EVENT LIST", nextState);
+        //set the state with the events the user just atteneded so they cannot add more before application state us updated
+        this.setState({justAttended: this.state.justAttended.concat([event_id])})
     }
 
     handleUserNameChange(e) {
