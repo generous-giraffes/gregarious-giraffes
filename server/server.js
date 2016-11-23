@@ -13,7 +13,7 @@ var app = express();
 
 //This is needed for socket.io to work by attaching a socket.io server to express
 var http = require('http').Server(app)
-// var io = require('socket.io')(http);
+var io = require('socket.io')(http);
 
 //Coors
 app.use((req, res, next) => {
@@ -60,16 +60,16 @@ app.get('*', function(req, res){
 });
 
 // via the http server set up in line 16, we open the socket.io connection
-// io.sockets.on('connection',function(socket){
-//     console.log("Connected: ", socket.id);
+io.sockets.on('connection',function(socket){
+    console.log("Connected: ", socket.id);
 
-//     socket.on('chatlist',(payload)=>{
-//         console.log(payload);
-//         console.log("received");
-//         // listens and broadcasts the messages sent from client-side
-//         this.emit('chatlist', payload);
-//     })
-// });
+    socket.on('chatlist',(payload)=>{
+        console.log(payload);
+        console.log("received");
+        // listens and broadcasts the messages sent from client-side
+        this.emit('chatlist', payload);
+    })
+});
 
 //set and run the port and server
 app.set('port', process.env.PORT || 8080);
