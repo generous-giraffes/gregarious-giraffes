@@ -55,3 +55,10 @@ Things you can do with this app:
     - Can create an event
     - Can 'attend' an event
     - When you add an address or location, it uses Google maps to mark the location
+
+How to set up a local MySQL database:
+- first, make sure you have mysql installed (npm install mysql)
+- at the command prompt type:  mysql.server start, then, $ mysql -h localhost -u root -p, and enter a password for the root user, this password will go in server/db/index.js
+- when in the mysql terminal type: create database giraffeLocal;, and then type: use giraffeLocal;
+- go to index.js in server/db and make sure that the knex library initiation with host: 'localhost' is uncommented, and that the other knex initiation is commented out
+- enter your password for your mysql root user in the connection object

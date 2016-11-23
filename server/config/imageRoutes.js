@@ -44,7 +44,7 @@ router.post('/userImages', (req, res) => {
 		// db('images').insert({image: resp.url, caption: resp.caption, user_image_id: resp.id, file_type: resp.type})
 		Images.addUserImage(resp)
 			.then((data) => {
-				res.send({status: 'success', uri: resp.url, caption: resp.caption, file_type: resp.type});
+				res.send({status: 'success', image: resp.url, caption: resp.caption, file_type: resp.type});
 			})
 			.catch((err) => console.log(err))
 	}

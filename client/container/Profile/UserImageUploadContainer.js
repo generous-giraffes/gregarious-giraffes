@@ -37,6 +37,7 @@ class UserImageUpload extends React.Component {
         caption: this.state.caption
       });
       toastr.info('Upload Success!', 'Your image was stored',  toastrOptions)
+      this.setState({data_uri: '', filename: '', filetype: '', caption: ''});
     } else {
       toastr.warning('Upload failed', 'Please make sure your filename has no whitespace or special characters', toastrOptions)
     }
@@ -89,8 +90,12 @@ class UserImageUpload extends React.Component {
             <h3>{preview2}</h3>
             <FormGroup>
               <form onSubmit={(e)=>this.handleSubmit(e)}>
-                <input className="fileInput" type="file" onChange={(e)=>this.handleImageChange(e)}/>
-                <input className="captionInput" type="text" onChange={(e)=>this.handleCaptionChange(e)}/>
+                  <div className="choose_file">
+                      <span>Choose File</span>
+                      <input className="fileInput" type="file" onChange={(e)=>this.handleImageChange(e)}/>
+                  </div>
+                <h4>Write a Caption:</h4>
+                <input className="captionInput" value={this.state.caption} type="text" onChange={(e)=>this.handleCaptionChange(e)}/>
                 <button className="fileUpload" type="submit" onClick={(e)=>this.handleSubmit(e)}>Upload Image</button>
               </form>
               <p>Please ensure your file contains no spaces or special characters.</p>

@@ -83,8 +83,8 @@ class Friends extends Component {
             <Panel collapsible expanded={this.state.open2}>
                 {noFriends}
                 {this.props.friends.map((friend, i)=>
-                  <Panel header={friend.name} bsStyle="primary">
-                      <p>Quote: {friend.quote}</p>
+                  <Panel header={friend.name} className="Friend-Panel">
+                      <p>Quote: <span>{friend.quote}</span></p>
                   <Button bsStyle="primary" data-index={i}  onClick={this.viewProfile}>View Profile</Button>
                   <Button bsStyle="primary" data-index={i}  onClick={this.unfriend}>Unfriend</Button>
                   </Panel>

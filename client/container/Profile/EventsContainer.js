@@ -20,7 +20,6 @@ class EventInfo extends Component {
 
     render() {
       let noEvent = null;
-      console.log(this.props.userEvent, '+++++++++++++++++++++++++++');
       if(!this.props.userEvent.length) {
         noEvent = ( <Panel header='You are not currently attending any events' bsStyle="success">
                       <p>Head over to events to see what is going on</p>
@@ -34,7 +33,7 @@ class EventInfo extends Component {
             <Panel collapsible expanded={this.state.open1}>
             {noEvent}
             {this.props.userEvent.map((event, i) =>
-              <Panel header={event.name} bsStyle="success">
+              <Panel header={event.name} bsStyle="success" className="events-panel">
                   <p>Location: {event.location}</p>
                   <p>Date: {event.date}</p>
                   <p>Time: {event.time}</p>
@@ -43,7 +42,6 @@ class EventInfo extends Component {
                   <p>Eating: {event.eating}</p>
                   <p>Danger: {event.danger}</p>
                   <p>Address: {event.address}</p>
-                  {/*<p>Coordinates: {event.coordinates}</p>*/}
               </Panel>
             , this)}
             </Panel>
