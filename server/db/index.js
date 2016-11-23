@@ -18,8 +18,8 @@ var knex = require('knex')({
     client: 'mysql',
     connection: {
         host: 'localhost',
-        user: 'giraffes',
-        password: 'giraffes',
+        user: 'root',
+        password: 'admin',
         database: 'giraffes'
     }
 });
