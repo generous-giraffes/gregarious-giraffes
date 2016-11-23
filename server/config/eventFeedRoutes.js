@@ -49,6 +49,7 @@ router.get('/searchEvents/user', (req, res) => {
       .catch((err) => console.error(err));
 });
 
+//gets the events that a user is searching
 router.get('/searchEvents/event', (req, res) => {
   let eventName = req.query.eventName;
   db('events')

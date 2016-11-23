@@ -91,3 +91,9 @@ This is just to help you organize your process
  Did I make any requested changes from that code review?
 If you follow all of these guidelines and make good changes, you should have no problem getting your changes merged in.
 
+Some Ideas for Future Contributions:
+- Emoji reactions to photos
+- Like photos
+- Search for tags in common with friends
+- Create groups or teams to form organizations of friends with similar interests/pets
+- Short and fun quizzes

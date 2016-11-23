@@ -9,7 +9,7 @@ import SimpleMapPage from '../Features/MapContainer';
 import { toastr } from 'react-redux-toastr';
 
 
-
+///This shows both the list of default events as well as the ones that users search
 class EventList extends React.Component {
     constructor(props) {
         super(props);

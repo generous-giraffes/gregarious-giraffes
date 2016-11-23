@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 
 module.exports = {
+    //Login searches the database for a new user compares the token with the salt and either resolves or rejects
     loginUser (req, res) {
         let User = new Promise((resolve, reject) => {
             let email = req.body.user.email;
@@ -28,6 +29,8 @@ module.exports = {
         return User;
     },
 
+    //This creates a promise that adds a new user, takes the password and creates the token,
+    // either resolving or checking if it's an existing user account
     addNewUser (req, res) {
         let addNewUser = new Promise((resolve, reject) => {
             console.log('Sign up in authentication: ', req.body.user);

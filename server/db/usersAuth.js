@@ -11,6 +11,7 @@ module.exports = {
       .catch((err) => console.log(err))
   },
 
+  //add users to the database with their email, password and name
   add(email, password, name, callback) {
     db('users').insert({
       email: email,

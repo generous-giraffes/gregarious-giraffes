@@ -5,6 +5,7 @@ const auth = require('./auth');
 
 const router = express.Router();
 
+//hits the endpoint for log in
 router.post('/login', (req, res) => {
     auth.loginUser(req, res)
         .then((promise) => {
@@ -17,6 +18,7 @@ router.post('/login', (req, res) => {
         });
 });
 
+//hits the endpoint for signup
 router.post('/signup', (req, res) => {
     auth.addNewUser(req, res)
         .then((promise) => {

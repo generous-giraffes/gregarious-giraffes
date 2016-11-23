@@ -17,18 +17,12 @@ export function eventForm_Reducer(state = { currentEvent: [], events: [], userEv
                     coordinates: action.payload.coordinates
                 });
         case GET_EVENT_FORM:
-        //the commented out code works but it is mutation of state, this way may be better
+        //this avoids the mutation of state
           let previousEvents = state.events.length || 0;
           let newEvents = action.data.data.slice(previousEvents);
           return Object.assign({}, state, {
               events: [...state.events, ...newEvents]
           });
-            // console.log(action, 'action GETTING THE EVENTS form+++++++++');
-            // let events = [
-            //     // ...state.events, //this was causing repeats to be added, could use slice if the lenghts dont match up to not mutate state, but this works
-            //     ...action.data.data
-            // ];
-            // return Object.assign({}, state, {events});
 
         case ATTEND_EVENT:
             let currentEvent = action.payload;

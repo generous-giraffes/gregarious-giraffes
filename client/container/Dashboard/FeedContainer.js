@@ -3,6 +3,8 @@ import { Button, Col, Row, Grid, FormGroup, FormControl, Navbar } from 'react-bo
 import UserFeed from './FeedContainers/UserFeedContainer';
 import ImageFeed from './FeedContainers/DashboardImagesContainer';
 
+
+///This is the feed on the left side of the dashboard, pulling in the containers for the user feed and image feed
 class Feed extends React.Component {
     constructor(props) {
         super(props);

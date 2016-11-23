@@ -22,9 +22,6 @@ router.post('/eventForm', (req, res) => {
           address: req.body.address,
           coordinates: req.body.coordinates
         })
-        // .then(() => {
-        //   db('events').select('event_id').where('')
-        // })
         .then((event_id) => db('attendingEvents').insert({ user_id: user_id, event_id: event_id }))
         .then(() => db('events').select('*'))
         .then((data) =>res.send(data))

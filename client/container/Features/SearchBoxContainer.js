@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+//search bar for the map
 class SearchBox extends Component {
   static propTypes = {
     placeholder: React.PropTypes.string,

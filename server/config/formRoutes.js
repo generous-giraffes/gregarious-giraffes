@@ -19,14 +19,14 @@ router.post('/form', (req, res) => {
 		// .then((data) => {
 		// 	console.log(req.body.email, 'form EMAIL ++++++');
 		// 	return db.select('*').from('users').where('email', req.body.email);
-		// })//this works but does not seem like is is a good way, should be able to add reutnring above
+		// })//this works but does not seem like is is a good way, should be able to add returning above
 		form.update(req.body)
 		 .then((data) => res.send(data))
 		 .catch((err) => console.error(err));
 });
-//need this for users signing backin, otherwise info is passed around in state
+//need this for users signing back in, otherwise info is passed around in state
 router.get('/form', (req, res) => {
-//Abstract the database functions out into utlities directory
+//Abstract the database functions out into utilities directory
   // db('users').where({userId: req.body.email}).select('*')
 	form.fetch(req.body)
 	  .then((data) => res.send(data))

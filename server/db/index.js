@@ -4,6 +4,8 @@
 //start and setup mysql in termina: $ mysql.server start, then, $ mysql -h localhost -u root -p
 //when in the mysql terminal type: create database giraffeLocal;, and then type: use giraffeLocal;
 
+
+//this is for the local host
 // var knex = require('knex')({
 //  client: 'mysql',
 //  connection: {
@@ -14,6 +16,7 @@
 //  }
 // });
 
+//this is to connect to the database on EC2 / MYSQL
 var knex = require('knex')({
     client: 'mysql',
     connection: {
