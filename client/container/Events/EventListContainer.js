@@ -17,32 +17,35 @@ class EventList extends React.Component {
             event: '',
             eventName: '',
             userName: '',
-            search: false
+            search: false,
+            justAttended: ''
         }
     }
 
     componentDidMount() {
         this.props.getEvent();
-        this.props.userEvents.length || this.props.showEvent(this.props.id);
+        this.props.showEvent(this.props.id);
     }
 
     attend(e) {
         let user_id = this.props.id;
-        let event_id = e.currentTarget.getAttribute('data-eventID');
+        let eventId = e.currentTarget.getAttribute('data-eventID');
+        let result = this.props.userEvents.filter((event) => event['event_id'] === Number(eventId))
 
-        if(this.props.userEvents.filter((event) => event.event_id === event_id)) {
+        if(result.length > 0 || eventId === this.state.justAttended) {
           toastr.warning('Uh Oh!', 'you are already attending this event.')
           return null;
         }
-        this.props.attendEvent(event_id, user_id)
+        this.props.attendEvent(eventId, user_id)
             .catch((err) => console.log(err));
         toastr.success('Event Success!', `You added the event`);
+        this.setState({justAttended: eventId})
     }
 
     // called as soon as the the shouldComponentUpdate returned true. Any state changes via this.setState are not allowed as this method should be strictly used to prepare for an upcoming update not trigger an update itself.
     componentWillUpdate(nextProps, nextState) {
         // perform any preparations for an upcoming update
-        console.log(nextProps, "props++++++state for EVENT LIST", nextState);
+        // console.log(nextProps, "props++++++state for EVENT LIST", nextState);
     }
 
     handleUserNameChange(e) {
