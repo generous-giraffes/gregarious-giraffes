@@ -25,7 +25,7 @@ class FriendProfile extends React.Component {
             <ProfileHeader />
             <Row className="profile-data">
                 <Col xs={12} md={6}>
-                    <Button onClick={this.goBack} >Go Back</Button>
+                    <Button bsStyle="primary" onClick={this.goBack}>Go Back</Button>
                     <SurveyInfo />
                     <FriendImages />
                 </Col>

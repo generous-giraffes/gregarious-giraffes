@@ -22,7 +22,7 @@ class EventInfo extends Component {
       let noEvent = null;
       if(!this.props.userEvent.length) {
         noEvent = ( <Panel header='You are not currently attending any events' bsStyle="success">
-                      <p>Head over to events to see what is going on</p>
+                      <p>Head over to events to see what is going on.</p>
                   </Panel>)
       }
       return(

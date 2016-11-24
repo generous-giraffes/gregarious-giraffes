@@ -19,7 +19,7 @@ class SurveyInfo extends Component {
             <ListGroupItem header="hobbies: ">{this.props.hobbies}</ListGroupItem>
             <ListGroupItem header="Favorite Quote: ">{this.props.quote}</ListGroupItem>
             <ListGroupItem header="House Trained: ">{this.props.trained}</ListGroupItem>
-            <ListGroupItem header="Contact me at: "><a href={'mailto:'+this.props.email}>{this.props.email}</a></ListGroupItem>
+            <ListGroupItem className='email' header="Contact me at: "><a href={'mailto:'+this.props.email}>{this.props.email}</a></ListGroupItem>
         </ListGroup>
       )
 
