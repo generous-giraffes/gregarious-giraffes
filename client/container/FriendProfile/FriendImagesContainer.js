@@ -18,7 +18,7 @@ class FriendImages extends Component {
 
     render() {
         return (
-            <Grid className="photos">
+            <Grid className="photos container-fluid">
                 <Row className="userPhotos">
                   {this.props.friendImages.map((image) => (
                     <Col xs={12} md={6}>
