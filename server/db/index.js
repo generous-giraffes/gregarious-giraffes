@@ -16,7 +16,7 @@
 //  }
 // });
 
-//this is to connect to the database on EC2 / MYSQL
+// this is to connect to the database on EC2 / MYSQL
 var knex = require('knex')({
     client: 'mysql',
     connection: {

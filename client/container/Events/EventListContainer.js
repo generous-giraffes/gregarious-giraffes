@@ -17,32 +17,33 @@ class EventList extends React.Component {
             event: '',
             eventName: '',
             userName: '',
-            search: false
+            search: false,
+            justAttended: []
         }
     }
 
     componentDidMount() {
         this.props.getEvent();
-        this.props.userEvents.length || this.props.showEvent(this.props.id);
+        this.props.showEvent(this.props.id);
     }
 
     attend(e) {
         let user_id = this.props.id;
         let event_id = e.currentTarget.getAttribute('data-eventID');
 
-        if(this.props.userEvents.filter((event) => event.event_id === event_id)) {
+        let attended = this.props.userEvents.filter((event) => event['event_id'] === Number(event_id))
+        let attending = this.state.justAttended.filter((attendedId) => event_id === attendedId)
+
+        //check if the user tried to add an event they are already attedning (from props), or an event they just attended (in state but not in props yet)
+        if(attended.length > 0 || attending.length) {
           toastr.warning('Uh Oh!', 'you are already attending this event.')
           return null;
         }
         this.props.attendEvent(event_id, user_id)
             .catch((err) => console.log(err));
         toastr.success('Event Success!', `You added the event`);
-    }
-
-    // called as soon as the the shouldComponentUpdate returned true. Any state changes via this.setState are not allowed as this method should be strictly used to prepare for an upcoming update not trigger an update itself.
-    componentWillUpdate(nextProps, nextState) {
-        // perform any preparations for an upcoming update
-        console.log(nextProps, "props++++++state for EVENT LIST", nextState);
+        //set the state with the events the user just atteneded so they cannot add more before application state us updated
+        this.setState({justAttended: this.state.justAttended.concat([event_id])})
     }
 
     handleUserNameChange(e) {
