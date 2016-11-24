@@ -1,8 +1,9 @@
-//when this file is required, knex sets up a connection with the database and creates the tables if they do not exist
+//when this file is required, knex sets up a connection with the databse and creates the tables if they do not exist
 
 //++++++++FOR LOCAL TESTING++++++++
 //start and setup mysql in terminal: $ mysql.server start, then, $ mysql -h localhost -u root -p
 //when in the mysql terminal type: create database giraffeLocal;, and then type: use giraffeLocal;
+
 
 //this is for the local host
 
@@ -26,7 +27,6 @@ var knex = require('knex')({
         database: 'giraffes'
     }
 });
-
 
 //create users table
 knex.schema.hasTable('users').then((exists) => {
