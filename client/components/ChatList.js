@@ -5,7 +5,7 @@ class ChatList extends React.Component {
     render() {
       let commentNodes = this.props.data.map((comment) => {
         return (
-          <Comment user={this.props.user} key={comment.id}>
+          <Comment user={comment.user} key={comment.id}>
             {comment.text}
           </Comment>
         );
