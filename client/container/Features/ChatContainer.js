@@ -42,6 +42,7 @@ class ChatBox extends React.Component {
       console.log("data executed");
 
       comment.id = Date.now();
+      comment.user = {name: this.props.user.name};
       var newComments = comments.concat([comment]);
       this.setState({
           data: newComments
